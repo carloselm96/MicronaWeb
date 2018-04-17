@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bd0d74dc55ef4afe8423f06b03e647bd" Name="Diagram1">
+        <EntityTypeShape EntityType="micronaModel.archivo" Width="1.5" PointX="6" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.artarbitrado" Width="1.5" PointX="5.25" PointY="46" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.artdifusion" Width="1.5" PointX="8.25" PointY="46.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.artindexado" Width="1.5" PointX="5.25" PointY="39.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.asesoria" Width="1.5" PointX="8.25" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.capitulolibro" Width="1.5" PointX="5.25" PointY="52.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.consultoria" Width="1.5" PointX="8.25" PointY="51.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.docencia" Width="1.5" PointX="11.25" PointY="46.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.informetecnico" Width="1.5" PointX="11.25" PointY="41.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.libro" Width="1.5" PointX="11.25" PointY="52.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.manualesoperacion" Width="1.5" PointX="14.25" PointY="46.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.materialapoyo" Width="1.5" PointX="14.25" PointY="41.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.materialdidactico" Width="1.5" PointX="14.25" PointY="51.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.memoriaextenso" Width="1.5" PointX="8.25" PointY="36.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.memorias" Width="1.5" PointX="8.25" PointY="56.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.productividadinovadora" Width="1.5" PointX="11.25" PointY="36.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.prototipo" Width="1.5" PointX="14.25" PointY="36.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.proyectosinvestigacion" Width="1.5" PointX="14.25" PointY="56.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.status" Width="1.5" PointX="0.75" PointY="47.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.tesis" Width="1.5" PointX="5.25" PointY="57.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.tipousuario" Width="1.5" PointX="0.75" PointY="44.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="micronaModel.usuario" Width="1.5" PointX="3" PointY="45.125" IsExpanded="true" />
+        <AssociationConnector Association="micronaModel.FK_Apoyo_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Archivo_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Archivo_Innovadora" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Archivo_Prototipo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Archivo_Proyecto" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Archivo_Tesis" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Asesoria_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Capitulo_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Consultoria_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Didactico_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Difusion_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Docencia_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Extenso_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Indexado_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Libro_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Manuales_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Memorias_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Tecnico_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Autor_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Difusion_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Indexado_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Asesoria_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Capitulo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Cosultoria_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Docencia_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Tecnico_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Libro_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Manuales_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Apoyo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Didactico_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Extenso_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Memorias_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Innovadora_Autor" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Prototipo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Proyecto_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Status_Status" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Tesis_Autor" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Usuario_Tipo" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

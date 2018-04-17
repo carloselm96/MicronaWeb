@@ -1,0 +1,141 @@
+﻿@model IEnumerable<WebApplication4.Models.artarbitrado>
+
+@{
+    ViewBag.Title = "Articulo Arbitrado";
+    ViewBag.Controlador = "Lista";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box">
+            <div class="box-header">
+                <h3 class="box-title">Hover Data Table</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <table id="myTable" class="display">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titulo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Revista)
+                            </th>                                                        
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pais)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Editorial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Volumen)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ISSN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>                                                        
+                            <th>
+                                @Html.DisplayNameFor(model => model.ConsiderarCurr)
+                            </th>                                                        
+                            <th>
+                                Autor
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+        {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Titulo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Revista)
+                    </td>                                        
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pais)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Editorial)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Volumen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISSN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>                                        
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ConsiderarCurr)
+                    </td>                                        
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuario.Nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.idArtArbitrado }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.idArtArbitrado }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.idArtArbitrado })
+                    </td>
+                </tr>
+}
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Titulo)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Estado)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Revista)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Pais)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Editorial)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Volumen)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ISSN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ConsiderarCurr)
+                            </th>
+                            <th>
+                                Autor
+                            </th>
+                            <th></th>
+                        </tr>
+
+                    </tfoot>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  $(document).ready( function () {
+    $('#myTable').DataTable();
+} );
+</script>
