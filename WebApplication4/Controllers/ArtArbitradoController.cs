@@ -10,9 +10,10 @@ namespace WebApplication4.Controllers
     public class ArtArbitradoController : Controller
     {
         // GET: ArtArbitrado
+        [Authorize]
         public ActionResult Index()
         {
-            micronaEntities2 db = new micronaEntities2();
+            micronaEntities db = new micronaEntities();
             var art = db.artarbitrado.ToList();
             return View(art);
         }

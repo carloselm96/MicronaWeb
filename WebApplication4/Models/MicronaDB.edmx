@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="micronaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="micronaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="archivo">
           <Key>
             <PropertyRef Name="idArchivo" />
@@ -408,7 +408,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Archivo_Archivo">
+        <Association Name="FK_Arbitrado_Archivo">
           <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -419,6 +419,18 @@
             </Principal>
             <Dependent Role="artarbitrado">
               <PropertyRef Name="FK_Archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Arbitrado_Usuarios">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="artarbitrado">
+              <PropertyRef Name="Autor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -499,18 +511,6 @@
             </Principal>
             <Dependent Role="asesoria">
               <PropertyRef Name="idAsesoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Autor_Usuarios">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artarbitrado">
-              <PropertyRef Name="Autor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -903,8 +903,12 @@
             <End Role="usuario" EntitySet="usuario" />
             <End Role="materialapoyo" EntitySet="materialapoyo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Archivo" Association="Self.FK_Archivo_Archivo">
+          <AssociationSet Name="FK_Arbitrado_Archivo" Association="Self.FK_Arbitrado_Archivo">
             <End Role="archivo" EntitySet="archivo" />
+            <End Role="artarbitrado" EntitySet="artarbitrado" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Arbitrado_Usuarios" Association="Self.FK_Arbitrado_Usuarios">
+            <End Role="usuario" EntitySet="usuario" />
             <End Role="artarbitrado" EntitySet="artarbitrado" />
           </AssociationSet>
           <AssociationSet Name="FK_Archivo_Innovadora" Association="Self.FK_Archivo_Innovadora">
@@ -930,10 +934,6 @@
           <AssociationSet Name="FK_Asesoria_Usuario" Association="Self.FK_Asesoria_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="asesoria" EntitySet="asesoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Autor_Usuarios" Association="Self.FK_Autor_Usuarios">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artarbitrado" EntitySet="artarbitrado" />
           </AssociationSet>
           <AssociationSet Name="FK_Capitulo_Archivo" Association="Self.FK_Capitulo_Archivo">
             <End Role="archivo" EntitySet="archivo" />
@@ -1061,7 +1061,7 @@
           <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="Url" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="materialapoyo" Relationship="Self.FK_Apoyo_Archivo" FromRole="archivo" ToRole="materialapoyo" />
-          <NavigationProperty Name="artarbitrado" Relationship="Self.FK_Archivo_Archivo" FromRole="archivo" ToRole="artarbitrado" />
+          <NavigationProperty Name="artarbitrado" Relationship="Self.FK_Arbitrado_Archivo" FromRole="archivo" ToRole="artarbitrado" />
           <NavigationProperty Name="productividadinovadora" Relationship="Self.FK_Archivo_Innovadora" FromRole="archivo" ToRole="productividadinovadora" />
           <NavigationProperty Name="prototipo" Relationship="Self.FK_Archivo_Prototipo" FromRole="archivo" ToRole="prototipo" />
           <NavigationProperty Name="proyectosinvestigacion" Relationship="Self.FK_Archivo_Proyecto" FromRole="archivo" ToRole="proyectosinvestigacion" />
@@ -1101,8 +1101,8 @@
           <Property Name="ConsiderarCurr" Type="SByte" />
           <Property Name="FK_Archivo" Type="Int32" />
           <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Archivo_Archivo" FromRole="artarbitrado" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Autor_Usuarios" FromRole="artarbitrado" ToRole="usuario" />
+          <NavigationProperty Name="archivo" Relationship="Self.FK_Arbitrado_Archivo" FromRole="artarbitrado" ToRole="archivo" />
+          <NavigationProperty Name="usuario" Relationship="Self.FK_Arbitrado_Usuarios" FromRole="artarbitrado" ToRole="usuario" />
         </EntityType>
         <EntityType Name="artdifusion">
           <Key>
@@ -1485,7 +1485,7 @@
           <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Usuario1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Contrasena" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="artarbitrado" Relationship="Self.FK_Autor_Usuarios" FromRole="usuario" ToRole="artarbitrado" />
+          <NavigationProperty Name="artarbitrado" Relationship="Self.FK_Arbitrado_Usuarios" FromRole="usuario" ToRole="artarbitrado" />
           <NavigationProperty Name="artdifusion" Relationship="Self.FK_Difusion_Usuario" FromRole="usuario" ToRole="artdifusion" />
           <NavigationProperty Name="artindexado" Relationship="Self.FK_Indexado_Usuario" FromRole="usuario" ToRole="artindexado" />
           <NavigationProperty Name="asesoria" Relationship="Self.FK_Asesoria_Usuario" FromRole="usuario" ToRole="asesoria" />
@@ -1520,7 +1520,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Archivo_Archivo">
+        <Association Name="FK_Arbitrado_Archivo">
           <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
@@ -1756,7 +1756,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Autor_Usuarios">
+        <Association Name="FK_Arbitrado_Usuarios">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
           <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1996,7 +1996,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="micronaEntities2" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="micronaEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="archivo" EntityType="Self.archivo" />
           <EntitySet Name="artarbitrado" EntityType="Self.artarbitrado" />
           <EntitySet Name="artdifusion" EntityType="Self.artdifusion" />
@@ -2023,7 +2023,7 @@
             <End Role="archivo" EntitySet="archivo" />
             <End Role="materialapoyo" EntitySet="materialapoyo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Archivo" Association="Self.FK_Archivo_Archivo">
+          <AssociationSet Name="FK_Arbitrado_Archivo" Association="Self.FK_Arbitrado_Archivo">
             <End Role="archivo" EntitySet="archivo" />
             <End Role="artarbitrado" EntitySet="artarbitrado" />
           </AssociationSet>
@@ -2091,7 +2091,7 @@
             <End Role="archivo" EntitySet="archivo" />
             <End Role="informetecnico" EntitySet="informetecnico" />
           </AssociationSet>
-          <AssociationSet Name="FK_Autor_Usuarios" Association="Self.FK_Autor_Usuarios">
+          <AssociationSet Name="FK_Arbitrado_Usuarios" Association="Self.FK_Arbitrado_Usuarios">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="artarbitrado" EntitySet="artarbitrado" />
           </AssociationSet>
@@ -2177,7 +2177,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="micronaModelStoreContainer" CdmEntityContainer="micronaEntities2">
+        <EntityContainerMapping StorageEntityContainer="micronaModelStoreContainer" CdmEntityContainer="micronaEntities">
           <EntitySetMapping Name="archivo">
             <EntityTypeMapping TypeName="micronaModel.archivo">
               <MappingFragment StoreEntitySet="archivo">

@@ -1,7 +1,7 @@
 ﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
-  <Import Project="..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props" Condition="Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -61,8 +61,8 @@
     <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.8.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Owin, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -7173,23 +7173,23 @@
     <Content Include="Content\LoginContent\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\LoginContent\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\LoginContent\vendor\bootstrap\css\bootstrap.min.css.map" />
-    <EntityDeploy Include="Models\MicronaDB.edmx">
+    <EntityDeploy Include="Models\micronaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>MicronaDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>micronaDB.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\MicronaDB.edmx.diagram">
-      <DependentUpon>MicronaDB.edmx</DependentUpon>
+    <Content Include="Models\micronaDB.edmx.diagram">
+      <DependentUpon>micronaDB.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
-    <Content Include="Models\MicronaDB.Context.tt">
+    <Content Include="Models\micronaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MicronaDB.edmx</DependentUpon>
-      <LastGenOutput>MicronaDB.Context.cs</LastGenOutput>
+      <DependentUpon>micronaDB.edmx</DependentUpon>
+      <LastGenOutput>micronaDB.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\MicronaDB.tt">
+    <Content Include="Models\micronaDB.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>MicronaDB.edmx</DependentUpon>
-      <LastGenOutput>MicronaDB.cs</LastGenOutput>
+      <DependentUpon>micronaDB.edmx</DependentUpon>
+      <LastGenOutput>micronaDB.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -7205,7 +7205,9 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\ArtArbitrado\Index.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -7216,92 +7218,94 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\archivo.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\artarbitrado.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\artdifusion.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\artindexado.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\asesoria.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\capitulolibro.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\consultoria.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\docencia.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\informetecnico.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\libro.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\manualesoperacion.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\materialapoyo.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\materialdidactico.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\memoriaextenso.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\memorias.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MicronaDB.Context.cs">
+    <Compile Include="Models\micronaDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MicronaDB.Context.tt</DependentUpon>
+      <DependentUpon>micronaDB.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MicronaDB.cs">
+    <Compile Include="Models\micronaDB.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\MicronaDB.Designer.cs">
+    <Compile Include="Models\micronaDB.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>MicronaDB.edmx</DependentUpon>
+      <DependentUpon>micronaDB.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\productividadinovadora.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\prototipo.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\proyectosinvestigacion.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\status.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tesis.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tipousuario.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario.cs">
-      <DependentUpon>MicronaDB.tt</DependentUpon>
+      <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
-    <None Include="packages.config" />
+    <None Include="packages.config">
+      <SubType>Designer</SubType>
+    </None>
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
@@ -7352,8 +7356,8 @@
     <PropertyGroup>
       <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.4.0\build\Microsoft.Net.Compilers.props'))" />
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.8\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Net.Compilers.2.3.2\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.7\build\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

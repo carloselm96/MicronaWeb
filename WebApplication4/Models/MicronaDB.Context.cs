@@ -13,10 +13,10 @@ namespace WebApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class micronaEntities2 : DbContext
+    public partial class micronaEntities : DbContext
     {
-        public micronaEntities2()
-            : base("name=micronaEntities2")
+        public micronaEntities()
+            : base("name=micronaEntities")
         {
         }
     

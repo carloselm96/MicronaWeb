@@ -28,16 +28,19 @@ namespace WebApplication4.Controllers
         [AllowAnonymous]
         public ActionResult Login(usuario u)
         {
-            micronaEntities2 db = new micronaEntities2();
+            micronaEntities db = new micronaEntities();
             var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1).FirstOrDefault();
             if (user!=null)
             {
                 if (user.Status == 1 && user.Contrasena== u.Contrasena)
                 {
-                    FormsAuthentication.SetAuthCookie(user.TipoUsuario+"", true);
-                    HttpContext.Session["idUser"] = user.idUsuario;
-                    HttpContext.Session["nombreUser"]= user.Nombre+ " " +user.Apelidos;
-                    HttpContext.Session["tipoUser"] = user.tipousuario1.nombre;
+                    FormsAuthentication.SetAuthCookie(user.tipousuario1.nombre, true);
+                    HttpCookie userInfo = new HttpCookie("userInfo");
+                    userInfo.Values.Add("id", user.idUsuario.ToString());
+                    userInfo.Values.Add("nombre", user.Nombre + " " + user.Apelidos);
+                    userInfo.Values.Add("tipo", user.tipousuario1.nombre);
+                    userInfo.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(userInfo);
                     return RedirectToAction("Index","Home");                    
                 }
             }          
@@ -47,9 +50,10 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Logout()
         {
-            HttpContext.Session["idUser"] = null; 
-            HttpContext.Session["nombreUser"] = null;
-            HttpContext.Session["tipoUser"] = null;
+            if(Request.Cookies["userInfo"] != null)
+            {
+                Request.Cookies["userInfo"].Expires = DateTime.Now.AddDays(-1);
+            }
             FormsAuthentication.SignOut();            
             return RedirectToAction("Login", "Home");
         }

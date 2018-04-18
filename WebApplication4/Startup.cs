@@ -19,6 +19,7 @@ namespace WebApplication4
                 AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie,
                 LoginPath = new PathString("/Home/Login")
             });
+
         }
     }
 }

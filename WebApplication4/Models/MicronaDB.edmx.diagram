@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="bd0d74dc55ef4afe8423f06b03e647bd" Name="Diagram1">
+      <Diagram DiagramId="676cf3cce9ce4dabb099809626a96dd5" Name="Diagram1">
         <EntityTypeShape EntityType="micronaModel.archivo" Width="1.5" PointX="6" PointY="33.875" IsExpanded="true" />
         <EntityTypeShape EntityType="micronaModel.artarbitrado" Width="1.5" PointX="5.25" PointY="46" IsExpanded="true" />
         <EntityTypeShape EntityType="micronaModel.artdifusion" Width="1.5" PointX="8.25" PointY="46.125" IsExpanded="true" />
@@ -28,7 +28,7 @@
         <EntityTypeShape EntityType="micronaModel.tipousuario" Width="1.5" PointX="0.75" PointY="44.625" IsExpanded="true" />
         <EntityTypeShape EntityType="micronaModel.usuario" Width="1.5" PointX="3" PointY="45.125" IsExpanded="true" />
         <AssociationConnector Association="micronaModel.FK_Apoyo_Archivo" ManuallyRouted="false" />
-        <AssociationConnector Association="micronaModel.FK_Archivo_Archivo" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Arbitrado_Archivo" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Archivo_Innovadora" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Archivo_Prototipo" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Archivo_Proyecto" ManuallyRouted="false" />
@@ -45,7 +45,7 @@
         <AssociationConnector Association="micronaModel.FK_Manuales_Archivo" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Memorias_Archivo" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Tecnico_Archivo" ManuallyRouted="false" />
-        <AssociationConnector Association="micronaModel.FK_Autor_Usuarios" ManuallyRouted="false" />
+        <AssociationConnector Association="micronaModel.FK_Arbitrado_Usuarios" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Difusion_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Indexado_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="micronaModel.FK_Asesoria_Usuario" ManuallyRouted="false" />
