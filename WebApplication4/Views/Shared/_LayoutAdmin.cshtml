@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Sistema MICRONA | Dashboard</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -113,7 +113,7 @@
             @{
                 if (Request.Cookies["userInfo"] != null)
                 {
-                    <p>@Request.Cookies["userInfo"]["nombre"]</p>
+                    <p>Usuario: @Request.Cookies["userInfo"]["user"]</p>
                 }
             }        
         </div>
@@ -225,9 +225,9 @@
                   {
                     <li class="header">ADMINISTRACIÓN</li>
                     <li>
-                        <a href="#">
-                            <i class="fa fa-users"></i> <span>Usuarios</span>
-                        </a>
+                        <a href="@Url.Action("Index", "Usuario")">
+                            <i class='fa fa-users'></i> <span>Usuarios</span>
+                        </a>                 
                     </li>
                   }
               }
@@ -305,5 +305,18 @@
 <!-- AdminLTE for demo purposes -->
 <script src="~/Content/dist/js/demo.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>    
+    <script>
+        $(function () {
+            $('#example1').DataTable()
+            $('#example2').DataTable({
+                'paging': true,
+                'lengthChange': false,
+                'searching': false,
+                'ordering': true,
+                'info': true,
+                'autoWidth': false
+            })
+        })
+    </script>
 </body>
 </html>

@@ -11,7 +11,8 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -41,7 +42,7 @@ namespace WebApplication4.Models
         public Nullable<int> TipoUsuario { get; set; }
         public Nullable<int> Status { get; set; }
         public string Correo { get; set; }
-        public string Usuario1 { get; set; }
+        public string Usuario1 { get; set; }        
         public string Contrasena { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

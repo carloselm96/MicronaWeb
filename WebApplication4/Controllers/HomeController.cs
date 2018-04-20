@@ -39,6 +39,7 @@ namespace WebApplication4.Controllers
                     userInfo.Values.Add("id", user.idUsuario.ToString());
                     userInfo.Values.Add("nombre", user.Nombre + " " + user.Apelidos);
                     userInfo.Values.Add("tipo", user.tipousuario1.nombre);
+                    userInfo.Values.Add("user", user.Usuario1);
                     userInfo.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(userInfo);
                     return RedirectToAction("Index","Home");                    
