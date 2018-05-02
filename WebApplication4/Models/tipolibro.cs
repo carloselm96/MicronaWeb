@@ -12,18 +12,18 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class status
+    public partial class tipolibro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public status()
+        public tipolibro()
         {
-            this.usuario = new HashSet<usuario>();
+            this.libro = new HashSet<libro>();
         }
     
-        public int idStatus { get; set; }
+        public int idTipoLibro { get; set; }
         public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public virtual ICollection<libro> libro { get; set; }
     }
 }

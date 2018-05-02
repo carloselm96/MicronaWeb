@@ -12,19 +12,18 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class libro
+    public partial class tipoarticulo
     {
-        public int idLibro { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> Año { get; set; }
-        public string ISBN { get; set; }
-        public string Autores { get; set; }
-        public Nullable<int> TipoLibro { get; set; }
-        public Nullable<int> Usuario { get; set; }
-        public Nullable<int> GrupoAcademico { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public tipoarticulo()
+        {
+            this.articulo = new HashSet<articulo>();
+        }
     
-        public virtual tipolibro tipolibro1 { get; set; }
-        public virtual grupoacademico grupoacademico1 { get; set; }
-        public virtual usuario usuario1 { get; set; }
+        public int idTipoArticulo { get; set; }
+        public string Nombre { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<articulo> articulo { get; set; }
     }
 }

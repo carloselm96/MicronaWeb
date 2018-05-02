@@ -7203,7 +7203,8 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
-    <Content Include="Views\ArtArbitrado\Index.cshtml" />
+    <Content Include="Views\Articulos\Index.cshtml" />
+    <Content Include="Views\Articulos\Create.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -7212,55 +7213,26 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\ArtArbitradoController.cs" />
+    <Compile Include="Controllers\ArticulosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TrabajosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\archivo.cs">
+    <Compile Include="Models\articulo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\artarbitrado.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\artdifusion.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\artindexado.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\asesoria.cs">
+    <Compile Include="Models\articulo_grupo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\capitulolibro.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\consultoria.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\docencia.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\informetecnico.cs">
+    <Compile Include="Models\grupoacademico.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\libro.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\manualesoperacion.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\materialapoyo.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\materialdidactico.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\memoriaextenso.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\memorias.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\micronaDB.Context.cs">
@@ -7278,22 +7250,22 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>micronaDB.edmx</DependentUpon>
     </Compile>
-    <Compile Include="Models\productividadinovadora.cs">
+    <Compile Include="Models\proyectos.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\prototipo.cs">
+    <Compile Include="Models\tipoarticulo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\proyectosinvestigacion.cs">
+    <Compile Include="Models\tipolibro.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\status.cs">
-      <DependentUpon>micronaDB.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\tesis.cs">
+    <Compile Include="Models\tipotrabajo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\tipousuario.cs">
+      <DependentUpon>micronaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\trabajo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\usuario.cs">
@@ -7313,6 +7285,8 @@
     <Content Include="Views\Usuario\Index.cshtml" />
     <Content Include="Views\Usuario\Create.cshtml" />
     <Content Include="Views\Usuario\Edit.cshtml" />
+    <Content Include="Views\Trabajos\Index.cshtml" />
+    <Content Include="Views\Trabajos\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

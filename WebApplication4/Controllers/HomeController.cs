@@ -29,18 +29,29 @@ namespace WebApplication4.Controllers
         public ActionResult Login(usuario u)
         {
             micronaEntities db = new micronaEntities();
-            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1).FirstOrDefault();
+            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1).FirstOrDefault();            
             if (user!=null)
             {
-                if (user.Status == 1 && user.Contrasena== u.Contrasena)
+                if (user.Contraseña== u.Contraseña)
                 {
-                    FormsAuthentication.SetAuthCookie(user.tipousuario1.nombre, true);
+                    //FormsAuthentication.SetAuthCookie(user.Usuario1, false);
+                    FormsAuthenticationTicket authTicket = new
+                        FormsAuthenticationTicket(1, //version
+                        user.Usuario1, // user name
+                        DateTime.Now,             //creation
+                        DateTime.Now.AddDays(1), //Expiration (you can set it to 1 month
+                        false,  //Persistent
+                        user.tipousuario1.Nombre);
+                    HttpCookie cookie1 = new HttpCookie(
+                    FormsAuthentication.FormsCookieName,
+                    FormsAuthentication.Encrypt(authTicket));
+                    Response.Cookies.Add(cookie1);
                     HttpCookie userInfo = new HttpCookie("userInfo");
                     userInfo.Values.Add("id", user.idUsuario.ToString());
-                    userInfo.Values.Add("nombre", user.Nombre + " " + user.Apelidos);
-                    userInfo.Values.Add("tipo", user.tipousuario1.nombre);
+                    userInfo.Values.Add("nombre", user.Nombre);
+                    userInfo.Values.Add("tipo", user.tipousuario1.Nombre);
                     userInfo.Values.Add("user", user.Usuario1);
-                    userInfo.Expires = DateTime.Now.AddDays(1);
+                    userInfo.Expires = DateTime.Now.AddDays(1);                    
                     Response.Cookies.Add(userInfo);
                     return RedirectToAction("Index","Home");                    
                 }

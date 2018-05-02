@@ -12,26 +12,21 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class usuario
+    public partial class grupoacademico
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public usuario()
+        public grupoacademico()
         {
             this.articulo = new HashSet<articulo>();
             this.capitulolibro = new HashSet<capitulolibro>();
             this.libro = new HashSet<libro>();
             this.trabajo = new HashSet<trabajo>();
-            this.proyectos = new HashSet<proyectos>();
+            this.articulo_grupo = new HashSet<articulo_grupo>();
         }
     
-        public int idUsuario { get; set; }
+        public int idGrupoAcademico { get; set; }
         public string Nombre { get; set; }
-        public string Usuario1 { get; set; }
-        public string Contraseña { get; set; }
-        public string Correo { get; set; }
-        public Nullable<int> TipoUsuario { get; set; }
     
-        public virtual tipousuario tipousuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo> articulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -41,6 +36,6 @@ namespace WebApplication4.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trabajo> trabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<proyectos> proyectos { get; set; }
+        public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
     }
 }

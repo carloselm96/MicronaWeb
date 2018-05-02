@@ -7,37 +7,41 @@ using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
-    public class ArtArbitradoController : Controller
+    public class TrabajosController : Controller
     {
-        // GET: ArtArbitrado
-        [Authorize]
+        // GET: Trabajos
         public ActionResult Index()
         {
             micronaEntities db = new micronaEntities();
-            var art = db.artarbitrado.ToList();
-            return View(art);
+            var trabajos = db.trabajo.ToList();
+            return View(trabajos);
         }
 
-        // GET: ArtArbitrado/Details/5
+        // GET: Trabajos/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: ArtArbitrado/Create
+        // GET: Trabajos/Create
         public ActionResult Create()
         {
+            micronaEntities db = new micronaEntities();
+            ViewBag.tipo = db.tipotrabajo.ToList();
+            ViewBag.grupo = db.grupoacademico.ToList();
             return View();
         }
 
-        // POST: ArtArbitrado/Create
+        // POST: Trabajos/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(trabajo t)
         {
             try
             {
-                // TODO: Add insert logic here
-
+                micronaEntities db = new micronaEntities();
+                t.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+                db.trabajo.Add(t);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -46,13 +50,13 @@ namespace WebApplication4.Controllers
             }
         }
 
-        // GET: ArtArbitrado/Edit/5
+        // GET: Trabajos/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: ArtArbitrado/Edit/5
+        // POST: Trabajos/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -68,13 +72,13 @@ namespace WebApplication4.Controllers
             }
         }
 
-        // GET: ArtArbitrado/Delete/5
+        // GET: Trabajos/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: ArtArbitrado/Delete/5
+        // POST: Trabajos/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

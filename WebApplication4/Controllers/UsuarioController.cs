@@ -26,6 +26,8 @@ namespace WebApplication4.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
+            micronaEntities db = new micronaEntities();
+            ViewBag.TipoUsuario = db.tipoarticulo.ToList();
             return View();
         }
 
@@ -74,12 +76,7 @@ namespace WebApplication4.Controllers
                 return View();
             }
         }
-
-        // GET: Usuario/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        
 
         // POST: Usuario/Delete/5
         [HttpPost]
@@ -87,8 +84,9 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                // TODO: Add delete logic here
-
+                micronaEntities db = new micronaEntities();
+                var usuario=db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
+                db.usuario.Remove(usuario);
                 return RedirectToAction("Index");
             }
             catch

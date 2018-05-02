@@ -25,27 +25,17 @@ namespace WebApplication4.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<archivo> archivo { get; set; }
-        public virtual DbSet<artarbitrado> artarbitrado { get; set; }
-        public virtual DbSet<artdifusion> artdifusion { get; set; }
-        public virtual DbSet<artindexado> artindexado { get; set; }
-        public virtual DbSet<asesoria> asesoria { get; set; }
+        public virtual DbSet<articulo> articulo { get; set; }
         public virtual DbSet<capitulolibro> capitulolibro { get; set; }
-        public virtual DbSet<consultoria> consultoria { get; set; }
-        public virtual DbSet<docencia> docencia { get; set; }
-        public virtual DbSet<informetecnico> informetecnico { get; set; }
         public virtual DbSet<libro> libro { get; set; }
-        public virtual DbSet<manualesoperacion> manualesoperacion { get; set; }
-        public virtual DbSet<materialapoyo> materialapoyo { get; set; }
-        public virtual DbSet<materialdidactico> materialdidactico { get; set; }
-        public virtual DbSet<memoriaextenso> memoriaextenso { get; set; }
-        public virtual DbSet<memorias> memorias { get; set; }
-        public virtual DbSet<productividadinovadora> productividadinovadora { get; set; }
-        public virtual DbSet<prototipo> prototipo { get; set; }
-        public virtual DbSet<proyectosinvestigacion> proyectosinvestigacion { get; set; }
-        public virtual DbSet<status> status { get; set; }
-        public virtual DbSet<tesis> tesis { get; set; }
+        public virtual DbSet<tipoarticulo> tipoarticulo { get; set; }
+        public virtual DbSet<tipolibro> tipolibro { get; set; }
+        public virtual DbSet<tipotrabajo> tipotrabajo { get; set; }
         public virtual DbSet<tipousuario> tipousuario { get; set; }
+        public virtual DbSet<trabajo> trabajo { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<grupoacademico> grupoacademico { get; set; }
+        public virtual DbSet<proyectos> proyectos { get; set; }
+        public virtual DbSet<articulo_grupo> articulo_grupo { get; set; }
     }
 }

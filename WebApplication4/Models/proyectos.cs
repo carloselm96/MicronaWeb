@@ -12,19 +12,16 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class libro
+    public partial class proyectos
     {
-        public int idLibro { get; set; }
-        public string Nombre { get; set; }
-        public Nullable<int> Año { get; set; }
-        public string ISBN { get; set; }
-        public string Autores { get; set; }
-        public Nullable<int> TipoLibro { get; set; }
+        public int idProyecto { get; set; }
+        public string nombre { get; set; }
+        public string Responsables { get; set; }
+        public string Financiamiento { get; set; }
+        public Nullable<System.DateTime> FechaInicio { get; set; }
+        public Nullable<System.DateTime> FechaFinal { get; set; }
         public Nullable<int> Usuario { get; set; }
-        public Nullable<int> GrupoAcademico { get; set; }
     
-        public virtual tipolibro tipolibro1 { get; set; }
-        public virtual grupoacademico grupoacademico1 { get; set; }
         public virtual usuario usuario1 { get; set; }
     }
 }

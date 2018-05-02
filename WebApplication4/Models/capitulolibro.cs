@@ -15,21 +15,16 @@ namespace WebApplication4.Models
     public partial class capitulolibro
     {
         public int idCapituloLibro { get; set; }
-        public Nullable<int> Autor { get; set; }
-        public string TituloLibro { get; set; }
-        public string Estado { get; set; }
-        public string Pais { get; set; }
-        public string Editorial { get; set; }
-        public string Edicion { get; set; }
-        public string Tiraje { get; set; }
+        public string Nombre { get; set; }
+        public string Autores { get; set; }
+        public Nullable<int> Año { get; set; }
         public string ISBN { get; set; }
-        public System.DateTime Fecha { get; set; }
-        public string Proposito { get; set; }
-        public Nullable<sbyte> ConsiderarCurr { get; set; }
-        public string Coautores { get; set; }
-        public Nullable<int> FK_Archivo { get; set; }
+        public string Participantes { get; set; }
+        public string Libro { get; set; }
+        public Nullable<int> Usuario { get; set; }
+        public Nullable<int> GrupoAcademico { get; set; }
     
-        public virtual archivo archivo { get; set; }
-        public virtual usuario usuario { get; set; }
+        public virtual grupoacademico grupoacademico1 { get; set; }
+        public virtual usuario usuario1 { get; set; }
     }
 }

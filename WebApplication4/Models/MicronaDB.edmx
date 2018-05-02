@@ -4,721 +4,224 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="micronaModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.7" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="archivo">
+    <Schema Namespace="microna2018Model.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="articulo">
           <Key>
-            <PropertyRef Name="idArchivo" />
+            <PropertyRef Name="idArticulo" />
           </Key>
-          <Property Name="idArchivo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="longtext" />
-          <Property Name="Url" Type="longtext" />
-        </EntityType>
-        <EntityType Name="artarbitrado">
-          <Key>
-            <PropertyRef Name="idArtArbitrado" />
-          </Key>
-          <Property Name="idArtArbitrado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Estado" Type="longtext" />
+          <Property Name="Tipo_Articulo" Type="int" />
+          <Property Name="Autores" Type="longtext" />
+          <Property Name="Volumen" Type="int" />
+          <Property Name="PagInicio" Type="int" />
+          <Property Name="PagFinal" Type="int" />
           <Property Name="Revista" Type="longtext" />
-          <Property Name="PaginaIni" Type="int" Nullable="false" />
-          <Property Name="PaginaFin" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Editorial" Type="longtext" />
-          <Property Name="Volumen" Type="int" Nullable="false" />
-          <Property Name="ISSN" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Direccion" Type="longtext" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="FK_Archivo" Type="int" />
-          <Property Name="Coautores" Type="longtext" />
+          <Property Name="ISSN" Type="varchar" MaxLength="45" />
+          <Property Name="Fecha" Type="datetime" Precision="0" />
+          <Property Name="Usuario" Type="int" />
+          <Property Name="GrupoAcademico" Type="int" />
         </EntityType>
-        <EntityType Name="artdifusion">
+        <EntityType Name="articulo_grupo">
           <Key>
-            <PropertyRef Name="idArtDifusion" />
+            <PropertyRef Name="IDARTICULO_GRUPO" />
           </Key>
-          <Property Name="idArtDifusion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Revista" Type="longtext" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="PaginaIni" Type="int" Nullable="false" />
-          <Property Name="PaginaFin" Type="int" Nullable="false" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Editorial" Type="longtext" />
-          <Property Name="Volumen" Type="int" Nullable="false" />
-          <Property Name="ISSN" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="artindexado">
-          <Key>
-            <PropertyRef Name="idArtIndexado" />
-          </Key>
-          <Property Name="idArtIndexado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Revista" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="PaginaIni" Type="int" Nullable="false" />
-          <Property Name="PaginaFin" Type="int" Nullable="false" />
-          <Property Name="Descripcion" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Editorial" Type="longtext" />
-          <Property Name="Volumen" Type="int" Nullable="false" />
-          <Property Name="ISSN" Type="longtext" />
-          <Property Name="Indice_Revista" Type="longtext" />
-          <Property Name="Publicacion" Type="longtext" />
-          <Property Name="Direccion" Type="longtext" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="asesoria">
-          <Key>
-            <PropertyRef Name="idAsesoria" />
-          </Key>
-          <Property Name="idAsesoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Nombre_Estudiante" Type="longtext" />
-          <Property Name="Objetivo" Type="longtext" />
-          <Property Name="Dependencia" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="FechaIni" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Participantes" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
+          <Property Name="IDARTICULO_GRUPO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_articulo" Type="int" />
+          <Property Name="id_grupo" Type="int" />
         </EntityType>
         <EntityType Name="capitulolibro">
           <Key>
             <PropertyRef Name="idCapituloLibro" />
           </Key>
           <Property Name="idCapituloLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="TituloLibro" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Editorial" Type="longtext" />
-          <Property Name="Edicion" Type="longtext" />
-          <Property Name="Tiraje" Type="longtext" />
-          <Property Name="ISBN" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="consultoria">
-          <Key>
-            <PropertyRef Name="idConsultoria" />
-          </Key>
-          <Property Name="idConsultoria" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Alcance" Type="longtext" />
-          <Property Name="Dependencia" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="FechaIni" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="Nombre" Type="longtext" />
+          <Property Name="Autores" Type="longtext" />
+          <Property Name="Año" Type="int" />
+          <Property Name="ISBN" Type="varchar" MaxLength="45" />
           <Property Name="Participantes" Type="longtext" />
-          <Property Name="BeneficioEconomico" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
+          <Property Name="Libro" Type="longtext" />
+          <Property Name="Usuario" Type="int" />
+          <Property Name="GrupoAcademico" Type="int" />
         </EntityType>
-        <EntityType Name="docencia">
+        <EntityType Name="grupoacademico">
           <Key>
-            <PropertyRef Name="idDocencia" />
+            <PropertyRef Name="idGrupoAcademico" />
           </Key>
-          <Property Name="idDocencia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Dependencia" Type="longtext" />
-          <Property Name="ProgramaEdu" Type="longtext" />
-          <Property Name="Nivel" Type="longtext" />
-          <Property Name="FechaIni" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Alumnos" Type="int" Nullable="false" />
-          <Property Name="Duracion" Type="int" Nullable="false" />
-          <Property Name="Asesoria" Type="int" Nullable="false" />
-          <Property Name="HorasSemana" Type="int" Nullable="false" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="informetecnico">
-          <Key>
-            <PropertyRef Name="idInformeTecnico" />
-          </Key>
-          <Property Name="idInformeTecnico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Alcance" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Institucion" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="FechaInforme" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="NumPaginas" Type="int" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="varchar" MaxLength="45" />
-          <Property Name="FK_Archivo" Type="int" />
+          <Property Name="idGrupoAcademico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="80" />
         </EntityType>
         <EntityType Name="libro">
           <Key>
             <PropertyRef Name="idLibro" />
           </Key>
           <Property Name="idLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="ParticipacionTipo" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Editorial" Type="longtext" />
-          <Property Name="Paginas" Type="int" Nullable="false" />
-          <Property Name="Edicion" Type="longtext" />
-          <Property Name="Tiraje" Type="longtext" />
-          <Property Name="ISBN" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
+          <Property Name="Nombre" Type="longtext" />
+          <Property Name="Año" Type="int" />
+          <Property Name="ISBN" Type="varchar" MaxLength="45" />
+          <Property Name="Autores" Type="longtext" />
+          <Property Name="TipoLibro" Type="int" />
+          <Property Name="Usuario" Type="int" />
+          <Property Name="GrupoAcademico" Type="int" />
         </EntityType>
-        <EntityType Name="manualesoperacion">
+        <EntityType Name="proyectos">
           <Key>
-            <PropertyRef Name="idManualesOperacion" />
+            <PropertyRef Name="idProyecto" />
           </Key>
-          <Property Name="idManualesOperacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Descripcion" Type="longtext" />
-          <Property Name="Beneficiarios" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="FechaPublicacion" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
+          <Property Name="idProyecto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="longtext" />
+          <Property Name="Responsables" Type="longtext" />
+          <Property Name="Financiamiento" Type="longtext" />
+          <Property Name="FechaInicio" Type="datetime" Precision="0" />
+          <Property Name="FechaFinal" Type="datetime" Precision="0" />
+          <Property Name="Usuario" Type="int" />
         </EntityType>
-        <EntityType Name="materialapoyo">
+        <EntityType Name="tipoarticulo">
           <Key>
-            <PropertyRef Name="idMaterialApoyo" />
+            <PropertyRef Name="idTipoArticulo" />
           </Key>
-          <Property Name="idMaterialApoyo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Descripcion" Type="longtext" />
-          <Property Name="Beneficiarios" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="materialdidactico">
-          <Key>
-            <PropertyRef Name="idMaterialDidactico" />
-          </Key>
-          <Property Name="idMaterialDidactico" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Descripcion" Type="longtext" />
-          <Property Name="Beneficiarios" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="memoriaextenso">
-          <Key>
-            <PropertyRef Name="idMemoriaExtenso" />
-          </Key>
-          <Property Name="idMemoriaExtenso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Congreso" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="PaginaIni" Type="int" Nullable="false" />
-          <Property Name="PaginaFin" Type="int" Nullable="false" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="EstadoPais" Type="longtext" />
-          <Property Name="Ciudad" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="memorias">
-          <Key>
-            <PropertyRef Name="idMemorias" />
-          </Key>
-          <Property Name="idMemorias" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Congreso" Type="longtext" />
-          <Property Name="PaginaIni" Type="int" Nullable="false" />
-          <Property Name="PaginaFin" Type="int" Nullable="false" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Ciudad" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="productividadinovadora">
-          <Key>
-            <PropertyRef Name="idProductividadInovadora" />
-          </Key>
-          <Property Name="idProductividadInovadora" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Tipo" Type="longtext" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Descripcion" Type="longtext" />
-          <Property Name="Clasificacion" Type="longtext" />
-          <Property Name="Uso" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Registro" Type="longtext" />
-          <Property Name="Usuario" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="prototipo">
-          <Key>
-            <PropertyRef Name="idPrototipo" />
-          </Key>
-          <Property Name="idPrototipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Tipo" Type="longtext" />
-          <Property Name="Estado" Type="longtext" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Objetivo" Type="longtext" />
-          <Property Name="Caracteristicas" Type="longtext" />
-          <Property Name="Institucion" Type="longtext" />
-          <Property Name="Pais" Type="longtext" />
-          <Property Name="Fecha" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Proposito" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="proyectosinvestigacion">
-          <Key>
-            <PropertyRef Name="idProyectosInvestigacion" />
-          </Key>
-          <Property Name="idProyectosInvestigacion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Patrocinador" Type="longtext" />
-          <Property Name="FechaIni" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="FechaFin" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="PatrocinadorTipo" Type="longtext" />
-          <Property Name="Participantes" Type="longtext" />
-          <Property Name="Actividades" Type="longtext" />
-          <Property Name="ConsiderarCurr" Type="tinyint" />
-          <Property Name="Coautores" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-        </EntityType>
-        <EntityType Name="status">
-          <Key>
-            <PropertyRef Name="idStatus" />
-          </Key>
-          <Property Name="idStatus" Type="int" Nullable="false" />
+          <Property Name="idTipoArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="45" />
         </EntityType>
-        <EntityType Name="tesis">
+        <EntityType Name="tipolibro">
           <Key>
-            <PropertyRef Name="idTesis" />
+            <PropertyRef Name="idTipoLibro" />
           </Key>
-          <Property Name="idTesis" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Autor" Type="int" />
-          <Property Name="Titulo" Type="longtext" />
-          <Property Name="Grado" Type="longtext" />
-          <Property Name="FechaIni" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="FechaFin" Type="datetime" Precision="0" Nullable="false" />
-          <Property Name="Direccion" Type="longtext" />
-          <Property Name="CA" Type="longtext" />
-          <Property Name="IES" Type="longtext" />
-          <Property Name="FK_Archivo" Type="int" />
-          <Property Name="Coautores" Type="longtext" />
+          <Property Name="idTipoLibro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="tipotrabajo">
+          <Key>
+            <PropertyRef Name="idTipoTrabajo" />
+          </Key>
+          <Property Name="idTipoTrabajo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tipousuario">
           <Key>
             <PropertyRef Name="idTipoUsuario" />
           </Key>
-          <Property Name="idTipoUsuario" Type="int" Nullable="false" />
-          <Property Name="nombre" Type="varchar" MaxLength="45" />
+          <Property Name="idTipoUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
+        <EntityType Name="trabajo">
+          <Key>
+            <PropertyRef Name="idTrabajo" />
+          </Key>
+          <Property Name="idTrabajo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="longtext" />
+          <Property Name="Año" Type="int" />
+          <Property Name="TipoTrabajo" Type="int" />
+          <Property Name="Autores" Type="longtext" />
+          <Property Name="Presentacion" Type="longtext" />
+          <Property Name="Pais" Type="longtext" />
+          <Property Name="Usuario" Type="int" />
+          <Property Name="GrupoAcademico" Type="int" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nombre" Type="varchar" MaxLength="45" />
-          <Property Name="Apelidos" Type="varchar" MaxLength="45" />
+          <Property Name="Nombre" Type="longtext" />
+          <Property Name="Usuario" Type="longtext" />
+          <Property Name="Contraseña" Type="varchar" MaxLength="45" />
+          <Property Name="Correo" Type="longtext" />
           <Property Name="TipoUsuario" Type="int" />
-          <Property Name="Status" Type="int" />
-          <Property Name="Correo" Type="varchar" MaxLength="45" />
-          <Property Name="Usuario" Type="varchar" MaxLength="45" />
-          <Property Name="Contrasena" Type="varchar" MaxLength="45" />
         </EntityType>
-        <Association Name="FK_Apoyo_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="materialapoyo" Type="Self.materialapoyo" Multiplicity="*" />
+        <Association Name="FK_ARTGRU_ART">
+          <End Role="articulo" Type="Self.articulo" Multiplicity="0..1" />
+          <End Role="articulo_grupo" Type="Self.articulo_grupo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="articulo">
+              <PropertyRef Name="idArticulo" />
             </Principal>
-            <Dependent Role="materialapoyo">
-              <PropertyRef Name="FK_Archivo" />
+            <Dependent Role="articulo_grupo">
+              <PropertyRef Name="id_articulo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Apoyo_Usuario">
+        <Association Name="FK_ARTGRU_GRUPO">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+          <End Role="articulo_grupo" Type="Self.articulo_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="articulo_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Tipo">
+          <End Role="tipoarticulo" Type="Self.tipoarticulo" Multiplicity="0..1" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoarticulo">
+              <PropertyRef Name="idTipoArticulo" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="Tipo_Articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Usuario">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="materialapoyo" Type="Self.materialapoyo" Multiplicity="*" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuario">
               <PropertyRef Name="idUsuario" />
             </Principal>
-            <Dependent Role="materialapoyo">
-              <PropertyRef Name="Autor" />
+            <Dependent Role="articulo">
+              <PropertyRef Name="Usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Arbitrado_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="artarbitrado">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Arbitrado_Usuarios">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artarbitrado">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Innovadora">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="productividadinovadora" Type="Self.productividadinovadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="productividadinovadora">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Prototipo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="prototipo" Type="Self.prototipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="prototipo">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Proyecto">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="proyectosinvestigacion" Type="Self.proyectosinvestigacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="proyectosinvestigacion">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Tesis">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tesis" Type="Self.tesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="tesis">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Asesoria_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
-          <End Role="asesoria" Type="Self.asesoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="asesoria">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Asesoria_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="asesoria" Type="Self.asesoria" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="asesoria">
-              <PropertyRef Name="idAsesoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Capitulo_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Capitulo_Grupo">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
           <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
             </Principal>
             <Dependent Role="capitulolibro">
-              <PropertyRef Name="FK_Archivo" />
+              <PropertyRef Name="GrupoAcademico" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Capitulo_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="0..1" />
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuario">
               <PropertyRef Name="idUsuario" />
             </Principal>
             <Dependent Role="capitulolibro">
-              <PropertyRef Name="idCapituloLibro" />
+              <PropertyRef Name="Usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Consultoria_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="consultoria" Type="Self.consultoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="consultoria">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cosultoria_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="consultoria" Type="Self.consultoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="consultoria">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Didactico_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="materialdidactico" Type="Self.materialdidactico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="materialdidactico">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Didactico_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="materialdidactico" Type="Self.materialdidactico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="materialdidactico">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Difusion_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="artdifusion" Type="Self.artdifusion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="artdifusion">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Difusion_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artdifusion" Type="Self.artdifusion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artdifusion">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Docencia_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="docencia" Type="Self.docencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="docencia">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Docencia_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="docencia" Type="Self.docencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="docencia">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Extenso_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="memoriaextenso" Type="Self.memoriaextenso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="memoriaextenso">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Extenso_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="memoriaextenso" Type="Self.memoriaextenso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="memoriaextenso">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Indexado_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="artindexado" Type="Self.artindexado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="artindexado">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Indexado_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artindexado" Type="Self.artindexado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artindexado">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Innovadora_Autor">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="productividadinovadora" Type="Self.productividadinovadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="productividadinovadora">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Libro_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Libro_Grupo">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
           <End Role="libro" Type="Self.libro" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
             </Principal>
             <Dependent Role="libro">
-              <PropertyRef Name="FK_Archivo" />
+              <PropertyRef Name="GrupoAcademico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Tipo">
+          <End Role="tipolibro" Type="Self.tipolibro" Multiplicity="0..1" />
+          <End Role="libro" Type="Self.libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipolibro">
+              <PropertyRef Name="idTipoLibro" />
+            </Principal>
+            <Dependent Role="libro">
+              <PropertyRef Name="TipoLibro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -730,133 +233,55 @@
               <PropertyRef Name="idUsuario" />
             </Principal>
             <Dependent Role="libro">
-              <PropertyRef Name="Autor" />
+              <PropertyRef Name="Usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Manuales_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="manualesoperacion" Type="Self.manualesoperacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="manualesoperacion">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Manuales_Usuario">
+        <Association Name="FK_Proyectos_Usuario">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="manualesoperacion" Type="Self.manualesoperacion" Multiplicity="*" />
+          <End Role="proyectos" Type="Self.proyectos" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuario">
               <PropertyRef Name="idUsuario" />
             </Principal>
-            <Dependent Role="manualesoperacion">
-              <PropertyRef Name="Autor" />
+            <Dependent Role="proyectos">
+              <PropertyRef Name="Usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Memorias_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="memorias" Type="Self.memorias" Multiplicity="*" />
+        <Association Name="FK_Trabajo_Grupo">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+          <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
             </Principal>
-            <Dependent Role="memorias">
-              <PropertyRef Name="FK_Archivo" />
+            <Dependent Role="trabajo">
+              <PropertyRef Name="GrupoAcademico" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Memorias_Usuario">
+        <Association Name="FK_Trabajo_Tipo">
+          <End Role="tipotrabajo" Type="Self.tipotrabajo" Multiplicity="0..1" />
+          <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipotrabajo">
+              <PropertyRef Name="idTipoTrabajo" />
+            </Principal>
+            <Dependent Role="trabajo">
+              <PropertyRef Name="TipoTrabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Usuario">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="memorias" Type="Self.memorias" Multiplicity="*" />
+          <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usuario">
               <PropertyRef Name="idUsuario" />
             </Principal>
-            <Dependent Role="memorias">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prototipo_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="prototipo" Type="Self.prototipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="prototipo">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Proyecto_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="proyectosinvestigacion" Type="Self.proyectosinvestigacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="proyectosinvestigacion">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Status_Status">
-          <End Role="status" Type="Self.status" Multiplicity="0..1" />
-          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="idStatus" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tecnico_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="informetecnico" Type="Self.informetecnico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="informetecnico">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tecnico_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="informetecnico" Type="Self.informetecnico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="informetecnico">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tesis_Autor">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="tesis" Type="Self.tesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="tesis">
-              <PropertyRef Name="Autor" />
+            <Dependent Role="trabajo">
+              <PropertyRef Name="Usuario" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -872,1115 +297,232 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="micronaModelStoreContainer">
-          <EntitySet Name="archivo" EntityType="Self.archivo" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="artarbitrado" EntityType="Self.artarbitrado" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="artdifusion" EntityType="Self.artdifusion" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="artindexado" EntityType="Self.artindexado" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="asesoria" EntityType="Self.asesoria" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="capitulolibro" EntityType="Self.capitulolibro" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="consultoria" EntityType="Self.consultoria" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="docencia" EntityType="Self.docencia" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="informetecnico" EntityType="Self.informetecnico" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="libro" EntityType="Self.libro" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="manualesoperacion" EntityType="Self.manualesoperacion" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="materialapoyo" EntityType="Self.materialapoyo" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="materialdidactico" EntityType="Self.materialdidactico" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="memoriaextenso" EntityType="Self.memoriaextenso" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="memorias" EntityType="Self.memorias" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="productividadinovadora" EntityType="Self.productividadinovadora" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="prototipo" EntityType="Self.prototipo" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="proyectosinvestigacion" EntityType="Self.proyectosinvestigacion" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="status" EntityType="Self.status" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="tesis" EntityType="Self.tesis" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="tipousuario" EntityType="Self.tipousuario" Schema="microna" store:Type="Tables" />
-          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="microna" store:Type="Tables" />
-          <AssociationSet Name="FK_Apoyo_Archivo" Association="Self.FK_Apoyo_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="materialapoyo" EntitySet="materialapoyo" />
+        <EntityContainer Name="microna2018ModelStoreContainer">
+          <EntitySet Name="articulo" EntityType="Self.articulo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="articulo_grupo" EntityType="Self.articulo_grupo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="capitulolibro" EntityType="Self.capitulolibro" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="grupoacademico" EntityType="Self.grupoacademico" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="libro" EntityType="Self.libro" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="proyectos" EntityType="Self.proyectos" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="tipoarticulo" EntityType="Self.tipoarticulo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="tipolibro" EntityType="Self.tipolibro" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="tipotrabajo" EntityType="Self.tipotrabajo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="tipousuario" EntityType="Self.tipousuario" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="trabajo" EntityType="Self.trabajo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="usuario" EntityType="Self.usuario" Schema="microna2018" store:Type="Tables" />
+          <AssociationSet Name="FK_ARTGRU_ART" Association="Self.FK_ARTGRU_ART">
+            <End Role="articulo" EntitySet="articulo" />
+            <End Role="articulo_grupo" EntitySet="articulo_grupo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Apoyo_Usuario" Association="Self.FK_Apoyo_Usuario">
+          <AssociationSet Name="FK_ARTGRU_GRUPO" Association="Self.FK_ARTGRU_GRUPO">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="articulo_grupo" EntitySet="articulo_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Tipo" Association="Self.FK_Articulo_Tipo">
+            <End Role="tipoarticulo" EntitySet="tipoarticulo" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Usuario" Association="Self.FK_Articulo_Usuario">
             <End Role="usuario" EntitySet="usuario" />
-            <End Role="materialapoyo" EntitySet="materialapoyo" />
+            <End Role="articulo" EntitySet="articulo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Arbitrado_Archivo" Association="Self.FK_Arbitrado_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="artarbitrado" EntitySet="artarbitrado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Arbitrado_Usuarios" Association="Self.FK_Arbitrado_Usuarios">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artarbitrado" EntitySet="artarbitrado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Innovadora" Association="Self.FK_Archivo_Innovadora">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="productividadinovadora" EntitySet="productividadinovadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Prototipo" Association="Self.FK_Archivo_Prototipo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="prototipo" EntitySet="prototipo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Proyecto" Association="Self.FK_Archivo_Proyecto">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="proyectosinvestigacion" EntitySet="proyectosinvestigacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Tesis" Association="Self.FK_Archivo_Tesis">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="tesis" EntitySet="tesis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Asesoria_Archivo" Association="Self.FK_Asesoria_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="asesoria" EntitySet="asesoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Asesoria_Usuario" Association="Self.FK_Asesoria_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="asesoria" EntitySet="asesoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Capitulo_Archivo" Association="Self.FK_Capitulo_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
+          <AssociationSet Name="FK_Capitulo_Grupo" Association="Self.FK_Capitulo_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="capitulolibro" EntitySet="capitulolibro" />
           </AssociationSet>
           <AssociationSet Name="FK_Capitulo_Usuario" Association="Self.FK_Capitulo_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="capitulolibro" EntitySet="capitulolibro" />
           </AssociationSet>
-          <AssociationSet Name="FK_Consultoria_Archivo" Association="Self.FK_Consultoria_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="consultoria" EntitySet="consultoria" />
+          <AssociationSet Name="FK_Libro_Grupo" Association="Self.FK_Libro_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="libro" EntitySet="libro" />
           </AssociationSet>
-          <AssociationSet Name="FK_Cosultoria_Usuario" Association="Self.FK_Cosultoria_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="consultoria" EntitySet="consultoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Didactico_Archivo" Association="Self.FK_Didactico_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="materialdidactico" EntitySet="materialdidactico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Didactico_Usuario" Association="Self.FK_Didactico_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="materialdidactico" EntitySet="materialdidactico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Difusion_Archivo" Association="Self.FK_Difusion_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="artdifusion" EntitySet="artdifusion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Difusion_Usuario" Association="Self.FK_Difusion_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artdifusion" EntitySet="artdifusion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Docencia_Archivo" Association="Self.FK_Docencia_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="docencia" EntitySet="docencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Docencia_Usuario" Association="Self.FK_Docencia_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="docencia" EntitySet="docencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Extenso_Archivo" Association="Self.FK_Extenso_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="memoriaextenso" EntitySet="memoriaextenso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Extenso_Usuario" Association="Self.FK_Extenso_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="memoriaextenso" EntitySet="memoriaextenso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Indexado_Archivo" Association="Self.FK_Indexado_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="artindexado" EntitySet="artindexado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Indexado_Usuario" Association="Self.FK_Indexado_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artindexado" EntitySet="artindexado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Innovadora_Autor" Association="Self.FK_Innovadora_Autor">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="productividadinovadora" EntitySet="productividadinovadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Libro_Archivo" Association="Self.FK_Libro_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
+          <AssociationSet Name="FK_Libro_Tipo" Association="Self.FK_Libro_Tipo">
+            <End Role="tipolibro" EntitySet="tipolibro" />
             <End Role="libro" EntitySet="libro" />
           </AssociationSet>
           <AssociationSet Name="FK_Libro_Usuario" Association="Self.FK_Libro_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="libro" EntitySet="libro" />
           </AssociationSet>
-          <AssociationSet Name="FK_Manuales_Archivo" Association="Self.FK_Manuales_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="manualesoperacion" EntitySet="manualesoperacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Manuales_Usuario" Association="Self.FK_Manuales_Usuario">
+          <AssociationSet Name="FK_Proyectos_Usuario" Association="Self.FK_Proyectos_Usuario">
             <End Role="usuario" EntitySet="usuario" />
-            <End Role="manualesoperacion" EntitySet="manualesoperacion" />
+            <End Role="proyectos" EntitySet="proyectos" />
           </AssociationSet>
-          <AssociationSet Name="FK_Memorias_Archivo" Association="Self.FK_Memorias_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="memorias" EntitySet="memorias" />
+          <AssociationSet Name="FK_Trabajo_Grupo" Association="Self.FK_Trabajo_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="trabajo" EntitySet="trabajo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Memorias_Usuario" Association="Self.FK_Memorias_Usuario">
+          <AssociationSet Name="FK_Trabajo_Tipo" Association="Self.FK_Trabajo_Tipo">
+            <End Role="tipotrabajo" EntitySet="tipotrabajo" />
+            <End Role="trabajo" EntitySet="trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Usuario" Association="Self.FK_Trabajo_Usuario">
             <End Role="usuario" EntitySet="usuario" />
-            <End Role="memorias" EntitySet="memorias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prototipo_Usuario" Association="Self.FK_Prototipo_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="prototipo" EntitySet="prototipo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Proyecto_Usuario" Association="Self.FK_Proyecto_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="proyectosinvestigacion" EntitySet="proyectosinvestigacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Status_Status" Association="Self.FK_Status_Status">
-            <End Role="status" EntitySet="status" />
-            <End Role="usuario" EntitySet="usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tecnico_Archivo" Association="Self.FK_Tecnico_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="informetecnico" EntitySet="informetecnico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tecnico_Usuario" Association="Self.FK_Tecnico_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="informetecnico" EntitySet="informetecnico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tesis_Autor" Association="Self.FK_Tesis_Autor">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="tesis" EntitySet="tesis" />
+            <End Role="trabajo" EntitySet="trabajo" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Tipo" Association="Self.FK_Usuario_Tipo">
             <End Role="tipousuario" EntitySet="tipousuario" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="micronaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-        <EntityType Name="archivo">
+      <Schema Namespace="microna2018Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="articulo">
           <Key>
-            <PropertyRef Name="idArchivo" />
+            <PropertyRef Name="idArticulo" />
           </Key>
-          <Property Name="idArchivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Url" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="materialapoyo" Relationship="Self.FK_Apoyo_Archivo" FromRole="archivo" ToRole="materialapoyo" />
-          <NavigationProperty Name="artarbitrado" Relationship="Self.FK_Arbitrado_Archivo" FromRole="archivo" ToRole="artarbitrado" />
-          <NavigationProperty Name="productividadinovadora" Relationship="Self.FK_Archivo_Innovadora" FromRole="archivo" ToRole="productividadinovadora" />
-          <NavigationProperty Name="prototipo" Relationship="Self.FK_Archivo_Prototipo" FromRole="archivo" ToRole="prototipo" />
-          <NavigationProperty Name="proyectosinvestigacion" Relationship="Self.FK_Archivo_Proyecto" FromRole="archivo" ToRole="proyectosinvestigacion" />
-          <NavigationProperty Name="tesis" Relationship="Self.FK_Archivo_Tesis" FromRole="archivo" ToRole="tesis" />
-          <NavigationProperty Name="asesoria" Relationship="Self.FK_Asesoria_Archivo" FromRole="archivo" ToRole="asesoria" />
-          <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Capitulo_Archivo" FromRole="archivo" ToRole="capitulolibro" />
-          <NavigationProperty Name="consultoria" Relationship="Self.FK_Consultoria_Archivo" FromRole="archivo" ToRole="consultoria" />
-          <NavigationProperty Name="materialdidactico" Relationship="Self.FK_Didactico_Archivo" FromRole="archivo" ToRole="materialdidactico" />
-          <NavigationProperty Name="artdifusion" Relationship="Self.FK_Difusion_Archivo" FromRole="archivo" ToRole="artdifusion" />
-          <NavigationProperty Name="docencia" Relationship="Self.FK_Docencia_Archivo" FromRole="archivo" ToRole="docencia" />
-          <NavigationProperty Name="memoriaextenso" Relationship="Self.FK_Extenso_Archivo" FromRole="archivo" ToRole="memoriaextenso" />
-          <NavigationProperty Name="artindexado" Relationship="Self.FK_Indexado_Archivo" FromRole="archivo" ToRole="artindexado" />
-          <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Archivo" FromRole="archivo" ToRole="libro" />
-          <NavigationProperty Name="manualesoperacion" Relationship="Self.FK_Manuales_Archivo" FromRole="archivo" ToRole="manualesoperacion" />
-          <NavigationProperty Name="memorias" Relationship="Self.FK_Memorias_Archivo" FromRole="archivo" ToRole="memorias" />
-          <NavigationProperty Name="informetecnico" Relationship="Self.FK_Tecnico_Archivo" FromRole="archivo" ToRole="informetecnico" />
-        </EntityType>
-        <EntityType Name="artarbitrado">
-          <Key>
-            <PropertyRef Name="idArtArbitrado" />
-          </Key>
-          <Property Name="idArtArbitrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Tipo_Articulo" Type="Int32" />
+          <Property Name="Autores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Volumen" Type="Int32" />
+          <Property Name="PagInicio" Type="Int32" />
+          <Property Name="PagFinal" Type="Int32" />
           <Property Name="Revista" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="PaginaIni" Type="Int32" Nullable="false" />
-          <Property Name="PaginaFin" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Editorial" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Volumen" Type="Int32" Nullable="false" />
-          <Property Name="ISSN" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Arbitrado_Archivo" FromRole="artarbitrado" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Arbitrado_Usuarios" FromRole="artarbitrado" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="artdifusion">
-          <Key>
-            <PropertyRef Name="idArtDifusion" />
-          </Key>
-          <Property Name="idArtDifusion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Revista" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="PaginaIni" Type="Int32" Nullable="false" />
-          <Property Name="PaginaFin" Type="Int32" Nullable="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Editorial" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Volumen" Type="Int32" Nullable="false" />
-          <Property Name="ISSN" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Difusion_Archivo" FromRole="artdifusion" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Difusion_Usuario" FromRole="artdifusion" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="artindexado">
-          <Key>
-            <PropertyRef Name="idArtIndexado" />
-          </Key>
-          <Property Name="idArtIndexado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Revista" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="PaginaIni" Type="Int32" Nullable="false" />
-          <Property Name="PaginaFin" Type="Int32" Nullable="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Editorial" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Volumen" Type="Int32" Nullable="false" />
-          <Property Name="ISSN" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Indice_Revista" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Publicacion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Indexado_Archivo" FromRole="artindexado" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Indexado_Usuario" FromRole="artindexado" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="asesoria">
-          <Key>
-            <PropertyRef Name="idAsesoria" />
-          </Key>
-          <Property Name="idAsesoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Nombre_Estudiante" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Objetivo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Dependencia" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIni" Type="DateTime" Nullable="false" />
-          <Property Name="Participantes" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Asesoria_Archivo" FromRole="asesoria" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Asesoria_Usuario" FromRole="asesoria" ToRole="usuario" />
+          <Property Name="ISSN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" />
+          <NavigationProperty Name="tipoarticulo" Relationship="Self.FK_Articulo_Tipo" FromRole="articulo" ToRole="tipoarticulo" />
+          <Property Name="Usuario" Type="Int32" />
+          <Property Name="GrupoAcademico" Type="Int32" />
+          <NavigationProperty Name="grupoacademico1" Relationship="microna2018Model.FK_Articulo_Grupo" FromRole="articulo" ToRole="grupoacademico" />
+          <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_Articulo_Usuario" FromRole="articulo" ToRole="usuario" />
+          <NavigationProperty Name="articulo_grupo" Relationship="microna2018Model.FK_ARTGRU_ART" FromRole="articulo" ToRole="articulo_grupo" />
         </EntityType>
         <EntityType Name="capitulolibro">
           <Key>
             <PropertyRef Name="idCapituloLibro" />
           </Key>
           <Property Name="idCapituloLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="TituloLibro" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Editorial" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Edicion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Tiraje" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ISBN" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Capitulo_Archivo" FromRole="capitulolibro" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Capitulo_Usuario" FromRole="capitulolibro" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="consultoria">
-          <Key>
-            <PropertyRef Name="idConsultoria" />
-          </Key>
-          <Property Name="idConsultoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Alcance" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Dependencia" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIni" Type="DateTime" Nullable="false" />
+          <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Autores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Año" Type="Int32" />
+          <Property Name="ISBN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Name="Participantes" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="BeneficioEconomico" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Consultoria_Archivo" FromRole="consultoria" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Cosultoria_Usuario" FromRole="consultoria" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="docencia">
-          <Key>
-            <PropertyRef Name="idDocencia" />
-          </Key>
-          <Property Name="idDocencia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Dependencia" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ProgramaEdu" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Nivel" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIni" Type="DateTime" Nullable="false" />
-          <Property Name="Alumnos" Type="Int32" Nullable="false" />
-          <Property Name="Duracion" Type="Int32" Nullable="false" />
-          <Property Name="Asesoria" Type="Int32" Nullable="false" />
-          <Property Name="HorasSemana" Type="Int32" Nullable="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Docencia_Archivo" FromRole="docencia" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Docencia_Usuario" FromRole="docencia" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="informetecnico">
-          <Key>
-            <PropertyRef Name="idInformeTecnico" />
-          </Key>
-          <Property Name="idInformeTecnico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Alcance" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Institucion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaInforme" Type="DateTime" Nullable="false" />
-          <Property Name="NumPaginas" Type="Int32" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Tecnico_Archivo" FromRole="informetecnico" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Tecnico_Usuario" FromRole="informetecnico" ToRole="usuario" />
+          <Property Name="Libro" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario" Type="Int32" />
+          <Property Name="GrupoAcademico" Type="Int32" />
+          <NavigationProperty Name="grupoacademico1" Relationship="microna2018Model.FK_Capitulo_Grupo" FromRole="capitulolibro" ToRole="grupoacademico" />
+          <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_Capitulo_Usuario" FromRole="capitulolibro" ToRole="usuario" />
         </EntityType>
         <EntityType Name="libro">
           <Key>
             <PropertyRef Name="idLibro" />
           </Key>
           <Property Name="idLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ParticipacionTipo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Editorial" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Paginas" Type="Int32" Nullable="false" />
-          <Property Name="Edicion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Tiraje" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ISBN" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Libro_Archivo" FromRole="libro" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Libro_Usuario" FromRole="libro" ToRole="usuario" />
+          <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Año" Type="Int32" />
+          <Property Name="ISBN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Autores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="TipoLibro" Type="Int32" />
+          <NavigationProperty Name="tipolibro1" Relationship="Self.FK_Libro_Tipo" FromRole="libro" ToRole="tipolibro" />
+          <Property Name="Usuario" Type="Int32" />
+          <Property Name="GrupoAcademico" Type="Int32" />
+          <NavigationProperty Name="grupoacademico1" Relationship="microna2018Model.FK_Libro_Grupo" FromRole="libro" ToRole="grupoacademico" />
+          <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_Libro_Usuario" FromRole="libro" ToRole="usuario" />
         </EntityType>
-        <EntityType Name="manualesoperacion">
+        <EntityType Name="tipoarticulo">
           <Key>
-            <PropertyRef Name="idManualesOperacion" />
+            <PropertyRef Name="idTipoArticulo" />
           </Key>
-          <Property Name="idManualesOperacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Beneficiarios" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaPublicacion" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Manuales_Archivo" FromRole="manualesoperacion" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Manuales_Usuario" FromRole="manualesoperacion" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="materialapoyo">
-          <Key>
-            <PropertyRef Name="idMaterialApoyo" />
-          </Key>
-          <Property Name="idMaterialApoyo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Beneficiarios" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Apoyo_Archivo" FromRole="materialapoyo" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Apoyo_Usuario" FromRole="materialapoyo" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="materialdidactico">
-          <Key>
-            <PropertyRef Name="idMaterialDidactico" />
-          </Key>
-          <Property Name="idMaterialDidactico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Beneficiarios" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Didactico_Archivo" FromRole="materialdidactico" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Didactico_Usuario" FromRole="materialdidactico" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="memoriaextenso">
-          <Key>
-            <PropertyRef Name="idMemoriaExtenso" />
-          </Key>
-          <Property Name="idMemoriaExtenso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Congreso" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="PaginaIni" Type="Int32" Nullable="false" />
-          <Property Name="PaginaFin" Type="Int32" Nullable="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="EstadoPais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Extenso_Archivo" FromRole="memoriaextenso" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Extenso_Usuario" FromRole="memoriaextenso" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="memorias">
-          <Key>
-            <PropertyRef Name="idMemorias" />
-          </Key>
-          <Property Name="idMemorias" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Congreso" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="PaginaIni" Type="Int32" Nullable="false" />
-          <Property Name="PaginaFin" Type="Int32" Nullable="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Ciudad" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Memorias_Archivo" FromRole="memorias" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Memorias_Usuario" FromRole="memorias" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="productividadinovadora">
-          <Key>
-            <PropertyRef Name="idProductividadInovadora" />
-          </Key>
-          <Property Name="idProductividadInovadora" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Tipo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Descripcion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Clasificacion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Uso" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Registro" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Usuario" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Archivo_Innovadora" FromRole="productividadinovadora" ToRole="archivo" />
-          <NavigationProperty Name="usuario1" Relationship="Self.FK_Innovadora_Autor" FromRole="productividadinovadora" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="prototipo">
-          <Key>
-            <PropertyRef Name="idPrototipo" />
-          </Key>
-          <Property Name="idPrototipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Tipo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Estado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Objetivo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Caracteristicas" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Institucion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Fecha" Type="DateTime" Nullable="false" />
-          <Property Name="Proposito" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Archivo_Prototipo" FromRole="prototipo" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Prototipo_Usuario" FromRole="prototipo" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="proyectosinvestigacion">
-          <Key>
-            <PropertyRef Name="idProyectosInvestigacion" />
-          </Key>
-          <Property Name="idProyectosInvestigacion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Patrocinador" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIni" Type="DateTime" Nullable="false" />
-          <Property Name="FechaFin" Type="DateTime" Nullable="false" />
-          <Property Name="PatrocinadorTipo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Participantes" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Actividades" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="ConsiderarCurr" Type="SByte" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Archivo_Proyecto" FromRole="proyectosinvestigacion" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Proyecto_Usuario" FromRole="proyectosinvestigacion" ToRole="usuario" />
-        </EntityType>
-        <EntityType Name="status">
-          <Key>
-            <PropertyRef Name="idStatus" />
-          </Key>
-          <Property Name="idStatus" Type="Int32" Nullable="false" />
+          <Property Name="idTipoArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Status_Status" FromRole="status" ToRole="usuario" />
+          <NavigationProperty Name="articulo" Relationship="Self.FK_Articulo_Tipo" FromRole="tipoarticulo" ToRole="articulo" />
         </EntityType>
-        <EntityType Name="tesis">
+        <EntityType Name="tipolibro">
           <Key>
-            <PropertyRef Name="idTesis" />
+            <PropertyRef Name="idTipoLibro" />
           </Key>
-          <Property Name="idTesis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Autor" Type="Int32" />
-          <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="Grado" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FechaIni" Type="DateTime" Nullable="false" />
-          <Property Name="FechaFin" Type="DateTime" Nullable="false" />
-          <Property Name="Direccion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="CA" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="IES" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <Property Name="FK_Archivo" Type="Int32" />
-          <Property Name="Coautores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="archivo" Relationship="Self.FK_Archivo_Tesis" FromRole="tesis" ToRole="archivo" />
-          <NavigationProperty Name="usuario" Relationship="Self.FK_Tesis_Autor" FromRole="tesis" ToRole="usuario" />
+          <Property Name="idTipoLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Tipo" FromRole="tipolibro" ToRole="libro" />
+        </EntityType>
+        <EntityType Name="tipotrabajo">
+          <Key>
+            <PropertyRef Name="idTipoTrabajo" />
+          </Key>
+          <Property Name="idTipoTrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="trabajo" Relationship="Self.FK_Trabajo_Tipo" FromRole="tipotrabajo" ToRole="trabajo" />
         </EntityType>
         <EntityType Name="tipousuario">
           <Key>
             <PropertyRef Name="idTipoUsuario" />
           </Key>
-          <Property Name="idTipoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="idTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="usuario" Relationship="Self.FK_Usuario_Tipo" FromRole="tipousuario" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="trabajo">
+          <Key>
+            <PropertyRef Name="idTrabajo" />
+          </Key>
+          <Property Name="idTrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Año" Type="Int32" />
+          <Property Name="TipoTrabajo" Type="Int32" />
+          <Property Name="Autores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Presentacion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tipotrabajo1" Relationship="Self.FK_Trabajo_Tipo" FromRole="trabajo" ToRole="tipotrabajo" />
+          <Property Name="Usuario" Type="Int32" />
+          <Property Name="GrupoAcademico" Type="Int32" />
+          <NavigationProperty Name="grupoacademico1" Relationship="microna2018Model.FK_Trabajo_Grupo" FromRole="trabajo" ToRole="grupoacademico" />
+          <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_Trabajo_Usuario" FromRole="trabajo" ToRole="usuario" />
         </EntityType>
         <EntityType Name="usuario">
           <Key>
             <PropertyRef Name="idUsuario" />
           </Key>
           <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Apelidos" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Usuario1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Contraseña" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="TipoUsuario" Type="Int32" />
-          <Property Name="Status" Type="Int32" />
-          <Property Name="Correo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Usuario1" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Name="Contrasena" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="artarbitrado" Relationship="Self.FK_Arbitrado_Usuarios" FromRole="usuario" ToRole="artarbitrado" />
-          <NavigationProperty Name="artdifusion" Relationship="Self.FK_Difusion_Usuario" FromRole="usuario" ToRole="artdifusion" />
-          <NavigationProperty Name="artindexado" Relationship="Self.FK_Indexado_Usuario" FromRole="usuario" ToRole="artindexado" />
-          <NavigationProperty Name="asesoria" Relationship="Self.FK_Asesoria_Usuario" FromRole="usuario" ToRole="asesoria" />
-          <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Capitulo_Usuario" FromRole="usuario" ToRole="capitulolibro" />
-          <NavigationProperty Name="consultoria" Relationship="Self.FK_Cosultoria_Usuario" FromRole="usuario" ToRole="consultoria" />
-          <NavigationProperty Name="docencia" Relationship="Self.FK_Docencia_Usuario" FromRole="usuario" ToRole="docencia" />
-          <NavigationProperty Name="informetecnico" Relationship="Self.FK_Tecnico_Usuario" FromRole="usuario" ToRole="informetecnico" />
-          <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Usuario" FromRole="usuario" ToRole="libro" />
-          <NavigationProperty Name="manualesoperacion" Relationship="Self.FK_Manuales_Usuario" FromRole="usuario" ToRole="manualesoperacion" />
-          <NavigationProperty Name="materialapoyo" Relationship="Self.FK_Apoyo_Usuario" FromRole="usuario" ToRole="materialapoyo" />
-          <NavigationProperty Name="materialdidactico" Relationship="Self.FK_Didactico_Usuario" FromRole="usuario" ToRole="materialdidactico" />
-          <NavigationProperty Name="memoriaextenso" Relationship="Self.FK_Extenso_Usuario" FromRole="usuario" ToRole="memoriaextenso" />
-          <NavigationProperty Name="memorias" Relationship="Self.FK_Memorias_Usuario" FromRole="usuario" ToRole="memorias" />
-          <NavigationProperty Name="productividadinovadora" Relationship="Self.FK_Innovadora_Autor" FromRole="usuario" ToRole="productividadinovadora" />
-          <NavigationProperty Name="prototipo" Relationship="Self.FK_Prototipo_Usuario" FromRole="usuario" ToRole="prototipo" />
-          <NavigationProperty Name="proyectosinvestigacion" Relationship="Self.FK_Proyecto_Usuario" FromRole="usuario" ToRole="proyectosinvestigacion" />
-          <NavigationProperty Name="status1" Relationship="Self.FK_Status_Status" FromRole="usuario" ToRole="status" />
-          <NavigationProperty Name="tesis" Relationship="Self.FK_Tesis_Autor" FromRole="usuario" ToRole="tesis" />
           <NavigationProperty Name="tipousuario1" Relationship="Self.FK_Usuario_Tipo" FromRole="usuario" ToRole="tipousuario" />
+          <NavigationProperty Name="articulo" Relationship="microna2018Model.FK_Articulo_Usuario" FromRole="usuario" ToRole="articulo" />
+          <NavigationProperty Name="capitulolibro" Relationship="microna2018Model.FK_Capitulo_Usuario" FromRole="usuario" ToRole="capitulolibro" />
+          <NavigationProperty Name="libro" Relationship="microna2018Model.FK_Libro_Usuario" FromRole="usuario" ToRole="libro" />
+          <NavigationProperty Name="trabajo" Relationship="microna2018Model.FK_Trabajo_Usuario" FromRole="usuario" ToRole="trabajo" />
+          <NavigationProperty Name="proyectos" Relationship="microna2018Model.FK_Proyectos_Usuario" FromRole="usuario" ToRole="proyectos" />
         </EntityType>
-        <Association Name="FK_Apoyo_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="materialapoyo" Type="Self.materialapoyo" Multiplicity="*" />
+        <Association Name="FK_Articulo_Tipo">
+          <End Role="tipoarticulo" Type="Self.tipoarticulo" Multiplicity="0..1" />
+          <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="tipoarticulo">
+              <PropertyRef Name="idTipoArticulo" />
             </Principal>
-            <Dependent Role="materialapoyo">
-              <PropertyRef Name="FK_Archivo" />
+            <Dependent Role="articulo">
+              <PropertyRef Name="Tipo_Articulo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Arbitrado_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="artarbitrado">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Innovadora">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="productividadinovadora" Type="Self.productividadinovadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="productividadinovadora">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Prototipo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="prototipo" Type="Self.prototipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="prototipo">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Proyecto">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="proyectosinvestigacion" Type="Self.proyectosinvestigacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="proyectosinvestigacion">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Archivo_Tesis">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="tesis" Type="Self.tesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="tesis">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Asesoria_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
-          <End Role="asesoria" Type="Self.asesoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="asesoria">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Capitulo_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="capitulolibro">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Consultoria_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="consultoria" Type="Self.consultoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="consultoria">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Didactico_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="materialdidactico" Type="Self.materialdidactico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="materialdidactico">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Difusion_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="artdifusion" Type="Self.artdifusion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="artdifusion">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Docencia_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="docencia" Type="Self.docencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="docencia">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Extenso_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="memoriaextenso" Type="Self.memoriaextenso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="memoriaextenso">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Indexado_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="artindexado" Type="Self.artindexado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="artindexado">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Libro_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name="FK_Libro_Tipo">
+          <End Role="tipolibro" Type="Self.tipolibro" Multiplicity="0..1" />
           <End Role="libro" Type="Self.libro" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="tipolibro">
+              <PropertyRef Name="idTipoLibro" />
             </Principal>
             <Dependent Role="libro">
-              <PropertyRef Name="FK_Archivo" />
+              <PropertyRef Name="TipoLibro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Manuales_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="manualesoperacion" Type="Self.manualesoperacion" Multiplicity="*" />
+        <Association Name="FK_Trabajo_Tipo">
+          <End Role="tipotrabajo" Type="Self.tipotrabajo" Multiplicity="0..1" />
+          <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
+            <Principal Role="tipotrabajo">
+              <PropertyRef Name="idTipoTrabajo" />
             </Principal>
-            <Dependent Role="manualesoperacion">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Memorias_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="memorias" Type="Self.memorias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="memorias">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tecnico_Archivo">
-          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="informetecnico" Type="Self.informetecnico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="archivo">
-              <PropertyRef Name="idArchivo" />
-            </Principal>
-            <Dependent Role="informetecnico">
-              <PropertyRef Name="FK_Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Arbitrado_Usuarios">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artarbitrado" Type="Self.artarbitrado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artarbitrado">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Difusion_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artdifusion" Type="Self.artdifusion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artdifusion">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Indexado_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="artindexado" Type="Self.artindexado" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="artindexado">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Asesoria_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="asesoria" Type="Self.asesoria" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="asesoria">
-              <PropertyRef Name="idAsesoria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Capitulo_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="1" />
-          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="capitulolibro">
-              <PropertyRef Name="idCapituloLibro" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Cosultoria_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="consultoria" Type="Self.consultoria" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="consultoria">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Docencia_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="docencia" Type="Self.docencia" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="docencia">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tecnico_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="informetecnico" Type="Self.informetecnico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="informetecnico">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Libro_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="libro" Type="Self.libro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="libro">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Manuales_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="manualesoperacion" Type="Self.manualesoperacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="manualesoperacion">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Apoyo_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="materialapoyo" Type="Self.materialapoyo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="materialapoyo">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Didactico_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="materialdidactico" Type="Self.materialdidactico" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="materialdidactico">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Extenso_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="memoriaextenso" Type="Self.memoriaextenso" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="memoriaextenso">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Memorias_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="memorias" Type="Self.memorias" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="memorias">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Innovadora_Autor">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="productividadinovadora" Type="Self.productividadinovadora" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="productividadinovadora">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Prototipo_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="prototipo" Type="Self.prototipo" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="prototipo">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Proyecto_Usuario">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="proyectosinvestigacion" Type="Self.proyectosinvestigacion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="proyectosinvestigacion">
-              <PropertyRef Name="Autor" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Status_Status">
-          <End Role="status" Type="Self.status" Multiplicity="0..1" />
-          <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="status">
-              <PropertyRef Name="idStatus" />
-            </Principal>
-            <Dependent Role="usuario">
-              <PropertyRef Name="Status" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Tesis_Autor">
-          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
-          <End Role="tesis" Type="Self.tesis" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="usuario">
-              <PropertyRef Name="idUsuario" />
-            </Principal>
-            <Dependent Role="tesis">
-              <PropertyRef Name="Autor" />
+            <Dependent Role="trabajo">
+              <PropertyRef Name="TipoTrabajo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1997,583 +539,385 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="micronaEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="archivo" EntityType="Self.archivo" />
-          <EntitySet Name="artarbitrado" EntityType="Self.artarbitrado" />
-          <EntitySet Name="artdifusion" EntityType="Self.artdifusion" />
-          <EntitySet Name="artindexado" EntityType="Self.artindexado" />
-          <EntitySet Name="asesoria" EntityType="Self.asesoria" />
+          <EntitySet Name="articulo" EntityType="Self.articulo" />
           <EntitySet Name="capitulolibro" EntityType="Self.capitulolibro" />
-          <EntitySet Name="consultoria" EntityType="Self.consultoria" />
-          <EntitySet Name="docencia" EntityType="Self.docencia" />
-          <EntitySet Name="informetecnico" EntityType="Self.informetecnico" />
           <EntitySet Name="libro" EntityType="Self.libro" />
-          <EntitySet Name="manualesoperacion" EntityType="Self.manualesoperacion" />
-          <EntitySet Name="materialapoyo" EntityType="Self.materialapoyo" />
-          <EntitySet Name="materialdidactico" EntityType="Self.materialdidactico" />
-          <EntitySet Name="memoriaextenso" EntityType="Self.memoriaextenso" />
-          <EntitySet Name="memorias" EntityType="Self.memorias" />
-          <EntitySet Name="productividadinovadora" EntityType="Self.productividadinovadora" />
-          <EntitySet Name="prototipo" EntityType="Self.prototipo" />
-          <EntitySet Name="proyectosinvestigacion" EntityType="Self.proyectosinvestigacion" />
-          <EntitySet Name="status" EntityType="Self.status" />
-          <EntitySet Name="tesis" EntityType="Self.tesis" />
+          <EntitySet Name="tipoarticulo" EntityType="Self.tipoarticulo" />
+          <EntitySet Name="tipolibro" EntityType="Self.tipolibro" />
+          <EntitySet Name="tipotrabajo" EntityType="Self.tipotrabajo" />
           <EntitySet Name="tipousuario" EntityType="Self.tipousuario" />
+          <EntitySet Name="trabajo" EntityType="Self.trabajo" />
           <EntitySet Name="usuario" EntityType="Self.usuario" />
-          <AssociationSet Name="FK_Apoyo_Archivo" Association="Self.FK_Apoyo_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="materialapoyo" EntitySet="materialapoyo" />
+          <AssociationSet Name="FK_Articulo_Tipo" Association="Self.FK_Articulo_Tipo">
+            <End Role="tipoarticulo" EntitySet="tipoarticulo" />
+            <End Role="articulo" EntitySet="articulo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Arbitrado_Archivo" Association="Self.FK_Arbitrado_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="artarbitrado" EntitySet="artarbitrado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Innovadora" Association="Self.FK_Archivo_Innovadora">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="productividadinovadora" EntitySet="productividadinovadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Prototipo" Association="Self.FK_Archivo_Prototipo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="prototipo" EntitySet="prototipo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Proyecto" Association="Self.FK_Archivo_Proyecto">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="proyectosinvestigacion" EntitySet="proyectosinvestigacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Archivo_Tesis" Association="Self.FK_Archivo_Tesis">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="tesis" EntitySet="tesis" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Asesoria_Archivo" Association="Self.FK_Asesoria_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="asesoria" EntitySet="asesoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Capitulo_Archivo" Association="Self.FK_Capitulo_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="capitulolibro" EntitySet="capitulolibro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Consultoria_Archivo" Association="Self.FK_Consultoria_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="consultoria" EntitySet="consultoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Didactico_Archivo" Association="Self.FK_Didactico_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="materialdidactico" EntitySet="materialdidactico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Difusion_Archivo" Association="Self.FK_Difusion_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="artdifusion" EntitySet="artdifusion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Docencia_Archivo" Association="Self.FK_Docencia_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="docencia" EntitySet="docencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Extenso_Archivo" Association="Self.FK_Extenso_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="memoriaextenso" EntitySet="memoriaextenso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Indexado_Archivo" Association="Self.FK_Indexado_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="artindexado" EntitySet="artindexado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Libro_Archivo" Association="Self.FK_Libro_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
+          <AssociationSet Name="FK_Libro_Tipo" Association="Self.FK_Libro_Tipo">
+            <End Role="tipolibro" EntitySet="tipolibro" />
             <End Role="libro" EntitySet="libro" />
           </AssociationSet>
-          <AssociationSet Name="FK_Manuales_Archivo" Association="Self.FK_Manuales_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="manualesoperacion" EntitySet="manualesoperacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Memorias_Archivo" Association="Self.FK_Memorias_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="memorias" EntitySet="memorias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tecnico_Archivo" Association="Self.FK_Tecnico_Archivo">
-            <End Role="archivo" EntitySet="archivo" />
-            <End Role="informetecnico" EntitySet="informetecnico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Arbitrado_Usuarios" Association="Self.FK_Arbitrado_Usuarios">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artarbitrado" EntitySet="artarbitrado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Difusion_Usuario" Association="Self.FK_Difusion_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artdifusion" EntitySet="artdifusion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Indexado_Usuario" Association="Self.FK_Indexado_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="artindexado" EntitySet="artindexado" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Asesoria_Usuario" Association="Self.FK_Asesoria_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="asesoria" EntitySet="asesoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Capitulo_Usuario" Association="Self.FK_Capitulo_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="capitulolibro" EntitySet="capitulolibro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Cosultoria_Usuario" Association="Self.FK_Cosultoria_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="consultoria" EntitySet="consultoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Docencia_Usuario" Association="Self.FK_Docencia_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="docencia" EntitySet="docencia" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tecnico_Usuario" Association="Self.FK_Tecnico_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="informetecnico" EntitySet="informetecnico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Libro_Usuario" Association="Self.FK_Libro_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="libro" EntitySet="libro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Manuales_Usuario" Association="Self.FK_Manuales_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="manualesoperacion" EntitySet="manualesoperacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Apoyo_Usuario" Association="Self.FK_Apoyo_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="materialapoyo" EntitySet="materialapoyo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Didactico_Usuario" Association="Self.FK_Didactico_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="materialdidactico" EntitySet="materialdidactico" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Extenso_Usuario" Association="Self.FK_Extenso_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="memoriaextenso" EntitySet="memoriaextenso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Memorias_Usuario" Association="Self.FK_Memorias_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="memorias" EntitySet="memorias" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Innovadora_Autor" Association="Self.FK_Innovadora_Autor">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="productividadinovadora" EntitySet="productividadinovadora" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Prototipo_Usuario" Association="Self.FK_Prototipo_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="prototipo" EntitySet="prototipo" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Proyecto_Usuario" Association="Self.FK_Proyecto_Usuario">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="proyectosinvestigacion" EntitySet="proyectosinvestigacion" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Status_Status" Association="Self.FK_Status_Status">
-            <End Role="status" EntitySet="status" />
-            <End Role="usuario" EntitySet="usuario" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Tesis_Autor" Association="Self.FK_Tesis_Autor">
-            <End Role="usuario" EntitySet="usuario" />
-            <End Role="tesis" EntitySet="tesis" />
+          <AssociationSet Name="FK_Trabajo_Tipo" Association="Self.FK_Trabajo_Tipo">
+            <End Role="tipotrabajo" EntitySet="tipotrabajo" />
+            <End Role="trabajo" EntitySet="trabajo" />
           </AssociationSet>
           <AssociationSet Name="FK_Usuario_Tipo" Association="Self.FK_Usuario_Tipo">
             <End Role="tipousuario" EntitySet="tipousuario" />
             <End Role="usuario" EntitySet="usuario" />
           </AssociationSet>
+          <EntitySet Name="grupoacademico" EntityType="microna2018Model.grupoacademico" />
+          <AssociationSet Name="FK_Articulo_Grupo" Association="microna2018Model.FK_Articulo_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Articulo_Usuario" Association="microna2018Model.FK_Articulo_Usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="articulo" EntitySet="articulo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Capitulo_Grupo" Association="microna2018Model.FK_Capitulo_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="capitulolibro" EntitySet="capitulolibro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Capitulo_Usuario" Association="microna2018Model.FK_Capitulo_Usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="capitulolibro" EntitySet="capitulolibro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libro_Grupo" Association="microna2018Model.FK_Libro_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Grupo" Association="microna2018Model.FK_Trabajo_Grupo">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="trabajo" EntitySet="trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Libro_Usuario" Association="microna2018Model.FK_Libro_Usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Usuario" Association="microna2018Model.FK_Trabajo_Usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="trabajo" EntitySet="trabajo" />
+          </AssociationSet>
+          <EntitySet Name="proyectos" EntityType="microna2018Model.proyectos" />
+          <AssociationSet Name="FK_Proyectos_Usuario" Association="microna2018Model.FK_Proyectos_Usuario">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="proyectos" EntitySet="proyectos" />
+          </AssociationSet>
+          <EntitySet Name="articulo_grupo" EntityType="microna2018Model.articulo_grupo" />
+          <AssociationSet Name="FK_ARTGRU_ART" Association="microna2018Model.FK_ARTGRU_ART">
+            <End Role="articulo" EntitySet="articulo" />
+            <End Role="articulo_grupo" EntitySet="articulo_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ARTGRU_GRUPO" Association="microna2018Model.FK_ARTGRU_GRUPO">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="articulo_grupo" EntitySet="articulo_grupo" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="grupoacademico">
+          <Key>
+            <PropertyRef Name="idGrupoAcademico" />
+          </Key>
+          <Property Name="idGrupoAcademico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="articulo" Relationship="microna2018Model.FK_Articulo_Grupo" FromRole="grupoacademico" ToRole="articulo" />
+          <NavigationProperty Name="capitulolibro" Relationship="microna2018Model.FK_Capitulo_Grupo" FromRole="grupoacademico" ToRole="capitulolibro" />
+          <NavigationProperty Name="libro" Relationship="microna2018Model.FK_Libro_Grupo" FromRole="grupoacademico" ToRole="libro" />
+          <NavigationProperty Name="trabajo" Relationship="microna2018Model.FK_Trabajo_Grupo" FromRole="grupoacademico" ToRole="trabajo" />
+          <NavigationProperty Name="articulo_grupo" Relationship="microna2018Model.FK_ARTGRU_GRUPO" FromRole="grupoacademico" ToRole="articulo_grupo" />
+        </EntityType>
+        <Association Name="FK_Articulo_Grupo">
+          <End Type="microna2018Model.grupoacademico" Role="grupoacademico" Multiplicity="0..1" />
+          <End Type="microna2018Model.articulo" Role="articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="GrupoAcademico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Articulo_Usuario">
+          <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="microna2018Model.articulo" Role="articulo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="articulo">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Capitulo_Grupo">
+          <End Type="microna2018Model.grupoacademico" Role="grupoacademico" Multiplicity="0..1" />
+          <End Type="microna2018Model.capitulolibro" Role="capitulolibro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="capitulolibro">
+              <PropertyRef Name="GrupoAcademico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Capitulo_Usuario">
+          <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="microna2018Model.capitulolibro" Role="capitulolibro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="capitulolibro">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Grupo">
+          <End Type="microna2018Model.grupoacademico" Role="grupoacademico" Multiplicity="0..1" />
+          <End Type="microna2018Model.libro" Role="libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="libro">
+              <PropertyRef Name="GrupoAcademico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Grupo">
+          <End Type="microna2018Model.grupoacademico" Role="grupoacademico" Multiplicity="0..1" />
+          <End Type="microna2018Model.trabajo" Role="trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="trabajo">
+              <PropertyRef Name="GrupoAcademico" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Libro_Usuario">
+          <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="microna2018Model.libro" Role="libro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="libro">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Usuario">
+          <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="microna2018Model.trabajo" Role="trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="trabajo">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="proyectos">
+          <Key>
+            <PropertyRef Name="idProyecto" />
+          </Key>
+          <Property Name="idProyecto" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Responsables" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="Financiamiento" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+          <Property Name="FechaInicio" Type="DateTime" />
+          <Property Name="FechaFinal" Type="DateTime" />
+          <Property Name="Usuario" Type="Int32" />
+          <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_Proyectos_Usuario" FromRole="proyectos" ToRole="usuario" />
+        </EntityType>
+        <Association Name="FK_Proyectos_Usuario">
+          <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="microna2018Model.proyectos" Role="proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="proyectos">
+              <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="articulo_grupo">
+          <Key>
+            <PropertyRef Name="IDARTICULO_GRUPO" />
+          </Key>
+          <Property Name="IDARTICULO_GRUPO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_articulo" Type="Int32" />
+          <Property Name="id_grupo" Type="Int32" />
+          <NavigationProperty Name="articulo" Relationship="microna2018Model.FK_ARTGRU_ART" FromRole="articulo_grupo" ToRole="articulo" />
+          <NavigationProperty Name="grupoacademico" Relationship="microna2018Model.FK_ARTGRU_GRUPO" FromRole="articulo_grupo" ToRole="grupoacademico" />
+        </EntityType>
+        <Association Name="FK_ARTGRU_ART">
+          <End Type="microna2018Model.articulo" Role="articulo" Multiplicity="0..1" />
+          <End Type="microna2018Model.articulo_grupo" Role="articulo_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="articulo">
+              <PropertyRef Name="idArticulo" />
+            </Principal>
+            <Dependent Role="articulo_grupo">
+              <PropertyRef Name="id_articulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ARTGRU_GRUPO">
+          <End Type="microna2018Model.grupoacademico" Role="grupoacademico" Multiplicity="0..1" />
+          <End Type="microna2018Model.articulo_grupo" Role="articulo_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="articulo_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="micronaModelStoreContainer" CdmEntityContainer="micronaEntities">
-          <EntitySetMapping Name="archivo">
-            <EntityTypeMapping TypeName="micronaModel.archivo">
-              <MappingFragment StoreEntitySet="archivo">
-                <ScalarProperty Name="idArchivo" ColumnName="idArchivo" />
+        <EntityContainerMapping StorageEntityContainer="microna2018ModelStoreContainer" CdmEntityContainer="micronaEntities">
+          <EntitySetMapping Name="articulo">
+            <EntityTypeMapping TypeName="microna2018Model.articulo">
+              <MappingFragment StoreEntitySet="articulo">
+                <ScalarProperty Name="GrupoAcademico" ColumnName="GrupoAcademico" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Url" ColumnName="Url" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="artarbitrado">
-            <EntityTypeMapping TypeName="micronaModel.artarbitrado">
-              <MappingFragment StoreEntitySet="artarbitrado">
-                <ScalarProperty Name="idArtArbitrado" ColumnName="idArtArbitrado" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Revista" ColumnName="Revista" />
-                <ScalarProperty Name="PaginaIni" ColumnName="PaginaIni" />
-                <ScalarProperty Name="PaginaFin" ColumnName="PaginaFin" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+                <ScalarProperty Name="Tipo_Articulo" ColumnName="Tipo_Articulo" />
+                <ScalarProperty Name="Autores" ColumnName="Autores" />
                 <ScalarProperty Name="Volumen" ColumnName="Volumen" />
+                <ScalarProperty Name="PagInicio" ColumnName="PagInicio" />
+                <ScalarProperty Name="PagFinal" ColumnName="PagFinal" />
+                <ScalarProperty Name="Revista" ColumnName="Revista" />
                 <ScalarProperty Name="ISSN" ColumnName="ISSN" />
                 <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="artdifusion">
-            <EntityTypeMapping TypeName="micronaModel.artdifusion">
-              <MappingFragment StoreEntitySet="artdifusion">
-                <ScalarProperty Name="idArtDifusion" ColumnName="idArtDifusion" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Revista" ColumnName="Revista" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="PaginaIni" ColumnName="PaginaIni" />
-                <ScalarProperty Name="PaginaFin" ColumnName="PaginaFin" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
-                <ScalarProperty Name="Volumen" ColumnName="Volumen" />
-                <ScalarProperty Name="ISSN" ColumnName="ISSN" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="artindexado">
-            <EntityTypeMapping TypeName="micronaModel.artindexado">
-              <MappingFragment StoreEntitySet="artindexado">
-                <ScalarProperty Name="idArtIndexado" ColumnName="idArtIndexado" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Revista" ColumnName="Revista" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="PaginaIni" ColumnName="PaginaIni" />
-                <ScalarProperty Name="PaginaFin" ColumnName="PaginaFin" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
-                <ScalarProperty Name="Volumen" ColumnName="Volumen" />
-                <ScalarProperty Name="ISSN" ColumnName="ISSN" />
-                <ScalarProperty Name="Indice_Revista" ColumnName="Indice_Revista" />
-                <ScalarProperty Name="Publicacion" ColumnName="Publicacion" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="asesoria">
-            <EntityTypeMapping TypeName="micronaModel.asesoria">
-              <MappingFragment StoreEntitySet="asesoria">
-                <ScalarProperty Name="idAsesoria" ColumnName="idAsesoria" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Nombre_Estudiante" ColumnName="Nombre_Estudiante" />
-                <ScalarProperty Name="Objetivo" ColumnName="Objetivo" />
-                <ScalarProperty Name="Dependencia" ColumnName="Dependencia" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="FechaIni" ColumnName="FechaIni" />
-                <ScalarProperty Name="Participantes" ColumnName="Participantes" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="capitulolibro">
-            <EntityTypeMapping TypeName="micronaModel.capitulolibro">
+            <EntityTypeMapping TypeName="microna2018Model.capitulolibro">
               <MappingFragment StoreEntitySet="capitulolibro">
+                <ScalarProperty Name="GrupoAcademico" ColumnName="GrupoAcademico" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="idCapituloLibro" ColumnName="idCapituloLibro" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="TituloLibro" ColumnName="TituloLibro" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
-                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
-                <ScalarProperty Name="Tiraje" ColumnName="Tiraje" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Autores" ColumnName="Autores" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
                 <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="consultoria">
-            <EntityTypeMapping TypeName="micronaModel.consultoria">
-              <MappingFragment StoreEntitySet="consultoria">
-                <ScalarProperty Name="idConsultoria" ColumnName="idConsultoria" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Alcance" ColumnName="Alcance" />
-                <ScalarProperty Name="Dependencia" ColumnName="Dependencia" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="FechaIni" ColumnName="FechaIni" />
                 <ScalarProperty Name="Participantes" ColumnName="Participantes" />
-                <ScalarProperty Name="BeneficioEconomico" ColumnName="BeneficioEconomico" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="docencia">
-            <EntityTypeMapping TypeName="micronaModel.docencia">
-              <MappingFragment StoreEntitySet="docencia">
-                <ScalarProperty Name="idDocencia" ColumnName="idDocencia" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Dependencia" ColumnName="Dependencia" />
-                <ScalarProperty Name="ProgramaEdu" ColumnName="ProgramaEdu" />
-                <ScalarProperty Name="Nivel" ColumnName="Nivel" />
-                <ScalarProperty Name="FechaIni" ColumnName="FechaIni" />
-                <ScalarProperty Name="Alumnos" ColumnName="Alumnos" />
-                <ScalarProperty Name="Duracion" ColumnName="Duracion" />
-                <ScalarProperty Name="Asesoria" ColumnName="Asesoria" />
-                <ScalarProperty Name="HorasSemana" ColumnName="HorasSemana" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="informetecnico">
-            <EntityTypeMapping TypeName="micronaModel.informetecnico">
-              <MappingFragment StoreEntitySet="informetecnico">
-                <ScalarProperty Name="idInformeTecnico" ColumnName="idInformeTecnico" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Alcance" ColumnName="Alcance" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Institucion" ColumnName="Institucion" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="FechaInforme" ColumnName="FechaInforme" />
-                <ScalarProperty Name="NumPaginas" ColumnName="NumPaginas" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
+                <ScalarProperty Name="Libro" ColumnName="Libro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="libro">
-            <EntityTypeMapping TypeName="micronaModel.libro">
+            <EntityTypeMapping TypeName="microna2018Model.libro">
               <MappingFragment StoreEntitySet="libro">
-                <ScalarProperty Name="idLibro" ColumnName="idLibro" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="ParticipacionTipo" ColumnName="ParticipacionTipo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Editorial" ColumnName="Editorial" />
-                <ScalarProperty Name="Paginas" ColumnName="Paginas" />
-                <ScalarProperty Name="Edicion" ColumnName="Edicion" />
-                <ScalarProperty Name="Tiraje" ColumnName="Tiraje" />
-                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="manualesoperacion">
-            <EntityTypeMapping TypeName="micronaModel.manualesoperacion">
-              <MappingFragment StoreEntitySet="manualesoperacion">
-                <ScalarProperty Name="idManualesOperacion" ColumnName="idManualesOperacion" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Beneficiarios" ColumnName="Beneficiarios" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="FechaPublicacion" ColumnName="FechaPublicacion" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="materialapoyo">
-            <EntityTypeMapping TypeName="micronaModel.materialapoyo">
-              <MappingFragment StoreEntitySet="materialapoyo">
-                <ScalarProperty Name="idMaterialApoyo" ColumnName="idMaterialApoyo" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Beneficiarios" ColumnName="Beneficiarios" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="materialdidactico">
-            <EntityTypeMapping TypeName="micronaModel.materialdidactico">
-              <MappingFragment StoreEntitySet="materialdidactico">
-                <ScalarProperty Name="idMaterialDidactico" ColumnName="idMaterialDidactico" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Beneficiarios" ColumnName="Beneficiarios" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="memoriaextenso">
-            <EntityTypeMapping TypeName="micronaModel.memoriaextenso">
-              <MappingFragment StoreEntitySet="memoriaextenso">
-                <ScalarProperty Name="idMemoriaExtenso" ColumnName="idMemoriaExtenso" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Congreso" ColumnName="Congreso" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="PaginaIni" ColumnName="PaginaIni" />
-                <ScalarProperty Name="PaginaFin" ColumnName="PaginaFin" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="EstadoPais" ColumnName="EstadoPais" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="memorias">
-            <EntityTypeMapping TypeName="micronaModel.memorias">
-              <MappingFragment StoreEntitySet="memorias">
-                <ScalarProperty Name="idMemorias" ColumnName="idMemorias" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Congreso" ColumnName="Congreso" />
-                <ScalarProperty Name="PaginaIni" ColumnName="PaginaIni" />
-                <ScalarProperty Name="PaginaFin" ColumnName="PaginaFin" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="productividadinovadora">
-            <EntityTypeMapping TypeName="micronaModel.productividadinovadora">
-              <MappingFragment StoreEntitySet="productividadinovadora">
-                <ScalarProperty Name="idProductividadInovadora" ColumnName="idProductividadInovadora" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
-                <ScalarProperty Name="Clasificacion" ColumnName="Clasificacion" />
-                <ScalarProperty Name="Uso" ColumnName="Uso" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="GrupoAcademico" ColumnName="GrupoAcademico" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
+                <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+                <ScalarProperty Name="Autores" ColumnName="Autores" />
+                <ScalarProperty Name="TipoLibro" ColumnName="TipoLibro" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="prototipo">
-            <EntityTypeMapping TypeName="micronaModel.prototipo">
-              <MappingFragment StoreEntitySet="prototipo">
-                <ScalarProperty Name="idPrototipo" ColumnName="idPrototipo" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Tipo" ColumnName="Tipo" />
-                <ScalarProperty Name="Estado" ColumnName="Estado" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Objetivo" ColumnName="Objetivo" />
-                <ScalarProperty Name="Caracteristicas" ColumnName="Caracteristicas" />
-                <ScalarProperty Name="Institucion" ColumnName="Institucion" />
-                <ScalarProperty Name="Pais" ColumnName="Pais" />
-                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
-                <ScalarProperty Name="Proposito" ColumnName="Proposito" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="proyectosinvestigacion">
-            <EntityTypeMapping TypeName="micronaModel.proyectosinvestigacion">
-              <MappingFragment StoreEntitySet="proyectosinvestigacion">
-                <ScalarProperty Name="idProyectosInvestigacion" ColumnName="idProyectosInvestigacion" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Patrocinador" ColumnName="Patrocinador" />
-                <ScalarProperty Name="FechaIni" ColumnName="FechaIni" />
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="PatrocinadorTipo" ColumnName="PatrocinadorTipo" />
-                <ScalarProperty Name="Participantes" ColumnName="Participantes" />
-                <ScalarProperty Name="Actividades" ColumnName="Actividades" />
-                <ScalarProperty Name="ConsiderarCurr" ColumnName="ConsiderarCurr" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="status">
-            <EntityTypeMapping TypeName="micronaModel.status">
-              <MappingFragment StoreEntitySet="status">
-                <ScalarProperty Name="idStatus" ColumnName="idStatus" />
+          <EntitySetMapping Name="tipoarticulo">
+            <EntityTypeMapping TypeName="microna2018Model.tipoarticulo">
+              <MappingFragment StoreEntitySet="tipoarticulo">
+                <ScalarProperty Name="idTipoArticulo" ColumnName="idTipoArticulo" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tesis">
-            <EntityTypeMapping TypeName="micronaModel.tesis">
-              <MappingFragment StoreEntitySet="tesis">
-                <ScalarProperty Name="idTesis" ColumnName="idTesis" />
-                <ScalarProperty Name="Autor" ColumnName="Autor" />
-                <ScalarProperty Name="Titulo" ColumnName="Titulo" />
-                <ScalarProperty Name="Grado" ColumnName="Grado" />
-                <ScalarProperty Name="FechaIni" ColumnName="FechaIni" />
-                <ScalarProperty Name="FechaFin" ColumnName="FechaFin" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="CA" ColumnName="CA" />
-                <ScalarProperty Name="IES" ColumnName="IES" />
-                <ScalarProperty Name="FK_Archivo" ColumnName="FK_Archivo" />
-                <ScalarProperty Name="Coautores" ColumnName="Coautores" />
+          <EntitySetMapping Name="tipolibro">
+            <EntityTypeMapping TypeName="microna2018Model.tipolibro">
+              <MappingFragment StoreEntitySet="tipolibro">
+                <ScalarProperty Name="idTipoLibro" ColumnName="idTipoLibro" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipotrabajo">
+            <EntityTypeMapping TypeName="microna2018Model.tipotrabajo">
+              <MappingFragment StoreEntitySet="tipotrabajo">
+                <ScalarProperty Name="idTipoTrabajo" ColumnName="idTipoTrabajo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tipousuario">
-            <EntityTypeMapping TypeName="micronaModel.tipousuario">
+            <EntityTypeMapping TypeName="microna2018Model.tipousuario">
               <MappingFragment StoreEntitySet="tipousuario">
                 <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
-                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trabajo">
+            <EntityTypeMapping TypeName="microna2018Model.trabajo">
+              <MappingFragment StoreEntitySet="trabajo">
+                <ScalarProperty Name="GrupoAcademico" ColumnName="GrupoAcademico" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="idTrabajo" ColumnName="idTrabajo" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Año" ColumnName="Año" />
+                <ScalarProperty Name="TipoTrabajo" ColumnName="TipoTrabajo" />
+                <ScalarProperty Name="Autores" ColumnName="Autores" />
+                <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usuario">
-            <EntityTypeMapping TypeName="micronaModel.usuario">
+            <EntityTypeMapping TypeName="microna2018Model.usuario">
               <MappingFragment StoreEntitySet="usuario">
                 <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Apelidos" ColumnName="Apelidos" />
-                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="Correo" ColumnName="Correo" />
                 <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
-                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="grupoacademico">
+            <EntityTypeMapping TypeName="microna2018Model.grupoacademico">
+              <MappingFragment StoreEntitySet="grupoacademico">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idGrupoAcademico" ColumnName="idGrupoAcademico" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proyectos">
+            <EntityTypeMapping TypeName="microna2018Model.proyectos">
+              <MappingFragment StoreEntitySet="proyectos">
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+                <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+                <ScalarProperty Name="Financiamiento" ColumnName="Financiamiento" />
+                <ScalarProperty Name="Responsables" ColumnName="Responsables" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="articulo_grupo">
+            <EntityTypeMapping TypeName="microna2018Model.articulo_grupo">
+              <MappingFragment StoreEntitySet="articulo_grupo">
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+                <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+                <ScalarProperty Name="IDARTICULO_GRUPO" ColumnName="IDARTICULO_GRUPO" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

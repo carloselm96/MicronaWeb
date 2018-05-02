@@ -1,0 +1,127 @@
+﻿@model IEnumerable<WebApplication4.Models.articulo>
+
+@{
+    ViewBag.Title = "Lista de Artículos";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<div class="box">
+    <div class="box-body table-responsive">
+        <p>
+            @Html.ActionLink("Nuevo Artículo", "Create")
+        </p>
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Volumen)
+                    </th>
+                    <th>
+                        Páginas
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Revista)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISSN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha)
+                    </th>
+                    <th>
+                        Tipo de Artículo
+                    </th>
+                    <th>
+                        Grupo Académico
+                    </th>
+                    <th>
+                        Subido por
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Autores)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Volumen)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PagInicio) - @Html.DisplayFor(modelItem => item.PagFinal)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Revista)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISSN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Fecha)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipoarticulo.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.grupoacademico1.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.idArticulo }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.idArticulo }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.idArticulo })
+                    </td>
+                </tr>
+        }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Volumen)
+                    </th>
+                    <th>
+                        Páginas
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Revista)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISSN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Fecha)
+                    </th>
+                    <th>
+                        Tipo de Artículo
+                    </th>
+                    <th>
+                        Grupo Académico
+                    </th>
+                    <th>
+                        Subido por
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

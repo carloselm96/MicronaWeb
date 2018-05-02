@@ -12,18 +12,13 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class tipousuario
+    public partial class articulo_grupo
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public tipousuario()
-        {
-            this.usuario = new HashSet<usuario>();
-        }
+        public int IDARTICULO_GRUPO { get; set; }
+        public Nullable<int> id_articulo { get; set; }
+        public Nullable<int> id_grupo { get; set; }
     
-        public int idTipoUsuario { get; set; }
-        public string Nombre { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<usuario> usuario { get; set; }
+        public virtual articulo articulo { get; set; }
+        public virtual grupoacademico grupoacademico { get; set; }
     }
 }
