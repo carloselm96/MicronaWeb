@@ -37,5 +37,6 @@ namespace WebApplication4.Models
         public virtual DbSet<grupoacademico> grupoacademico { get; set; }
         public virtual DbSet<proyectos> proyectos { get; set; }
         public virtual DbSet<articulo_grupo> articulo_grupo { get; set; }
+        public virtual DbSet<archivo> archivo { get; set; }
     }
 }

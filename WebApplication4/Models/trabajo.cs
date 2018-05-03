@@ -23,9 +23,11 @@ namespace WebApplication4.Models
         public string Pais { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> GrupoAcademico { get; set; }
+        public Nullable<int> Archivo { get; set; }
     
         public virtual tipotrabajo tipotrabajo1 { get; set; }
         public virtual grupoacademico grupoacademico1 { get; set; }
         public virtual usuario usuario1 { get; set; }
+        public virtual archivo archivo1 { get; set; }
     }
 }
