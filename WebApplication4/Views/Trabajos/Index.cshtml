@@ -1,76 +1,111 @@
 ﻿@model IEnumerable<WebApplication4.Models.trabajo>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Trabajos Presentados";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Año)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Autores)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Presentacion)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Pais)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tipotrabajo1.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.grupoacademico1.Nombre)
-        </th>
-        <th>
-            Subido por
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Año)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autores)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Presentacion)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Pais)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipotrabajo1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.grupoacademico1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idTrabajo }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idTrabajo }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idTrabajo })
-        </td>
-    </tr>
-}
-
-</table>
+<div class="box">
+    <div class="box-body table-responsive">
+        <p>
+            @Html.ActionLink("Nuevo Artículo", "Create")
+        </p>
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Año)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        Lugar de presentación
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pais)
+                    </th>
+                    <th>
+                        Tipo de Trabajo
+                    </th>
+                    <th>
+                        Grupo academico
+                    </th>
+                    <th>
+                        Subido por
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Año)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Autores)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Presentacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Pais)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tipotrabajo1.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.grupoacademico1.Nombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { id = item.idTrabajo }) |
+                            @Html.ActionLink("Details", "Details", new { id = item.idTrabajo }) |
+                            @Html.ActionLink("Delete", "Delete", new { id = item.idTrabajo })
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Año)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Presentacion)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Pais)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.tipotrabajo1.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.grupoacademico1.Nombre)
+                    </th>
+                    <th>
+                        Subido por
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

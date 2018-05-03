@@ -58,17 +58,18 @@ namespace WebApplication4.Controllers
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, usuario u)
         {
             try
             {
                 micronaEntities db = new micronaEntities();
-                var usuario = db.usuario.Where(x => x.idUsuario == id);
-                
-                if (TryUpdateModel(usuario, "", collection))
-                {
-                    db.SaveChanges();
-                }
+                var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
+                user.Nombre = u.Nombre;
+                user.Correo = u.Correo;
+                user.Contraseña = u.Contraseña;
+                user.TipoUsuario = u.TipoUsuario;
+                user.Usuario1 = u.Usuario1;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch

@@ -32,6 +32,11 @@
         <EntityTypeShape EntityType="microna2018Model.articulo_grupo" Width="1.5" PointX="10.25" PointY="6" />
         <AssociationConnector Association="microna2018Model.FK_ARTGRU_ART" />
         <AssociationConnector Association="microna2018Model.FK_ARTGRU_GRUPO" />
+        <EntityTypeShape EntityType="microna2018Model.archivo" Width="1.5" PointX="10.375" PointY="1" />
+        <AssociationConnector Association="microna2018Model.FK_Articulo_Archivo" />
+        <AssociationConnector Association="microna2018Model.FK_Capitulo_Archivo" />
+        <AssociationConnector Association="microna2018Model.FK_Libro_Archivo" />
+        <AssociationConnector Association="microna2018Model.FK_Trabajo_Archivo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

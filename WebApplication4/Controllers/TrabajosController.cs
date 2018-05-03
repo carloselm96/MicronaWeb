@@ -53,7 +53,11 @@ namespace WebApplication4.Controllers
         // GET: Trabajos/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            micronaEntities db = new micronaEntities();
+            ViewBag.tipo = db.tipotrabajo.ToList();
+            ViewBag.grupo = db.grupoacademico.ToList();
+            var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
+            return View(trabajo);
         }
 
         // POST: Trabajos/Edit/5

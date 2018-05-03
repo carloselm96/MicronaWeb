@@ -32,11 +32,13 @@ namespace WebApplication4.Models
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> GrupoAcademico { get; set; }
+        public Nullable<int> Archivo { get; set; }
     
         public virtual tipoarticulo tipoarticulo { get; set; }
         public virtual grupoacademico grupoacademico1 { get; set; }
         public virtual usuario usuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
+        public virtual archivo archivo1 { get; set; }
     }
 }

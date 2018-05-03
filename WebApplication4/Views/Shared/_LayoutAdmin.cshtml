@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="~/Content/bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Date Picker -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
-
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap-select/dist/css/bootstrap-select.css"/>
 
     <link rel="stylesheet" href="~/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
     <!-- Daterange picker -->
@@ -266,10 +266,16 @@
 <!-- AdminLTE for demo purposes -->
 <script src="~/Content/dist/js/demo.js"></script>
     <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>    
+    <script src="~/Content/bootstrap-select/dist/js/bootstrap-select.js"></script>
     <script>
         $(function () {
-            $('#datat').DataTable()            
-        })
+            $('#datat').DataTable()
+        })    
+
+        $('#basic2').selectpicker({
+          liveSearch: true,          
+        });
+      });    
     </script>
 </body>
 </html>
