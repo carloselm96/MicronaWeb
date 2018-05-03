@@ -7298,6 +7298,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\archivo.cs">
+      <DependentUpon>micronaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\articulo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
