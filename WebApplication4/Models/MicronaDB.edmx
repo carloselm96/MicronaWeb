@@ -86,6 +86,7 @@
           <Property Name="FechaInicio" Type="datetime" Precision="0" />
           <Property Name="FechaFinal" Type="datetime" Precision="0" />
           <Property Name="Usuario" Type="int" />
+          <Property Name="Archivo" Type="int" />
         </EntityType>
         <EntityType Name="tipoarticulo">
           <Key>
@@ -285,6 +286,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Proyectos_Archivo">
+          <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+          <End Role="proyectos" Type="Self.proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="archivo">
+              <PropertyRef Name="idarchivo" />
+            </Principal>
+            <Dependent Role="proyectos">
+              <PropertyRef Name="Archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Proyectos_Usuario">
           <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
           <End Role="proyectos" Type="Self.proyectos" Multiplicity="*" />
@@ -418,6 +431,10 @@
           <AssociationSet Name="FK_Libro_Usuario" Association="Self.FK_Libro_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Archivo" Association="Self.FK_Proyectos_Archivo">
+            <End Role="archivo" EntitySet="archivo" />
+            <End Role="proyectos" EntitySet="proyectos" />
           </AssociationSet>
           <AssociationSet Name="FK_Proyectos_Usuario" Association="Self.FK_Proyectos_Usuario">
             <End Role="usuario" EntitySet="usuario" />
@@ -713,6 +730,10 @@
             <End Role="archivo" EntitySet="archivo" />
             <End Role="trabajo" EntitySet="trabajo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Proyectos_Archivo" Association="microna2018Model.FK_Proyectos_Archivo">
+            <End Role="archivo" EntitySet="archivo" />
+            <End Role="proyectos" EntitySet="proyectos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="grupoacademico">
           <Key>
@@ -834,6 +855,8 @@
           <Property Name="FechaFinal" Type="DateTime" />
           <Property Name="Usuario" Type="Int32" />
           <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_Proyectos_Usuario" FromRole="proyectos" ToRole="usuario" />
+          <Property Name="Archivo" Type="Int32" />
+          <NavigationProperty Name="archivo1" Relationship="microna2018Model.FK_Proyectos_Archivo" FromRole="proyectos" ToRole="archivo" />
         </EntityType>
         <Association Name="FK_Proyectos_Usuario">
           <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
@@ -892,6 +915,7 @@
           <NavigationProperty Name="capitulolibro" Relationship="microna2018Model.FK_Capitulo_Archivo" FromRole="archivo" ToRole="capitulolibro" />
           <NavigationProperty Name="libro" Relationship="microna2018Model.FK_Libro_Archivo" FromRole="archivo" ToRole="libro" />
           <NavigationProperty Name="trabajo" Relationship="microna2018Model.FK_Trabajo_Archivo" FromRole="archivo" ToRole="trabajo" />
+          <NavigationProperty Name="proyectos" Relationship="microna2018Model.FK_Proyectos_Archivo" FromRole="archivo" ToRole="proyectos" />
         </EntityType>
         <Association Name="FK_Articulo_Archivo">
           <End Type="microna2018Model.archivo" Role="archivo" Multiplicity="0..1" />
@@ -937,6 +961,18 @@
               <PropertyRef Name="idarchivo" />
             </Principal>
             <Dependent Role="trabajo">
+              <PropertyRef Name="Archivo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyectos_Archivo">
+          <End Type="microna2018Model.archivo" Role="archivo" Multiplicity="0..1" />
+          <End Type="microna2018Model.proyectos" Role="proyectos" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="archivo">
+              <PropertyRef Name="idarchivo" />
+            </Principal>
+            <Dependent Role="proyectos">
               <PropertyRef Name="Archivo" />
             </Dependent>
           </ReferentialConstraint>
@@ -1068,6 +1104,7 @@
           <EntitySetMapping Name="proyectos">
             <EntityTypeMapping TypeName="microna2018Model.proyectos">
               <MappingFragment StoreEntitySet="proyectos">
+                <ScalarProperty Name="Archivo" ColumnName="Archivo" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
                 <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
                 <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
