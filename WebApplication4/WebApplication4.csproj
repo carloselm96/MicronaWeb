@@ -7283,6 +7283,7 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Articulos\Index.cshtml" />
     <Content Include="Views\Articulos\Create.cshtml" />
+    <Content Include="Views\Articulos\Details.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

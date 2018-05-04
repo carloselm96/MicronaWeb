@@ -21,7 +21,9 @@ namespace WebApplication4.Controllers
         // GET: Articulos/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            micronaEntities db = new micronaEntities();
+            var art=db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
+            return View(art);
         }
 
         // GET: Articulos/Create
@@ -35,30 +37,43 @@ namespace WebApplication4.Controllers
 
         // POST: Articulos/Create
         [HttpPost]
-        public ActionResult Create(articulo a)
+        public ActionResult Create(articulo a, HttpPostedFileBase ffile)
         {
             try
             {
-                /*string dir = "~/Content/Archivos/ArtArbitrado";
+                string dir = "~/Content/Archivos/ArtArbitrado";
+                string fileName="";
+                string path="";
+                archivo file = null;
+                micronaEntities db = new micronaEntities();
                 if (!Directory.Exists(dir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
                 }
-                if (archivo != null && archivo.ContentLength > 0)
+                if (ffile != null && ffile.ContentLength > 0)
                 {
-                    var fileName = Path.GetFileName(archivo.FileName);
-                    var path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
-                    archivo.SaveAs(path);
-                }   */
-                micronaEntities db = new micronaEntities();
-                    a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
-                    db.articulo.Add(a);
+                    fileName = Path.GetFileName(ffile.FileName);
+                    path= Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
+                    ffile.SaveAs(path);
+                    file = new archivo();
+                    file.Nombre = fileName;
+                    file.url = path;
+                    db.archivo.Add(file);
                     db.SaveChanges();
+                }
+                
+                if (file != null)
+                {
+                    a.Archivo = file.idarchivo;
+                }
+                a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);                                                                                            
+                db.articulo.Add(a);                
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                return Content(e+"");
             }
         }
 

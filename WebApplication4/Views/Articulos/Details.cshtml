@@ -1,0 +1,117 @@
+﻿@model WebApplication4.Models.articulo
+
+@{
+    ViewBag.Title = "Detalles";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="box">
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Autores)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Autores)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Volumen)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Volumen)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PagInicio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PagInicio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.PagFinal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.PagFinal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Revista)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Revista)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ISSN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ISSN)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Fecha)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.tipoarticulo.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tipoarticulo.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.grupoacademico1.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.grupoacademico1.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.usuario1.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.usuario1.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.archivo1.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.archivo1.Nombre)
+            </dd>
+
+        </dl>
+    </div>
+    <div class="box-footer">
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idArticulo }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
