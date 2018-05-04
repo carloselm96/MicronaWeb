@@ -37,6 +37,7 @@
         <AssociationConnector Association="microna2018Model.FK_Capitulo_Archivo" />
         <AssociationConnector Association="microna2018Model.FK_Libro_Archivo" />
         <AssociationConnector Association="microna2018Model.FK_Trabajo_Archivo" />
+        <AssociationConnector Association="microna2018Model.FK_Proyectos_Archivo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
