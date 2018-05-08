@@ -26,15 +26,15 @@
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Tipo_Articulo, "Tipo_Articulo", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.TipoArticulo, "TipoArticulo", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <select class="form-control" , name="Tipo_Articulo">
+                        <select class="form-control" , name="TipoArticulo">
                             @foreach (var TipoArticulo in ViewBag.tipoarticulo)
                             {
                                 <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
                             }
                         </select>
-                        @Html.ValidationMessageFor(model => model.Tipo_Articulo, "", new { @class = "text-danger" })
+                        @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
@@ -94,15 +94,14 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.GrupoAcademico, "GrupoAcademico", htmlAttributes: new { @class = "control-label col-md-2" })
+                    <label class="control-label col-md-2">Grupo académico</label>
                     <div class="col-md-10">
-                        <select class="form-control" , name="GrupoAcademico">
+                        <select class="form-control selectpicker" name="GrupoAcademico" multiple>
                             @foreach (var Grupo in ViewBag.grupo)
                             {
                                 <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
                             }
-                        </select>
-                        @Html.ValidationMessageFor(model => model.GrupoAcademico, "", new { @class = "text-danger" })
+                        </select>                        
                     </div>
                 </div>
 

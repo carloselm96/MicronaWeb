@@ -105,7 +105,14 @@
             <dd>
                 @Html.DisplayFor(model => model.archivo1.Nombre)
             </dd>
-
+            @{
+                if (Model.archivo1 != null)
+                {
+                    <dd>
+                        @Html.ActionLink("Descargar", "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </dd>
+                }
+            }            
         </dl>
     </div>
     <div class="box-footer">

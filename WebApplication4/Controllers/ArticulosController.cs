@@ -11,6 +11,7 @@ namespace WebApplication4.Controllers
     public class ArticulosController : Controller
     {
         // GET: Articulos
+        [Authorize]
         public ActionResult Index()
         {
             micronaEntities db = new micronaEntities();
@@ -19,6 +20,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Articulos/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             micronaEntities db = new micronaEntities();
@@ -37,7 +39,8 @@ namespace WebApplication4.Controllers
 
         // POST: Articulos/Create
         [HttpPost]
-        public ActionResult Create(articulo a, HttpPostedFileBase ffile)
+        [Authorize]
+        public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico)//, SelectList GrupoAcademico)
         {
             try
             {
@@ -65,22 +68,34 @@ namespace WebApplication4.Controllers
                 if (file != null)
                 {
                     a.Archivo = file.idarchivo;
-                }
+                }                
                 a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);                                                                                            
-                db.articulo.Add(a);                
+                db.articulo.Add(a);                                    
+                foreach(var s in GrupoAcademico)
+                {
+                    articulo_grupo ag = new articulo_grupo
+                    {
+                        id_articulo = a.idArticulo,
+                        id_grupo = int.Parse(s)
+                    };
+                    db.articulo_grupo.Add(ag);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch(Exception e)
+            catch
             {
-                return Content(e+"");
+                return RedirectToAction("Create");
             }
         }
 
         // GET: Articulos/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
-            return View();
+            micronaEntities db = new micronaEntities();
+            var a = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
+            return View(a);
         }
 
         // POST: Articulos/Edit/5
@@ -93,8 +108,7 @@ namespace WebApplication4.Controllers
                 var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
                 articulo.Nombre = a.Nombre;
                 articulo.Autores = a.Autores;
-                articulo.Fecha = a.Fecha;
-                articulo.GrupoAcademico = a.GrupoAcademico;
+                articulo.Fecha = a.Fecha;                
                 articulo.ISSN = a.ISSN;
                 articulo.PagFinal = a.PagFinal;
                 articulo.PagInicio = a.PagInicio;
@@ -125,6 +139,12 @@ namespace WebApplication4.Controllers
             {
                 return View();
             }
+        }
+
+        public FileResult Download(string Url, string name)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@Url);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
         }
     }
 }

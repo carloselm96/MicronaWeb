@@ -20,8 +20,8 @@ namespace WebApplication4.Models
             this.articulo = new HashSet<articulo>();
             this.capitulolibro = new HashSet<capitulolibro>();
             this.libro = new HashSet<libro>();
-            this.trabajo = new HashSet<trabajo>();
             this.proyectos = new HashSet<proyectos>();
+            this.trabajo = new HashSet<trabajo>();
         }
     
         public int idarchivo { get; set; }
@@ -35,8 +35,8 @@ namespace WebApplication4.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<libro> libro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<trabajo> trabajo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyectos> proyectos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<trabajo> trabajo { get; set; }
     }
 }

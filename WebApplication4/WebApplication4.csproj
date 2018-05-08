@@ -7249,6 +7249,8 @@
     <Content Include="Content\LoginContent\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\LoginContent\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\LoginContent\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap-select\dist\css\bootstrap-select.css.map" />
+    <Content Include="Content\bootstrap-select\dist\js\bootstrap-select.js.map" />
     <EntityDeploy Include="Models\micronaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>micronaDB.Designer.cs</LastGenOutput>
@@ -7256,8 +7258,6 @@
     <Content Include="Models\micronaDB.edmx.diagram">
       <DependentUpon>micronaDB.edmx</DependentUpon>
     </Content>
-    <Content Include="Content\bootstrap-select\dist\css\bootstrap-select.css.map" />
-    <Content Include="Content\bootstrap-select\dist\js\bootstrap-select.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\micronaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -7284,6 +7284,7 @@
     <Content Include="Views\Articulos\Index.cshtml" />
     <Content Include="Views\Articulos\Create.cshtml" />
     <Content Include="Views\Articulos\Details.cshtml" />
+    <Content Include="Views\Articulos\Edit.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>

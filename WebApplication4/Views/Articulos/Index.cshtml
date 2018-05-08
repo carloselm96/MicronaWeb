@@ -47,7 +47,7 @@
             </thead>
             <tbody>
                 @foreach (var item in Model)
-            {
+                {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nombre)
@@ -71,10 +71,15 @@
                         @Html.DisplayFor(modelItem => item.Fecha)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.tipoarticulo.Nombre)
+                        @Html.DisplayFor(modelItem => item.tipoarticulo1.Nombre)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.grupoacademico1.Nombre)
+                        @{ 
+                            foreach(var a in item.articulo_grupo)
+                            {
+                                <p>@a.grupoacademico.Nombre</p>
+                            }
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.usuario1.Nombre)

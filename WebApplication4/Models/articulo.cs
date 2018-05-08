@@ -22,7 +22,6 @@ namespace WebApplication4.Models
     
         public int idArticulo { get; set; }
         public string Nombre { get; set; }
-        public Nullable<int> Tipo_Articulo { get; set; }
         public string Autores { get; set; }
         public Nullable<int> Volumen { get; set; }
         public Nullable<int> PagInicio { get; set; }
@@ -31,14 +30,13 @@ namespace WebApplication4.Models
         public string ISSN { get; set; }
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
-        public Nullable<int> GrupoAcademico { get; set; }
         public Nullable<int> Archivo { get; set; }
+        public Nullable<int> TipoArticulo { get; set; }
     
-        public virtual tipoarticulo tipoarticulo { get; set; }
-        public virtual grupoacademico grupoacademico1 { get; set; }
-        public virtual usuario usuario1 { get; set; }
+        public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
-        public virtual archivo archivo1 { get; set; }
+        public virtual usuario usuario1 { get; set; }
+        public virtual tipoarticulo tipoarticulo1 { get; set; }
     }
 }

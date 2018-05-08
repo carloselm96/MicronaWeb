@@ -23,7 +23,7 @@ namespace WebApplication4.Models
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
     
-        public virtual usuario usuario1 { get; set; }
         public virtual archivo archivo1 { get; set; }
+        public virtual usuario usuario1 { get; set; }
     }
 }
