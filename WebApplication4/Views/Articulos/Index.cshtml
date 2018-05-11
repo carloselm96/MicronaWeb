@@ -74,12 +74,14 @@
                         @Html.DisplayFor(modelItem => item.tipoarticulo1.Nombre)
                     </td>
                     <td>
-                        @{ 
-                            foreach(var a in item.articulo_grupo)
-                            {
-                                <p>@a.grupoacademico.Nombre</p>
+                        <ul>
+                            @{
+                                foreach (var a in item.articulo_grupo)
+                                {
+                                    <li>@a.grupoacademico.Nombre</li>
+                                }
                             }
-                        }
+                        </ul>
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.usuario1.Nombre)

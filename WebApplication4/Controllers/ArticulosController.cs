@@ -124,7 +124,7 @@ namespace WebApplication4.Controllers
         }       
 
         // POST: Articulos/Delete/5
-        [HttpPost]
+        //[HttpPost]
         public ActionResult Delete(int id)
         {
             try

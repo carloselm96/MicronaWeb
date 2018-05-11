@@ -75,19 +75,27 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.tipoarticulo.Nombre)
+                @Html.DisplayNameFor(model => model.tipoarticulo1.Nombre)
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.tipoarticulo.Nombre)
+                @Html.DisplayFor(model => model.tipoarticulo1.Nombre)
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.grupoacademico1.Nombre)
+                Grupo académico
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.grupoacademico1.Nombre)
+                <ul>
+                    @{
+                        foreach (var a in Model.articulo_grupo)
+                        {
+                            <li>@a.grupoacademico.Nombre</li>
+                        }
+                    }
+                </ul>
+
             </dd>
 
             <dt>
