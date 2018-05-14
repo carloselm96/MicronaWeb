@@ -40,14 +40,14 @@ namespace WebApplication4.Controllers
         // POST: Articulos/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico)//, SelectList GrupoAcademico)
+        public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico)
         {
+            archivo file = null;
             try
             {
                 string dir = "~/Content/Archivos/ArtArbitrado";
                 string fileName="";
-                string path="";
-                archivo file = null;
+                string path="";                
                 micronaEntities db = new micronaEntities();
                 if (!Directory.Exists(dir))
                 {
@@ -70,15 +70,18 @@ namespace WebApplication4.Controllers
                     a.Archivo = file.idarchivo;
                 }                
                 a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);                                                                                            
-                db.articulo.Add(a);                                    
-                foreach(var s in GrupoAcademico)
+                db.articulo.Add(a);
+                if (GrupoAcademico != null)
                 {
-                    articulo_grupo ag = new articulo_grupo
+                    foreach (var s in GrupoAcademico)
                     {
-                        id_articulo = a.idArticulo,
-                        id_grupo = int.Parse(s)
-                    };
-                    db.articulo_grupo.Add(ag);
+                        articulo_grupo ag = new articulo_grupo
+                        {
+                            id_articulo = a.idArticulo,
+                            id_grupo = int.Parse(s)
+                        };
+                        db.articulo_grupo.Add(ag);
+                    }
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -95,12 +98,20 @@ namespace WebApplication4.Controllers
         {
             micronaEntities db = new micronaEntities();
             var a = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
+            if(int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+            {
+                return RedirectToAction("Index");
+            }
+            a.articulo_grupo = db.articulo_grupo.Where(x => x.id_articulo == id).ToList();
+            ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             return View(a);
         }
 
         // POST: Articulos/Edit/5
+        [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id,articulo a)
+        public ActionResult Edit(int id,articulo a, List<string> GrupoAcademico)
         {
             try
             {
@@ -114,6 +125,22 @@ namespace WebApplication4.Controllers
                 articulo.PagInicio = a.PagInicio;
                 articulo.Revista = a.Revista;
                 articulo.Volumen = a.Volumen;
+                articulo.TipoArticulo = a.TipoArticulo;                
+                var grupos_eliminar= db.articulo_grupo.Where(x=> x.id_articulo==id).ToList();
+                if (grupos_eliminar != null)
+                {
+                    foreach (var G in grupos_eliminar)
+                    {
+                        db.articulo_grupo.Remove(G);
+                    }
+                }
+                if (GrupoAcademico != null)
+                {
+                    foreach(var G in GrupoAcademico)
+                    {
+                        db.articulo_grupo.Add(new articulo_grupo { id_articulo = id, id_grupo = int.Parse(G) });
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -121,17 +148,26 @@ namespace WebApplication4.Controllers
             {
                 return View();
             }
-        }       
+        }
 
         // POST: Articulos/Delete/5
         //[HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             try
             {
                 micronaEntities db = new micronaEntities();
+                var a_g = db.articulo_grupo.Where(x => x.id_articulo == id).ToList();
+                if (a_g != null)
+                {
+                    foreach (var a in a_g)
+                    {
+                        db.articulo_grupo.Remove(a);
+                    }
+                }
                 var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
-                db.articulo.Remove(articulo);
+                db.articulo.Remove(articulo);                
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
