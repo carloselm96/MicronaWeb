@@ -13,10 +13,10 @@ namespace WebApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class micronaEntities : DbContext
+    public partial class microna2018Entities : DbContext
     {
-        public micronaEntities()
-            : base("name=micronaEntities")
+        public microna2018Entities()
+            : base("name=microna2018Entities")
         {
         }
     
@@ -37,6 +37,7 @@ namespace WebApplication4.Models
         public virtual DbSet<tipotrabajo> tipotrabajo { get; set; }
         public virtual DbSet<tipousuario> tipousuario { get; set; }
         public virtual DbSet<trabajo> trabajo { get; set; }
+        public virtual DbSet<trabajo_grupo> trabajo_grupo { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
     }
 }

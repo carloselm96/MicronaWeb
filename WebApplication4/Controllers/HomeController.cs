@@ -28,7 +28,7 @@ namespace WebApplication4.Controllers
         [AllowAnonymous]
         public ActionResult Login(usuario u)
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1).FirstOrDefault();            
             if (user!=null)
             {

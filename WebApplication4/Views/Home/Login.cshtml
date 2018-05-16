@@ -3,93 +3,49 @@
 @{
     Layout = null;
 }
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Login V1</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="~/Content/LoginContent/images/icons/favicon.ico"/>
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/bootstrap/css/bootstrap.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/animate/animate.css">
-<!--===============================================================================================-->	
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/css-hamburgers/hamburgers.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/select2/select2.min.css">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/css/util.css">
-	<link rel="stylesheet" type="text/css" href="~/Content/LoginContent/css/main.css">
-<!--===============================================================================================-->
+    
+    <link href="~/Content/LoginContent/css/style.css" rel="stylesheet" />    
+	<title>Sistema de Microna</title>	
 </head>
 <body>
 
-    <div class="limiter">
-        <div class="container-login100">
-            <div class="wrap-login100">
-                <div class="login100-pic js-tilt" data-tilt>
-                    <img src="~/Content/LoginContent/images/microna-logo.png" alt="IMG">
-                </div>
-                @using (Html.BeginForm("Login", "Home", FormMethod.Post))
-    {
-            <form class="login100-form validate-form" id="formLogin">
-                <span class="login100-form-title">
-                    SISTEMA DE ARTICULOS MICRONA
-                </span>
-                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                    <input class="input100" type="text" name="Usuario1" placeholder="Usuario">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                    </span>
-                </div>
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Iniciar Sesión </h2>            
 
-                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                    <input class="input100" type="password" name="Contraseña" placeholder="Contraseña">
-                    <span class="focus-input100"></span>
-                    <span class="symbol-input100">
-                        <i class="fa fa-lock" aria-hidden="true"></i>
-                    </span>
-                </div>
-
-                <div class="container-login100-form-btn">
-                    <button class="login100-form-btn">
-                        Iniciar Sesión
-                    </button>
-                </div>
-
-
-                <div class="text-center p-t-136">
-                </div>
-            </form>
-}
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="~/Content/dist/img/Microna-logo-2.png" id="icon" alt="User Icon" />
+    <!--                <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />-->
             </div>
+
+            <!-- Login Form -->
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+            {
+                <form>
+                    <input type="text" id="login" class="fadeIn second" name="Usuario1" placeholder="Usuario" autocomplete="off">
+                    <input type="password" id="password" class="fadeIn third pas" name="Contraseña" placeholder="Contraseña">
+                    <input type="submit" class="fadeIn fourth" value="Iniciar sesión">
+                </form>
+            }
+
+            <!-- Remind Passowrd -->
+            <div id="formFooter">
+                <div class="alert alert-primary" role="alert" hidden>
+                    Contraseña o Usuario incorrectos
+                </div>
+            </div>
+
         </div>
     </div>
-
-
-
-
-    <!--===============================================================================================-->
-    <script src="~/Content/LoginContent/vendor/jquery/jquery-3.2.1.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Content/LoginContent/vendor/bootstrap/js/popper.js"></script>
-    <script src="~/Content/LoginContent/vendor/bootstrap/js/bootstrap.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Content/LoginContent/vendor/select2/select2.min.js"></script>
-    <!--===============================================================================================-->
-    <script src="~/Content/LoginContent/vendor/tilt/tilt.jquery.min.js"></script>
-    <script>
-        $('.js-tilt').tilt({
-            scale: 1.1
-        })
-    </script>
-    <!--===============================================================================================-->
-    <script src="~/Content/LoginContent/js/main.js"></script>
+    <script src="~/Content/bower_components/jquery/dist/jquery.js"></script>
+    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script>
 
     $(document).ready(function () {
@@ -113,6 +69,19 @@
                 });
             });
         });
+        function check(e) {
+            tecla = (document.all) ? e.keyCode : e.which;
+
+            //Tecla de retroceso para borrar, siempre la permite
+            if (tecla == 8) {
+                return true;
+            }
+
+            // Patron de entrada, en este caso solo acepta numeros y letras
+            patron = /[A-Za-z0-9]/;
+            tecla_final = String.fromCharCode(tecla);
+            return patron.test(tecla_final);
+        }
     </script>
 </body>
 </html>

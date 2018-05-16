@@ -12,7 +12,7 @@ namespace WebApplication4.Controllers
         // GET: Usuario
         public ActionResult Index()
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var usuarios = db.usuario.ToList();
             return View(usuarios);
         }
@@ -26,7 +26,7 @@ namespace WebApplication4.Controllers
         // GET: Usuario/Create
         public ActionResult Create()
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             ViewBag.TipoUsuario = db.tipoarticulo.ToList();
             return View();
         }
@@ -37,7 +37,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                micronaEntities db = new micronaEntities();
+                microna2018Entities db = new microna2018Entities();
                 db.usuario.Add(u);
                 db.SaveChanges();                
                 return RedirectToAction("Index");
@@ -51,7 +51,7 @@ namespace WebApplication4.Controllers
         // GET: Usuario/Edit/5
         public ActionResult Edit(int id)
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var usuario = db.usuario.SingleOrDefault(x => x.idUsuario == id);            
             return View(usuario);
         }
@@ -62,7 +62,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                micronaEntities db = new micronaEntities();
+                microna2018Entities db = new microna2018Entities();
                 var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
                 user.Nombre = u.Nombre;
                 user.Correo = u.Correo;
@@ -85,7 +85,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                micronaEntities db = new micronaEntities();
+                microna2018Entities db = new microna2018Entities();
                 var usuario=db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
                 db.usuario.Remove(usuario);
                 return RedirectToAction("Index");

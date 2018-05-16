@@ -9,7 +9,7 @@
 <div class="box">
     <div class="box-body table-responsive">
         <p>
-            @Html.ActionLink("Nuevo Artículo", "Create")
+            @Html.ActionLink("Nuevo Trabajo", "Create")
         </p>
         <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
             <thead>
@@ -64,7 +64,12 @@
                             @Html.DisplayFor(modelItem => item.tipotrabajo1.Nombre)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.grupoacademico1.Nombre)
+                            @{
+                                foreach (var a in item.trabajo_grupo)
+                                {
+                                    <p>@a.grupoacademico.Nombre</p>
+                                }
+                            }  
                         </td>
                         <td>
                             @Html.DisplayFor(modelItem => item.usuario1.Nombre)
@@ -98,7 +103,7 @@
                         @Html.DisplayNameFor(model => model.tipotrabajo1.Nombre)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.grupoacademico1.Nombre)
+                        Grupo Academico
                     </th>
                     <th>
                         Subido por

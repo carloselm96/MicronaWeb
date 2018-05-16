@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -12,7 +13,7 @@ namespace WebApplication4.Controllers
         // GET: Trabajos
         public ActionResult Index()
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var trabajos = db.trabajo.ToList();
             return View(trabajos);
         }
@@ -26,7 +27,7 @@ namespace WebApplication4.Controllers
         // GET: Trabajos/Create
         public ActionResult Create()
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             ViewBag.tipo = db.tipotrabajo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
             return View();
@@ -34,45 +35,105 @@ namespace WebApplication4.Controllers
 
         // POST: Trabajos/Create
         [HttpPost]
-        public ActionResult Create(trabajo t)
+        public ActionResult Create(trabajo t, HttpPostedFileBase ffile, List<string> GrupoAcademico)
         {
+            archivo file = null;
             try
             {
-                micronaEntities db = new micronaEntities();
+                string dir = "~/Content/Archivos/ArtArbitrado";
+                string fileName = "";
+                string path = "";
+                microna2018Entities db = new microna2018Entities();
+                if (!Directory.Exists(dir))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
+                }
+                if (ffile != null && ffile.ContentLength > 0)
+                {
+                    fileName = Path.GetFileName(ffile.FileName);
+                    path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
+                    ffile.SaveAs(path);
+                    file = new archivo();
+                    file.Nombre = fileName;
+                    file.url = path;
+                    db.archivo.Add(file);
+                    db.SaveChanges();
+                }
+                if (file != null)
+                {
+                    t.Archivo = file.idarchivo;
+                }
                 t.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
-                db.trabajo.Add(t);
+                db.trabajo.Add(t);                
+                if (GrupoAcademico != null)
+                {
+                    foreach (var s in GrupoAcademico)
+                    {
+                        trabajo_grupo ag = new trabajo_grupo
+                        {
+                            id_trabajo = t.idTrabajo,
+                            id_grupo = int.Parse(s)
+                        };
+                        db.trabajo_grupo.Add(ag);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                return Content(""+e);
             }
         }
 
         // GET: Trabajos/Edit/5
         public ActionResult Edit(int id)
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
+            var a = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
+            if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+            {
+                return RedirectToAction("Index");
+            }
+            a.trabajo_grupo = db.trabajo_grupo.Where(x => x.id_trabajo == id).ToList();
+            ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipo = db.tipotrabajo.ToList();
-            ViewBag.grupo = db.grupoacademico.ToList();
-            var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
-            return View(trabajo);
+            return View(a);
         }
 
         // POST: Trabajos/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico)
         {
             try
             {
-                // TODO: Add update logic here
-
+                microna2018Entities db = new microna2018Entities();
+                var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
+                trabajo.Nombre = t.Nombre;
+                trabajo.Pais = t.Pais;
+                trabajo.Presentacion = t.Presentacion;
+                trabajo.TipoTrabajo = t.TipoTrabajo;                
+                var grupos_eliminar = db.trabajo_grupo.Where(x => x.id_trabajo == id).ToList();
+                if (grupos_eliminar != null)
+                {
+                    foreach (var G in grupos_eliminar)
+                    {
+                        db.trabajo_grupo.Remove(G);
+                    }
+                }
+                if (GrupoAcademico != null)
+                {
+                    foreach (var G in GrupoAcademico)
+                    {
+                        db.trabajo_grupo.Add(new trabajo_grupo { id_trabajo = id, id_grupo = int.Parse(G) });
+                    }
+                }
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                return Content("" + e);
             }
         }
 

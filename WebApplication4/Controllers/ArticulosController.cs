@@ -14,7 +14,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var articulos = db.articulo.ToList();
             return View(articulos);
         }
@@ -23,7 +23,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var art=db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
             return View(art);
         }
@@ -31,7 +31,7 @@ namespace WebApplication4.Controllers
         // GET: Articulos/Create
         public ActionResult Create()
         {           
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
             return View();
@@ -48,7 +48,7 @@ namespace WebApplication4.Controllers
                 string dir = "~/Content/Archivos/ArtArbitrado";
                 string fileName="";
                 string path="";                
-                micronaEntities db = new micronaEntities();
+                microna2018Entities db = new microna2018Entities();
                 if (!Directory.Exists(dir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
@@ -96,7 +96,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Edit(int id)
         {
-            micronaEntities db = new micronaEntities();
+            microna2018Entities db = new microna2018Entities();
             var a = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
             if(int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
             {
@@ -115,7 +115,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                micronaEntities db = new micronaEntities();
+                microna2018Entities db = new microna2018Entities();
                 var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
                 articulo.Nombre = a.Nombre;
                 articulo.Autores = a.Autores;
@@ -146,7 +146,7 @@ namespace WebApplication4.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
@@ -157,7 +157,12 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                micronaEntities db = new micronaEntities();
+                microna2018Entities db = new microna2018Entities();
+                var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
+                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != articulo.Usuario)
+                {
+                    return RedirectToAction("Index");
+                }
                 var a_g = db.articulo_grupo.Where(x => x.id_articulo == id).ToList();
                 if (a_g != null)
                 {
@@ -165,8 +170,7 @@ namespace WebApplication4.Controllers
                     {
                         db.articulo_grupo.Remove(a);
                     }
-                }
-                var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
+                }                
                 db.articulo.Remove(articulo);                
                 db.SaveChanges();
                 return RedirectToAction("Index");

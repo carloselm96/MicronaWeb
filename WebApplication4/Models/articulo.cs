@@ -11,8 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class articulo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -29,8 +28,7 @@ namespace WebApplication4.Models
         public Nullable<int> PagFinal { get; set; }
         public string Revista { get; set; }
         public string ISSN { get; set; }
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> Fecha { get; set; }
+        public Nullable<int> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         public Nullable<int> TipoArticulo { get; set; }
@@ -38,7 +36,7 @@ namespace WebApplication4.Models
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
-        public virtual usuario usuario1 { get; set; }
         public virtual tipoarticulo tipoarticulo1 { get; set; }
+        public virtual usuario usuario1 { get; set; }
     }
 }
