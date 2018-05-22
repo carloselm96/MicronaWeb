@@ -10,6 +10,7 @@ namespace WebApplication4.Controllers
     public class UsuarioController : Controller
     {
         // GET: Usuario
+        [Authorize]
         public ActionResult Index()
         {
             microna2018Entities db = new microna2018Entities();
@@ -18,12 +19,14 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Usuario/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Usuario/Create
+        [Authorize]
         public ActionResult Create()
         {
             microna2018Entities db = new microna2018Entities();
@@ -32,6 +35,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: Usuario/Create
+        [Authorize]
         [HttpPost]
         public ActionResult Create(usuario u)
         {
@@ -49,6 +53,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Usuario/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             microna2018Entities db = new microna2018Entities();
@@ -58,6 +63,7 @@ namespace WebApplication4.Controllers
 
         // POST: Usuario/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, usuario u)
         {
             try
@@ -77,9 +83,10 @@ namespace WebApplication4.Controllers
                 return View();
             }
         }
-        
+
 
         // POST: Usuario/Delete/5
+        [Authorize]
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

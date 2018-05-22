@@ -11,6 +11,7 @@ namespace WebApplication4.Controllers
     public class TrabajosController : Controller
     {
         // GET: Trabajos
+        [Authorize]
         public ActionResult Index()
         {
             microna2018Entities db = new microna2018Entities();
@@ -19,12 +20,14 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Trabajos/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
             return View();
         }
 
         // GET: Trabajos/Create
+        [Authorize]
         public ActionResult Create()
         {
             microna2018Entities db = new microna2018Entities();
@@ -87,6 +90,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Trabajos/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
             microna2018Entities db = new microna2018Entities();
@@ -103,6 +107,7 @@ namespace WebApplication4.Controllers
 
         // POST: Trabajos/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico)
         {
             try
@@ -136,26 +141,35 @@ namespace WebApplication4.Controllers
                 return Content("" + e);
             }
         }
-
-        // GET: Trabajos/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        
 
         // POST: Trabajos/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
+                microna2018Entities db = new microna2018Entities();
+                var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
+                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != trabajo.Usuario)
+                {
+                    return RedirectToAction("Index");
+                }
+                var a_g = db.trabajo_grupo.Where(x => x.id_trabajo == id).ToList();
+                if (a_g != null)
+                {
+                    foreach (var a in a_g)
+                    {
+                        db.trabajo_grupo.Remove(a);
+                    }                    
+                }
+                db.trabajo.Remove(trabajo);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
     }

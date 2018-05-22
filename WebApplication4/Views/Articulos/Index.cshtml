@@ -4,11 +4,32 @@
     ViewBag.Title = "Lista de Artículos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
+
 <div class="box">
     <div class="box-body table-responsive">
         <p>
             @Html.ActionLink("Nuevo Artículo", "Create")
         </p>
+        @{
+            if (ViewBag.response != null)
+            {
+                switch (ViewBag.response)
+                {
+                    case 1:
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Completado!</strong> Se ha realizado correctamente la acción
+                        </div>
+                        break;
+                    case 2:
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
+                        </div>
+                        break;
+                }
+            }
+        }
         <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
             <thead>
                 <tr>
@@ -59,7 +80,7 @@
                         @Html.DisplayFor(modelItem => item.Volumen)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.PagInicio) - @Html.DisplayFor(modelItem => item.PagFinal)
+                        @Html.DisplayFor(modelItem => item.PagInicio)_@Html.DisplayFor(modelItem => item.PagFinal)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Revista)
@@ -88,11 +109,11 @@
                             @{
                                 if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
                                 {
-                                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.idArticulo })</p>
-                                    <p>@Html.ActionLink("Delete", "Delete", new { id = item.idArticulo })</p>                                    
+                                    <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-large btn-warning"})</p>
+                                    <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>                                    
                                 }
                             }
-                            <p>@Html.ActionLink("Details", "Details", new { id = item.idArticulo })</p>                        
+                            <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-large btn-primary" })</p>                        
                     </td>
                 </tr>
         }

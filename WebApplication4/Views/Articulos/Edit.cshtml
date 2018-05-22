@@ -12,7 +12,7 @@
     <div class="box-body">
 
 
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Edit", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -124,11 +124,23 @@
                         </select>
                     </div>
                 </div>
-
-
-
-
-
+                @{
+                    if (Model.archivo1 != null)
+                    {
+                        <div class="form-group">
+                            <label class="control-label col-md-2">Archivo actual: </label>
+                            <div class="col-md-10">
+                                @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                            </div>
+                        </div>                        
+                        }                                        
+                }        
+                <div class="form-group">
+                    <label class="control-label col-md-2">Nuevo Archivo</label>
+                    <div class="col-md-10">
+                        <input type="file" name="ffile" class="form-control" accept="application/pdf" />
+                    </div>
+                </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
                         <input type="submit" value="Save" class="btn btn-default" />

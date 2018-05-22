@@ -12,8 +12,12 @@ namespace WebApplication4.Controllers
     {
         // GET: Articulos
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string response)
         {
+            if (response != null)
+            {
+                ViewBag.response = int.Parse(response);
+            }
             microna2018Entities db = new microna2018Entities();
             var articulos = db.articulo.ToList();
             return View(articulos);
@@ -45,7 +49,7 @@ namespace WebApplication4.Controllers
             archivo file = null;
             try
             {
-                string dir = "~/Content/Archivos/ArtArbitrado";
+                string dir = "~/Content/Archivos/Articulos";
                 string fileName="";
                 string path="";                
                 microna2018Entities db = new microna2018Entities();
@@ -111,7 +115,7 @@ namespace WebApplication4.Controllers
         // POST: Articulos/Edit/5
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id,articulo a, List<string> GrupoAcademico)
+        public ActionResult Edit(int id,articulo a, List<string> GrupoAcademico, HttpPostedFileBase ffile)
         {
             try
             {
@@ -140,6 +144,23 @@ namespace WebApplication4.Controllers
                     {
                         db.articulo_grupo.Add(new articulo_grupo { id_articulo = id, id_grupo = int.Parse(G) });
                     }
+                }
+                if (ffile != null && ffile.ContentLength > 0)
+                {
+                    string dir = "~/Content/Archivos/Articulos";
+                    if (!Directory.Exists(dir))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
+                    }
+                    string fileName = Path.GetFileName(ffile.FileName);
+                    string path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
+                    ffile.SaveAs(path);
+                    archivo file = new archivo();
+                    file.Nombre = fileName;
+                    file.url = path;
+                    db.archivo.Add(file);
+                    db.SaveChanges();
+                    articulo.Archivo = file.idarchivo;
                 }
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -173,14 +194,15 @@ namespace WebApplication4.Controllers
                 }                
                 db.articulo.Remove(articulo);                
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new {response=1 });
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", new { response = 2 });
             }
         }
 
+        [Authorize]
         public FileResult Download(string Url, string name)
         {
             byte[] fileBytes = System.IO.File.ReadAllBytes(@Url);

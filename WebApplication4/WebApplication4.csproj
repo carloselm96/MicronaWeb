@@ -6450,6 +6450,8 @@
     <Content Include="Content\bower_components\select2\tests\vendor\qunit-1.23.1.css" />
     <Content Include="Content\bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="Content\bower_components\select2\vendor\jquery-2.1.0.js" />
+    <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.js" />
+    <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.min.js" />
     <Content Include="Content\dist\css\AdminLTE.css" />
     <Content Include="Content\dist\css\AdminLTE.min.css" />
     <Content Include="Content\dist\css\alt\AdminLTE-bootstrap-social.css" />
@@ -7155,6 +7157,8 @@
     <Content Include="Models\micronaDB.edmx.diagram">
       <DependentUpon>micronaDB.edmx</DependentUpon>
     </Content>
+    <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.js.map" />
+    <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Models\micronaDB.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -266,8 +266,11 @@
 <script src="~/Content/dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="~/Content/dist/js/demo.js"></script>
-    <script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>    
-    <script src="~/Content/bootstrap-select/dist/js/bootstrap-select.js"></script>
+<script src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>    
+<script src="~/Content/bootstrap-select/dist/js/bootstrap-select.js"></script>
+<script src="~/Content/ConfirmationBoostrap/dist/bootstrap-confirmation.js"></script>
+<script src="http://bootstrap-confirmation.js.org/dist/bootstrap-confirmation2/bootstrap-confirmation.min.js"></script>
+
     <script>
         $(function () {
             $('#datat').DataTable({
@@ -279,6 +282,7 @@
                 liveSearch: true,
             });
         })
+        $('[data-toggle=confirmation]').confirmation();
     </script>
 </body>
 </html>
