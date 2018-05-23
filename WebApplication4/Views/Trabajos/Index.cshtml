@@ -11,6 +11,24 @@
         <p>
             @Html.ActionLink("Nuevo Trabajo", "Create")
         </p>
+        @{
+            if (ViewBag.response != null)
+            {
+                switch (ViewBag.response)
+                {
+                    case 1:
+                        <div class="alert alert-success">
+                            <strong>Completado!</strong> Se ha realizado correctamente la acción
+                        </div>
+                        break;
+                    case 2:
+                        <div class="alert alert-warning">
+                            <strong>Error!</strong> Ha ocurrido un error al tratar de hacer la acción
+                        </div>
+                        break;
+                }
+            }
+        }
         <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
             <thead>
                 <tr>

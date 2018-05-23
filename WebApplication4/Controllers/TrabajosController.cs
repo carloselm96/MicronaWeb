@@ -81,7 +81,7 @@ namespace WebApplication4.Controllers
                     }
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { result = 1 });
             }
             catch(Exception e)
             {

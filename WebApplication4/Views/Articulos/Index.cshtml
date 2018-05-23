@@ -5,154 +5,204 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="box">
-    <div class="box-body table-responsive">
-        <p>
-            @Html.ActionLink("Nuevo Artículo", "Create")
-        </p>
-        @{
-            if (ViewBag.response != null)
-            {
-                switch (ViewBag.response)
-                {
-                    case 1:
-                        <div class="alert alert-success">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Completado!</strong> Se ha realizado correctamente la acción
-                        </div>
-                        break;
-                    case 2:
-                        <div class="alert alert-warning">
-                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                            <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
-                        </div>
-                        break;
-                }
-            }
-        }
-        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Autores)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Volumen)
-                    </th>
-                    <th>
-                        Páginas
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Revista)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ISSN)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fecha)
-                    </th>
-                    <th>
-                        Tipo de Artículo
-                    </th>
-                    <th>
-                        Grupo Académico
-                    </th>
-                    <th>
-                        Subido por
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Nombre)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Autores)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Volumen)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.PagInicio)_@Html.DisplayFor(modelItem => item.PagFinal)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Revista)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.ISSN)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Fecha)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.tipoarticulo1.Nombre)
-                    </td>
-                    <td>                        
-                            @{
-                                foreach (var a in item.articulo_grupo)
-                                {
-                                    <p>@a.grupoacademico.Nombre</p>
-                                }
-                            }                        
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-                    </td>
-                    <td>                        
-                            @{
-                                if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
-                                {
-                                    <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-large btn-warning"})</p>
-                                    <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>                                    
-                                }
-                            }
-                            <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-large btn-primary" })</p>                        
-                    </td>
-                </tr>
-        }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Autores)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Volumen)
-                    </th>
-                    <th>
-                        Páginas
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Revista)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ISSN)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fecha)
-                    </th>
-                    <th>
-                        Tipo de Artículo
-                    </th>
-                    <th>
-                        Grupo Académico
-                    </th>
-                    <th>
-                        Subido por
-                    </th>
-                    <th></th>
-                </tr>
-            </tfoot>
-        </table>
+<div class="box box-primary box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">Busqueda avanzada</h3>
     </div>
-</div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Autores:</label>
+                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Revista:</label>
+                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Año:</label>
+                    <div class="input-daterange" id="datepicker">
+                        <div class="input-group">
+                            <input type="number" id="min" class="form-control" name="start" />
+                            <span class="input-group-addon">al</span>
+                            <input type="number" id="max" class="form-control" name="end" />
+                        </div>
+                    </div>
+                </div>                
+            </div>            
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Grupo académico</label>                    
+                        <select class="form-control selectpicker" name="GrupoAcademico" multiple>
+                            
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+        <div class="box">
+            <div class="box-body table-responsive">
+                <p>
+                    @Html.ActionLink("Nuevo Artículo", "Create")
+                </p>
+                @{
+                    if (ViewBag.response != null)
+                    {
+                        switch (ViewBag.response)
+                        {
+                            case 1:
+                                <div class="alert alert-success">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Completado!</strong> Se ha realizado correctamente la acción
+                                </div>
+                                break;
+                            case 2:
+                                <div class="alert alert-warning">
+                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                    <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
+                                </div>
+                                break;
+                        }
+                    }
+                }
+                <table class="display table table-responsive table-bordered table-striped table-hover" id="data_art">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Autores)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Volumen)
+                            </th>
+                            <th>
+                                Páginas
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Revista)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ISSN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>
+                            <th>
+                                Tipo de Artículo
+                            </th>
+                            <th>
+                                Grupo Académico
+                            </th>
+                            <th>
+                                Subido por
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Autores)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Volumen)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PagInicio)-@Html.DisplayFor(modelItem => item.PagFinal)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Revista)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ISSN)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Fecha)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.tipoarticulo1.Nombre)
+                                </td>
+                                <td>
+                                    @{
+                                        foreach (var a in item.articulo_grupo)
+                                        {
+                                            <p>@a.grupoacademico.Nombre</p>
+                                        }
+                                    }
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                                </td>
+                                <td>
+                                    @{
+                                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                                        {
+                                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-large btn-warning" })</p>
+                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
+                                        }
+                                    }
+                                    <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-large btn-primary" })</p>
+                                </td>
+                            </tr>
+                                        }
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Nombre)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Autores)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Volumen)
+                            </th>
+                            <th>
+                                Páginas
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Revista)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.ISSN)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Fecha)
+                            </th>
+                            <th>
+                                Tipo de Artículo
+                            </th>
+                            <th>
+                                Grupo Académico
+                            </th>
+                            <th>
+                                Subido por
+                            </th>
+                            <th></th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>

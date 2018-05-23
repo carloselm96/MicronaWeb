@@ -88,11 +88,11 @@ namespace WebApplication4.Controllers
                     }
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch
             {
-                return RedirectToAction("Create");
+                return RedirectToAction("Index", new { response = 2 });
             }
         }
 
@@ -163,11 +163,11 @@ namespace WebApplication4.Controllers
                     articulo.Archivo = file.idarchivo;
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 2 });
             }
         }
 
