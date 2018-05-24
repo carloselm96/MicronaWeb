@@ -28,9 +28,12 @@ namespace WebApplication4.Models
         public virtual DbSet<archivo> archivo { get; set; }
         public virtual DbSet<articulo> articulo { get; set; }
         public virtual DbSet<articulo_grupo> articulo_grupo { get; set; }
+        public virtual DbSet<capitulo_grupo> capitulo_grupo { get; set; }
         public virtual DbSet<capitulolibro> capitulolibro { get; set; }
         public virtual DbSet<grupoacademico> grupoacademico { get; set; }
         public virtual DbSet<libro> libro { get; set; }
+        public virtual DbSet<libro_grupo> libro_grupo { get; set; }
+        public virtual DbSet<proyecto_grupo> proyecto_grupo { get; set; }
         public virtual DbSet<proyectos> proyectos { get; set; }
         public virtual DbSet<tipoarticulo> tipoarticulo { get; set; }
         public virtual DbSet<tipolibro> tipolibro { get; set; }

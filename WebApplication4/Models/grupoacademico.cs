@@ -18,8 +18,9 @@ namespace WebApplication4.Models
         public grupoacademico()
         {
             this.articulo_grupo = new HashSet<articulo_grupo>();
-            this.capitulolibro = new HashSet<capitulolibro>();
-            this.libro = new HashSet<libro>();
+            this.capitulo_grupo = new HashSet<capitulo_grupo>();
+            this.libro_grupo = new HashSet<libro_grupo>();
+            this.proyecto_grupo = new HashSet<proyecto_grupo>();
             this.trabajo_grupo = new HashSet<trabajo_grupo>();
         }
     
@@ -29,9 +30,11 @@ namespace WebApplication4.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<capitulolibro> capitulolibro { get; set; }
+        public virtual ICollection<capitulo_grupo> capitulo_grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<libro> libro { get; set; }
+        public virtual ICollection<libro_grupo> libro_grupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proyecto_grupo> proyecto_grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trabajo_grupo> trabajo_grupo { get; set; }
     }

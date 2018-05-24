@@ -58,7 +58,10 @@
         <div class="box">
             <div class="box-body table-responsive">
                 <p>
-                    @Html.ActionLink("Nuevo Artículo", "Create")
+                    @Html.ActionLink("Nuevo Artículo", "Create",null, new { @class = "btn btn-large btn-success" })
+                </p>
+                <p>
+                    <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
                 </p>
                 @{
                     if (ViewBag.response != null)

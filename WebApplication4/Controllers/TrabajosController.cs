@@ -43,7 +43,7 @@ namespace WebApplication4.Controllers
             archivo file = null;
             try
             {
-                string dir = "~/Content/Archivos/ArtArbitrado";
+                string dir = "~/Content/Archivos/Trabajo";
                 string fileName = "";
                 string path = "";
                 microna2018Entities db = new microna2018Entities();
@@ -108,7 +108,7 @@ namespace WebApplication4.Controllers
         // POST: Trabajos/Edit/5
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico)
+        public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico, HttpPostedFileBase ffile)
         {
             try
             {
@@ -133,6 +133,30 @@ namespace WebApplication4.Controllers
                         db.trabajo_grupo.Add(new trabajo_grupo { id_trabajo = id, id_grupo = int.Parse(G) });
                     }
                 }
+                if (ffile != null && ffile.ContentLength > 0)
+                {
+                    if (trabajo.archivo1 != null)
+                    {
+                        var archivo = new archivo();
+                        archivo = db.archivo.Where(x => x.idarchivo == trabajo.Archivo).FirstOrDefault();
+                        System.IO.File.Delete(trabajo.archivo1.url);
+                        db.archivo.Remove(archivo);
+                    }
+                    string dir = "~/Content/Archivos/Trabajos";
+                    if (!Directory.Exists(dir))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
+                    }
+                    string fileName = Path.GetFileName(ffile.FileName);
+                    string path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
+                    ffile.SaveAs(path);
+                    archivo file = new archivo();
+                    file.Nombre = fileName;
+                    file.url = path;
+                    db.archivo.Add(file);                    
+                    db.SaveChanges();
+                    trabajo.Archivo = file.idarchivo;
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -144,7 +168,7 @@ namespace WebApplication4.Controllers
         
 
         // POST: Trabajos/Delete/5
-        [HttpPost]
+        [Authorize]
         public ActionResult Delete(int id)
         {
             try
@@ -163,6 +187,13 @@ namespace WebApplication4.Controllers
                         db.trabajo_grupo.Remove(a);
                     }                    
                 }
+                if (trabajo.archivo1 != null)
+                {
+                    var archivo = new archivo();
+                    archivo = db.archivo.Where(x => x.idarchivo == trabajo.Archivo).FirstOrDefault();                    
+                    System.IO.File.Delete(trabajo.archivo1.url);
+                    db.archivo.Remove(archivo);
+                }                
                 db.trabajo.Remove(trabajo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -171,6 +202,12 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index");
             }
+        }
+        [Authorize]
+        public FileResult Download(string Url, string name)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@Url);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
         }
     }
 }

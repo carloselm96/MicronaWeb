@@ -5,11 +5,59 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Busqueda avanzada</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Autores:</label>
+                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Revista:</label>
+                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Año:</label>
+                    <div class="input-daterange" id="datepicker">
+                        <div class="input-group">
+                            <input type="number" id="min" class="form-control" name="start" />
+                            <span class="input-group-addon">al</span>
+                            <input type="number" id="max" class="form-control" name="end" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Grupo académico</label>
+                    <select class="form-control selectpicker" name="GrupoAcademico" multiple></select>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
 
 <div class="box">
     <div class="box-body table-responsive">
         <p>
             @Html.ActionLink("Nuevo Trabajo", "Create")
+        </p>
+        <p>
+            <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('datat', 'W3C Example Table')" value="Exportar a Excel">
         </p>
         @{
             if (ViewBag.response != null)
@@ -93,9 +141,14 @@
                             @Html.DisplayFor(modelItem => item.usuario1.Nombre)
                         </td>
                         <td>
-                            @Html.ActionLink("Edit", "Edit", new { id = item.idTrabajo }) |
-                            @Html.ActionLink("Details", "Details", new { id = item.idTrabajo }) |
-                            @Html.ActionLink("Delete", "Delete", new { id = item.idTrabajo })
+                            @{
+                                if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                                {
+                                    <p>@Html.ActionLink("Editar", "Edit", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-warning" })</p>
+                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
+                                }
+                            }
+                            <p>@Html.ActionLink("Detalles", "Details", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-primary" })</p>
                         </td>
                     </tr>
                 }

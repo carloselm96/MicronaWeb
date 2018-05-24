@@ -31,5 +31,5 @@
     );
     $('#min, #max').on('keyup change', function() {
         art.draw();
-    });
+    });    
 });

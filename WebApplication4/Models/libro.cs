@@ -14,6 +14,12 @@ namespace WebApplication4.Models
     
     public partial class libro
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public libro()
+        {
+            this.libro_grupo = new HashSet<libro_grupo>();
+        }
+    
         public int idLibro { get; set; }
         public string Nombre { get; set; }
         public Nullable<int> Año { get; set; }
@@ -21,11 +27,11 @@ namespace WebApplication4.Models
         public string Autores { get; set; }
         public Nullable<int> TipoLibro { get; set; }
         public Nullable<int> Usuario { get; set; }
-        public Nullable<int> GrupoAcademico { get; set; }
         public Nullable<int> Archivo { get; set; }
     
         public virtual archivo archivo1 { get; set; }
-        public virtual grupoacademico grupoacademico1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<libro_grupo> libro_grupo { get; set; }
         public virtual tipolibro tipolibro1 { get; set; }
         public virtual usuario usuario1 { get; set; }
     }

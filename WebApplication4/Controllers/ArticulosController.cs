@@ -147,6 +147,13 @@ namespace WebApplication4.Controllers
                 }
                 if (ffile != null && ffile.ContentLength > 0)
                 {
+                    if (articulo.archivo1 != null)
+                    {
+                        var archivo = new archivo();
+                        archivo = db.archivo.Where(x => x.idarchivo == articulo.Archivo).FirstOrDefault();
+                        System.IO.File.Delete(articulo.archivo1.url);
+                        db.archivo.Remove(archivo);
+                    }
                     string dir = "~/Content/Archivos/Articulos";
                     if (!Directory.Exists(dir))
                     {

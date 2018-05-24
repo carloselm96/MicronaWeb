@@ -10,7 +10,7 @@
         <h4>Trabajo</h4>
     </div>
     <div class="box-body">
-        @using (Html.BeginForm())
+        @using (Html.BeginForm("Create", "Trabajos", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.AntiForgeryToken()
 
@@ -83,7 +83,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Archivo</label>
                     <div class="col-md-10">
-                        <input type="file" name="ffile" class="form-control" />
+                        <input type="file" name="ffile" class="form-control" accept="application/pdf" />
                     </div>
                 </div>
 

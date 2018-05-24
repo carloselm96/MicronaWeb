@@ -14,6 +14,12 @@ namespace WebApplication4.Models
     
     public partial class proyectos
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public proyectos()
+        {
+            this.proyecto_grupo = new HashSet<proyecto_grupo>();
+        }
+    
         public int idProyecto { get; set; }
         public string nombre { get; set; }
         public string Responsables { get; set; }
@@ -24,6 +30,8 @@ namespace WebApplication4.Models
         public Nullable<int> Archivo { get; set; }
     
         public virtual archivo archivo1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proyecto_grupo> proyecto_grupo { get; set; }
         public virtual usuario usuario1 { get; set; }
     }
 }
