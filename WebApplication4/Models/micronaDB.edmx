@@ -38,6 +38,14 @@
           <Property Name="id_articulo" Type="int" />
           <Property Name="id_grupo" Type="int" />
         </EntityType>
+        <EntityType Name="capitulo_grupo">
+          <Key>
+            <PropertyRef Name="idcapitulo_grupo" />
+          </Key>
+          <Property Name="idcapitulo_grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_capitulo" Type="int" />
+          <Property Name="id_grupo" Type="int" />
+        </EntityType>
         <EntityType Name="capitulolibro">
           <Key>
             <PropertyRef Name="idCapituloLibro" />
@@ -50,7 +58,6 @@
           <Property Name="Participantes" Type="longtext" />
           <Property Name="Libro" Type="longtext" />
           <Property Name="Usuario" Type="int" />
-          <Property Name="GrupoAcademico" Type="int" />
           <Property Name="Archivo" Type="int" />
         </EntityType>
         <EntityType Name="grupoacademico">
@@ -71,8 +78,23 @@
           <Property Name="Autores" Type="longtext" />
           <Property Name="TipoLibro" Type="int" />
           <Property Name="Usuario" Type="int" />
-          <Property Name="GrupoAcademico" Type="int" />
           <Property Name="Archivo" Type="int" />
+        </EntityType>
+        <EntityType Name="libro_grupo">
+          <Key>
+            <PropertyRef Name="idlibro_grupo" />
+          </Key>
+          <Property Name="idlibro_grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_libro" Type="int" />
+          <Property Name="id_grupo" Type="int" />
+        </EntityType>
+        <EntityType Name="proyecto_grupo">
+          <Key>
+            <PropertyRef Name="idproyecto_grupo" />
+          </Key>
+          <Property Name="idproyecto_grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_proyecto" Type="int" />
+          <Property Name="id_grupo" Type="int" />
         </EntityType>
         <EntityType Name="proyectos">
           <Key>
@@ -133,7 +155,7 @@
           <Key>
             <PropertyRef Name="idtrabajo_grupo" />
           </Key>
-          <Property Name="idtrabajo_grupo" Type="int" Nullable="false" />
+          <Property Name="idtrabajo_grupo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_trabajo" Type="int" />
           <Property Name="id_grupo" Type="int" />
         </EntityType>
@@ -208,6 +230,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Cap_Grupo">
+          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="0..1" />
+          <End Role="capitulo_grupo" Type="Self.capitulo_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="capitulolibro">
+              <PropertyRef Name="idCapituloLibro" />
+            </Principal>
+            <Dependent Role="capitulo_grupo">
+              <PropertyRef Name="id_capitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Capitulo_Archivo">
           <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
           <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
@@ -217,18 +251,6 @@
             </Principal>
             <Dependent Role="capitulolibro">
               <PropertyRef Name="Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Capitulo_Grupo">
-          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
-          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="grupoacademico">
-              <PropertyRef Name="idGrupoAcademico" />
-            </Principal>
-            <Dependent Role="capitulolibro">
-              <PropertyRef Name="GrupoAcademico" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -244,6 +266,54 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Grupo_Cap">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+          <End Role="capitulo_grupo" Type="Self.capitulo_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="capitulo_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Lib">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+          <End Role="libro_grupo" Type="Self.libro_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="libro_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Proyecto">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+          <End Role="proyecto_grupo" Type="Self.proyecto_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="proyecto_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lib_Grupo">
+          <End Role="libro" Type="Self.libro" Multiplicity="0..1" />
+          <End Role="libro_grupo" Type="Self.libro_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libro">
+              <PropertyRef Name="idLibro" />
+            </Principal>
+            <Dependent Role="libro_grupo">
+              <PropertyRef Name="id_libro" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Libro_Archivo">
           <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
           <End Role="libro" Type="Self.libro" Multiplicity="*" />
@@ -253,18 +323,6 @@
             </Principal>
             <Dependent Role="libro">
               <PropertyRef Name="Archivo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Libro_Grupo">
-          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
-          <End Role="libro" Type="Self.libro" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="grupoacademico">
-              <PropertyRef Name="idGrupoAcademico" />
-            </Principal>
-            <Dependent Role="libro">
-              <PropertyRef Name="GrupoAcademico" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,6 +347,18 @@
             </Principal>
             <Dependent Role="libro">
               <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Grupo">
+          <End Role="proyectos" Type="Self.proyectos" Multiplicity="0..1" />
+          <End Role="proyecto_grupo" Type="Self.proyecto_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="proyecto_grupo">
+              <PropertyRef Name="id_proyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -392,9 +462,12 @@
           <EntitySet Name="archivo" EntityType="Self.archivo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="articulo" EntityType="Self.articulo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="articulo_grupo" EntityType="Self.articulo_grupo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="capitulo_grupo" EntityType="Self.capitulo_grupo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="capitulolibro" EntityType="Self.capitulolibro" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="grupoacademico" EntityType="Self.grupoacademico" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="libro" EntityType="Self.libro" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="libro_grupo" EntityType="Self.libro_grupo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="proyecto_grupo" EntityType="Self.proyecto_grupo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="proyectos" EntityType="Self.proyectos" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="tipoarticulo" EntityType="Self.tipoarticulo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="tipolibro" EntityType="Self.tipolibro" Schema="microna2018" store:Type="Tables" />
@@ -423,24 +496,36 @@
             <End Role="usuario" EntitySet="usuario" />
             <End Role="articulo" EntitySet="articulo" />
           </AssociationSet>
+          <AssociationSet Name="FK_Cap_Grupo" Association="Self.FK_Cap_Grupo">
+            <End Role="capitulolibro" EntitySet="capitulolibro" />
+            <End Role="capitulo_grupo" EntitySet="capitulo_grupo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Capitulo_Archivo" Association="Self.FK_Capitulo_Archivo">
             <End Role="archivo" EntitySet="archivo" />
-            <End Role="capitulolibro" EntitySet="capitulolibro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Capitulo_Grupo" Association="Self.FK_Capitulo_Grupo">
-            <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="capitulolibro" EntitySet="capitulolibro" />
           </AssociationSet>
           <AssociationSet Name="FK_Capitulo_Usuario" Association="Self.FK_Capitulo_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="capitulolibro" EntitySet="capitulolibro" />
           </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Cap" Association="Self.FK_Grupo_Cap">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="capitulo_grupo" EntitySet="capitulo_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Lib" Association="Self.FK_Grupo_Lib">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="libro_grupo" EntitySet="libro_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Proyecto" Association="Self.FK_Grupo_Proyecto">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="proyecto_grupo" EntitySet="proyecto_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lib_Grupo" Association="Self.FK_Lib_Grupo">
+            <End Role="libro" EntitySet="libro" />
+            <End Role="libro_grupo" EntitySet="libro_grupo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Libro_Archivo" Association="Self.FK_Libro_Archivo">
             <End Role="archivo" EntitySet="archivo" />
-            <End Role="libro" EntitySet="libro" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Libro_Grupo" Association="Self.FK_Libro_Grupo">
-            <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="libro" EntitySet="libro" />
           </AssociationSet>
           <AssociationSet Name="FK_Libro_Tipo" Association="Self.FK_Libro_Tipo">
@@ -450,6 +535,10 @@
           <AssociationSet Name="FK_Libro_Usuario" Association="Self.FK_Libro_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Grupo" Association="Self.FK_Proyecto_Grupo">
+            <End Role="proyectos" EntitySet="proyectos" />
+            <End Role="proyecto_grupo" EntitySet="proyecto_grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Proyectos_Archivo" Association="Self.FK_Proyectos_Archivo">
             <End Role="archivo" EntitySet="archivo" />
@@ -533,6 +622,16 @@
           <NavigationProperty Name="articulo" Relationship="Self.FK_ARTGRU_ART" FromRole="articulo_grupo" ToRole="articulo" />
           <NavigationProperty Name="grupoacademico" Relationship="Self.FK_ARTGRU_GRUPO" FromRole="articulo_grupo" ToRole="grupoacademico" />
         </EntityType>
+        <EntityType Name="capitulo_grupo">
+          <Key>
+            <PropertyRef Name="idcapitulo_grupo" />
+          </Key>
+          <Property Name="idcapitulo_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_capitulo" Type="Int32" />
+          <Property Name="id_grupo" Type="Int32" />
+          <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Cap_Grupo" FromRole="capitulo_grupo" ToRole="capitulolibro" />
+          <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Grupo_Cap" FromRole="capitulo_grupo" ToRole="grupoacademico" />
+        </EntityType>
         <EntityType Name="capitulolibro">
           <Key>
             <PropertyRef Name="idCapituloLibro" />
@@ -545,10 +644,9 @@
           <Property Name="Participantes" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="Libro" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="Usuario" Type="Int32" />
-          <Property Name="GrupoAcademico" Type="Int32" />
           <Property Name="Archivo" Type="Int32" />
           <NavigationProperty Name="archivo1" Relationship="Self.FK_Capitulo_Archivo" FromRole="capitulolibro" ToRole="archivo" />
-          <NavigationProperty Name="grupoacademico1" Relationship="Self.FK_Capitulo_Grupo" FromRole="capitulolibro" ToRole="grupoacademico" />
+          <NavigationProperty Name="capitulo_grupo" Relationship="Self.FK_Cap_Grupo" FromRole="capitulolibro" ToRole="capitulo_grupo" />
           <NavigationProperty Name="usuario1" Relationship="Self.FK_Capitulo_Usuario" FromRole="capitulolibro" ToRole="usuario" />
         </EntityType>
         <EntityType Name="grupoacademico">
@@ -558,8 +656,9 @@
           <Property Name="idGrupoAcademico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="articulo_grupo" Relationship="Self.FK_ARTGRU_GRUPO" FromRole="grupoacademico" ToRole="articulo_grupo" />
-          <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Capitulo_Grupo" FromRole="grupoacademico" ToRole="capitulolibro" />
-          <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Grupo" FromRole="grupoacademico" ToRole="libro" />
+          <NavigationProperty Name="capitulo_grupo" Relationship="Self.FK_Grupo_Cap" FromRole="grupoacademico" ToRole="capitulo_grupo" />
+          <NavigationProperty Name="libro_grupo" Relationship="Self.FK_Grupo_Lib" FromRole="grupoacademico" ToRole="libro_grupo" />
+          <NavigationProperty Name="proyecto_grupo" Relationship="Self.FK_Grupo_Proyecto" FromRole="grupoacademico" ToRole="proyecto_grupo" />
           <NavigationProperty Name="trabajo_grupo" Relationship="Self.FK_TrabajoGrupo_Grupo" FromRole="grupoacademico" ToRole="trabajo_grupo" />
         </EntityType>
         <EntityType Name="libro">
@@ -573,12 +672,31 @@
           <Property Name="Autores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
           <Property Name="TipoLibro" Type="Int32" />
           <Property Name="Usuario" Type="Int32" />
-          <Property Name="GrupoAcademico" Type="Int32" />
           <Property Name="Archivo" Type="Int32" />
           <NavigationProperty Name="archivo1" Relationship="Self.FK_Libro_Archivo" FromRole="libro" ToRole="archivo" />
-          <NavigationProperty Name="grupoacademico1" Relationship="Self.FK_Libro_Grupo" FromRole="libro" ToRole="grupoacademico" />
+          <NavigationProperty Name="libro_grupo" Relationship="Self.FK_Lib_Grupo" FromRole="libro" ToRole="libro_grupo" />
           <NavigationProperty Name="tipolibro1" Relationship="Self.FK_Libro_Tipo" FromRole="libro" ToRole="tipolibro" />
           <NavigationProperty Name="usuario1" Relationship="Self.FK_Libro_Usuario" FromRole="libro" ToRole="usuario" />
+        </EntityType>
+        <EntityType Name="libro_grupo">
+          <Key>
+            <PropertyRef Name="idlibro_grupo" />
+          </Key>
+          <Property Name="idlibro_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_libro" Type="Int32" />
+          <Property Name="id_grupo" Type="Int32" />
+          <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Grupo_Lib" FromRole="libro_grupo" ToRole="grupoacademico" />
+          <NavigationProperty Name="libro" Relationship="Self.FK_Lib_Grupo" FromRole="libro_grupo" ToRole="libro" />
+        </EntityType>
+        <EntityType Name="proyecto_grupo">
+          <Key>
+            <PropertyRef Name="idproyecto_grupo" />
+          </Key>
+          <Property Name="idproyecto_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_proyecto" Type="Int32" />
+          <Property Name="id_grupo" Type="Int32" />
+          <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Grupo_Proyecto" FromRole="proyecto_grupo" ToRole="grupoacademico" />
+          <NavigationProperty Name="proyectos" Relationship="Self.FK_Proyecto_Grupo" FromRole="proyecto_grupo" ToRole="proyectos" />
         </EntityType>
         <EntityType Name="proyectos">
           <Key>
@@ -593,6 +711,7 @@
           <Property Name="Usuario" Type="Int32" />
           <Property Name="Archivo" Type="Int32" />
           <NavigationProperty Name="archivo1" Relationship="Self.FK_Proyectos_Archivo" FromRole="proyectos" ToRole="archivo" />
+          <NavigationProperty Name="proyecto_grupo" Relationship="Self.FK_Proyecto_Grupo" FromRole="proyectos" ToRole="proyecto_grupo" />
           <NavigationProperty Name="usuario1" Relationship="Self.FK_Proyectos_Usuario" FromRole="proyectos" ToRole="usuario" />
         </EntityType>
         <EntityType Name="tipoarticulo">
@@ -649,7 +768,7 @@
           <Key>
             <PropertyRef Name="idtrabajo_grupo" />
           </Key>
-          <Property Name="idtrabajo_grupo" Type="Int32" Nullable="false" />
+          <Property Name="idtrabajo_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="id_trabajo" Type="Int32" />
           <Property Name="id_grupo" Type="Int32" />
           <NavigationProperty Name="grupoacademico" Relationship="Self.FK_TrabajoGrupo_Grupo" FromRole="trabajo_grupo" ToRole="grupoacademico" />
@@ -780,15 +899,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Capitulo_Grupo">
+        <Association Name="FK_Cap_Grupo">
+          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="0..1" />
+          <End Role="capitulo_grupo" Type="Self.capitulo_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="capitulolibro">
+              <PropertyRef Name="idCapituloLibro" />
+            </Principal>
+            <Dependent Role="capitulo_grupo">
+              <PropertyRef Name="id_capitulo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Cap">
           <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
-          <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
+          <End Role="capitulo_grupo" Type="Self.capitulo_grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="grupoacademico">
               <PropertyRef Name="idGrupoAcademico" />
             </Principal>
-            <Dependent Role="capitulolibro">
-              <PropertyRef Name="GrupoAcademico" />
+            <Dependent Role="capitulo_grupo">
+              <PropertyRef Name="id_grupo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -804,15 +935,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Libro_Grupo">
+        <Association Name="FK_Grupo_Lib">
           <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
-          <End Role="libro" Type="Self.libro" Multiplicity="*" />
+          <End Role="libro_grupo" Type="Self.libro_grupo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="grupoacademico">
               <PropertyRef Name="idGrupoAcademico" />
             </Principal>
-            <Dependent Role="libro">
-              <PropertyRef Name="GrupoAcademico" />
+            <Dependent Role="libro_grupo">
+              <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Grupo_Proyecto">
+          <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+          <End Role="proyecto_grupo" Type="Self.proyecto_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="grupoacademico">
+              <PropertyRef Name="idGrupoAcademico" />
+            </Principal>
+            <Dependent Role="proyecto_grupo">
+              <PropertyRef Name="id_grupo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -825,6 +968,18 @@
             </Principal>
             <Dependent Role="trabajo_grupo">
               <PropertyRef Name="id_grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lib_Grupo">
+          <End Role="libro" Type="Self.libro" Multiplicity="0..1" />
+          <End Role="libro_grupo" Type="Self.libro_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="libro">
+              <PropertyRef Name="idLibro" />
+            </Principal>
+            <Dependent Role="libro_grupo">
+              <PropertyRef Name="id_libro" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -849,6 +1004,18 @@
             </Principal>
             <Dependent Role="libro">
               <PropertyRef Name="Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proyecto_Grupo">
+          <End Role="proyectos" Type="Self.proyectos" Multiplicity="0..1" />
+          <End Role="proyecto_grupo" Type="Self.proyecto_grupo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="proyectos">
+              <PropertyRef Name="idProyecto" />
+            </Principal>
+            <Dependent Role="proyecto_grupo">
+              <PropertyRef Name="id_proyecto" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -916,9 +1083,12 @@
           <EntitySet Name="archivo" EntityType="Self.archivo" />
           <EntitySet Name="articulo" EntityType="Self.articulo" />
           <EntitySet Name="articulo_grupo" EntityType="Self.articulo_grupo" />
+          <EntitySet Name="capitulo_grupo" EntityType="Self.capitulo_grupo" />
           <EntitySet Name="capitulolibro" EntityType="Self.capitulolibro" />
           <EntitySet Name="grupoacademico" EntityType="Self.grupoacademico" />
           <EntitySet Name="libro" EntityType="Self.libro" />
+          <EntitySet Name="libro_grupo" EntityType="Self.libro_grupo" />
+          <EntitySet Name="proyecto_grupo" EntityType="Self.proyecto_grupo" />
           <EntitySet Name="proyectos" EntityType="Self.proyectos" />
           <EntitySet Name="tipoarticulo" EntityType="Self.tipoarticulo" />
           <EntitySet Name="tipolibro" EntityType="Self.tipolibro" />
@@ -963,21 +1133,33 @@
             <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="articulo_grupo" EntitySet="articulo_grupo" />
           </AssociationSet>
-          <AssociationSet Name="FK_Capitulo_Grupo" Association="Self.FK_Capitulo_Grupo">
-            <End Role="grupoacademico" EntitySet="grupoacademico" />
+          <AssociationSet Name="FK_Cap_Grupo" Association="Self.FK_Cap_Grupo">
             <End Role="capitulolibro" EntitySet="capitulolibro" />
+            <End Role="capitulo_grupo" EntitySet="capitulo_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Cap" Association="Self.FK_Grupo_Cap">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="capitulo_grupo" EntitySet="capitulo_grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Capitulo_Usuario" Association="Self.FK_Capitulo_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="capitulolibro" EntitySet="capitulolibro" />
           </AssociationSet>
-          <AssociationSet Name="FK_Libro_Grupo" Association="Self.FK_Libro_Grupo">
+          <AssociationSet Name="FK_Grupo_Lib" Association="Self.FK_Grupo_Lib">
             <End Role="grupoacademico" EntitySet="grupoacademico" />
-            <End Role="libro" EntitySet="libro" />
+            <End Role="libro_grupo" EntitySet="libro_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Grupo_Proyecto" Association="Self.FK_Grupo_Proyecto">
+            <End Role="grupoacademico" EntitySet="grupoacademico" />
+            <End Role="proyecto_grupo" EntitySet="proyecto_grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_TrabajoGrupo_Grupo" Association="Self.FK_TrabajoGrupo_Grupo">
             <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="trabajo_grupo" EntitySet="trabajo_grupo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lib_Grupo" Association="Self.FK_Lib_Grupo">
+            <End Role="libro" EntitySet="libro" />
+            <End Role="libro_grupo" EntitySet="libro_grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Libro_Tipo" Association="Self.FK_Libro_Tipo">
             <End Role="tipolibro" EntitySet="tipolibro" />
@@ -986,6 +1168,10 @@
           <AssociationSet Name="FK_Libro_Usuario" Association="Self.FK_Libro_Usuario">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="libro" EntitySet="libro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proyecto_Grupo" Association="Self.FK_Proyecto_Grupo">
+            <End Role="proyectos" EntitySet="proyectos" />
+            <End Role="proyecto_grupo" EntitySet="proyecto_grupo" />
           </AssociationSet>
           <AssociationSet Name="FK_Proyectos_Usuario" Association="Self.FK_Proyectos_Usuario">
             <End Role="usuario" EntitySet="usuario" />
@@ -1050,6 +1236,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="capitulo_grupo">
+            <EntityTypeMapping TypeName="microna2018Model.capitulo_grupo">
+              <MappingFragment StoreEntitySet="capitulo_grupo">
+                <ScalarProperty Name="idcapitulo_grupo" ColumnName="idcapitulo_grupo" />
+                <ScalarProperty Name="id_capitulo" ColumnName="id_capitulo" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="capitulolibro">
             <EntityTypeMapping TypeName="microna2018Model.capitulolibro">
               <MappingFragment StoreEntitySet="capitulolibro">
@@ -1061,7 +1256,6 @@
                 <ScalarProperty Name="Participantes" ColumnName="Participantes" />
                 <ScalarProperty Name="Libro" ColumnName="Libro" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="GrupoAcademico" ColumnName="GrupoAcademico" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -1084,8 +1278,25 @@
                 <ScalarProperty Name="Autores" ColumnName="Autores" />
                 <ScalarProperty Name="TipoLibro" ColumnName="TipoLibro" />
                 <ScalarProperty Name="Usuario" ColumnName="Usuario" />
-                <ScalarProperty Name="GrupoAcademico" ColumnName="GrupoAcademico" />
                 <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="libro_grupo">
+            <EntityTypeMapping TypeName="microna2018Model.libro_grupo">
+              <MappingFragment StoreEntitySet="libro_grupo">
+                <ScalarProperty Name="idlibro_grupo" ColumnName="idlibro_grupo" />
+                <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="proyecto_grupo">
+            <EntityTypeMapping TypeName="microna2018Model.proyecto_grupo">
+              <MappingFragment StoreEntitySet="proyecto_grupo">
+                <ScalarProperty Name="idproyecto_grupo" ColumnName="idproyecto_grupo" />
+                <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+                <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
