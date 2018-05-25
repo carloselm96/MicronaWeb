@@ -7188,6 +7188,14 @@
     <Content Include="Views\Articulos\Create.cshtml" />
     <Content Include="Views\Articulos\Details.cshtml" />
     <Content Include="Views\Articulos\Edit.cshtml" />
+    <Content Include="Views\CapituloLibro\Index.cshtml" />
+    <Content Include="Views\CapituloLibro\Details.cshtml" />
+    <Content Include="Views\CapituloLibro\Create.cshtml" />
+    <Content Include="Views\CapituloLibro\Edit.cshtml" />
+    <Content Include="Views\Libro\Index.cshtml" />
+    <Content Include="Views\Libro\Details.cshtml" />
+    <Content Include="Views\Libro\Create.cshtml" />
+    <Content Include="Views\Libro\Edit.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -7297,8 +7305,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\CapituloLibro\" />
-    <Folder Include="Views\Libro\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

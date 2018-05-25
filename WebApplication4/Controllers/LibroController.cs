@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using WebApplication4.Models;
 
 namespace WebApplication4.Controllers
 {
@@ -11,7 +12,9 @@ namespace WebApplication4.Controllers
         // GET: Libro
         public ActionResult Index()
         {
-            return View();
+            microna2018Entities db = new microna2018Entities();
+            var libros = db.libro.ToList();
+            return View(libros);
         }
 
         // GET: Libro/Details/5
@@ -23,6 +26,7 @@ namespace WebApplication4.Controllers
         // GET: Libro/Create
         public ActionResult Create()
         {
+
             return View();
         }
 
