@@ -1,14 +1,7 @@
 ﻿@model IEnumerable<WebApplication4.Models.libro>
 
 @{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
-}
-
-@model IEnumerable<WebApplication4.Models.articulo>
-
-@{
-    ViewBag.Title = "Lista de Artículos";
+    ViewBag.Title = "Lista de Libros";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -63,7 +56,7 @@
 <div class="box">
     <div class="box-body table-responsive">
         <p>
-            @Html.ActionLink("Nuevo Artículo", "Create", null, new { @class = "btn btn-large btn-success" })
+            @Html.ActionLink("Nuevo Libro", "Create", null, new { @class = "btn btn-large btn-success" })
         </p>
         <p>
             <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
@@ -117,47 +110,40 @@
             </thead>
             <tbody>
                 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Año)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autores)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.archivo1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idLibro }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idLibro }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idLibro })
-        </td>
-    </tr>
-}
-                        <td>
-                            @{
-                                if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
-                                {
-                                    <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-large btn-warning" })</p>
-                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
-                                }
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Año)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ISBN)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Autores)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.archivo1.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                    </td>
+                    <td>
+                        @{
+                            if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                            {
+                                <p>@Html.ActionLink("Editar", "Edit", new { id = item.idLibro }, new { @class = "btn btn-large btn-warning" })</p>
+                                                <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idLibro }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
                             }
-                            <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-large btn-primary" })</p>
-                        </td>
-                    </tr>
-                                }
+                        }
+                        <p>@Html.ActionLink("Detalles", "Details", new { id = item.idLibro }, new { @class = "btn btn-large btn-primary" })</p>
+                    </td>
+                </tr>
+            }                                                    
             </tbody>
             <tfoot>
                 <tr>
@@ -165,31 +151,22 @@
                         @Html.DisplayNameFor(model => model.Nombre)
                     </th>
                     <th>
+                        @Html.DisplayNameFor(model => model.Año)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISBN)
+                    </th>
+                    <th>
                         @Html.DisplayNameFor(model => model.Autores)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Volumen)
+                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
                     </th>
                     <th>
-                        Páginas
+                        @Html.DisplayNameFor(model => model.tipolibro1.Nombre)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Revista)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.ISSN)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Fecha)
-                    </th>
-                    <th>
-                        Tipo de Artículo
-                    </th>
-                    <th>
-                        Grupo Académico
-                    </th>
-                    <th>
-                        Subido por
+                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
                     </th>
                     <th></th>
                 </tr>
@@ -198,65 +175,3 @@
     </div>
 </div>
 
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Año)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Autores)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.archivo1.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tipolibro1.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuario1.Nombre)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Año)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autores)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.archivo1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idLibro }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idLibro }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idLibro })
-        </td>
-    </tr>
-}
-
-</table>
