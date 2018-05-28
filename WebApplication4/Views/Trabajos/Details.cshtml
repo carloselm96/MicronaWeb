@@ -1,0 +1,83 @@
+﻿@model WebApplication4.Models.trabajo
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>trabajo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Año)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Año)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Autores)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Autores)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Presentacion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Presentacion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pais)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pais)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.archivo1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.archivo1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tipotrabajo1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tipotrabajo1.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.usuario1.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.usuario1.Nombre)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.idTrabajo }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

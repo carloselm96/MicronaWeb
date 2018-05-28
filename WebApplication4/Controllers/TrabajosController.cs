@@ -23,7 +23,9 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Details(int id)
         {
-            return View();
+            microna2018Entities db = new microna2018Entities();
+            var trabajo = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
+            return View(trabajo);
         }
 
         // GET: Trabajos/Create

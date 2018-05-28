@@ -1,0 +1,182 @@
+﻿@model IEnumerable<WebApplication4.Models.proyectos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title">Busqueda avanzada</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Autores:</label>
+                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Revista:</label>
+                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Año:</label>
+                    <div class="input-daterange" id="datepicker">
+                        <div class="input-group">
+                            <input type="number" id="min" class="form-control" name="start" />
+                            <span class="input-group-addon">al</span>
+                            <input type="number" id="max" class="form-control" name="end" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Grupo académico</label>
+                    <select class="form-control selectpicker" name="GrupoAcademico" multiple></select>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="box">
+    <div class="box-body table-responsive">
+        <div class="row margin-bottom">
+            <div class="col-sm-2">
+                @Html.ActionLink("Nuevo Proyectos", "Create", null, new { @class = "btn btn-large btn-default" })
+            </div>
+            <div class="col-sm-2">
+                <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
+            </div>
+        </div>
+        @{
+            if (ViewBag.response != null)
+            {
+                switch (ViewBag.response)
+                {
+                    case 1:
+                        <div class="alert alert-success">
+                            <strong>Completado!</strong> Se ha realizado correctamente la acción
+                        </div>
+                        break;
+                    case 2:
+                        <div class="alert alert-warning">
+                            <strong>Error!</strong> Ha ocurrido un error al tratar de hacer la acción
+                        </div>
+                        break;
+                }
+            }
+        }
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Responsables)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Financiamiento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaFinal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nombre)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Responsables)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Financiamiento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaInicio)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FechaFinal)
+                    </td>                    
+                    <td>
+                        @{
+                            foreach (var a in item.proyecto_grupo)
+                            {
+                                <p>@a.grupoacademico.Nombre</p>
+                            }
+                        }
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                    </td>
+                    <td>
+                        @{
+                            if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                            {
+                                <p>@Html.ActionLink("Editar", "Edit", new { id = item.idProyecto }, new { @class = "btn btn-large btn-warning" })</p>
+                                <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idProyecto }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
+                            }
+                        }
+                        <p>@Html.ActionLink("Detalles", "Details", new { id = item.idProyecto }, new { @class = "btn btn-large btn-primary" })</p>
+                    </td>
+                </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Responsables)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Financiamiento)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaInicio)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.FechaFinal)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                    </th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>

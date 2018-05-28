@@ -7196,6 +7196,9 @@
     <Content Include="Views\Libro\Details.cshtml" />
     <Content Include="Views\Libro\Create.cshtml" />
     <Content Include="Views\Libro\Edit.cshtml" />
+    <Content Include="Views\Proyectos\Index.cshtml" />
+    <Content Include="Views\Proyectos\Create.cshtml" />
+    <Content Include="Views\Proyectos\Edit.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -7208,6 +7211,7 @@
     <Compile Include="Controllers\CapituloLibroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibroController.cs" />
+    <Compile Include="Controllers\ProyectosController.cs" />
     <Compile Include="Controllers\TrabajosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -7296,6 +7300,7 @@
     <Content Include="Views\Trabajos\Index.cshtml" />
     <Content Include="Views\Trabajos\Create.cshtml" />
     <Content Include="Views\Trabajos\Edit.cshtml" />
+    <Content Include="Views\Trabajos\Details.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

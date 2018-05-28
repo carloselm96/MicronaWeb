@@ -1,76 +1,188 @@
-﻿@model IEnumerable<WebApplication4.Models.capitulolibro>
+﻿    @model IEnumerable<WebApplication4.Models.capitulolibro>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista Capitulos ";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
+<div class="box box-primary box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">Busqueda avanzada</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Nombre:</label>
+                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Autores:</label>
+                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="form-group">
+                    <label>Revista:</label>
+                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Año:</label>
+                    <div class="input-daterange" id="datepicker">
+                        <div class="input-group">
+                            <input type="number" id="min" class="form-control" name="start" />
+                            <span class="input-group-addon">al</span>
+                            <input type="number" id="max" class="form-control" name="end" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Grupo académico</label>
+                    <select class="form-control selectpicker" name="GrupoAcademico" multiple></select>
+                </div>
+            </div>
+        </div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Autores)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Año)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Participantes)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Libro)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.archivo1.Nombre)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.usuario1.Nombre)
-        </th>
-        <th></th>
-    </tr>
+    </div>
+</div>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Autores)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Año)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ISBN)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Participantes)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Libro)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.archivo1.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.idCapituloLibro }) |
-            @Html.ActionLink("Details", "Details", new { id=item.idCapituloLibro }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.idCapituloLibro })
-        </td>
-    </tr>
-}
 
-</table>
+<div class="box">
+    <div class="box-body table-responsive">
+        <div class="row margin-bottom">            
+                <div class="col-sm-2">
+                    @Html.ActionLink("Nuevo Capitulo", "Create", null, new { @class = "btn btn-large btn-default" })
+                </div>
+                <div class="col-sm-2">
+                    <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
+                </div>            
+        </div>    
+        <div class="row">
+        @{
+            if (ViewBag.response != null)
+            {
+                switch (ViewBag.response)
+                {
+                    case 1:
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Completado!</strong> Se ha realizado correctamente la acción
+                        </div>
+                        break;
+                    case 2:
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
+                        </div>
+                        break;
+                }
+            }
+        }
+        </div>
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="data_art">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Año)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISBN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Participantes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Libro)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                    </th>
+                    <th></th>
+</thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autores)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Año)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ISBN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Participantes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Libro)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.archivo1.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+            </td>
+                        <td>
+                            @{
+                                if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                                {
+                                    <p>@Html.ActionLink("Editar", "Edit", new { id = item.idCapituloLibro }, new { @class = "btn btn-large btn-warning" })</p>
+                                    <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idCapituloLibro }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
+                                }
+                            }
+                            <p>@Html.ActionLink("Detalles", "Details", new { id = item.idCapituloLibro }, new { @class = "btn btn-large btn-primary" })</p>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Año)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ISBN)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Participantes)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Libro)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                    </th>
+                    <th></th>
+</tfoot>
+        </table>
+    </div>
+</div>

@@ -55,12 +55,14 @@
 
 <div class="box">
     <div class="box-body table-responsive">
-        <p>
-            @Html.ActionLink("Nuevo Libro", "Create", null, new { @class = "btn btn-large btn-success" })
-        </p>
-        <p>
-            <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
-        </p>
+        <div class="row margin-bottom">
+            <div class="col-sm-2">
+                @Html.ActionLink("Nuevo Libro", "Create", null, new { @class = "btn btn-large btn-default" })
+            </div>
+            <div class="col-sm-2">
+                <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
+            </div>
+        </div>
         @{
             if (ViewBag.response != null)
             {
@@ -122,10 +124,7 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Autores)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.archivo1.Nombre)
-                    </td>
+                    </td>                   
                     <td>
                         @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
                     </td>
@@ -158,10 +157,7 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Autores)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
-                    </th>
+                    </th>                  
                     <th>
                         @Html.DisplayNameFor(model => model.tipolibro1.Nombre)
                     </th>

@@ -12,10 +12,12 @@
     <div class="box-body">
 
 
-    @using (Html.BeginForm("Edit", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("Edit", "Libro", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.idLibro)
             <div class="form-group">
                 @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -50,18 +52,18 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.TipoLibro, "TipoArticulo", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <select class="form-control" , name="TipoArticulo">
+                    <select class="form-control" , name="TipoLibro">
                         @foreach (var tp in ViewBag.tipolibro)
-                        {
-                            if (Model.TipoLibro == tp.idTipoLibro)
-                            {
-                                <option value="@tp.idTipoLibro" selected>@tp.Nombre</option>
-                            }
-                            else
-                            {
-                                <option value="@tp.idTipoLibro">@tp.Nombre</option>
-                            }
-                        }
+                {
+                    if (Model.TipoLibro == tp.idTipoLibro)
+                    {
+                        <option value="@tp.idTipoLibro" selected>@tp.Nombre</option>
+            }
+            else
+            {
+                <option value="@tp.idTipoLibro">@tp.Nombre</option>
+    }
+}
                     </select>
                     @Html.ValidationMessageFor(model => model.TipoLibro, "", new { @class = "text-danger" })
                 </div>
@@ -78,28 +80,28 @@
                 <div class="col-md-10">
                     <select class="form-control selectpicker" name="GrupoAcademico" multiple>
                         @foreach (var Grupo in ViewBag.grupos)
-                        {
-                            if (Model.libro_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
-                            {
-                                <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
-                            }
-                            else
-                            {
-                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
-                            }
-                        }
+                {
+                    if (Model.libro_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
+                    {
+                        <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
+            }
+            else
+            {
+                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+    }
+}
                     </select>
                 </div>
             </div>
             @if (Model.archivo1 != null)
-            {
-            <div class="form-group">
-                <label class="control-label col-md-2">Archivo actual: </label>
-                <div class="col-md-10">
-                    @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
-                </div>
+    {
+        <div class="form-group">
+            <label class="control-label col-md-2">Archivo actual: </label>
+            <div class="col-md-10">
+                @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
             </div>
-            }
+        </div>
+}
             <div class="form-group">
                 <label class="control-label col-md-2">Nuevo Archivo</label>
                 <div class="col-md-10">
@@ -110,7 +112,7 @@
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Save" class="btn btn-default" />
                 </div>
-            </div>           
+            </div>
         </div>            
     }
     <div class="box-footer">
@@ -119,6 +121,7 @@
         </div>
     </div>
 </div>
+    </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>

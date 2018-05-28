@@ -25,7 +25,9 @@ namespace WebApplication4.Controllers
         // GET: Libro/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            microna2018Entities db = new microna2018Entities();
+            var libro = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
+            return View(libro);
         }
 
         // GET: Libro/Create
@@ -109,40 +111,102 @@ namespace WebApplication4.Controllers
 
         // POST: Libro/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, libro lib, List<string> GrupoAcademico, HttpPostedFileBase ffile)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                microna2018Entities db = new microna2018Entities();
+                var l = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
+                l.Nombre = lib.Nombre;
+                l.ISBN = lib.ISBN;
+                l.TipoLibro = lib.TipoLibro;
+                l.Autores = lib.Autores;
+                l.Año = lib.Año;                
+                var grupos_eliminar = db.libro_grupo.Where(x => x.id_libro == id).ToList();
+                if (grupos_eliminar != null)
+                {
+                    foreach (var G in grupos_eliminar)
+                    {
+                        db.libro_grupo.Remove(G);
+                    }
+                }
+                if (GrupoAcademico != null)
+                {
+                    foreach (var G in GrupoAcademico)
+                    {
+                        db.libro_grupo.Add(new libro_grupo { id_libro = id, id_grupo = int.Parse(G) });
+                    }
+                }
+                if (ffile != null && ffile.ContentLength > 0)
+                {
+                    if (l.archivo1 != null)
+                    {
+                        var archivo = new archivo();
+                        archivo = db.archivo.Where(x => x.idarchivo == l.Archivo).FirstOrDefault();
+                        System.IO.File.Delete(l.archivo1.url);
+                        db.archivo.Remove(archivo);
+                    }
+                    string dir = "~/Content/Archivos/Libros";
+                    if (!Directory.Exists(dir))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
+                    }
+                    string fileName = Path.GetFileName(ffile.FileName);
+                    string path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
+                    ffile.SaveAs(path);
+                    archivo file = new archivo();
+                    file.Nombre = fileName;
+                    file.url = path;
+                    db.archivo.Add(file);
+                    db.SaveChanges();
+                    l.Archivo = file.idarchivo;
+                }
+                db.SaveChanges();
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch
             {
                 return View();
             }
         }
-
-        // GET: Libro/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
+        
 
         // POST: Libro/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                microna2018Entities db = new microna2018Entities();
+                var libr = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
+                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.Usuario)
+                {
+                    return RedirectToAction("Index");
+                }
+                var a_g = db.libro_grupo.Where(x => x.id_libro == id).ToList();
+                if (a_g != null)
+                {
+                    foreach (var a in a_g)
+                    {
+                        db.libro_grupo.Remove(a);
+                    }
+                }
+                db.libro.Remove(libr);
+                db.SaveChanges();
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index", new { response = 2 });
             }
+        }
+
+
+        [Authorize]
+        public FileResult Download(string Url, string name)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@Url);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
         }
     }
 }
