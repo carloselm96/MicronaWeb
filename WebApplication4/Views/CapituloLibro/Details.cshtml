@@ -5,79 +5,101 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Details</h2>
+<div class="box">
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
 
-<div>
-    <h4>capitulolibro</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Autores)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Autores)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Autores)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Autores)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Año)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Año)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Año)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Año)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.ISBN)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.ISBN)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.ISBN)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Participantes)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Participantes)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Participantes)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Participantes)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Libro)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Libro)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Libro)
+            </dd>
+            <dt>
+                Grupo académico
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Libro)
-        </dd>
+            <dd>
+                <ul>
+                    @{
+                        foreach (var a in Model.capitulo_grupo)
+                        {
+                            <li>@a.grupoacademico.Nombre</li>
+                        }
+                    }
+                </ul>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.archivo1.Nombre)
-        </dt>
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.archivo1.Nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.usuario1.Nombre)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.usuario1.Nombre)
-        </dt>
+            <dd>
+                @Html.DisplayFor(model => model.usuario1.Nombre)
+            </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.usuario1.Nombre)
-        </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.archivo1.Nombre)
+            </dt>
 
-    </dl>
+            <dd>
+                @Html.DisplayFor(model => model.archivo1.Nombre)
+            </dd>
+            @{
+                if (Model.archivo1 != null)
+                {
+                    <dd>
+                        @Html.ActionLink("Descargar", "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </dd>
+                }
+            }
+        </dl>
+    </div>
+    <div class="box-footer">
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idCapituloLibro }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.idCapituloLibro }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

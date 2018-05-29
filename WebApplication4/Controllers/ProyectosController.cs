@@ -11,6 +11,7 @@ namespace WebApplication4.Controllers
     public class ProyectosController : Controller
     {
         // GET: Proyectos
+        [Authorize]
         public ActionResult Index(string response)
         {
             if (response != null)
@@ -23,14 +24,23 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Proyectos/Details/5
+        [Authorize]
         public ActionResult Details(int id)
         {
-            microna2018Entities db = new microna2018Entities();
-            var proyecto = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
-            return View(proyecto);
+            try
+            {
+                microna2018Entities db = new microna2018Entities();
+                var proyecto = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
+                return View(proyecto);
+            }
+            catch
+            {
+                return RedirectToAction("Index");
+            }            
         }
 
         // GET: Proyectos/Create
+        [Authorize]
         public ActionResult Create()
         {
             microna2018Entities db = new microna2018Entities();            
@@ -39,6 +49,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: Proyectos/Create
+        [Authorize]
         [HttpPost]
         public ActionResult Create(proyectos pro, HttpPostedFileBase ffile, List<string> GrupoAcademico)
         {
@@ -93,21 +104,30 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Proyectos/Edit/5
+        [Authorize]
         public ActionResult Edit(int id)
         {
-            microna2018Entities db = new microna2018Entities();
-            var a = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
-            if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+            try
+            {
+                microna2018Entities db = new microna2018Entities();
+                var a = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
+                if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+                {
+                    return RedirectToAction("Index");
+                }
+                a.proyecto_grupo = db.proyecto_grupo.Where(x => x.id_proyecto == id).ToList();
+                ViewBag.grupos = db.grupoacademico.ToList();
+                return View(a);
+            }
+            catch
             {
                 return RedirectToAction("Index");
-            }
-            a.proyecto_grupo = db.proyecto_grupo.Where(x => x.id_proyecto == id).ToList();
-            ViewBag.grupos = db.grupoacademico.ToList();            
-            return View(a);
+            }            
         }
 
         // POST: Proyectos/Edit/5
         [HttpPost]
+        [Authorize]
         public ActionResult Edit(int id, proyectos pro, List<string> GrupoAcademico, HttpPostedFileBase ffile)
         {
             try
@@ -166,7 +186,8 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index", new { response = 2 });
             }
         }
-      
+
+        [Authorize]
         public ActionResult Delete(int id)
         {
             try

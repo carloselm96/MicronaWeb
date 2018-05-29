@@ -1,0 +1,93 @@
+﻿@model WebApplication4.Models.proyectos
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box">
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Responsables)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Responsables)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Financiamiento)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Financiamiento)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaInicio)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.FechaFinal)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaFinal)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.usuario1.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.usuario1.Nombre)
+            </dd>
+
+            <dt>
+                Grupo académico
+            </dt>
+
+            <dd>
+                <ul>
+                    @{
+                        foreach (var a in Model.proyecto_grupo)
+                        {
+                            <li>@a.grupoacademico.Nombre</li>
+                        }
+                    }
+                </ul>
+
+            </dd>
+            <dd>
+                @Html.DisplayFor(model => model.archivo1.Nombre)
+            </dd>
+            @{
+                if (Model.archivo1 != null)
+                {
+                    <dd>
+                        @Html.ActionLink("Descargar", "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </dd>
+                }
+            }
+        </dl>
+    </div>
+    <div class="box-footer">
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idProyecto }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>

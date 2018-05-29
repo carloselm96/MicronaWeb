@@ -5,4 +5,151 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
+<div class="box box-primary box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">Busqueda avanzada</h3>
+    </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="Buscar..." />
+            </div>
+            <div class="col-lg-2">
+                <input type="button" class="btn btn-success" value="Buscar"/>
+            </div>
+        </div>        
+
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-3">
+        <div class="box">
+            <div class="box-body">
+                <div class="form-group">
+                    <h4><b>Titulo:</b></h4>
+                    <input type="text" placeholder="Insertar autor" class="form-control" />
+                </div>
+                <h4><b>Tipo de Material:</b></h4>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Articulos
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Trabajos Presentados
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Libros
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Capitulos de Libros
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Proyectos
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <h4><b>Año:</b></h4>
+                    <div class="input-daterange" id="datepicker">
+                        <div class="input-group">
+                            <input type="number" id="min" class="form-control" name="start" />
+                            <span class="input-group-addon">al</span>
+                            <input type="number" id="max" class="form-control" name="end" />
+                        </div>
+                    </div>
+                </div> 
+                <div class="form-group">
+                    <h4><b>Autor:</b></h4>
+                    <input type="text" placeholder="Insertar autor" class="form-control"/>
+                </div>
+                <h4><b>Grupo Académico</b></h4>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Nanomateriales
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Micro y Nanotecnología
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Dispositivos y Circuitos Integrados
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Sistemas Hibridos
+                        </label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox"> Proyectos
+                        </label>
+                    </div>
+                </div>                
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-9">
+        <div class="box box-default">
+            <div class="box-header">
+                <div class="box-title"><h3>Resultados</h3></div>
+            </div>
+            <div class="box-body">
+                <ul class="products-list product-list-in-box">
+                    <li class="item">                        
+                        <div class="product-info">
+                            <div class="product-title">
+                                <a href="#">Ordered and Disordered Carbon Structures Detected by TEM in Carbide-derived Carbons Produced from TiC</a>
+                            </div>
+                            P.G. González, E. Urones-Garrote, D. Ávila-Brande, L. GarcíaGonzález, L.C. Otero-Díaz
+                            <span class="product-description">
+                                Artículo Indizado
+                            </span>              
+                            <a href="#" class="btn btn-success">Descargar</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="product-info">
+                            <div class="product-title">
+                                <a href="#">Ordered and Disordered Carbon Structures Detected by TEM in Carbide-derived Carbons Produced from TiC</a>
+                            </div>
+                            P.G. González, E. Urones-Garrote, D. Ávila-Brande, L. GarcíaGonzález, L.C. Otero-Díaz
+                            <span class="product-description">
+                                Artículo Indizado
+                            </span>
+                            <a href="#" class="btn btn-success">Descargar</a>
+                        </div>
+                    </li>
+                    <li class="item">
+                        <div class="product-info">
+                            <div class="product-title">
+                                <a href="#">Ordered and Disordered Carbon Structures Detected by TEM in Carbide-derived Carbons Produced from TiC</a>
+                            </div>
+                            P.G. González, E. Urones-Garrote, D. Ávila-Brande, L. GarcíaGonzález, L.C. Otero-Díaz
+                            <span class="product-description">
+                                Artículo Indizado
+                            </span>
+                            <a href="#" class="btn btn-success">Descargar</a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
 

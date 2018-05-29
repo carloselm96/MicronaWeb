@@ -31,5 +31,10 @@
     );
     $('#min, #max').on('keyup change', function() {
         art.draw();
+    });        
+
+    $('a #login').click(function (e) {
+        $('form').submit();
     });    
+    $('#reservation').daterangepicker();
 });

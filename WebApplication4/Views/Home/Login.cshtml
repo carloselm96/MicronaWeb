@@ -4,84 +4,118 @@
     Layout = null;
 }
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
-    <link href="~/Content/LoginContent/css/style.css" rel="stylesheet" />    
-	<title>Sistema de Microna</title>	
+    <title>Login V9</title>
+    <meta charset="UTF-8">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <link rel="icon" type="image/png" href="~/Content/LoginContent/images/icons/favicon.ico" />
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/fonts/iconic/css/material-design-iconic-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/LoginContent/css/main.css">
+    <!--===============================================================================================-->
 </head>
 <body>
 
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-            <!-- Tabs Titles -->
-            <h2 class="active"> Iniciar Sesión </h2>            
 
-            <!-- Icon -->
-            <div class="fadeIn first">
-                <img src="~/Content/dist/img/Microna-logo-2.png" id="icon" alt="User Icon" />
-    <!--                <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />-->
-            </div>
-
-            <!-- Login Form -->
-            @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+    <div class="container-login100" style="background-image: url('images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
+            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login100-form validate-form" }))
             {
-                <form>
-                    <input type="text" id="login" class="fadeIn second" name="Usuario1" placeholder="Usuario" autocomplete="off">
-                    <input type="password" id="password" class="fadeIn third pas" name="Contraseña" placeholder="Contraseña">
-                    <input type="submit" class="fadeIn fourth" value="Iniciar sesión">
-                </form>
-            }
-
-            <!-- Remind Passowrd -->
-            <div id="formFooter">
-                <div class="alert alert-primary" role="alert" hidden>
-                    Contraseña o Usuario incorrectos
+                <div class="flex-c p-b-30">                   
+                    <img src="~/Content/Microna-logo-2 (2).png" id="logo" style="width:40%; height:40%;"/>                    
                 </div>
-            </div>
+               <span class="login100-form-title p-b-37">
+                    Sistema de Artículos de Microna
+                </span>
+
+                <div class="wrap-input100 validate-input m-b-20" data-validate="Ingrese Usuario">
+                    <input class="input100" type="text" name="Usuario1" placeholder="Usuario">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="wrap-input100 validate-input m-b-25" data-validate="Ingrese Contraseña">
+                    <input class="input100" type="password" name="Contraseña" placeholder="Contraseña">
+                    <span class="focus-input100"></span>
+                </div>
+
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" type="submit">
+                        Iniciar Sesión
+                    </button>
+                </div>
+
+                <div class="text-center p-t-57 p-b-20">
+                    <span class="txt1">
+                        Or login with
+                    </span>
+                </div>
+            }                           
+
 
         </div>
     </div>
-    <script src="~/Content/bower_components/jquery/dist/jquery.js"></script>
-    <script src="~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+
+    <div id="dropDownSelect1"></div>    
+
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/LoginContent/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/LoginContent/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/LoginContent/js/main.js"></script>
+
+
+
     <script>
 
-    $(document).ready(function () {
-        $("#msg").hide();
-        $('#formLogin').on("submit", function (event) {
-            event.preventDefault();
-            var data1 = $("#formLogin").serialize();
-                $.ajax({
-                    type: "POST",
-                    url: "@Url.Action("Login","Home")",
-                    data: data1,
-                    success: function (result) {
-                        if (result == "Fail") {
-                            $("#formLogin")[0].reset();                            
-                        }
-                        else {
-                            var current = window.location;
-                            window.location.href = current + "/Home/Inicio";
-                        }
-                    }
+        $(document).ready(function () {
+            function check(e) {
+                tecla = (document.all) ? e.keyCode : e.which;
+                if (tecla == 8) {
+                    return true;
+                }
+                patron = /[A-Za-z0-9]/;
+                tecla_final = String.fromCharCode(tecla);
+                return patron.test(tecla_final);
+            }
+            $(document).ready(function () {
+                $('a').click(function (e) {
+                    $('form').submit();
                 });
             });
         });
-        function check(e) {
-            tecla = (document.all) ? e.keyCode : e.which;
-
-            //Tecla de retroceso para borrar, siempre la permite
-            if (tecla == 8) {
-                return true;
-            }
-
-            // Patron de entrada, en este caso solo acepta numeros y letras
-            patron = /[A-Za-z0-9]/;
-            tecla_final = String.fromCharCode(tecla);
-            return patron.test(tecla_final);
-        }
     </script>
+
 </body>
 </html>
