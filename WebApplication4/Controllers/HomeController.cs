@@ -15,7 +15,9 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            return View();
+            microna2018Entities db = new microna2018Entities();
+            var concent = db.concentrado.ToList();
+            return View(concent);
         }
 
         [AllowAnonymous]
