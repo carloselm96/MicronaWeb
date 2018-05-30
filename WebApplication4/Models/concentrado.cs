@@ -14,11 +14,20 @@ namespace WebApplication4.Models
     
     public partial class concentrado
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public concentrado()
+        {
+            this.concentrado_grupos = new HashSet<concentrado_grupos>();
+        }
+    
         public int idConcentrado { get; set; }
-        public string Nombre { get; set; }
-        public string Autor { get; set; }
-        public string TipoConcentrado { get; set; }
-        public Nullable<int> idArticulo { get; set; }
-        public Nullable<System.DateTime> FechaSubida { get; set; }
+        public string Titulo { get; set; }
+        public Nullable<int> Fecha { get; set; }
+        public string Autores { get; set; }
+        public Nullable<int> TipoConcentrado { get; set; }
+        public Nullable<int> IdItem { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concentrado_grupos> concentrado_grupos { get; set; }
     }
 }

@@ -7344,6 +7344,12 @@
     <Compile Include="Models\capitulo_grupo.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\concentrado.cs">
+      <DependentUpon>micronaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\concentrado_grupos.cs">
+      <DependentUpon>micronaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\grupoacademico.cs">
       <DependentUpon>micronaDB.tt</DependentUpon>
     </Compile>

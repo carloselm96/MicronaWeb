@@ -46,6 +46,10 @@
         <AssociationConnector Association="microna2018Model.FK_Usuario_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Trabajo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_TrabajoGrupo_Trabajo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="microna2018Model.concentrado" Width="1.5" PointX="5.25" PointY="20.875" />
+        <EntityTypeShape EntityType="microna2018Model.concentrado_grupos" Width="1.5" PointX="7.5" PointY="0.75" />
+        <AssociationConnector Association="microna2018Model.FK_Grupo_Concentrado" />
+        <AssociationConnector Association="microna2018Model.FK_Concentrado_Grupo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
