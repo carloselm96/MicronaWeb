@@ -12,23 +12,18 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class concentrado
+    public partial class tipoconcentrado
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public concentrado()
+        public tipoconcentrado()
         {
-            this.concentrado_grupos = new HashSet<concentrado_grupos>();
+            this.concentrado = new HashSet<concentrado>();
         }
     
-        public int idConcentrado { get; set; }
-        public string Titulo { get; set; }
-        public Nullable<int> Fecha { get; set; }
-        public string Autores { get; set; }
-        public Nullable<int> TipoConcentrado { get; set; }
-        public Nullable<int> IdItem { get; set; }
+        public int idtipoconcentrado { get; set; }
+        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concentrado_grupos> concentrado_grupos { get; set; }
-        public virtual tipoconcentrado tipoconcentrado1 { get; set; }
+        public virtual ICollection<concentrado> concentrado { get; set; }
     }
 }

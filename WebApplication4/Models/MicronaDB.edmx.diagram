@@ -50,6 +50,8 @@
         <EntityTypeShape EntityType="microna2018Model.concentrado_grupos" Width="1.5" PointX="7.5" PointY="0.75" />
         <AssociationConnector Association="microna2018Model.FK_Grupo_Concentrado" />
         <AssociationConnector Association="microna2018Model.FK_Concentrado_Grupo" />
+        <EntityTypeShape EntityType="microna2018Model.tipoconcentrado" Width="1.5" PointX="3" PointY="21.375" />
+        <AssociationConnector Association="microna2018Model.FK_Concentrado_Tipo" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

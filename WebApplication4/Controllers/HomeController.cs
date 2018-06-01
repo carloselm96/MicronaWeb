@@ -20,6 +20,23 @@ namespace WebApplication4.Controllers
             return View(concent);
         }
 
+
+        /*[Authorize]
+        public ActionResult Index(List<String> grupo)
+        {
+            microna2018Entities db = new microna2018Entities();
+            var concentrado= db.concentrado.ToList();
+            if (grupo[0] != null)
+            {
+                concentrado = concentrado.Where(x => x.concentrado_grupos.Where(y => y.Grupo == 1).ToList() != null).ToList();
+            }
+            if (grupo[2] != null)
+            {
+                concentrado = concentrado.Where(x => x.concentrado_grupos.Where(y => y.Grupo == 2).ToList() != null).ToList();
+            }
+            return View(concent);
+        }*/
+
         [AllowAnonymous]
         public ActionResult Login()
         {

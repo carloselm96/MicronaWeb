@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Login V9</title>
+    <title>Sistema de Articulos MICRONA</title>
     <meta charset="UTF-8">    
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
@@ -63,11 +63,14 @@
                     </button>
                 </div>
 
-                <div class="text-center p-t-57 p-b-20">
-                    <span class="txt1">
-                        Or login with
-                    </span>
-                </div>
+                if (ViewBag.error != null)
+                {
+                    <div class="text-center p-t-57 p-b-20">
+                        <span class="txt1">
+                            Usuario o Contraseña Erroneas
+                        </span>
+                    </div>
+                }
             }                           
 
 

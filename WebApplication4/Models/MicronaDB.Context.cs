@@ -44,5 +44,6 @@ namespace WebApplication4.Models
         public virtual DbSet<usuario> usuario { get; set; }
         public virtual DbSet<concentrado> concentrado { get; set; }
         public virtual DbSet<concentrado_grupos> concentrado_grupos { get; set; }
+        public virtual DbSet<tipoconcentrado> tipoconcentrado { get; set; }
     }
 }

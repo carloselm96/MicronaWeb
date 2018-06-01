@@ -61,8 +61,8 @@
                     <div class="col-sm-2">
                         @Html.ActionLink("Nuevo Articulo", "Create", null, new { @class = "btn btn-large btn-default" })
                     </div>
-                    <div class="col-sm-2">
-                        <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
+                    <div class="col-sm-2">                        
+                        <input type="button" class="btn btn-large btn-warning" id="export" value="Exportar a Excel">
                     </div>
                 </div>
                 @{
@@ -85,7 +85,7 @@
                         }
                     }
                 }
-                <table class="display table table-responsive table-bordered table-striped table-hover" id="data_art">
+                <table class="display table table-bordered table-striped table-hover table2excel" id="data_art">
                     <thead>
                         <tr>
                             <th>

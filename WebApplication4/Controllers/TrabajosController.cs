@@ -94,7 +94,7 @@ namespace WebApplication4.Controllers
             }
             catch(Exception e)
             {
-                return Content(""+e);
+                return RedirectToAction("Index", new { result = 2 });
             }
         }
 
@@ -207,8 +207,8 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            catch
-            {
+            catch(Exception e)
+            {                
                 return RedirectToAction("Index");
             }
         }

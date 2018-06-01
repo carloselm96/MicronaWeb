@@ -97,9 +97,10 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
-            catch
+            catch (Exception e)
             {
-                return RedirectToAction("Index", new { response = 2 });
+                return Content("" + e);
+                //return RedirectToAction("Index", new { response = 2 });
             }
         }
 

@@ -1,37 +1,45 @@
 ﻿@model IEnumerable<WebApplication4.Models.concentrado>
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "Concentrado Total";
-                ViewBag.Controlador = "Lista";
-                Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    ViewBag.Title = "Concentrado Total";
+    ViewBag.Controlador = "Lista";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 <div class="box box-primary box-solid">
     <div class="box-header with-border">
-        <h3 class="box-title">Busqueda avanzada</h3>
+        <div class="box-title">Busqueda avanzada</div>
     </div>
     <div class="box-body">
         <div class="row">
-            <div class="col-lg-10">
-                <input type="text" class="form-control" placeholder="Buscar..." />
-            </div>
-            <div class="col-lg-2">
-                <input type="button" class="btn btn-success" value="Buscar" />
+            <div class="form-group col-md-12">
+                <h4><b>Titulo:</b></h4>
+                <input id="nombreSearch" type="text" placeholder="Insertar Titulo" class="form-control" />
             </div>
         </div>
-
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-3">
-        <div class="box">
-            <div class="box-body">
+        <div class="row">
+            <div class="col-md-5">
                 <div class="form-group">
-                    <h4><b>Titulo:</b></h4>
-                    <input type="text" placeholder="Insertar autor" class="form-control" />
+                    <h4><b>Año:</b></h4>
+                    <div class="input-daterange" id="datepicker">
+                        <div class="input-group">
+                            <input type="number" id="min" class="form-control" name="start" />
+                            <span class="input-group-addon">al</span>
+                            <input type="number" id="max" class="form-control" name="end" />
+                        </div>
+                    </div>
                 </div>
+            </div>
+            <div class="col-md-7">
+                <div class="form-group">
+                    <h4><b>Autor:</b></h4>
+                    <input id="autorSearch" type="text" placeholder="Insertar autor" class="form-control" />
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-5">
                 <h4><b>Tipo de Material:</b></h4>
                 <div class="form-group">
                     <div class="checkbox">
@@ -60,104 +68,182 @@
                         </label>
                     </div>
                 </div>
-                <div class="form-group">
-                    <h4><b>Año:</b></h4>
-                    <div class="input-daterange" id="datepicker">
-                        <div class="input-group">
-                            <input type="number" id="min" class="form-control" name="start" />
-                            <span class="input-group-addon">al</span>
-                            <input type="number" id="max" class="form-control" name="end" />
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <h4><b>Autor:</b></h4>
-                    <input type="text" placeholder="Insertar autor" class="form-control" />
-                </div>
+            </div>
+            <div class="col-md-5">
                 <h4><b>Grupo Académico</b></h4>
                 <div class="form-group">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> Nanomateriales
+                            <input type="checkbox" id="checkgroup" value="1"> Nanomateriales
+                        </label>
+                    </div>                    
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" id="checkgroup" value="2"> Dispositivos y Circuitos Integrados
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> Micro y Nanotecnología
+                            <input type="checkbox" id="checkgroup" value="3"> Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos
                         </label>
                     </div>
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox"> Dispositivos y Circuitos Integrados
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Sistemas Hibridos
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Proyectos
+                            <input type="checkbox" id="checkgroup" value="4"> Aplicaciones de materiales y nanociencia
                         </label>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-lg-9">
-        <div class="box box-default">
-            <div class="box-header">
-                <div class="box-title"><h3>Resultados</h3></div>
-            </div>
-            <div class="box-body">
-                <ul class="products-list product-list-in-box">
+</div>
 
-                    @foreach (var item in Model)
-                    {
-                        <li class="item">
-                            <div class="product-info">
-                                <div class="product-title">
-                                    <a href="#">@item.Titulo</a>
-                                </div>                                
-                                 @item.Autores
-                                <span class="product-description">
-                                    @item.Fecha <b>@item.TipoConcentrado</b>
-                                </span>
-                                <a href="#" class="btn btn-success">Descargar</a>
-                            </div>
-                        </li>
-                    }
 
-                </ul>
-                <ul class="products-list product-list-in-box">
-                    <li class="item">
-                        <div class="product-info">
-                            <div class="product-title">
-                                <a href="#">Ordered and Disordered Carbon Structures Detected by TEM in Carbide-derived Carbons Produced from TiC</a>
-                            </div>
-                            P.G. González, E. Urones-Garrote, D. Ávila-Brande, L. GarcíaGonzález, L.C. Otero-Díaz
-                            <span class="product-description">
-                                Artículo Indizado
-                            </span>
-                            <a href="#" class="btn btn-success">Descargar</a>
+<div class="box box-primary box-solid">
+    <div class="box-header with-border">
+        <div class="box-title">Resultados</div>
+    </div>
+    <div class="box-body  table-responsive">
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="data_con">
+            <thead>
+                <tr>
+                    <th>
+                        Titulo
+                    </th>
+                    <th>
+                        Autores
+                    </th>
+                    <th>
+                        Tipo de Material
+                    </th>
+                    <th>
+                        Año
+                    </th>
+                    <th>
+                        Grupo Académico
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @{
+                                switch (item.TipoConcentrado)
+                                {
+                                    case 1:
+                                        <a href="@Url.Action("Details","Articulos",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 2:
+                                        <a href="@Url.Action("Details","CapituloLibro",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 3:
+                                        <a href="@Url.Action("Details","Libro",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 4:
+                                        <a href="@Url.Action("Details","Proyectos",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 5:
+                                        <a href="@Url.Action("Details","Trabajos",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                }
+                            }
+                        </td>
+                        <td>
+                            @item.Autores
+                        </td>
+                        <td>
+                            @item.tipoconcentrado1.Nombre
+                        </td>
+                        <td>
+                            @item.Fecha
+                        </td>
+                        <td>
+                            <ul>
+                                @foreach (var a in item.concentrado_grupos)
+                                {
+                                    <li>
+                                        @a.grupoacademico.Nombre
+                                    </li>
+                                }
+                            </ul>
+                        </td>
+                    </tr>
+                                }
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th>
+                        Titulo
+                    </th>
+                    <th>
+                        Autores
+                    </th>
+                    <th>
+                        Tipo de Material
+                    </th>
+                    <th>
+                        Año
+                    </th>
+                    <th>
+                        Grupo Académico
+                    </th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<div class="box box-primary box-solid">
+    <div class="box-header with-border">
+        <div class="box-title">Resultados</div>
+    </div>
+    <div class="box-body">
+        <ul class="products-list product-list-in-box">
+
+            @foreach (var item in Model)
+            {
+                <li class="item">
+                    <div class="product-info">
+                        <div class="product-title">
+                            @{
+                                switch (item.TipoConcentrado)
+                                {
+                                    case 1:
+                                        <a href="@Url.Action("Details","Articulos",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 2:
+                                        <a href="@Url.Action("Details","CapituloLibro",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 3:
+                                        <a href="@Url.Action("Details","Libro",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 4:
+                                        <a href="@Url.Action("Details","Proyectos",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                    case 5:
+                                        <a href="@Url.Action("Details","Trabajos",new { id=item.IdItem })">@item.Titulo</a>
+                                        break;
+                                }
+                            }
                         </div>
-                    </li>
-                    <li class="item">
-                        <div class="product-info">
-                            <div class="product-title">
-                                <a href="#">Ordered and Disordered Carbon Structures Detected by TEM in Carbide-derived Carbons Produced from TiC</a>
-                            </div>
-                            P.G. González, E. Urones-Garrote, D. Ávila-Brande, L. GarcíaGonzález, L.C. Otero-Díaz
-                            <span class="product-description">
-                                Artículo Indizado
-                            </span>
-                            <a href="#" class="btn btn-success">Descargar</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </div>
+                        @item.Autores  <br />
+                        Año: @item.Fecha | <b> @item.tipoconcentrado1.Nombre </b>
+                        <span class="product-description">
+                            <ul>
+                                @foreach (var a in item.concentrado_grupos)
+                                {
+                                    <li>
+                                        @a.grupoacademico.Nombre
+                                    </li>
+                                }
+                            </ul>
+                        </span>
+                    </div>
+                </li>
+                                }
+
+        </ul>
     </div>
 </div>
 
