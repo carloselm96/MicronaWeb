@@ -12,14 +12,51 @@ namespace WebApplication4.Controllers
     {
         // GET: Articulos
         [Authorize]
-        public ActionResult Index(string response)
-        {
+        public ActionResult Index(string response,string Nombre, string Autores, string Revista, int? Y1, int? Y2, List<string> grupos)
+        {            
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
             microna2018Entities db = new microna2018Entities();
+            ViewBag.grupos = db.grupoacademico.ToList();
             var articulos = db.articulo.ToList();
+            if (Nombre != null)
+            {
+                articulos = articulos.Where(x => x.Nombre.Contains(Nombre)).ToList();
+            }
+            if (Autores != null)
+            {
+                articulos = articulos.Where(x => x.Autores.Contains(Autores)).ToList();
+            }
+            if (Y1 != null)
+            {
+                //int year1 = int.Parse(Y1);
+                articulos = articulos.Where(x => x.Fecha >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                articulos = articulos.Where(x => x.Fecha <= Y2).ToList();
+            }
+            if (Revista != null)
+            {
+                articulos = articulos.Where(x => x.Revista.Contains(Revista)).ToList();
+            }
+            if (grupos != null)
+            {
+                foreach (string s in grupos)
+                {
+                    int i = int.Parse(s);
+                    var g = db.capitulo_grupo.Where(x => x.id_grupo == i).ToList();
+                    List<articulo> cg = new List<articulo>();
+                    foreach (var cap in g)
+                    {
+                        articulo sample = db.articulo.Where(x => x.idArticulo == cap.id_capitulo).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    articulos = articulos.Where(x => cg.Contains(x)).ToList();
+                }
+            }
             return View(articulos);
         }
 

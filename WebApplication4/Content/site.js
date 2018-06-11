@@ -2,17 +2,21 @@
     // Setup - add a text input to each footer cell
     var art = $('#data_art').DataTable();
     var trab = $('#data_trab').DataTable();
-    $('#nombreSearch').on('keyup change', function () {
-        art.column(0).search($(this).val()).draw();
+    $('#data_cap').DataTable();
+    /*$('#nombreSearch').on('keyup change', function () {
+        trab.column(0).search($(this).val()).draw();
+        art.column(0).search($(this).val()).draw();        
     });
     $('#autorSearch').on('keyup change', function () {
         art.column(1).search($(this).val()).draw();
+        trabj.column(2).search($(this).val()).draw();
     });
     $('#revistaSearch').on('keyup change', function () {
         art.column(4).search($(this).val()).draw();
     });
     $('#dateSearch').on('keyup change', function () {
         art.column(4).search($(this).val()).draw();
+        trab.column(2).search($(this).val()).draw();
     });
     $.fn.dataTable.ext.search.push(
         function (settings, data, dataIndex) {
@@ -29,9 +33,10 @@
             return false;
         }
     );
-    $('#min, #max').on('keyup change', function() {
+    $('#min, #max').on('keyup change', function () {
+        trab.draw();
         art.draw();
-    });        
+    });        */
 
     $('a #login').click(function (e) {
         $('form').submit();

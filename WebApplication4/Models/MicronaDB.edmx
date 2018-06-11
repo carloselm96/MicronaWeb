@@ -135,6 +135,13 @@
           <Property Name="idTipoArticulo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="45" />
         </EntityType>
+        <EntityType Name="tipoconcentrado">
+          <Key>
+            <PropertyRef Name="idtipoconcentrado" />
+          </Key>
+          <Property Name="idtipoconcentrado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="45" />
+        </EntityType>
         <EntityType Name="tipolibro">
           <Key>
             <PropertyRef Name="idTipoLibro" />
@@ -294,6 +301,18 @@
             </Principal>
             <Dependent Role="concentrado_grupos">
               <PropertyRef Name="Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Concentrado_Tipo">
+          <End Role="tipoconcentrado" Type="Self.tipoconcentrado" Multiplicity="0..1" />
+          <End Role="concentrado" Type="Self.concentrado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoconcentrado">
+              <PropertyRef Name="idtipoconcentrado" />
+            </Principal>
+            <Dependent Role="concentrado">
+              <PropertyRef Name="TipoConcentrado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -515,6 +534,7 @@
           <EntitySet Name="proyecto_grupo" EntityType="Self.proyecto_grupo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="proyectos" EntityType="Self.proyectos" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="tipoarticulo" EntityType="Self.tipoarticulo" Schema="microna2018" store:Type="Tables" />
+          <EntitySet Name="tipoconcentrado" EntityType="Self.tipoconcentrado" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="tipolibro" EntityType="Self.tipolibro" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="tipotrabajo" EntityType="Self.tipotrabajo" Schema="microna2018" store:Type="Tables" />
           <EntitySet Name="tipousuario" EntityType="Self.tipousuario" Schema="microna2018" store:Type="Tables" />
@@ -556,6 +576,10 @@
           <AssociationSet Name="FK_Concentrado_Grupo" Association="Self.FK_Concentrado_Grupo">
             <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="concentrado_grupos" EntitySet="concentrado_grupos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Concentrado_Tipo" Association="Self.FK_Concentrado_Tipo">
+            <End Role="tipoconcentrado" EntitySet="tipoconcentrado" />
+            <End Role="concentrado" EntitySet="concentrado" />
           </AssociationSet>
           <AssociationSet Name="FK_Grupo_Cap" Association="Self.FK_Grupo_Cap">
             <End Role="grupoacademico" EntitySet="grupoacademico" />
@@ -1256,6 +1280,11 @@
             <End Role="grupoacademico" EntitySet="grupoacademico" />
             <End Role="concentrado_grupos" EntitySet="concentrado_grupos" />
           </AssociationSet>
+          <EntitySet Name="tipoconcentrado" EntityType="microna2018Model.tipoconcentrado" />
+          <AssociationSet Name="FK_Concentrado_Tipo" Association="microna2018Model.FK_Concentrado_Tipo">
+            <End Role="tipoconcentrado" EntitySet="tipoconcentrado" />
+            <End Role="concentrado" EntitySet="concentrado" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="concentrado">
           <Key>
@@ -1268,6 +1297,7 @@
           <Property Name="TipoConcentrado" Type="Int32" />
           <Property Name="IdItem" Type="Int32" />
           <NavigationProperty Name="concentrado_grupos" Relationship="microna2018Model.FK_Grupo_Concentrado" FromRole="concentrado" ToRole="concentrado_grupos" />
+          <NavigationProperty Name="tipoconcentrado1" Relationship="microna2018Model.FK_Concentrado_Tipo" FromRole="concentrado" ToRole="tipoconcentrado" />
         </EntityType>
         <EntityType Name="concentrado_grupos">
           <Key>
@@ -1300,6 +1330,26 @@
             </Principal>
             <Dependent Role="concentrado_grupos">
               <PropertyRef Name="Grupo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tipoconcentrado">
+          <Key>
+            <PropertyRef Name="idtipoconcentrado" />
+          </Key>
+          <Property Name="idtipoconcentrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="concentrado" Relationship="microna2018Model.FK_Concentrado_Tipo" FromRole="tipoconcentrado" ToRole="concentrado" />
+        </EntityType>
+        <Association Name="FK_Concentrado_Tipo">
+          <End Type="microna2018Model.tipoconcentrado" Role="tipoconcentrado" Multiplicity="0..1" />
+          <End Type="microna2018Model.concentrado" Role="concentrado" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tipoconcentrado">
+              <PropertyRef Name="idtipoconcentrado" />
+            </Principal>
+            <Dependent Role="concentrado">
+              <PropertyRef Name="TipoConcentrado" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1509,6 +1559,14 @@
                 <ScalarProperty Name="Grupo" ColumnName="Grupo" />
                 <ScalarProperty Name="Concentrado" ColumnName="Concentrado" />
                 <ScalarProperty Name="idConcentrado_Grupos" ColumnName="idConcentrado_Grupos" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tipoconcentrado">
+            <EntityTypeMapping TypeName="microna2018Model.tipoconcentrado">
+              <MappingFragment StoreEntitySet="tipoconcentrado">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="idtipoconcentrado" ColumnName="idtipoconcentrado" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

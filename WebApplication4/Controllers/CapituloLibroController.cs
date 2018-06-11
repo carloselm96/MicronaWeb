@@ -11,7 +11,7 @@ namespace WebApplication4.Controllers
     public class CapituloLibroController : Controller
     {
         // GET: CapituloLibro
-        [Authorize]
+        /*[Authorize]
         public ActionResult Index(string response)
         {
             if (response != null)
@@ -21,8 +21,56 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             List<capitulolibro> libros = db.capitulolibro.ToList();
             return View(libros);
-        }
+        }*/
 
+        [Authorize]        
+        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos, string Libro)
+        {            
+            if (response != null)
+            {
+                ViewBag.response = int.Parse(response);
+            }
+            microna2018Entities db = new microna2018Entities();
+            ViewBag.grupos = db.grupoacademico.ToList();
+            List<capitulolibro> libros = db.capitulolibro.ToList();
+            if (Nombre != null)
+            {
+                libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
+            }
+            if (Autores != null)
+            {
+                libros = libros.Where(x => x.Autores.Contains(Autores)).ToList();
+            }            
+            if (Y1 != null)
+            {
+                //int year1 = int.Parse(Y1);
+                libros = libros.Where(x => x.Año>=Y1).ToList();
+            }
+            if (Y2 != null)
+            {                
+                libros = libros.Where(x => x.Año <= Y2).ToList();
+            }
+            if (Libro != null)
+            {
+                libros = libros.Where(x => x.Libro.Contains(Libro)).ToList();
+            }
+            if (grupos != null)
+            {
+                foreach(string s in grupos)
+                {
+                    int i = int.Parse(s);
+                    var g = db.capitulo_grupo.Where(x => x.id_grupo == i).ToList();
+                    List<capitulolibro> cg = new List<capitulolibro>();
+                    foreach(var cap in g)
+                    {
+                        capitulolibro sample = db.capitulolibro.Where(x => x.idCapituloLibro == cap.id_capitulo).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    libros = libros.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            return View(libros);
+        }
         // GET: CapituloLibro/Details/5
         [Authorize]
         public ActionResult Details(int id)

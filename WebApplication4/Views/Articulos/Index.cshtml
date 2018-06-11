@@ -10,23 +10,24 @@
         <h3 class="box-title">Busqueda avanzada</h3>
     </div>
     <div class="box-body">
+@using (Html.BeginForm("Index", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data" })) { 
         <div class="row">
             <div class="col-md-2">
                 <div class="form-group">
                     <label>Nombre:</label>
-                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+                    <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
                     <label>Autores:</label>
-                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                    <input id="autorSearch" name="Autores" type="text" class="form-control" style="width: 100%;" />
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="form-group">
                     <label>Revista:</label>
-                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
+                    <input id="revistaSearch" Name="Revista" type="text" class="form-control" style="width: 100%;" />
                 </div>
             </div>
             <div class="col-md-3">
@@ -34,24 +35,27 @@
                     <label>Año:</label>
                     <div class="input-daterange" id="datepicker">
                         <div class="input-group">
-                            <input type="number" id="min" class="form-control" name="start" />
+                            <input type="number" id="min" class="form-control" name="Y1" />
                             <span class="input-group-addon">al</span>
-                            <input type="number" id="max" class="form-control" name="end" />
+                            <input type="number" id="max" class="form-control" name="Y2" />
                         </div>
-                    </div>
-                </div>                
-            </div>            
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label">Grupo académico</label>                    
-                        <select class="form-control selectpicker" name="GrupoAcademico" multiple>
-                            
-                        </select>
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label class="control-label">Grupo académico</label>
+                    <select class="form-control selectpicker" name="grupos" multiple>
+                        <option value="1">Nanomateriales</option>
+                        <option value="2">Aplicaciones de materiales y nanociencia</option>
+                        <option value="3">Dispositivos y Circuitos Integrados basados en la Micro y Nanotecnología</option>
+                        <option value="4">Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos</option>
+                    </select>
+                </div>
+            </div>
         </div>
+        <button type="submit" class="btn btn-success">Buscar</button>
+}
     </div>
 
 
@@ -85,7 +89,7 @@
                         }
                     }
                 }
-                <table class="display table table-bordered table-striped table-hover table2excel" id="data_art">
+                <table class="display table table-bordered table-striped table-hover table2excel" id="datat">
                     <thead>
                         <tr>
                             <th>
