@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-2">
                 <div class="form-group">
                     <label>Libro:</label>
                     <input id="nombreSearch" name="Libro" type="text" class="form-control" style="width: 100%;" />
@@ -114,7 +114,10 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Libro)
-                    </th>                    
+                    </th>           
+                    <th>
+                        Grupo académico
+                    </th>
                     <th>
                         Subido por
                     </th>
@@ -143,8 +146,16 @@
                 @Html.DisplayFor(modelItem => item.Libro)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                @{
+                    foreach (var i in item.capitulo_grupo)
+                    {
+                        <p>@i.grupoacademico.Nombre</p>
+                    }
+                }
             </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+            </td>            
                         <td>
                             @{
                                 if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
@@ -179,10 +190,12 @@
                         @Html.DisplayNameFor(model => model.Libro)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                        Grupos académico
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                        Subido por
+                    </th>
+                    <th>                        
                     </th>
                     <th></th>
 </tfoot>

@@ -1,57 +1,61 @@
 ﻿@model IEnumerable<WebApplication4.Models.proyectos>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Lista de Proyectos";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
 
-
-<div class="box">
+<div class="box box-primary box-solid">
     <div class="box-header with-border">
         <h3 class="box-title">Busqueda avanzada</h3>
     </div>
     <div class="box-body">
-        <div class="row">
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label>Nombre:</label>
-                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+        @using (Html.BeginForm("Index", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Nombre:</label>
+                        <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label>Autores:</label>
-                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                <div class="col-md-2">
+                    <div class="form-group">
+                        <label>Autores:</label>
+                        <input id="autorSearch" name="Autores" type="text" class="form-control" style="width: 100%;" />
+                    </div>
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label>Revista:</label>
-                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label>Año:</label>
-                    <div class="input-daterange" id="datepicker">
-                        <div class="input-group">
-                            <input type="number" id="min" class="form-control" name="start" />
-                            <span class="input-group-addon">al</span>
-                            <input type="number" id="max" class="form-control" name="end" />
+                
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Año:</label>
+                        <div class="input-daterange" id="datepicker">
+                            <div class="input-group">
+                                <input type="number" id="min" class="form-control" name="Y1" />
+                                <span class="input-group-addon">al</span>
+                                <input type="number" id="max" class="form-control" name="Y2" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-group">
-                    <label class="control-label">Grupo académico</label>
-                    <select class="form-control selectpicker" name="GrupoAcademico" multiple></select>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label class="control-label">Grupo académico</label>
+                        <select class="form-control selectpicker" name="grupos" multiple>
+                            <option value="1">Nanomateriales</option>
+                            <option value="2">Aplicaciones de materiales y nanociencia</option>
+                            <option value="3">Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos</option>
+                            <option value="4">Dispositivos y Circuitos Integrados basados en la Micro y Nanotecnología</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-        </div>
+            <button type="submit" class="btn btn-success">Buscar</button>
+        }
     </div>
 </div>
+
 
 <div class="box">
     <div class="box-body table-responsive">
@@ -98,7 +102,7 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.FechaFinal)
-                    </th>
+                    </th>                    
                     <th>
                         @Html.DisplayNameFor(model => model.archivo1.Nombre)
                     </th>
@@ -126,7 +130,7 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.FechaFinal)
-                    </td>                    
+                    </td>                                        
                     <td>
                         @{
                             foreach (var a in item.proyecto_grupo)

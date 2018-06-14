@@ -11,7 +11,7 @@ namespace WebApplication4.Controllers
     public class LibroController : Controller
     {
         // GET: Libro
-        public ActionResult Index(string response)
+        /*public ActionResult Index(string response)
         {
             if (response != null)
             {
@@ -20,8 +20,52 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             var libros = db.libro.ToList();
             return View(libros);
-        }
+        }*/
 
+        [Authorize]
+        public ActionResult Index(string Nombre, string Autores, int? Y1, int? Y2, string response, List<string> grupos)
+        {
+            if (response != null)
+            {
+                ViewBag.response = int.Parse(response);
+            }
+            microna2018Entities db = new microna2018Entities();
+            ViewBag.grupos = db.grupoacademico.ToList();
+            List<libro> libros = db.libro.ToList();
+            if (Nombre != null)
+            {
+                libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
+            }
+            if (Autores != null)
+            {
+                libros = libros.Where(x => x.Autores.Contains(Autores)).ToList();
+            }
+            if (Y1 != null)
+            {
+                //int year1 = int.Parse(Y1);
+                libros = libros.Where(x => x.Año >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                libros = libros.Where(x => x.Año <= Y2).ToList();
+            }            
+            if (grupos != null)
+            {
+                foreach (string s in grupos)
+                {
+                    int i = int.Parse(s);
+                    var g = db.libro_grupo.Where(x => x.id_grupo == i).ToList();
+                    List<libro> cg = new List<libro>();
+                    foreach (var cap in g)
+                    {
+                        libro sample = db.libro.Where(x => x.idLibro == cap.id_libro).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    libros = libros.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            return View(libros);
+        }
         // GET: Libro/Details/5
         public ActionResult Details(int id)
         {

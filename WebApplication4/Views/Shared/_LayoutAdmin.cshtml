@@ -90,7 +90,7 @@
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
-                  <a href="#" class="btn btn-default btn-flat">Perfil</a>
+                    @Html.ActionLink("Perfil", "Index", "Perfil",null, new { @class = "btn btn-default btn-flat" })                                      
                 </div>
                 <div class="pull-right">                    
                     @Html.ActionLink("Cerrar Sesión","Logout","Home", null, new {@class = "btn btn-default btn-flat" })                    

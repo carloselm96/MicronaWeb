@@ -12,15 +12,48 @@ namespace WebApplication4.Controllers
     {
         // GET: Proyectos
         [Authorize]
-        public ActionResult Index(string response)
+        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos)
         {
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
             microna2018Entities db = new microna2018Entities();
-            var proyectos = db.proyectos.ToList();
-            return View(proyectos);
+            ViewBag.grupos = db.grupoacademico.ToList();
+            List<proyectos> proyect = db.proyectos.ToList();
+            if (Nombre != null)
+            {
+                proyect = proyect.Where(x => x.nombre.Contains(Nombre)).ToList();
+            }
+            if (Autores != null)
+            {
+                proyect = proyect.Where(x => x.Responsables.Contains(Autores)).ToList();
+            }            
+            if (Y1 != null)
+            {
+                //int year1 = int.Parse(Y1);
+                proyect = proyect.Where(x => x.FechaInicio.Value.Year >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                proyect = proyect.Where(x => x.FechaFinal.Value.Year <= Y2).ToList();
+            }
+            if (grupos != null)
+            {
+                foreach (string s in grupos)
+                {
+                    int i = int.Parse(s);
+                    var g = db.proyecto_grupo.Where(x => x.id_grupo == i).ToList();
+                    List<proyectos> cg = new List<proyectos>();
+                    foreach (var cap in g)
+                    {
+                        proyectos sample = db.proyectos.Where(x => x.idProyecto == cap.id_proyecto).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    proyect = proyect.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            return View(proyect);
         }
 
         // GET: Proyectos/Details/5

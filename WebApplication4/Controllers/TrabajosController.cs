@@ -11,11 +11,53 @@ namespace WebApplication4.Controllers
     public class TrabajosController : Controller
     {
         // GET: Trabajos
+  
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos)
         {
+            if (response != null)
+            {
+                ViewBag.response = int.Parse(response);
+            }
             microna2018Entities db = new microna2018Entities();
-            var trabajos = db.trabajo.ToList();
+            ViewBag.grupos = db.grupoacademico.ToList();
+            List<trabajo> trabajos = db.trabajo.ToList();
+            if (Nombre != null)
+            {
+                trabajos = trabajos.Where(x => x.Nombre.Contains(Nombre)).ToList();
+            }
+            if (Autores != null)
+            {
+                trabajos = trabajos.Where(x => x.Autores.Contains(Autores)).ToList();
+            }
+            if (Lugar != null)
+            {
+                trabajos = trabajos.Where(x => x.Presentacion.Contains(Lugar)).ToList();
+            }
+            if (Y1 != null)
+            {
+                //int year1 = int.Parse(Y1);
+                trabajos = trabajos.Where(x => x.Año >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                trabajos = trabajos.Where(x => x.Año <= Y2).ToList();
+            }
+            if (grupos != null)
+            {
+                foreach (string s in grupos)
+                {
+                    int i = int.Parse(s);
+                    var g = db.trabajo_grupo.Where(x => x.id_grupo == i).ToList();
+                    List<trabajo> cg = new List<trabajo>();
+                    foreach (var cap in g)
+                    {
+                        trabajo sample = db.trabajo.Where(x => x.idTrabajo == cap.id_trabajo).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    trabajos = trabajos.Where(x => cg.Contains(x)).ToList();
+                }
+            }
             return View(trabajos);
         }
 

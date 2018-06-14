@@ -7,94 +7,104 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="box box-primary box-solid">
+<div class="box box-success ">
     <div class="box-header with-border">
         <div class="box-title">Busqueda avanzada</div>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
     </div>
     <div class="box-body">
-        <div class="row">
-            <div class="form-group col-md-12">
-                <h4><b>Titulo:</b></h4>
-                <input id="nombreSearch" type="text" placeholder="Insertar Titulo" class="form-control" />
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <h4><b>Titulo:</b></h4>
+                    <input name="titulo" type="text" placeholder="Insertar Titulo" class="form-control" />
+                </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <div class="form-group">
-                    <h4><b>Año:</b></h4>
-                    <div class="input-daterange" id="datepicker">
-                        <div class="input-group">
-                            <input type="number" id="min" class="form-control" name="start" />
-                            <span class="input-group-addon">al</span>
-                            <input type="number" id="max" class="form-control" name="end" />
+            <div class="row">
+                <div class="col-md-5">
+                    <div class="form-group">
+                        <h4><b>Año:</b></h4>
+                        <div class="input-daterange" id="datepicker">
+                            <div class="input-group">
+                                <input type="number" id="min" class="form-control" name="Y1" />
+                                <span class="input-group-addon">al</span>
+                                <input type="number" id="max" class="form-control" name="Y2" />
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-7">
-                <div class="form-group">
-                    <h4><b>Autor:</b></h4>
-                    <input id="autorSearch" type="text" placeholder="Insertar autor" class="form-control" />
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-5">
-                <h4><b>Tipo de Material:</b></h4>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Articulos
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Trabajos Presentados
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Libros
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Capitulos de Libros
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox"> Proyectos
-                        </label>
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <h4><b>Autor:</b></h4>
+                        <input name="autores" type="text" placeholder="Insertar autor" class="form-control" />
                     </div>
                 </div>
             </div>
-            <div class="col-md-5">
-                <h4><b>Grupo Académico</b></h4>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="checkgroup" value="1"> Nanomateriales
-                        </label>
-                    </div>                    
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="checkgroup" value="2"> Dispositivos y Circuitos Integrados
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="checkgroup" value="3"> Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos
-                        </label>
-                    </div>
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox" id="checkgroup" value="4"> Aplicaciones de materiales y nanociencia
-                        </label>
+            <div class="row">
+                <div class="col-md-5">
+                    <h4><b>Tipo de Material:</b></h4>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input name="checktype" type="checkbox" value="1"> Articulos
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="checktype" type="checkbox" value="2"> Trabajos Presentados
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="checktype" type="checkbox" value="3"> Libros
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="checktype" type="checkbox" value="4"> Capitulos de Libros
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input name="checktype" type="checkbox" value="5"> Proyectos
+                            </label>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
+                <div class="col-md-5">
+                    <h4><b>Grupo Académico</b></h4>
+                    <div class="form-group">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="checkgroup" value="1"> Nanomateriales
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="checkgroup" value="2"> Dispositivos y Circuitos Integrados
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="checkgroup" value="3"> Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox" name="checkgroup" value="4"> Aplicaciones de materiales y nanociencia
+                            </label>
+                        </div>
+                    </div>
+                </div>                
+            </div>                            
+            <input type="submit" value="Buscar" class="btn btn-success btn-lg" />                
+        }
+        
     </div>
 </div>
 
@@ -104,7 +114,7 @@
         <div class="box-title">Resultados</div>
     </div>
     <div class="box-body  table-responsive">
-        <table class="display table table-responsive table-bordered table-striped table-hover" id="data_con">
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
             <thead>
                 <tr>
                     <th>
@@ -194,6 +204,7 @@
         </table>
     </div>
 </div>
+<!--
 <div class="box box-primary box-solid">
     <div class="box-header with-border">
         <div class="box-title">Resultados</div>
@@ -248,3 +259,4 @@
 </div>
 
 
+-->

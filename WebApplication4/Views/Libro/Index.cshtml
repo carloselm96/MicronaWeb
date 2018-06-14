@@ -10,33 +10,29 @@
         <h3 class="box-title">Busqueda avanzada</h3>
     </div>
     <div class="box-body">
+    @using (Html.BeginForm("Index", "Libro", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
         <div class="row">
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>Nombre:</label>
-                    <input id="nombreSearch" type="text" class="form-control" style="width: 100%;" />
+                    <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
                 </div>
             </div>
-            <div class="col-md-2">
+            <div class="col-md-3">
                 <div class="form-group">
                     <label>Autores:</label>
-                    <input id="autorSearch" type="text" class="form-control" style="width: 100%;" />
+                    <input id="autorSearch" name="Autores" type="text" class="form-control" style="width: 100%;" />
                 </div>
-            </div>
-            <div class="col-md-2">
-                <div class="form-group">
-                    <label>Revista:</label>
-                    <input id="revistaSearch" type="text" class="form-control" style="width: 100%;" />
-                </div>
-            </div>
+            </div>                        
             <div class="col-md-3">
                 <div class="form-group">
                     <label>Año:</label>
                     <div class="input-daterange" id="datepicker">
                         <div class="input-group">
-                            <input type="number" id="min" class="form-control" name="start" />
+                            <input type="number" id="min" class="form-control" name="Y1" />
                             <span class="input-group-addon">al</span>
-                            <input type="number" id="max" class="form-control" name="end" />
+                            <input type="number" id="max" class="form-control" name="Y2" />
                         </div>
                     </div>
                 </div>
@@ -44,12 +40,18 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label class="control-label">Grupo académico</label>
-                    <select class="form-control selectpicker" name="GrupoAcademico" multiple></select>
+                    <select class="form-control selectpicker" name="grupos" multiple>
+                        <option value="1">Nanomateriales</option>
+                        <option value="2">Aplicaciones de materiales y nanociencia</option>
+                        <option value="3">Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos</option>
+                        <option value="4">Dispositivos y Circuitos Integrados basados en la Micro y Nanotecnología</option>                        
+                    </select>
                 </div>
             </div>
         </div>
-
-    </div>
+        <button type="submit" class="btn btn-success">Buscar</button>
+    }
+    </div>    
 </div>
 
 
@@ -97,15 +99,15 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Autores)
+                    </th>                    
+                    <th>
+                        Estatus
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                        Grupo Académico
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.tipolibro1.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                        Subido por
                     </th>
                     <th></th>
                 </tr>
@@ -127,6 +129,14 @@
                     </td>                   
                     <td>
                         @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
+                    </td>
+                    <td>
+                        @{
+                            foreach (var a in item.libro_grupo)
+                            {
+                                <p>@a.grupoacademico.Nombre</p>
+                            }
+                        }
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.usuario1.Nombre)
@@ -157,12 +167,15 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Autores)
-                    </th>                  
-                    <th>
-                        @Html.DisplayNameFor(model => model.tipolibro1.Nombre)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                        Estatus
+                    </th>
+                    <th>
+                        Grupo Académico
+                    </th>
+                    <th>
+                        Subido por
                     </th>
                     <th></th>
                 </tr>

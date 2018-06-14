@@ -11,12 +11,51 @@ namespace WebApplication4.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
+        // GET: Home        
         [Authorize]
-        public ActionResult Index()
+        public ActionResult Index(string titulo, int? Y1, int? Y2, string autores, int?[] checkgroup, int?[] checktype)
         {
             microna2018Entities db = new microna2018Entities();
             var concent = db.concentrado.ToList();
+            if (titulo != null)
+            {
+                concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();
+            }
+            if (Y1 != null)
+            {
+                concent = concent.Where(x => x.Fecha >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                concent = concent.Where(x => x.Fecha <= Y2).ToList();
+            }
+            if (checkgroup!=null)
+            {
+                foreach (int i in checkgroup)
+                {
+                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();
+                    List<concentrado> cg = new List<concentrado>();
+                    foreach (var con in g)
+                    {
+                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == con.Concentrado).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    concent = concent.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            if (checktype != null)
+            {
+                List<concentrado> ct = new List<concentrado>();
+                foreach (int i in checktype)
+                {
+                    var g = concent.Where(x => x.TipoConcentrado == i).ToList();
+                    foreach (var con in g)
+                    {                        
+                        ct.Add(con);
+                    }                    
+                }
+                concent = ct;
+            }
             return View(concent);
         }
 

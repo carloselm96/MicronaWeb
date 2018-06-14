@@ -47,11 +47,11 @@ namespace WebApplication4.Controllers
                 foreach (string s in grupos)
                 {
                     int i = int.Parse(s);
-                    var g = db.capitulo_grupo.Where(x => x.id_grupo == i).ToList();
+                    var g = db.articulo_grupo.Where(x => x.id_grupo == i).ToList();
                     List<articulo> cg = new List<articulo>();
                     foreach (var cap in g)
                     {
-                        articulo sample = db.articulo.Where(x => x.idArticulo == cap.id_capitulo).FirstOrDefault();
+                        articulo sample = db.articulo.Where(x => x.idArticulo == cap.id_articulo).FirstOrDefault();
                         cg.Add(sample);
                     }
                     articulos = articulos.Where(x => cg.Contains(x)).ToList();
