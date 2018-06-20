@@ -86,8 +86,12 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 if (int.Parse(Request.Cookies["userInfo"]["id"]) == id)
                 {
-                    Request.Cookies["userInfo"]["nombre"] = user.Nombre;
-                    Request.Cookies["userInfo"]["user"] = user.Usuario1;
+                    HttpCookie cookie = new HttpCookie("userInfo");
+                    cookie["id"] = Request.Cookies["userInfo"]["id"];
+                    cookie["nombre"] = user.Nombre;
+                    cookie["user"] = user.Usuario1;
+                    cookie["tipo"] = Request.Cookies["userInfo"]["tipo"];
+                    Response.Cookies.Add(cookie);
                 }
                 return RedirectToAction("Index");
             }

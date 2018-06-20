@@ -93,6 +93,7 @@ namespace WebApplication4.Controllers
                 if (user.Contraseña== u.Contraseña)
                 {
                     //FormsAuthentication.SetAuthCookie(user.Usuario1, false);
+                    //Response.Cookies.Add(FormsAuthentication.GetAuthCookie(user.Usuario1, true));
                     FormsAuthenticationTicket authTicket = new
                         FormsAuthenticationTicket(1, //version
                         user.Usuario1, // user name
@@ -110,7 +111,7 @@ namespace WebApplication4.Controllers
                     userInfo.Values.Add("tipo", user.tipousuario1.Nombre);
                     userInfo.Values.Add("user", user.Usuario1);
                     userInfo.Expires = DateTime.Now.AddDays(1);                    
-                    Response.Cookies.Add(userInfo);
+                    Response.Cookies.Add(userInfo);                    
                     return RedirectToAction("Index","Home");                    
                 }
             }          

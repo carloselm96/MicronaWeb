@@ -48,12 +48,15 @@ namespace WebApplication4.Controllers
                 var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
                 user.Nombre = u.Nombre;
                 user.Correo = u.Correo;
-                user.Contraseña = u.Contraseña;
-                user.TipoUsuario = u.TipoUsuario;
+                user.Contraseña = u.Contraseña;                
                 user.Usuario1 = u.Usuario1;
                 db.SaveChanges();
-                Request.Cookies["userInfo"]["nombre"] = user.Nombre;
-                Request.Cookies["userInfo"]["user"] = user.Usuario1;
+                HttpCookie cookie = new HttpCookie("userInfo");
+                cookie["id"] = Request.Cookies["userInfo"]["id"];
+                cookie["nombre"] = user.Nombre;
+                cookie["user"] = user.Usuario1;
+                cookie["tipo"] = Request.Cookies["userInfo"]["tipo"];
+                Response.Cookies.Add(cookie);
                 return RedirectToAction("Index",user.idUsuario);
             }
             catch
