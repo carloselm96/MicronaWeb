@@ -13,24 +13,18 @@
         @using (Html.BeginForm("Index", "Trabajos", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="row">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Nombre:</label>
                         <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label>Autores:</label>
                         <input id="autorSearch" name="Autores" type="text" class="form-control" style="width: 100%;" />
                     </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="form-group">
-                        <label>Nombre:</label>
-                        <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
-                    </div>
-                </div>
+                </div>                                
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Año:</label>
@@ -43,14 +37,37 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-3">
+            </div>
+                <div class="row">
+                <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Grupo académico</label>
                         <select class="form-control selectpicker" name="grupos" multiple>
-                            <option value="1">Nanomateriales</option>
-                            <option value="2">Aplicaciones de materiales y nanociencia</option>
-                            <option value="3">Dispositivos y Circuitos Integrados basados en la Micro y Nanotecnología</option>
-                            <option value="4">Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos</option>
+                            @{
+                                if (ViewBag.grupos != null)
+                                {
+                                    foreach (var Grupo in ViewBag.grupos)
+                                    {
+                                        <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                                    }
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label">Tipo de Trabajo</label>
+                        <select class="form-control selectpicker" name="tipo" multiple data-max-options="1">
+                            @{
+                                if (ViewBag.tipos != null)
+                                {
+                                    foreach (var TipoTrabajo in ViewBag.tipos)
+                                    {
+                                        <option value="@TipoTrabajo.idTipoTrabajo">@TipoTrabajo.Nombre</option>
+                                    }
+                                }
+                            }
                         </select>
                     </div>
                 </div>

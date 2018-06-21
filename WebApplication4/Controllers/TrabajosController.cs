@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers
         // GET: Trabajos
   
         [Authorize]
-        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos)
+        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos, string tipo)
         {
             if (response != null)
             {
@@ -21,6 +21,7 @@ namespace WebApplication4.Controllers
             }
             microna2018Entities db = new microna2018Entities();
             ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.tipos = db.tipotrabajo.ToList();
             List<trabajo> trabajos = db.trabajo.ToList();
             if (Nombre != null)
             {
@@ -43,6 +44,10 @@ namespace WebApplication4.Controllers
             {
                 trabajos = trabajos.Where(x => x.Año <= Y2).ToList();
             }
+            if (tipo != null)
+            {
+                trabajos = trabajos.Where(x => x.TipoTrabajo == int.Parse(tipo)).ToList();
+            }
             if (grupos != null)
             {
                 foreach (string s in grupos)
@@ -63,10 +68,14 @@ namespace WebApplication4.Controllers
 
         // GET: Trabajos/Details/5
         [Authorize]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Trabajos", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
                 return View(trabajo);
@@ -142,8 +151,12 @@ namespace WebApplication4.Controllers
 
         // GET: Trabajos/Edit/5
         [Authorize]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Trabajos", null);
+            }
             microna2018Entities db = new microna2018Entities();
             var a = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
             if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
@@ -220,10 +233,14 @@ namespace WebApplication4.Controllers
 
         // POST: Trabajos/Delete/5
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Trabajos", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != trabajo.Usuario)

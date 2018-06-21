@@ -26,8 +26,12 @@ namespace WebApplication4.Controllers
                 
 
         // GET: Perfil/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
             if (id != int.Parse(Request.Cookies["userInfo"]["id"]))
             {
                 return RedirectToAction("Index", "Home", null);
@@ -40,15 +44,28 @@ namespace WebApplication4.Controllers
         // POST: Perfil/Edit/5
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int? id, usuario u)
+        public ActionResult Edit(usuario u, string new_pass)
         {
             try
             {
                 microna2018Entities db = new microna2018Entities();
-                var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
+                if (Request.Cookies["userInfo"]["id"] == null)
+                {
+                    return RedirectToAction("Index", "Home", null);
+                }
+                int id = int.Parse(Request.Cookies["userInfo"]["id"]);
+                var user = db.usuario.Where(x => x.idUsuario == id && x.Contraseña==u.Contraseña).FirstOrDefault();
+                if (user == null)
+                {
+                    return RedirectToAction("Index", "Home", null);
+
+                }
                 user.Nombre = u.Nombre;
                 user.Correo = u.Correo;
-                user.Contraseña = u.Contraseña;                
+                if (new_pass != null)
+                {
+                    user.Contraseña = new_pass;
+                }                
                 user.Usuario1 = u.Usuario1;
                 db.SaveChanges();
                 HttpCookie cookie = new HttpCookie("userInfo");
@@ -61,7 +78,7 @@ namespace WebApplication4.Controllers
             }
             catch
             {
-                return RedirectToAction("Index",id);
+                return RedirectToAction("Index");
             }       
         
         }

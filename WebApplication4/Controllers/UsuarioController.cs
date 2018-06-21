@@ -17,13 +17,7 @@ namespace WebApplication4.Controllers
             var usuarios = db.usuario.ToList();
             return View(usuarios);
         }
-
-        // GET: Usuario/Details/5
-        [Authorize]
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
+                
 
         // GET: Usuario/Create
         [Authorize]
@@ -41,6 +35,10 @@ namespace WebApplication4.Controllers
         {
             try
             {
+                if (Request.Cookies["userInfo"]["tipo"] != "Administrador")
+                {
+                    return RedirectToAction("Index", "Home", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 db.usuario.Add(u);
                 db.SaveChanges();                
@@ -54,8 +52,12 @@ namespace WebApplication4.Controllers
 
         // GET: Usuario/Edit/5
         [Authorize]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id==null)
+            {
+                return RedirectToAction("Index", "Home", null);
+            }
             if (Request.Cookies["userInfo"]["tipo"] != "Administrador")
             {
                 return RedirectToAction("Index", "Home", null);
@@ -97,7 +99,7 @@ namespace WebApplication4.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
 
@@ -116,7 +118,7 @@ namespace WebApplication4.Controllers
             }
             catch
             {
-                return View();
+                return RedirectToAction("Index");
             }
         }
     }

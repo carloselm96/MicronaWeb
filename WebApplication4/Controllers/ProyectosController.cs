@@ -58,10 +58,14 @@ namespace WebApplication4.Controllers
 
         // GET: Proyectos/Details/5
         [Authorize]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Proyectos", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var proyecto = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 return View(proyecto);
@@ -139,10 +143,14 @@ namespace WebApplication4.Controllers
 
         // GET: Proyectos/Edit/5
         [Authorize]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Proyectos", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var a = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
@@ -222,10 +230,14 @@ namespace WebApplication4.Controllers
         }
 
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Proyectos", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var proyecto = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != proyecto.Usuario)

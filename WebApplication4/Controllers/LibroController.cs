@@ -67,8 +67,12 @@ namespace WebApplication4.Controllers
             return View(libros);
         }
         // GET: Libro/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Libro", null);
+            }
             microna2018Entities db = new microna2018Entities();
             var libro = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
             return View(libro);
@@ -139,8 +143,12 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Libro/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "Libro", null);
+            }
             microna2018Entities db = new microna2018Entities();
             var a = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
             if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
@@ -217,10 +225,14 @@ namespace WebApplication4.Controllers
 
         // POST: Libro/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Libro", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var libr = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.Usuario)

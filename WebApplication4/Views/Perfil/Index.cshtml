@@ -17,21 +17,12 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Usuario1)
+                Nombre de Usuario:
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.Usuario1)
             </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Contraseña)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Contraseña)
-            </dd>
-
             <dt>
                 @Html.DisplayNameFor(model => model.Correo)
             </dt>
@@ -41,7 +32,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.tipousuario1.Nombre)
+                Tipo de Usuario
             </dt>
 
             <dd>
@@ -52,7 +43,7 @@
     </div>
     <div class="box-footer">
         <p>
-            @Html.ActionLink("Editar", "Edit", new { id = Model.idUsuario }) |            
+            @Html.ActionLink("Editar Perfil", "Edit", new { id = Model.idUsuario }, new { @class = "btn btn-large btn-default" })            
         </p>
     </div>
 </div>

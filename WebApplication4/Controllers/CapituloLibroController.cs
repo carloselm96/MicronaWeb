@@ -73,8 +73,12 @@ namespace WebApplication4.Controllers
         }
         // GET: CapituloLibro/Details/5
         [Authorize]
-        public ActionResult Details(int id)
+        public ActionResult Details(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "CapituloLibro", null);
+            }
             microna2018Entities db = new microna2018Entities();
             var capitulo = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
             return View(capitulo);
@@ -146,8 +150,12 @@ namespace WebApplication4.Controllers
 
         // GET: CapituloLibro/Edit/5
         [Authorize]
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int? id)
         {
+            if (id == null)
+            {
+                return RedirectToAction("Index", "CapituloLibro", null);
+            }
             microna2018Entities db = new microna2018Entities();
             var a = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
             if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
@@ -222,10 +230,14 @@ namespace WebApplication4.Controllers
         }
 
         [Authorize]
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int? id)
         {
             try
             {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "CapituloLibro", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var libr = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.Usuario)

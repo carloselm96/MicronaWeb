@@ -33,7 +33,7 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.TipoLibro, "TipoLibro", htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.TipoLibro, "Estatus del Libro", htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
                         <select class="form-control" , name="TipoLibro">
                             @foreach (var TipoLibro in ViewBag.TipoLibro)
