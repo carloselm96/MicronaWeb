@@ -264,11 +264,11 @@ namespace WebApplication4.Controllers
                 }                
                 db.trabajo.Remove(trabajo);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch(Exception e)
             {                
-                return RedirectToAction("Index");
+                return Content(""+e);
             }
         }
         [Authorize]

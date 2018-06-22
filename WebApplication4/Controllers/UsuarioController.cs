@@ -35,14 +35,18 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                if (Request.Cookies["userInfo"]["tipo"] != "Administrador")
+                if (Request.Cookies["userInfo"]["tipo"] == "Administrador" || Request.Cookies["userInfo"]["tipo"] == "Super-administrador")
                 {
-                    return RedirectToAction("Index", "Home", null);
+                    if (u.TipoUsuario == 3 && Request.Cookies["userInfo"]["tipo"] != "Super-administrador")
+                    {
+                        return RedirectToAction("Index", "Home", null);
+                    }
+                    microna2018Entities db = new microna2018Entities();
+                    db.usuario.Add(u);
+                    db.SaveChanges();
+                    return RedirectToAction("Index",new {response=1 });
                 }
-                microna2018Entities db = new microna2018Entities();
-                db.usuario.Add(u);
-                db.SaveChanges();                
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "Home", null);                
             }
             catch
             {
@@ -58,13 +62,16 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Home", null);
             }
-            if (Request.Cookies["userInfo"]["tipo"] != "Administrador")
+            if (Request.Cookies["userInfo"]["tipo"] == "Administrador" || Request.Cookies["userInfo"]["tipo"] == "Super-administrador")
+            {
+                microna2018Entities db = new microna2018Entities();
+                var usuario = db.usuario.SingleOrDefault(x => x.idUsuario == id);
+                return View(usuario);
+            }
+            else
             {
                 return RedirectToAction("Index", "Home", null);
-            }
-            microna2018Entities db = new microna2018Entities();
-            var usuario = db.usuario.SingleOrDefault(x => x.idUsuario == id);            
-            return View(usuario);
+            }            
         }
 
         // POST: Usuario/Edit/5
@@ -72,7 +79,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Edit(int id, usuario u)
         {
-            if (Request.Cookies["userInfo"]["tipo"] != "Administrador")
+            if (Request.Cookies["userInfo"]["tipo"] != "Administrador" && Request.Cookies["userInfo"]["tipo"] != "Super-administrador")
             {
                 return RedirectToAction("Index", "Home", null);
             }
@@ -107,10 +114,18 @@ namespace WebApplication4.Controllers
         // POST: Usuario/Delete/5
         [Authorize]
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(int? id)
         {
             try
             {
+                if (id==null)
+                {
+                    return RedirectToAction("Index", "Home", null);
+                }
+                if (Request.Cookies["userInfo"]["tipo"] != "Administrador" && Request.Cookies["userInfo"]["tipo"] != "Super-administrador")
+                {
+                    return RedirectToAction("Index", "Home", null);
+                }
                 microna2018Entities db = new microna2018Entities();
                 var usuario=db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
                 db.usuario.Remove(usuario);
@@ -118,7 +133,7 @@ namespace WebApplication4.Controllers
             }
             catch
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index",new { response=2 });
             }
         }
     }

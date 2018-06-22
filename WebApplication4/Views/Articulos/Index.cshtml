@@ -88,11 +88,8 @@
             <div class="box-body table-responsive">
                 <div class="row margin-bottom">
                     <div class="col-sm-2">
-                        @Html.ActionLink("Nuevo Articulo", "Create", null, new { @class = "btn btn-large btn-default" })
-                    </div>
-                    <div class="col-sm-2">                        
-                        <input type="button" class="btn btn-large btn-warning" id="export" value="Exportar a Excel">
-                    </div>
+                        @Html.ActionLink("Nuevo Articulo", "Create", null, new { @class = "btn btn-large btn-success" })
+                    </div>                    
                 </div>
                 @{
                     if (ViewBag.response != null)
@@ -186,7 +183,7 @@
                                 </td>
                                 <td>
                                     @{
-                                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]) || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
                                         {
                                             <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-warning" })</p>
                                             <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>

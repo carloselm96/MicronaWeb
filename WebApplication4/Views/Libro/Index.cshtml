@@ -59,11 +59,8 @@
     <div class="box-body table-responsive">
         <div class="row margin-bottom">
             <div class="col-sm-2">
-                @Html.ActionLink("Nuevo Libro", "Create", null, new { @class = "btn btn-large btn-default" })
-            </div>
-            <div class="col-sm-2">
-                <input type="button" class="btn btn-large btn-warning" onclick="tableToExcel('data_art', 'W3C Example Table')" value="Exportar a Excel">
-            </div>
+                @Html.ActionLink("Nuevo Libro", "Create", null, new { @class = "btn btn-large btn-success" })
+            </div>            
         </div>
         @{
             if (ViewBag.response != null)
@@ -85,7 +82,7 @@
                 }
             }
         }
-        <table class="display table table-responsive table-bordered table-striped table-hover" id="data_art">
+        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
             <thead>
                 <tr>
                     <th>
