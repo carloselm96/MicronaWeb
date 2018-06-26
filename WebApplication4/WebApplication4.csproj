@@ -6468,18 +6468,42 @@
     <Content Include="Content\build\npm\Publish.js" />
     <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.js" />
     <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap.min.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap4.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap4.min.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.dataTables.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.dataTables.min.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.foundation.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.foundation.min.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.jqueryui.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.jqueryui.min.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.semanticui.css" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.semanticui.min.css" />
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap4.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap4.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.dataTables.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.dataTables.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.foundation.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.foundation.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.jqueryui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.jqueryui.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.semanticui.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.semanticui.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap.js" />
     <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap.min.js" />
     <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap4.js" />
@@ -6530,10 +6554,18 @@
     <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
     <Content Include="Content\Datatable\DataTables-1.10.18\js\jquery.dataTables.js" />
     <Content Include="Content\Datatable\DataTables-1.10.18\js\jquery.dataTables.min.js" />
-    <Content Include="Content\Datatable\datatables.css" />
-    <Content Include="Content\Datatable\datatables.js" />
-    <Content Include="Content\Datatable\datatables.min.css" />
-    <Content Include="Content\Datatable\datatables.min.js" />
+    <Content Include="Content\Datatable\datatables.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\datatables.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\datatables.min.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\datatables.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap.css" />
     <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap.min.css" />
     <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap4.css" />
@@ -8090,8 +8122,12 @@
     <Content Include="Content\bower_components\select2\src\scss\_dropdown.scss" />
     <Content Include="Content\bower_components\select2\src\scss\_multiple.scss" />
     <Content Include="Content\bower_components\select2\src\scss\_single.scss" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\common.scss" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\mixins.scss" />
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\common.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Datatable\Buttons-1.5.2\css\mixins.scss">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
@@ -8260,6 +8296,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Datatable\Datatable\Buttons-1.5.2\css\" />
+    <Folder Include="Content\Datatable\Datatable\Buttons-1.5.2\js\" />
+    <Folder Include="Content\Datatable\Datatable\Buttons-1.5.2\swf\" />
+    <Folder Include="Content\Datatable\Datatable\DataTables-1.10.18\css\" />
+    <Folder Include="Content\Datatable\Datatable\DataTables-1.10.18\images\" />
+    <Folder Include="Content\Datatable\Datatable\DataTables-1.10.18\js\" />
+    <Folder Include="Content\Datatable\Datatable\Responsive-2.2.2\css\" />
+    <Folder Include="Content\Datatable\Datatable\Responsive-2.2.2\js\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
