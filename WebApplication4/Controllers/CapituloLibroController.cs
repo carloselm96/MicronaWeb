@@ -24,7 +24,7 @@ namespace WebApplication4.Controllers
         }*/
 
         [Authorize]        
-        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos, string Libro)
+        public ActionResult Index(string Nombre, string Autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, string Libro)
         {            
             if (response != null)
             {

@@ -28,11 +28,11 @@
             <div class="col-md-3">
                 <div class="form-group">
                     <label>Año:</label>
-                    <div class="input-daterange" id="datepicker">
+                    <div class="input-daterange" id="">
                         <div class="input-group">
-                            <input type="number" id="min" class="form-control" name="Y1" />
+                            <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y1" autocomplete="off">
                             <span class="input-group-addon">al</span>
-                            <input type="number" id="max" class="form-control" name="Y2" />
+                            <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y2" autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,13 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Autores)
-                    </th>                    
+                    </th>              
+                    <th>
+                        Editorial
+                    </th>
+                    <th>
+                        País
+                    </th>
                     <th>
                         Estatus
                     </th>
@@ -123,6 +129,12 @@
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Autores)
+                    </td>                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Editorial)
+                    </td>                   
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Pais)
                     </td>                   
                     <td>
                         @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
@@ -164,6 +176,12 @@
                     </th>
                     <th>
                         @Html.DisplayNameFor(model => model.Autores)
+                    </th>
+                    <th>
+                        Editorial
+                    </th>
+                    <th>
+                        País
                     </th>
                     <th>
                         Estatus

@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers
     {
         // GET: Home        
         [Authorize]
-        public ActionResult Index(string titulo, int? Y1, int? Y2, string autores, int?[] checkgroup, int?[] checktype)
+        public ActionResult Index(string titulo, DateTime? Y1, DateTime? Y2, string autores, int?[] checkgroup, int?[] checktype)
         {
             microna2018Entities db = new microna2018Entities();
             var concent = db.concentrado.ToList();

@@ -23,7 +23,7 @@ namespace WebApplication4.Models
         public int idCapituloLibro { get; set; }
         public string Nombre { get; set; }
         public string Autores { get; set; }
-        public Nullable<int> Año { get; set; }
+        public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         public string Participantes { get; set; }
         public string Libro { get; set; }

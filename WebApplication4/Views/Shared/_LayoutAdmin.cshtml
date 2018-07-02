@@ -320,7 +320,34 @@
             $('#basic2').selectpicker({
                 liveSearch: true,
             });
+           
+
         })
+        $(function () {
+            $('.date-picker').datepicker({
+                beforeShow: function (input, inst) {
+                    setTimeout(function () {
+                        inst.dpDiv.css({
+                            top: $(".datepicker").offset().top + 35,
+                            left: $(".datepicker").offset().left
+                        });
+                    }, 0);
+                },
+                format: "mm-yyyy",
+                startView: "months",
+                minViewMode: "months"
+            });
+        });
+        var update_pizza = function () {
+            if ($("#indizado").is(":selected")) {
+                $('#ind').prop('disabled', false);
+            }
+            else {
+                $('#ind').prop('disabled', 'disabled');
+            }
+        };
+        $(update_pizza);
+        $("#tipo_art").change(update_pizza);
         $('[data-toggle=confirmation]').confirmation();
     </script>
     <script src="~/Content/site.js"></script>

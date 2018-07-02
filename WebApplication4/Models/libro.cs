@@ -22,12 +22,14 @@ namespace WebApplication4.Models
     
         public int idLibro { get; set; }
         public string Nombre { get; set; }
-        public Nullable<int> Año { get; set; }
+        public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         public string Autores { get; set; }
         public Nullable<int> TipoLibro { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
+        public string Editorial { get; set; }
+        public string Pais { get; set; }
     
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -12,7 +12,7 @@ namespace WebApplication4.Controllers
     {
         // GET: Articulos
         [Authorize]
-        public ActionResult Index(string response,string Nombre, string Autores, string Revista, int? Y1, int? Y2, List<string> grupos, string tipo)
+        public ActionResult Index(string response,string Nombre, string Autores, string Revista, DateTime? Y1, DateTime? Y2, List<string> grupos, string tipo)
         {            
             if (response != null)
             {

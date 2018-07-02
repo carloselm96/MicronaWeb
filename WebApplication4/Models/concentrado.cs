@@ -22,13 +22,13 @@ namespace WebApplication4.Models
     
         public int idConcentrado { get; set; }
         public string Titulo { get; set; }
-        public Nullable<int> Fecha { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public string Autores { get; set; }
         public Nullable<int> TipoConcentrado { get; set; }
         public Nullable<int> IdItem { get; set; }
     
+        public virtual tipoconcentrado tipoconcentrado1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concentrado_grupos> concentrado_grupos { get; set; }
-        public virtual tipoconcentrado tipoconcentrado1 { get; set; }
     }
 }

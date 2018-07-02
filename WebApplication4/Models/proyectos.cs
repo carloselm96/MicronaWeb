@@ -28,6 +28,7 @@ namespace WebApplication4.Models
         public Nullable<System.DateTime> FechaFinal { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
+        public string Clave { get; set; }
     
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

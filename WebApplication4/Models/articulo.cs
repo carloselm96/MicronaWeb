@@ -28,10 +28,11 @@ namespace WebApplication4.Models
         public Nullable<int> PagFinal { get; set; }
         public string Revista { get; set; }
         public string ISSN { get; set; }
-        public Nullable<int> Fecha { get; set; }
+        public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         public Nullable<int> TipoArticulo { get; set; }
+        public Nullable<int> Indice { get; set; }
     
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -22,7 +22,7 @@ namespace WebApplication4.Models
     
         public int idTrabajo { get; set; }
         public string Nombre { get; set; }
-        public Nullable<int> Año { get; set; }
+        public Nullable<System.DateTime> Año { get; set; }
         public Nullable<int> TipoTrabajo { get; set; }
         public string Autores { get; set; }
         public string Presentacion { get; set; }
