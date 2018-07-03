@@ -161,7 +161,12 @@
                             }
                         </td>
                         <td>
-                            @item.Autores
+                            @{ 
+                                foreach(var a in item.concentrado_autores)
+                                {
+                                    <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                                }
+                            }
                         </td>
                         <td>
                             @item.tipoconcentrado1.Nombre

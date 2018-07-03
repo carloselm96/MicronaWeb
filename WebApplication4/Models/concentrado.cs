@@ -18,6 +18,7 @@ namespace WebApplication4.Models
         public concentrado()
         {
             this.concentrado_grupos = new HashSet<concentrado_grupos>();
+            this.concentrado_autores = new HashSet<concentrado_autores>();
         }
     
         public int idConcentrado { get; set; }
@@ -30,5 +31,7 @@ namespace WebApplication4.Models
         public virtual tipoconcentrado tipoconcentrado1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<concentrado_grupos> concentrado_grupos { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concentrado_autores> concentrado_autores { get; set; }
     }
 }

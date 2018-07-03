@@ -45,12 +45,16 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Autores, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <label class="control-label col-md-2">Autores</label>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Autores, new { htmlAttributes = new { @class = "form-control", required = "true" } })
-                        @Html.ValidationMessageFor(model => model.Autores, "", new { @class = "text-danger" })
+                        <select class="form-control select2" name="Autores" multiple>
+                            @foreach (var Usuario in ViewBag.autores)
+                            {
+                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                        </select>
                     </div>
-                </div>
+                </div>    
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Editorial, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -83,7 +87,7 @@
                             }
                         </select>
                     </div>
-                </div>
+                </div>                
 
                 <div class="form-group">
                     <label class="control-label col-md-2">Archivo</label>
@@ -104,9 +108,6 @@
             @Html.ActionLink("Regresar a la Lista", "Index")
         </div>
     </div>
-</div>
-<div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
 
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>

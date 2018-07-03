@@ -25,11 +25,7 @@ namespace WebApplication4.Controllers
             if (Nombre != null)
             {
                 articulos = articulos.Where(x => x.Nombre.Contains(Nombre)).ToList();
-            }
-            if (Autores != null)
-            {
-                articulos = articulos.Where(x => x.Autores.Contains(Autores)).ToList();
-            }
+            }            
             if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
@@ -84,13 +80,14 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View();
         }
 
         // POST: Articulos/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico)
+        public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
             try
@@ -133,6 +130,18 @@ namespace WebApplication4.Controllers
                         db.articulo_grupo.Add(ag);
                     }
                 }
+                if (Autores != null)
+                {
+                    foreach (var s in Autores)
+                    {
+                        articulo_usuario lb = new articulo_usuario
+                        {
+                            idArticulo = a.idArticulo,
+                            idUsuario = int.Parse(s)
+                        };
+                        db.articulo_usuario.Add(lb);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
@@ -171,8 +180,7 @@ namespace WebApplication4.Controllers
             {
                 microna2018Entities db = new microna2018Entities();
                 var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
-                articulo.Nombre = a.Nombre;
-                articulo.Autores = a.Autores;
+                articulo.Nombre = a.Nombre;                
                 articulo.Fecha = a.Fecha;                
                 articulo.ISSN = a.ISSN;
                 articulo.PagFinal = a.PagFinal;

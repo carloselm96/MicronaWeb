@@ -23,7 +23,7 @@ namespace WebApplication4.Controllers
         }*/
 
         [Authorize]
-        public ActionResult Index(string Nombre, string Autores, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
+        public ActionResult Index(string Nombre, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
         {
             if (response != null)
             {
@@ -36,10 +36,7 @@ namespace WebApplication4.Controllers
             {
                 libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
             }
-            if (Autores != null)
-            {
-                libros = libros.Where(x => x.Autores.Contains(Autores)).ToList();
-            }
+            
             if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
@@ -84,13 +81,14 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             ViewBag.tipolibro = db.tipolibro.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View();
         }
 
         // POST: Libro/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(libro lib, HttpPostedFileBase ffile, List<string> GrupoAcademico)
+        public ActionResult Create(libro lib, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
             try
@@ -121,6 +119,7 @@ namespace WebApplication4.Controllers
                 }
                 lib.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
                 db.libro.Add(lib);
+                db.SaveChanges();
                 if (GrupoAcademico != null)
                 {
                     foreach (var s in GrupoAcademico)
@@ -133,12 +132,25 @@ namespace WebApplication4.Controllers
                         db.libro_grupo.Add(ag);
                     }
                 }
+                if (Autores != null)
+                {
+                    foreach (var s in Autores)
+                    {
+                        libro_usuario lb= new libro_usuario
+                        {
+                            Id_Libro = lib.idLibro,
+                            Id_Usuario = int.Parse(s)
+                        };
+                        db.libro_usuario.Add(lb);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
-            catch
+            catch(Exception e)
             {
-                return RedirectToAction("Index", new { response = 2 });
+                return Content("" + e);
+                //return RedirectToAction("Index", new { response = 2 });
             }
         }
 
@@ -163,7 +175,7 @@ namespace WebApplication4.Controllers
 
         // POST: Libro/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, libro lib, List<string> GrupoAcademico, HttpPostedFileBase ffile)
+        public ActionResult Edit(int id, libro lib, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
             try
             {
@@ -171,9 +183,23 @@ namespace WebApplication4.Controllers
                 var l = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
                 l.Nombre = lib.Nombre;
                 l.ISBN = lib.ISBN;
-                l.TipoLibro = lib.TipoLibro;
-                l.Autores = lib.Autores;
-                l.Año = lib.Año;                
+                l.TipoLibro = lib.TipoLibro;                
+                l.Año = lib.Año;
+                var autores_eliminar = db.libro_usuario.Where(x => x.Id_Libro == id).ToList();
+                if (autores_eliminar != null)
+                {
+                    foreach (var G in autores_eliminar)
+                    {
+                        db.libro_usuario.Remove(G);
+                    }
+                }
+                if (Autores != null)
+                {
+                    foreach (var G in Autores)
+                    {
+                        db.libro_usuario.Add(new libro_usuario { Id_Libro = id, Id_Usuario = int.Parse(G) });
+                    }
+                }
                 var grupos_eliminar = db.libro_grupo.Where(x => x.id_libro == id).ToList();
                 if (grupos_eliminar != null)
                 {
@@ -223,8 +249,7 @@ namespace WebApplication4.Controllers
         }
         
 
-        // POST: Libro/Delete/5
-        [HttpPost]
+        // POST: Libro/Delete/5        
         public ActionResult Delete(int? id)
         {
             try
@@ -245,6 +270,14 @@ namespace WebApplication4.Controllers
                     foreach (var a in a_g)
                     {
                         db.libro_grupo.Remove(a);
+                    }
+                }                
+                var l_a = db.libro_usuario.Where(x => x.Id_Libro == id).ToList();
+                if (l_a != null)
+                {
+                    foreach (var a in l_a)
+                    {
+                        db.libro_usuario.Remove(a);
                     }
                 }
                 db.libro.Remove(libr);

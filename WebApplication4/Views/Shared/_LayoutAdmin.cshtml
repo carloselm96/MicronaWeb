@@ -8,6 +8,8 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
+    
+
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
@@ -31,9 +33,9 @@
     <!-- Daterange picker -->
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/bootstrap-daterangepicker/daterangepicker.css">
     <!-- bootstrap wysihtml5 - text editor -->
-    <link rel="stylesheet" runat="server" href="~/Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
+    <link rel="stylesheet" runat="server" href="~/Content/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">    
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <link href="~/Content/bower_components/select2/dist/css/select2.css" rel="stylesheet" />
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
     <script runat="server" src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
@@ -240,6 +242,8 @@
         <div class="control-sidebar-bg"></div>
     </div>
     <!-- ./wrapper -->
+    
+
     <!-- jQuery 3 -->
     <script runat="server" src="~/Content/bower_components/jquery/dist/jquery.min.js"></script>
     <!-- jQuery UI 1.11.4 -->
@@ -287,68 +291,72 @@
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-
+    <script src="~/Content/bower_components/select2/dist/js/select2.js"></script>
+    <script src="~/Content/bower_components/select2/dist/js/select2.full.js"></script>    
     <script>
-        $(function () {
-            $('#datat').DataTable({
-                dom: 'Bfrtip',
-                buttons: [                    
-                    {
-                        extend: 'excel',
-                        text: 'Guardar excel',
-                        className: 'btn btn-warning',
-                        exportOptions: {
-                            modifier: {
-                                page: 'current'
+        $(document).ready(function () {
+            $(function () {
+                $('#datat').DataTable({
+                    dom: 'Bfrtip',
+                    buttons: [
+                        {
+                            extend: 'excel',
+                            text: 'Guardar excel',
+                            className: 'btn btn-warning',
+                            exportOptions: {
+                                modifier: {
+                                    page: 'current'
+                                }
+                            }
+                        },
+                        {
+                            extend: 'pdfHtml5',
+                            text: 'Guardar PDF',
+                            className: 'btn btn-warning',
+                            exportOptions: {
+                                modifier: {
+                                    page: 'current'
+                                }
                             }
                         }
-                    },
-                    {
-                        extend: 'pdfHtml5',
-                        text: 'Guardar PDF',
-                        className: 'btn btn-warning',
-                        exportOptions: {
-                            modifier: {
-                                page: 'current'
-                            }
-                        }
-                    }                    
-                ]
+                    ]
+                })
             })
-        })
-        $(function () {
-            $('#basic2').selectpicker({
-                liveSearch: true,
-            });
-           
+            $(function () {
+                $('#basic2').selectpicker({
+                    liveSearch: true,
+                });
+                $('.select2').select2();
 
-        })
-        $(function () {
-            $('.date-picker').datepicker({
-                beforeShow: function (input, inst) {
-                    setTimeout(function () {
-                        inst.dpDiv.css({
-                            top: $(".datepicker").offset().top + 35,
-                            left: $(".datepicker").offset().left
-                        });
-                    }, 0);
-                },
-                format: "mm-yyyy",
-                startView: "months",
-                minViewMode: "months"
+            })
+            $(function () {
+                $('.date-picker').datepicker({
+                    beforeShow: function (input, inst) {
+                        setTimeout(function () {
+                            inst.dpDiv.css({
+                                top: $(".datepicker").offset().top + 35,
+                                left: $(".datepicker").offset().left
+                            });
+                        }, 0);
+                    },
+                    format: "mm-yyyy",
+                    startView: "months",
+                    minViewMode: "months"
+                });
             });
+            var update_pizza = function () {
+                if ($("#indizado").is(":selected")) {
+                    $('#ind').prop('disabled', false);
+                }
+                else {
+                    $('#ind').prop('disabled', 'disabled');
+                }
+            };
+            $(update_pizza);
+            $("#tipo_art").change(update_pizza);
+            $('[data-toggle=confirmation]').confirmation();
         });
-        var update_pizza = function () {
-            if ($("#indizado").is(":selected")) {
-                $('#ind').prop('disabled', false);
-            }
-            else {
-                $('#ind').prop('disabled', 'disabled');
-            }
-        };
-        $(update_pizza);
-        $("#tipo_art").change(update_pizza);
-        $('[data-toggle=confirmation]').confirmation();
+       
     </script>
     <script src="~/Content/site.js"></script>
     <script src="~/Content/TableExcel.js"></script>

@@ -18,11 +18,11 @@ namespace WebApplication4.Models
         public articulo()
         {
             this.articulo_grupo = new HashSet<articulo_grupo>();
+            this.articulo_usuario = new HashSet<articulo_usuario>();
         }
     
         public int idArticulo { get; set; }
         public string Nombre { get; set; }
-        public string Autores { get; set; }
         public Nullable<int> Volumen { get; set; }
         public Nullable<int> PagInicio { get; set; }
         public Nullable<int> PagFinal { get; set; }
@@ -39,5 +39,7 @@ namespace WebApplication4.Models
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
         public virtual tipoarticulo tipoarticulo1 { get; set; }
         public virtual usuario usuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<articulo_usuario> articulo_usuario { get; set; }
     }
 }

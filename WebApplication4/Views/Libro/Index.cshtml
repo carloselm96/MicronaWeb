@@ -95,7 +95,7 @@
                         @Html.DisplayNameFor(model => model.ISBN)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Autores)
+                        
                     </th>              
                     <th>
                         Editorial
@@ -128,7 +128,12 @@
                         @Html.DisplayFor(modelItem => item.ISBN)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Autores)
+                        @{
+                            foreach (var a in item.libro_usuario)
+                            {
+                                <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                            }
+                        }
                     </td>                   
                     <td>
                         @Html.DisplayFor(modelItem => item.Editorial)
@@ -175,7 +180,7 @@
                         @Html.DisplayNameFor(model => model.ISBN)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Autores)
+                        Autores
                     </th>
                     <th>
                         Editorial

@@ -18,13 +18,13 @@ namespace WebApplication4.Models
         public libro()
         {
             this.libro_grupo = new HashSet<libro_grupo>();
+            this.libro_usuario = new HashSet<libro_usuario>();
         }
     
         public int idLibro { get; set; }
         public string Nombre { get; set; }
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
-        public string Autores { get; set; }
         public Nullable<int> TipoLibro { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
@@ -36,5 +36,7 @@ namespace WebApplication4.Models
         public virtual ICollection<libro_grupo> libro_grupo { get; set; }
         public virtual tipolibro tipolibro1 { get; set; }
         public virtual usuario usuario1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<libro_usuario> libro_usuario { get; set; }
     }
 }

@@ -8203,6 +8203,9 @@
     <Compile Include="Models\articulo_grupo.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\articulo_usuario.cs">
+      <DependentUpon>MicronaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\capitulolibro.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
@@ -8210,6 +8213,9 @@
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\concentrado.cs">
+      <DependentUpon>MicronaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\concentrado_autores.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\concentrado_grupos.cs">
@@ -8222,6 +8228,9 @@
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\libro_grupo.cs">
+      <DependentUpon>MicronaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\libro_usuario.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\MicronaDB.Context.cs">

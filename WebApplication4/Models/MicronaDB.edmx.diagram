@@ -52,6 +52,15 @@
         <AssociationConnector Association="microna2018Model.FK_Usuario_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Trabajo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_TrabajoGrupo_Trabajo" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="microna2018Model.libro_usuario" Width="1.5" PointX="13.5" PointY="11.125" />
+        <AssociationConnector Association="microna2018Model.FK_Autor_Libro" />
+        <AssociationConnector Association="microna2018Model.FK_Libro_Autor" />
+        <EntityTypeShape EntityType="microna2018Model.concentrado_autores" Width="1.5" PointX="13.5" PointY="7.75" />
+        <AssociationConnector Association="microna2018Model.FK_Autor_Con" />
+        <AssociationConnector Association="microna2018Model.FK_Con_Autor" />
+        <EntityTypeShape EntityType="microna2018Model.articulo_usuario" Width="1.5" PointX="0.75" PointY="0.75" />
+        <AssociationConnector Association="microna2018Model.FK_ArtUs_Art" />
+        <AssociationConnector Association="microna2018Model.FK_ArtUs_Us" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
