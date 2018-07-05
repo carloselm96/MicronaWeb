@@ -18,11 +18,11 @@ namespace WebApplication4.Models
         public proyectos()
         {
             this.proyecto_grupo = new HashSet<proyecto_grupo>();
+            this.proyecto_usuario = new HashSet<proyecto_usuario>();
         }
     
         public int idProyecto { get; set; }
         public string nombre { get; set; }
-        public string Responsables { get; set; }
         public string Financiamiento { get; set; }
         public Nullable<System.DateTime> FechaInicio { get; set; }
         public Nullable<System.DateTime> FechaFinal { get; set; }
@@ -33,6 +33,8 @@ namespace WebApplication4.Models
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyecto_grupo> proyecto_grupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proyecto_usuario> proyecto_usuario { get; set; }
         public virtual usuario usuario1 { get; set; }
     }
 }

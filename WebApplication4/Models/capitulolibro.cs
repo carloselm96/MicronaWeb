@@ -18,11 +18,11 @@ namespace WebApplication4.Models
         public capitulolibro()
         {
             this.capitulo_grupo = new HashSet<capitulo_grupo>();
+            this.capitulo_usuario = new HashSet<capitulo_usuario>();
         }
     
         public int idCapituloLibro { get; set; }
         public string Nombre { get; set; }
-        public string Autores { get; set; }
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         public string Participantes { get; set; }
@@ -33,6 +33,8 @@ namespace WebApplication4.Models
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<capitulo_grupo> capitulo_grupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<capitulo_usuario> capitulo_usuario { get; set; }
         public virtual usuario usuario1 { get; set; }
     }
 }

@@ -18,13 +18,16 @@ namespace WebApplication4.Models
         public usuario()
         {
             this.articulo = new HashSet<articulo>();
+            this.articulo_usuario = new HashSet<articulo_usuario>();
+            this.capitulo_usuario = new HashSet<capitulo_usuario>();
             this.capitulolibro = new HashSet<capitulolibro>();
+            this.concentrado_autores = new HashSet<concentrado_autores>();
             this.libro = new HashSet<libro>();
+            this.libro_usuario = new HashSet<libro_usuario>();
+            this.proyecto_usuario = new HashSet<proyecto_usuario>();
             this.proyectos = new HashSet<proyectos>();
             this.trabajo = new HashSet<trabajo>();
-            this.libro_usuario = new HashSet<libro_usuario>();
-            this.concentrado_autores = new HashSet<concentrado_autores>();
-            this.articulo_usuario = new HashSet<articulo_usuario>();
+            this.trabajo_usuario = new HashSet<trabajo_usuario>();
         }
     
         public int idUsuario { get; set; }
@@ -39,19 +42,25 @@ namespace WebApplication4.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo> articulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<articulo_usuario> articulo_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<capitulo_usuario> capitulo_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<capitulolibro> capitulolibro { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<concentrado_autores> concentrado_autores { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<libro> libro { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<libro_usuario> libro_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<proyecto_usuario> proyecto_usuario { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<proyectos> proyectos { get; set; }
         public virtual tipousuario tipousuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trabajo> trabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<libro_usuario> libro_usuario { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<concentrado_autores> concentrado_autores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<articulo_usuario> articulo_usuario { get; set; }
+        public virtual ICollection<trabajo_usuario> trabajo_usuario { get; set; }
     }
 }

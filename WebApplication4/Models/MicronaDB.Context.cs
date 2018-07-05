@@ -28,14 +28,19 @@ namespace WebApplication4.Models
         public virtual DbSet<archivo> archivo { get; set; }
         public virtual DbSet<articulo> articulo { get; set; }
         public virtual DbSet<articulo_grupo> articulo_grupo { get; set; }
+        public virtual DbSet<articulo_usuario> articulo_usuario { get; set; }
         public virtual DbSet<capitulo_grupo> capitulo_grupo { get; set; }
+        public virtual DbSet<capitulo_usuario> capitulo_usuario { get; set; }
         public virtual DbSet<capitulolibro> capitulolibro { get; set; }
         public virtual DbSet<concentrado> concentrado { get; set; }
+        public virtual DbSet<concentrado_autores> concentrado_autores { get; set; }
         public virtual DbSet<concentrado_grupos> concentrado_grupos { get; set; }
         public virtual DbSet<grupoacademico> grupoacademico { get; set; }
         public virtual DbSet<libro> libro { get; set; }
         public virtual DbSet<libro_grupo> libro_grupo { get; set; }
+        public virtual DbSet<libro_usuario> libro_usuario { get; set; }
         public virtual DbSet<proyecto_grupo> proyecto_grupo { get; set; }
+        public virtual DbSet<proyecto_usuario> proyecto_usuario { get; set; }
         public virtual DbSet<proyectos> proyectos { get; set; }
         public virtual DbSet<tipoarticulo> tipoarticulo { get; set; }
         public virtual DbSet<tipoconcentrado> tipoconcentrado { get; set; }
@@ -44,9 +49,7 @@ namespace WebApplication4.Models
         public virtual DbSet<tipousuario> tipousuario { get; set; }
         public virtual DbSet<trabajo> trabajo { get; set; }
         public virtual DbSet<trabajo_grupo> trabajo_grupo { get; set; }
+        public virtual DbSet<trabajo_usuario> trabajo_usuario { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
-        public virtual DbSet<libro_usuario> libro_usuario { get; set; }
-        public virtual DbSet<concentrado_autores> concentrado_autores { get; set; }
-        public virtual DbSet<articulo_usuario> articulo_usuario { get; set; }
     }
 }

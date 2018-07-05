@@ -4,27 +4,33 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="743ac65c6b114f96af028ee720b6d17a" Name="Diagram1">
-        <EntityTypeShape EntityType="microna2018Model.archivo" Width="1.5" PointX="3" PointY="7" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.articulo" Width="1.5" PointX="5.25" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.articulo_grupo" Width="1.5" PointX="10.5" PointY="13.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.capitulo_grupo" Width="1.5" PointX="10.5" PointY="16.5" IsExpanded="true" />
+      <Diagram DiagramId="76dbc3fa38b243b9887a5e4fa5bb9779" Name="Diagram1">
+        <EntityTypeShape EntityType="microna2018Model.archivo" Width="1.5" PointX="3" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.articulo" Width="1.5" PointX="5.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.articulo_grupo" Width="1.5" PointX="7.5" PointY="23.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.articulo_usuario" Width="1.5" PointX="13.5" PointY="18.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.capitulo_grupo" Width="1.5" PointX="13.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.capitulo_usuario" Width="1.5" PointX="8.25" PointY="17.375" IsExpanded="true" />
         <EntityTypeShape EntityType="microna2018Model.capitulolibro" Width="1.5" PointX="8.25" PointY="12.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.concentrado" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.concentrado_grupos" Width="1.5" PointX="10.5" PointY="2.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.grupoacademico" Width="1.5" PointX="8.25" PointY="4.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.libro" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.libro_grupo" Width="1.5" PointX="10.5" PointY="8.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.proyecto_grupo" Width="1.5" PointX="7.5" PointY="18.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.proyectos" Width="1.5" PointX="5.25" PointY="17.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.tipoarticulo" Width="1.5" PointX="3" PointY="17.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.tipoconcentrado" Width="1.5" PointX="6" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.tipolibro" Width="1.5" PointX="3" PointY="4.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.tipotrabajo" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.tipousuario" Width="1.5" PointX="0.75" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.trabajo" Width="1.5" PointX="8.25" PointY="7.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.trabajo_grupo" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.usuario" Width="1.5" PointX="3" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.concentrado" Width="1.5" PointX="6" PointY="27.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.concentrado_autores" Width="1.5" PointX="8.25" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.concentrado_grupos" Width="1.5" PointX="13.25" PointY="21.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.grupoacademico" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.libro" Width="1.5" PointX="5.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.libro_grupo" Width="1.5" PointX="7.5" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.libro_usuario" Width="1.5" PointX="10.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.proyecto_grupo" Width="1.5" PointX="16.5" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.proyecto_usuario" Width="1.5" PointX="5.25" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.proyectos" Width="1.5" PointX="11.25" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.tipoarticulo" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.tipoconcentrado" Width="1.5" PointX="3.75" PointY="27.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.tipolibro" Width="1.5" PointX="3" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.tipotrabajo" Width="1.5" PointX="9" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.tipousuario" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.trabajo" Width="1.5" PointX="11.25" PointY="11.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.trabajo_grupo" Width="1.5" PointX="13.5" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.trabajo_usuario" Width="1.5" PointX="13.5" PointY="15.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.usuario" Width="1.5" PointX="3" PointY="16" IsExpanded="true" />
         <AssociationConnector Association="microna2018Model.FK_Articulo_Archivo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Capitulo_Archivo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Libro_Archivo" ManuallyRouted="false" />
@@ -33,12 +39,18 @@
         <AssociationConnector Association="microna2018Model.FK_ARTGRU_ART" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Articulo_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Articulo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_ArtUs_Art" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_ARTGRU_GRUPO" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_ArtUs_Us" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Cap_Grupo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Grupo_Cap" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_CapUs_Capitulo" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_CapUs_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Capitulo_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_Autor_Con" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Concentrado_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Grupo_Concentrado" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_Con_Autor" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Concentrado_Grupo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Grupo_Lib" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Grupo_Proyecto" ManuallyRouted="false" />
@@ -46,21 +58,18 @@
         <AssociationConnector Association="microna2018Model.FK_Lib_Grupo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Libro_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Libro_Usuario" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_LibUs_Libro" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_LibUs_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Proyecto_Grupo" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_ProUs_Proyecto" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_ProUs_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Proyectos_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Trabajo_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Usuario_Tipo" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_Trabajo_Usuario" ManuallyRouted="false" />
         <AssociationConnector Association="microna2018Model.FK_TrabajoGrupo_Trabajo" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="microna2018Model.libro_usuario" Width="1.5" PointX="13.5" PointY="11.125" />
-        <AssociationConnector Association="microna2018Model.FK_Autor_Libro" />
-        <AssociationConnector Association="microna2018Model.FK_Libro_Autor" />
-        <EntityTypeShape EntityType="microna2018Model.concentrado_autores" Width="1.5" PointX="13.5" PointY="7.75" />
-        <AssociationConnector Association="microna2018Model.FK_Autor_Con" />
-        <AssociationConnector Association="microna2018Model.FK_Con_Autor" />
-        <EntityTypeShape EntityType="microna2018Model.articulo_usuario" Width="1.5" PointX="0.75" PointY="0.75" />
-        <AssociationConnector Association="microna2018Model.FK_ArtUs_Art" />
-        <AssociationConnector Association="microna2018Model.FK_ArtUs_Us" />
+        <AssociationConnector Association="microna2018Model.FK_TrabUsu_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="microna2018Model.FK_TrabUsu_Usuario" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
