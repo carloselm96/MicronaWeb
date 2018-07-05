@@ -174,7 +174,7 @@ namespace WebApplication4.Controllers
         // POST: Articulos/Edit/5
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id,articulo a, List<string> GrupoAcademico, HttpPostedFileBase ffile)
+        public ActionResult Edit(int id,articulo a, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {            
             try
             {
@@ -187,7 +187,22 @@ namespace WebApplication4.Controllers
                 articulo.PagInicio = a.PagInicio;
                 articulo.Revista = a.Revista;
                 articulo.Volumen = a.Volumen;
-                articulo.TipoArticulo = a.TipoArticulo;                
+                articulo.TipoArticulo = a.TipoArticulo;
+                var autores_eliminar = db.articulo_usuario.Where(x => x.idArticulo == id).ToList();
+                if (autores_eliminar != null)
+                {
+                    foreach (var G in autores_eliminar)
+                    {
+                        db.articulo_usuario.Remove(G);
+                    }
+                }
+                if (Autores != null)
+                {
+                    foreach (var G in Autores)
+                    {
+                        db.articulo_usuario.Add(new articulo_usuario { idArticulo = id, idUsuario = int.Parse(G) });
+                    }
+                }
                 var grupos_eliminar= db.articulo_grupo.Where(x=> x.id_articulo==id).ToList();
                 if (grupos_eliminar != null)
                 {

@@ -138,8 +138,8 @@ namespace WebApplication4.Controllers
                     {
                         libro_usuario lb= new libro_usuario
                         {
-                            Id_Libro = lib.idLibro,
-                            Id_Usuario = int.Parse(s)
+                            idLibro = lib.idLibro,
+                            idUsuario = int.Parse(s)
                         };
                         db.libro_usuario.Add(lb);
                     }
@@ -170,6 +170,7 @@ namespace WebApplication4.Controllers
             a.libro_grupo = db.libro_grupo.Where(x => x.id_libro == id).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipolibro = db.tipolibro.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View(a);
         }
 
@@ -185,7 +186,7 @@ namespace WebApplication4.Controllers
                 l.ISBN = lib.ISBN;
                 l.TipoLibro = lib.TipoLibro;                
                 l.Año = lib.Año;
-                var autores_eliminar = db.libro_usuario.Where(x => x.Id_Libro == id).ToList();
+                var autores_eliminar = db.libro_usuario.Where(x => x.idLibro == id).ToList();
                 if (autores_eliminar != null)
                 {
                     foreach (var G in autores_eliminar)
@@ -197,7 +198,7 @@ namespace WebApplication4.Controllers
                 {
                     foreach (var G in Autores)
                     {
-                        db.libro_usuario.Add(new libro_usuario { Id_Libro = id, Id_Usuario = int.Parse(G) });
+                        db.libro_usuario.Add(new libro_usuario { idLibro = id, idUsuario = int.Parse(G) });
                     }
                 }
                 var grupos_eliminar = db.libro_grupo.Where(x => x.id_libro == id).ToList();
@@ -272,7 +273,7 @@ namespace WebApplication4.Controllers
                         db.libro_grupo.Remove(a);
                     }
                 }                
-                var l_a = db.libro_usuario.Where(x => x.Id_Libro == id).ToList();
+                var l_a = db.libro_usuario.Where(x => x.idLibro == id).ToList();
                 if (l_a != null)
                 {
                     foreach (var a in l_a)

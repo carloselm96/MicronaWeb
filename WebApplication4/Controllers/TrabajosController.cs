@@ -98,7 +98,7 @@ namespace WebApplication4.Controllers
 
         // POST: Trabajos/Create
         [HttpPost]
-        public ActionResult Create(trabajo t, HttpPostedFileBase ffile, List<string> GrupoAcademico)
+        public ActionResult Create(trabajo t, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
             try
@@ -127,7 +127,8 @@ namespace WebApplication4.Controllers
                     t.Archivo = file.idarchivo;
                 }
                 t.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
-                db.trabajo.Add(t);                
+                db.trabajo.Add(t);     
+                
                 if (GrupoAcademico != null)
                 {
                     foreach (var s in GrupoAcademico)
@@ -140,7 +141,19 @@ namespace WebApplication4.Controllers
                         db.trabajo_grupo.Add(ag);
                     }
                 }
-                db.SaveChanges();
+                if (Autores != null)
+                {
+                    foreach (var s in Autores)
+                    {
+                        trabajo_usuario lb = new trabajo_usuario
+                        {
+                            idTrabajo = t.idTrabajo,
+                            idUsuario = int.Parse(s)
+                        };
+                        db.trabajo_usuario.Add(lb);
+                    }
+                }
+                    db.SaveChanges();
                 return RedirectToAction("Index", new { result = 1 });
             }
             catch(Exception e)
@@ -166,13 +179,14 @@ namespace WebApplication4.Controllers
             a.trabajo_grupo = db.trabajo_grupo.Where(x => x.id_trabajo == id).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipo = db.tipotrabajo.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View(a);
         }
 
         // POST: Trabajos/Edit/5
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico, HttpPostedFileBase ffile)
+        public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
             try
             {
@@ -195,6 +209,21 @@ namespace WebApplication4.Controllers
                     foreach (var G in GrupoAcademico)
                     {
                         db.trabajo_grupo.Add(new trabajo_grupo { id_trabajo = id, id_grupo = int.Parse(G) });
+                    }
+                }
+                var autores_eliminar = db.trabajo_usuario.Where(x => x.idTrabajo == id).ToList();
+                if (autores_eliminar != null)
+                {
+                    foreach (var G in autores_eliminar)
+                    {
+                        db.trabajo_usuario.Remove(G);
+                    }
+                }
+                if (Autores != null)
+                {
+                    foreach (var G in Autores)
+                    {
+                        db.trabajo_usuario.Add(new trabajo_usuario { idTrabajo = id, idUsuario = int.Parse(G) });
                     }
                 }
                 if (ffile != null && ffile.ContentLength > 0)

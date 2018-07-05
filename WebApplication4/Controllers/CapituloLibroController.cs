@@ -39,7 +39,7 @@ namespace WebApplication4.Controllers
             }
             if (Autores != null)
             {
-                libros = libros.Where(x => x.Autores.Contains(Autores)).ToList();
+                //libros = libros.Where(x => x.Autores.Contains(Autores)).ToList();
             }            
             if (Y1 != null)
             {
@@ -90,13 +90,14 @@ namespace WebApplication4.Controllers
         {
             microna2018Entities db = new microna2018Entities();            
             ViewBag.grupo = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View();
         }
 
         // POST: CapituloLibro/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(capitulolibro lib, HttpPostedFileBase ffile, List<string> GrupoAcademico)
+        public ActionResult Create(capitulolibro lib, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
             try
@@ -139,6 +140,18 @@ namespace WebApplication4.Controllers
                         db.capitulo_grupo.Add(ag);
                     }
                 }
+                if (Autores != null)
+                {
+                    foreach (var s in Autores)
+                    {
+                        capitulo_usuario lb = new capitulo_usuario
+                        {
+                            idCapitulo = lib.idCapituloLibro,
+                            idUsuario = int.Parse(s)
+                        };
+                        db.capitulo_usuario.Add(lb);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
@@ -170,17 +183,31 @@ namespace WebApplication4.Controllers
         // POST: CapituloLibro/Edit/5
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id, capitulolibro lib, List<string> GrupoAcademico, HttpPostedFileBase ffile)
+        public ActionResult Edit(int id, capitulolibro lib, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
             try
             {
                 microna2018Entities db = new microna2018Entities();
                 var l = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
                 l.Nombre = lib.Nombre;
-                l.ISBN = lib.ISBN;                
-                l.Autores = lib.Autores;
+                l.ISBN = lib.ISBN;                                
                 l.Participantes = lib.Participantes;
                 l.Año = lib.Año;
+                var autores_eliminar = db.capitulo_usuario.Where(x => x.idCapitulo == id).ToList();
+                if (autores_eliminar != null)
+                {
+                    foreach (var G in autores_eliminar)
+                    {
+                        db.capitulo_usuario.Remove(G);
+                    }
+                }
+                if (Autores != null)
+                {
+                    foreach (var G in Autores)
+                    {
+                        db.capitulo_usuario.Add(new capitulo_usuario { idCapitulo = id, idUsuario = int.Parse(G) });
+                    }
+                }
                 var grupos_eliminar = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
                 if (grupos_eliminar != null)
                 {

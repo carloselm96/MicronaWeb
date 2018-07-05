@@ -12,7 +12,7 @@ namespace WebApplication4.Controllers
     {
         // GET: Proyectos
         [Authorize]
-        public ActionResult Index(string Nombre, string Autores, string Lugar, int? Y1, int? Y2, string response, List<string> grupos)
+        public ActionResult Index(string Nombre, string Autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
         {
             if (response != null)
             {
@@ -27,16 +27,16 @@ namespace WebApplication4.Controllers
             }
             if (Autores != null)
             {
-                proyect = proyect.Where(x => x.Responsables.Contains(Autores)).ToList();
+                //proyect = proyect.Where(x => x.Responsables.Contains(Autores)).ToList();
             }            
             if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
-                proyect = proyect.Where(x => x.FechaInicio.Value.Year >= Y1).ToList();
+                proyect = proyect.Where(x => x.FechaInicio >= Y1).ToList();
             }
             if (Y2 != null)
             {
-                proyect = proyect.Where(x => x.FechaFinal.Value.Year <= Y2).ToList();
+                proyect = proyect.Where(x => x.FechaFinal <= Y2).ToList();
             }
             if (grupos != null)
             {
@@ -82,13 +82,14 @@ namespace WebApplication4.Controllers
         {
             microna2018Entities db = new microna2018Entities();            
             ViewBag.grupo = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View();
         }
 
         // POST: Proyectos/Create
         [Authorize]
         [HttpPost]
-        public ActionResult Create(proyectos pro, HttpPostedFileBase ffile, List<string> GrupoAcademico)
+        public ActionResult Create(proyectos pro, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
             try
@@ -131,6 +132,18 @@ namespace WebApplication4.Controllers
                         db.proyecto_grupo.Add(ag);
                     }
                 }
+                if (Autores != null)
+                {
+                    foreach (var s in Autores)
+                    {
+                        proyecto_usuario lb = new proyecto_usuario
+                        {
+                            idproyecto = pro.idProyecto,
+                            idusuario = int.Parse(s)
+                        };
+                        db.proyecto_usuario.Add(lb);
+                    }
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
@@ -170,17 +183,31 @@ namespace WebApplication4.Controllers
         // POST: Proyectos/Edit/5
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(int id, proyectos pro, List<string> GrupoAcademico, HttpPostedFileBase ffile)
+        public ActionResult Edit(int id, proyectos pro, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
             try
             {
                 microna2018Entities db = new microna2018Entities();
                 var p = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
-                p.nombre = pro.nombre;
-                p.Responsables = pro.Responsables;
+                p.nombre = pro.nombre;                
                 p.FechaFinal = pro.FechaFinal;
                 p.FechaInicio = pro.FechaInicio;
-                p.Financiamiento = pro.Financiamiento;                
+                p.Financiamiento = pro.Financiamiento;
+                var autores_eliminar = db.proyecto_usuario.Where(x => x.idproyecto == id).ToList();
+                if (autores_eliminar != null)
+                {
+                    foreach (var G in autores_eliminar)
+                    {
+                        db.proyecto_usuario.Remove(G);
+                    }
+                }
+                if (Autores != null)
+                {
+                    foreach (var G in Autores)
+                    {
+                        db.proyecto_usuario.Add(new proyecto_usuario { idproyecto = id, idusuario = int.Parse(G) });
+                    }
+                }
                 var grupos_eliminar = db.proyecto_grupo.Where(x => x.id_proyecto == id).ToList();
                 if (grupos_eliminar != null)
                 {
