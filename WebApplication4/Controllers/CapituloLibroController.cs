@@ -24,7 +24,7 @@ namespace WebApplication4.Controllers
         }*/
 
         [Authorize]        
-        public ActionResult Index(string Nombre, string Autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, string Libro)
+        public ActionResult Index(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, string Libro)
         {            
             if (response != null)
             {
@@ -32,15 +32,13 @@ namespace WebApplication4.Controllers
             }
             microna2018Entities db = new microna2018Entities();
             ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
+            ViewBag.tipo = db.tipolibro.ToList();
             List<capitulolibro> libros = db.capitulolibro.ToList();
             if (Nombre != null)
             {
                 libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
-            }
-            if (Autores != null)
-            {
-                //libros = libros.Where(x => x.Autores.Contains(Autores)).ToList();
-            }            
+            }                 
             if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
@@ -69,6 +67,21 @@ namespace WebApplication4.Controllers
                     libros = libros.Where(x => cg.Contains(x)).ToList();
                 }
             }
+            if (autores != null)
+            {
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.capitulo_usuario.Where(x => x.idUsuario == i).ToList();
+                    List<capitulolibro> cg = new List<capitulolibro>();
+                    foreach (var cap in g)
+                    {
+                        capitulolibro sample = db.capitulolibro.Where(x => x.idCapituloLibro == cap.idCapitulo).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    libros = libros.Where(x => cg.Contains(x)).ToList();
+                }
+            }                       
             return View(libros);
         }
         // GET: CapituloLibro/Details/5
@@ -176,6 +189,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
             a.capitulo_grupo = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
+            ViewBag.autores = db.usuario.ToList();
             ViewBag.grupos = db.grupoacademico.ToList();            
             return View(a);
         }

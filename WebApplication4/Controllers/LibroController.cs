@@ -23,13 +23,14 @@ namespace WebApplication4.Controllers
         }*/
 
         [Authorize]
-        public ActionResult Index(string Nombre, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
+        public ActionResult Index(string Nombre, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, List<string> autores)
         {
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
             microna2018Entities db = new microna2018Entities();
+            ViewBag.autores = db.usuario.ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             List<libro> libros = db.libro.ToList();
             if (Nombre != null)
@@ -56,6 +57,21 @@ namespace WebApplication4.Controllers
                     foreach (var cap in g)
                     {
                         libro sample = db.libro.Where(x => x.idLibro == cap.id_libro).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    libros = libros.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            if (autores != null)
+            {
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.libro_usuario.Where(x => x.idUsuario == i).ToList();
+                    List<libro> cg = new List<libro>();
+                    foreach (var cap in g)
+                    {
+                        libro sample = db.libro.Where(x => x.idLibro == cap.idLibro).FirstOrDefault();
                         cg.Add(sample);
                     }
                     libros = libros.Where(x => cg.Contains(x)).ToList();

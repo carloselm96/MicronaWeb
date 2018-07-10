@@ -38,10 +38,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-7">
+                <div class="col-md-6">
                     <div class="form-group">
-                        <h4><b>Autor:</b></h4>
-                        <input name="autores" type="text" placeholder="Insertar autor" class="form-control" />
+                        <h4><b>Autores:</b></h4>
+                        
+                            <select class="form-control select2" name="autores" multiple>
+                                @foreach (var Usuario in ViewBag.autores)
+                                {
+                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                }
+                            </select>                        
                     </div>
                 </div>
             </div>

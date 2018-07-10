@@ -13,7 +13,7 @@ namespace WebApplication4.Controllers
         // GET: Trabajos
   
         [Authorize]
-        public ActionResult Index(string Nombre, string Autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, string tipo)
+        public ActionResult Index(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, string tipo)
         {
             if (response != null)
             {
@@ -22,14 +22,26 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipos = db.tipotrabajo.ToList();
+            ViewBag.autores = db.usuario.ToList();
             List<trabajo> trabajos = db.trabajo.ToList();
             if (Nombre != null)
             {
                 trabajos = trabajos.Where(x => x.Nombre.Contains(Nombre)).ToList();
             }
-            if (Autores != null)
+            if (autores != null)
             {
-                trabajos = trabajos.Where(x => x.Autores.Contains(Autores)).ToList();
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.trabajo_usuario.Where(x => x.idUsuario == i).ToList();
+                    List<trabajo> cg = new List<trabajo>();
+                    foreach (var cap in g)
+                    {
+                        trabajo sample = db.trabajo.Where(x => x.idTrabajo == cap.idTrabajo).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    trabajos = trabajos.Where(x => cg.Contains(x)).ToList();
+                }
             }
             if (Lugar != null)
             {
@@ -93,6 +105,7 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             ViewBag.tipo = db.tipotrabajo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             return View();
         }
 

@@ -13,10 +13,11 @@ namespace WebApplication4.Controllers
     {
         // GET: Home        
         [Authorize]
-        public ActionResult Index(string titulo, DateTime? Y1, DateTime? Y2, string autores, int?[] checkgroup, int?[] checktype)
+        public ActionResult Index(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
         {
             microna2018Entities db = new microna2018Entities();
             var concent = db.concentrado.ToList();
+            ViewBag.autores = db.usuario.ToList();
             if (titulo != null)
             {
                 concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();
@@ -55,6 +56,21 @@ namespace WebApplication4.Controllers
                     }                    
                 }
                 concent = ct;
+            }
+            if (autores != null)
+            {
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();
+                    List<concentrado> cg = new List<concentrado>();
+                    foreach (var cap in g)
+                    {
+                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == cap.idConcentrado).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    concent = concent.Where(x => cg.Contains(x)).ToList();
+                }
             }
             return View(concent);
         }

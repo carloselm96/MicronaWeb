@@ -20,9 +20,14 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Autores:</label>
-                        <input id="autorSearch" name="Autores" type="text" class="form-control" style="width: 100%;" />
+                    <div class="form-group">                                                
+                            <label>Autores</label>
+                            <select class="form-control select2" name="autores" multiple style="width:100%">
+                                @foreach (var Usuario in ViewBag.autores)
+        {
+                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+}
+                            </select>                        
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -64,7 +69,7 @@
                             }
                         </select>
                     </div>
-                </div>
+                </div>               
                 <div class="col-md-3">
                     <div class="form-group">
                         <label>Año:</label>
@@ -124,6 +129,9 @@
                                 Páginas
                             </th>
                             <th>
+                                Autores
+                            </th>
+                            <th>
                                 @Html.DisplayNameFor(model => model.Revista)
                             </th>                            
                             <th>
@@ -156,6 +164,14 @@
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.PagInicio)-@Html.DisplayFor(modelItem => item.PagFinal)
+                                </td>
+                                <td>
+                                    @{ 
+                                        foreach(var a in item.articulo_usuario)
+                                        {
+                                            <p>@a.usuario.Nombre @a.usuario.Apellido_Materno @a.usuario.Apellido_Paterno</p>
+                                        }
+                                    }
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Revista)
@@ -204,6 +220,9 @@
                             </th>
                             <th>
                                 Páginas
+                            </th>
+                            <th>
+                                Autores
                             </th>
                             <th>
                                 @Html.DisplayNameFor(model => model.Revista)

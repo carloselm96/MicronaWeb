@@ -12,7 +12,7 @@ namespace WebApplication4.Controllers
     {
         // GET: Articulos
         [Authorize]
-        public ActionResult Index(string response,string Nombre, string Autores, string Revista, DateTime? Y1, DateTime? Y2, List<string> grupos, string tipo)
+        public ActionResult Index(string response,string Nombre, List<string> autores, string Revista, DateTime? Y1, DateTime? Y2, List<string> grupos, string tipo)
         {            
             if (response != null)
             {
@@ -20,6 +20,7 @@ namespace WebApplication4.Controllers
             }
             microna2018Entities db = new microna2018Entities();
             ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             ViewBag.tipo = db.tipoarticulo.ToList();
             var articulos = db.articulo.ToList();
             if (Nombre != null)
@@ -38,11 +39,7 @@ namespace WebApplication4.Controllers
             if (Revista != null)
             {
                 articulos = articulos.Where(x => x.Revista.Contains(Revista)).ToList();
-            }
-            if (tipo != null)
-            {
-                articulos = articulos.Where(x => x.TipoArticulo==(int.Parse(tipo))).ToList();
-            }
+            }            
             if (grupos != null)
             {
                 foreach (string s in grupos)
@@ -53,6 +50,25 @@ namespace WebApplication4.Controllers
                     foreach (var cap in g)
                     {
                         articulo sample = db.articulo.Where(x => x.idArticulo == cap.id_articulo).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    articulos = articulos.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            if (tipo != null)
+            {
+                articulos = articulos.Where(x => x.TipoArticulo == int.Parse(tipo)).ToList();
+            }
+            if (autores != null)
+            {
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.articulo_usuario.Where(x => x.idUsuario == i).ToList();
+                    List<articulo> cg = new List<articulo>();
+                    foreach (var cap in g)
+                    {
+                        articulo sample = db.articulo.Where(x => x.idArticulo == cap.idArticulo).FirstOrDefault();
                         cg.Add(sample);
                     }
                     articulos = articulos.Where(x => cg.Contains(x)).ToList();
@@ -167,6 +183,7 @@ namespace WebApplication4.Controllers
             }
             a.articulo_grupo = db.articulo_grupo.Where(x => x.id_articulo == id).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             return View(a);
         }

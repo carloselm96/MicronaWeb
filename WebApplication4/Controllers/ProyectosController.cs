@@ -12,24 +12,36 @@ namespace WebApplication4.Controllers
     {
         // GET: Proyectos
         [Authorize]
-        public ActionResult Index(string Nombre, string Autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
+        public ActionResult Index(string Nombre, List <string> autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
         {
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
             microna2018Entities db = new microna2018Entities();
-            ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
+            ViewBag.grupos = db.grupoacademico.ToList();            
             List<proyectos> proyect = db.proyectos.ToList();
             if (Nombre != null)
             {
                 proyect = proyect.Where(x => x.nombre.Contains(Nombre)).ToList();
             }
-            if (Autores != null)
+            if (autores != null)
             {
-                //proyect = proyect.Where(x => x.Responsables.Contains(Autores)).ToList();
-            }            
-            if (Y1 != null)
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.proyecto_usuario.Where(x => x.idusuario == i).ToList();
+                    List<proyectos> cg = new List<proyectos>();
+                    foreach (var cap in g)
+                    {
+                        proyectos sample = db.proyectos.Where(x => x.idProyecto == cap.idproyecto).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    proyect = proyect.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+                if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
                 proyect = proyect.Where(x => x.FechaInicio >= Y1).ToList();
@@ -172,6 +184,7 @@ namespace WebApplication4.Controllers
                 }
                 a.proyecto_grupo = db.proyecto_grupo.Where(x => x.id_proyecto == id).ToList();
                 ViewBag.grupos = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
                 return View(a);
             }
             catch

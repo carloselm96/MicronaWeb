@@ -72,15 +72,26 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                Subido por
             </dt>
 
             <dd>
                 @Html.DisplayFor(model => model.usuario1.Nombre)
             </dd>
+            <dt>
+                Autores
+            </dt>
+            <dd>
+                @{ 
+                    foreach(var a in Model.trabajo_usuario)
+                    {
+                        <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                    }
+                }
+            </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                Archivo
             </dt>
 
             <dd>

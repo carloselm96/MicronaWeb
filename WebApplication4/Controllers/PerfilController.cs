@@ -26,7 +26,7 @@ namespace WebApplication4.Controllers
                 
 
         // GET: Perfil/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? response)
         {
             if (id == null)
             {
@@ -35,6 +35,10 @@ namespace WebApplication4.Controllers
             if (id != int.Parse(Request.Cookies["userInfo"]["id"]))
             {
                 return RedirectToAction("Index", "Home", null);
+            }
+            if (response != null)
+            {
+                ViewBag.result = "El nombre de usuario ya existe";
             }
             microna2018Entities db = new microna2018Entities();
             var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
@@ -59,6 +63,14 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Home", null);
 
+                }
+                var aux = db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault();
+                if (aux != null)
+                {
+                    if (aux.idUsuario != id)
+                    {
+                        return RedirectToAction("Edit", new { id = id, response = 2 });
+                    }
                 }
                 user.Nombre = u.Nombre;
                 user.Correo = u.Correo;

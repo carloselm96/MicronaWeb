@@ -20,9 +20,15 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <div class="form-group">
-                    <label>Autores:</label>
-                    <input id="autorSearch" name="Autores" type="text" class="form-control" style="width: 100%;" />
+                <div class="form-group">                    
+                    
+                        <label>Autores</label>
+                        <select class="form-control select2" style="width: 100%;" name="autores" multiple>
+                            @foreach (var Usuario in ViewBag.autores)
+        {
+                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+}
+                        </select>                    
                 </div>
             </div>                        
             <div class="col-md-3">

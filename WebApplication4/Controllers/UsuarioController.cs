@@ -21,10 +21,14 @@ namespace WebApplication4.Controllers
 
         // GET: Usuario/Create
         [Authorize]
-        public ActionResult Create()
+        public ActionResult Create(int? response)
         {
             microna2018Entities db = new microna2018Entities();
             ViewBag.TipoUsuario = db.tipoarticulo.ToList();
+            if (response != null)
+            {
+                ViewBag.result = "El nombre de usuario ya existe";
+            }
             return View();
         }
 
@@ -42,6 +46,10 @@ namespace WebApplication4.Controllers
                         return RedirectToAction("Index", "Home", null);
                     }
                     microna2018Entities db = new microna2018Entities();
+                    if (db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault() != null)
+                    {
+                        return RedirectToAction("Create", new { response = 1 });
+                    }
                     db.usuario.Add(u);
                     db.SaveChanges();
                     return RedirectToAction("Index",new {response=1 });
@@ -56,7 +64,7 @@ namespace WebApplication4.Controllers
 
         // GET: Usuario/Edit/5
         [Authorize]
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int? id, int? response)
         {
             if (id==null)
             {
@@ -64,7 +72,12 @@ namespace WebApplication4.Controllers
             }
             if (Request.Cookies["userInfo"]["tipo"] == "Administrador" || Request.Cookies["userInfo"]["tipo"] == "Super-administrador")
             {
+
                 microna2018Entities db = new microna2018Entities();
+                if (response !=null)
+                {
+                    ViewBag.result = "El nombre de usuario ya existe";
+                }
                 var usuario = db.usuario.SingleOrDefault(x => x.idUsuario == id);
                 return View(usuario);
             }
@@ -86,12 +99,22 @@ namespace WebApplication4.Controllers
             try
             {
                 microna2018Entities db = new microna2018Entities();
+                var aux = db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault();
+                if(aux!=null)
+                {
+                    if (aux.idUsuario != id)
+                    {
+                        return RedirectToAction("Edit", new { id = id, response = 2 });
+                    }                    
+                }
                 var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
                 user.Nombre = u.Nombre;
                 user.Correo = u.Correo;
                 user.Contraseña = u.Contraseña;
                 user.TipoUsuario = u.TipoUsuario;
                 user.Usuario1 = u.Usuario1;
+                user.Apellido_Materno = u.Apellido_Materno;
+                user.Apellido_Paterno = u.Apellido_Paterno;
                 db.SaveChanges();
                 if (int.Parse(Request.Cookies["userInfo"]["id"]) == id)
                 {
@@ -109,7 +132,18 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
         }
-
+        [Authorize]
+        [HttpPost]
+        public ActionResult validateUserName(string usr)
+        {
+            string output = "True";
+            microna2018Entities db = new microna2018Entities();
+            if (db.usuario.Where(x => x.Usuario1 == usr).FirstOrDefault()!=null)
+            {
+                output = "False";
+            }
+            return Json(output, JsonRequestBehavior.AllowGet);
+        }
 
         // POST: Usuario/Delete/5
         [Authorize]
