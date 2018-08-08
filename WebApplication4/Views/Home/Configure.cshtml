@@ -1,0 +1,315 @@
+﻿
+@{
+    ViewBag.Title = "Configuración de la Aplicación";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tipos de Articulo</h3>
+            </div>
+            <div class="box-body table-responsive">
+                <p>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevoart">
+                        Nuevo Tipo de Artículo
+                    </button>
+                </p>
+                <table class="display table table-responsive table-bordered table-striped table-hover datat">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.tipos_art != null)
+                        {
+                            foreach (var s in ViewBag.tipos_art)
+                            {
+                                <tr>
+                                    <td>
+                                        @s.Nombre
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalArt" data-whatever="@s.idTipoArticulo" data-w2="@s.Nombre">Editar</button>
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-deleteart" data-whatever="@s.idTipoArticulo">Eliminar</button>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModalArt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
+                    </div>
+                    <div class="modal-body">                        
+                        <div class="form-group">
+                            <input hidden type="text" id="idArt" name="idArt" />
+                            <label for="recipient-name" class="col-form-label">Nombre</label>
+                            <input type="text" class="form-control" id="recipient-name" name="nombre" required>
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-nuevoart">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Nuevo tipo de artículo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label">Nombre</label>                        
+                        <input type="text" class="form-control" />                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <div class="modal fade" id="modal-deleteart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="exampleModalLabel">Eliminar</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <input hidden type="text" id="idDArt" name="idDArt" />
+                            <h3>Eliminar este tipo de Artículo eliminará todos los artículos asignados a el, ¿está seguro de continuar?</h3>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tipos de Trabajo</h3>
+            </div>
+            <div class="box-body table-responsive">
+                <p>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevotrab">
+                        Nuevo Tipo de Trabajo
+                    </button>
+                </p>
+                <table class="display table table-responsive table-bordered table-striped table-hover datat">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.tipos_tra != null)
+                        {
+                            foreach (var s in ViewBag.tipos_tra)
+                            {
+                                <tr>
+                                    <td>
+                                        @s.Nombre
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalTrab" data-whatever="@s.idTipoTrabajo" data-w2="@s.Nombre">Editar</button>
+                                    </td>
+                                    <td>
+                                        <a>Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="editModalTrab" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
+                    </div>
+                    <div class="modal-body">                        
+                        <div class="form-group">
+                            <input hidden type="text" id="idTrab" name="idTrab" />
+                            <label for="recipient-name" class="col-form-label">Nombre</label>
+                            <input type="text" class="form-control" id="recipient-name" required name="nombre">
+                        </div>                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn btn-primary">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-nuevotrab">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Nuevo tipo de Trabajo</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Nombre</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tipos de Libro</h3>
+            </div>
+            <div class="box-body table-responsive">
+                <p>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevolib">
+                        Nuevo Tipo de Libro
+                    </button>
+                </p>
+                <table class="display table table-responsive table-bordered table-striped table-hover datat">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.tipos_lib != null)
+                        {
+                            foreach (var s in ViewBag.tipos_lib)
+                            {
+                                <tr>
+                                    <td>
+                                        @s.Nombre
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalLib" data-whatever="@s.idTipoLibro" data-w2="@s.Nombre">Editar</button>
+                                    </td>
+                                    <td>
+                                        <a>Eliminar</a>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="modal fade" id="editModalLib" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <input hidden type="text" id="idLib" name="idLib" />
+                            <label for="recipient-name" class="col-form-label">Nombre</label>
+                            <input type="text" class="form-control" id="recipient-name" required name="nombre">
+                        </div>
+                    </form>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="modal-nuevolib">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Nuevo tipo de artículo</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label class="control-label col-md-2">Nombre</label>
+                    <div class="col-md-10">
+                        <input type="text" class="form-control" />
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary">Guardar</button>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>

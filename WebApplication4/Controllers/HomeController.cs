@@ -76,21 +76,15 @@ namespace WebApplication4.Controllers
         }
 
 
-        /*[Authorize]
-        public ActionResult Index(List<String> grupo)
+        [Authorize]
+        public ActionResult Configure()
         {
             microna2018Entities db = new microna2018Entities();
-            var concentrado= db.concentrado.ToList();
-            if (grupo[0] != null)
-            {
-                concentrado = concentrado.Where(x => x.concentrado_grupos.Where(y => y.Grupo == 1).ToList() != null).ToList();
-            }
-            if (grupo[2] != null)
-            {
-                concentrado = concentrado.Where(x => x.concentrado_grupos.Where(y => y.Grupo == 2).ToList() != null).ToList();
-            }
-            return View(concent);
-        }*/
+            ViewBag.tipos_art = db.tipoarticulo.ToList();
+            ViewBag.tipos_tra = db.tipotrabajo.ToList();
+            ViewBag.tipos_lib = db.tipolibro.ToList();            
+            return View();
+        }
 
         [AllowAnonymous]
         public ActionResult Login()

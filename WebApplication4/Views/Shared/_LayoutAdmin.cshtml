@@ -205,6 +205,11 @@
                                         <i class='fa fa-users'></i> <span>Usuarios</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="@Url.Action("Configure", "Home")">
+                                        <i class='fa fa-gear'></i> <span>Configuración</span>
+                                    </a>
+                                </li>
                             }
                         }
                     }
@@ -288,9 +293,11 @@
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
     <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>    
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
     <script src="~/Content/bower_components/select2-4.0.6-rc.1/dist/js/select2.full.js"></script>
     <script src="~/Content/bower_components/select2-4.0.6-rc.1/dist/js/select2.js"></script>
+    <script src="~/Content/bower_components/chart.js/Chart.js"></script>
+    <script src="~/Content/ChartScript.js"></script>
     <script>
         $(document).ready(function () {
             $(function () {
@@ -328,6 +335,9 @@
 
             })
             $(function () {
+                $('.datat').DataTable();
+            })
+            $(function () {
                 $('.date-picker').datepicker({
                     beforeShow: function (input, inst) {
                         setTimeout(function () {
@@ -353,36 +363,11 @@
             $(update_pizza);
             $("#tipo_art").change(update_pizza);
             $('[data-toggle=confirmation]').confirmation();
-            
-        });
-        /*$(function validateMyForm() {            
-            var usr = document.getElementById('usrnm');
-            $.ajax({
-                type: "POST",
-                traditional: true,
-                async: false,
-                cache: false,
-                url: '/validateUserName',
-                context: document.body,
-                data: usr,
-                success: function (result) {
-                    if (result == "True") {
-                        return True;
-                    }
-                    else {
-                        alert("El usuario ya existe");
-                        return False;
-                    }
-                },
-                error: function (xhr) {
-                    //debugger;  
-                    console.log(xhr.responseText);
-                    alert("Error has occurred..");
-                }
-            });*/
+
         });
     </script>
     <script src="~/Content/site.js"></script>
     <script src="~/Content/TableExcel.js"></script>
+    <script src="~/Content/modalScript.js"></script>
 </body>
 </html>

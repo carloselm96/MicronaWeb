@@ -41,13 +41,13 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <h4><b>Autores:</b></h4>
-                        
-                            <select class="form-control select2" name="autores" multiple>
-                                @foreach (var Usuario in ViewBag.autores)
-                                {
-                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
-                            </select>                        
+
+                        <select class="form-control select2" name="autores" multiple>
+                            @foreach (var Usuario in ViewBag.autores)
+                            {
+                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                        </select>
                     </div>
                 </div>
             </div>
@@ -106,14 +106,55 @@
                             </label>
                         </div>
                     </div>
-                </div>                
-            </div>                            
-            <input type="submit" value="Buscar" class="btn btn-success btn-lg" />                
+                </div>
+            </div>
+            <input type="submit" value="Buscar" class="btn btn-success btn-lg" />
         }
-        
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-danger">
+            <div class="box-header with-border">
+                <h3 class="box-title">Donut Chart</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <canvas id="pieChart" style="height:250px"></canvas>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="box">
+            <div class="box-header with-border">
+                <h3 class="box-title">Area Chart</h3>
+
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="chart">
+                    <canvas id="areaChart" style="height:250px"></canvas>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 
+
+<!-- /.box-body -->
 
 <div class="box box-primary box-solid">
     <div class="box-header with-border">
@@ -167,8 +208,8 @@
                             }
                         </td>
                         <td>
-                            @{ 
-                                foreach(var a in item.concentrado_autores)
+                            @{
+                                foreach (var a in item.concentrado_autores)
                                 {
                                     <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
                                 }
@@ -191,7 +232,7 @@
                             </ul>
                         </td>
                     </tr>
-                                }
+                }
             </tbody>
             <tfoot>
                 <tr>
@@ -248,7 +289,7 @@
                                         break;
                                 }
                             }
-                        </div>                        
+                        </div>
                         <span class="product-description">
                             <ul>
                                 @foreach (var a in item.concentrado_grupos)
