@@ -17,11 +17,20 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.Autores)
+                Autores
             </dt>
 
             <dd>
-                @Html.DisplayFor(model => model.Autores)
+                @{
+                foreach (var autor in Model.capitulo_usuario)
+                {
+            <p>
+                @autor.usuario.Nombre
+                @autor.usuario.Apellido_Paterno
+                @autor.usuario.Apellido_Materno
+            </p>
+}
+                }
             </dd>
 
             <dt>
@@ -72,7 +81,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                Subido Por
             </dt>
 
             <dd>
@@ -80,7 +89,7 @@
             </dd>
 
             <dt>
-                @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                Archivo
             </dt>
 
             <dd>

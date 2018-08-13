@@ -12,7 +12,7 @@
             </div>
             <div class="box-body table-responsive">
                 <p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevoart">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevo" data-whatever="1">
                         Nuevo Tipo de Artículo
                     </button>
                 </p>
@@ -34,89 +34,16 @@
                                         @s.Nombre
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalArt" data-whatever="@s.idTipoArticulo" data-w2="@s.Nombre">Editar</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@s.idTipoArticulo" data-w2="@s.Nombre" data-tipo="1">Editar</button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-deleteart" data-whatever="@s.idTipoArticulo">Eliminar</button>
+                                       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete" data-whatever="@s.idTipoArticulo" data-tipo="1">Eliminar</button>
                                     </td>
                                 </tr>
                             }
                         }
                     </tbody>
                 </table>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="editModalArt" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
-                    </div>
-                    <div class="modal-body">                        
-                        <div class="form-group">
-                            <input hidden type="text" id="idArt" name="idArt" />
-                            <label for="recipient-name" class="col-form-label">Nombre</label>
-                            <input type="text" class="form-control" id="recipient-name" name="nombre" required>
-                        </div>                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal-nuevoart">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Nuevo tipo de artículo</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label">Nombre</label>                        
-                        <input type="text" class="form-control" />                        
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <div class="modal fade" id="modal-deleteart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="exampleModalLabel">Eliminar</h4>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <input hidden type="text" id="idDArt" name="idDArt" />
-                            <h3>Eliminar este tipo de Artículo eliminará todos los artículos asignados a el, ¿está seguro de continuar?</h3>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="submit" class="btn btn-primary">Guardar</button>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -127,7 +54,7 @@
             </div>
             <div class="box-body table-responsive">
                 <p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevotrab">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevo" data-whatever="2">
                         Nuevo Tipo de Trabajo
                     </button>
                 </p>
@@ -149,10 +76,10 @@
                                         @s.Nombre
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalTrab" data-whatever="@s.idTipoTrabajo" data-w2="@s.Nombre">Editar</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@s.idTipoTrabajo" data-nombre="@s.Nombre" data-tipo="2">Editar</button>
                                     </td>
                                     <td>
-                                        <a>Eliminar</a>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete" data-whatever="@s.idTipoTrabajo" data-tipo="2">Eliminar</button>
                                     </td>
                                 </tr>
                             }
@@ -162,57 +89,7 @@
             </div>
         </div>
     </div>
-    <div class="modal fade" id="editModalTrab" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
-                    </div>
-                    <div class="modal-body">                        
-                        <div class="form-group">
-                            <input hidden type="text" id="idTrab" name="idTrab" />
-                            <label for="recipient-name" class="col-form-label">Nombre</label>
-                            <input type="text" class="form-control" id="recipient-name" required name="nombre">
-                        </div>                        
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-primary">Guardar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade" id="modal-nuevotrab">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title">Nuevo tipo de Trabajo</h4>
-                </div>
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label class="control-label col-md-2">Nombre</label>
-                        <div class="col-md-10">
-                            <input type="text" class="form-control" />
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
+
 </div>
 <div class="row">
     <div class="col-md-6">
@@ -222,7 +99,7 @@
             </div>
             <div class="box-body table-responsive">
                 <p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevolib">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevo" data-whatever="3">
                         Nuevo Tipo de Libro
                     </button>
                 </p>
@@ -244,10 +121,10 @@
                                         @s.Nombre
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModalLib" data-whatever="@s.idTipoLibro" data-w2="@s.Nombre">Editar</button>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@s.idTipoLibro" data-w2="@s.Nombre" data-tipo="3">Editar</button>
                                     </td>
                                     <td>
-                                        <a>Eliminar</a>
+                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete" data-whatever="@s.idTipoLibro" data-tipo="3">Eliminar</button>
                                     </td>
                                 </tr>
                             }
@@ -259,7 +136,7 @@
     </div>
 
 </div>
-<div class="modal fade" id="editModalLib" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -270,46 +147,76 @@
                     <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
                 </div>
                 <div class="modal-body">
-                    <form>
+                    <form id="edit_form" action="@Url.Action("editarTipo")">
                         <div class="form-group">
-                            <input hidden type="text" id="idLib" name="idLib" />
+                            <input hidden type="text" name="tipo" id="tipoEd" required />
+                            <input hidden type="text" id="idEd" name="id" required />
                             <label for="recipient-name" class="col-form-label">Nombre</label>
-                            <input type="text" class="form-control" id="recipient-name" required name="nombre">
+                            <input type="text" class="form-control" id="recipient-name" name="nombre" required>
                         </div>
                     </form>
-
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary">Guardar</button>
+                    <button type="submit" class="btn btn-primary" id="guardarForm">Guardar</button>
                 </div>
             </div>
         </div>
     </div>
 </div>
-<div class="modal fade" id="modal-nuevolib">
+<div class="modal fade" id="modal-nuevo">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Nuevo tipo de artículo</h4>
+                <h4 class="modal-title">Nuevo tipo</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <label class="control-label col-md-2">Nombre</label>
-                    <div class="col-md-10">
-                        <input type="text" class="form-control" />
+                <form id="new_form" action="@Url.Action("nuevoTipo")">
+                    <div class="form-group">
+                        <input type="text" hidden name="tipo" id="type" required />
+                        <label class="control-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" required/>
                     </div>
-                </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary">Guardar</button>
+                <button type="button" class="btn btn-primary" id="submitForm">Guardar</button>
             </div>
+
         </div>
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
+</div>
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="exampleModalLabel">Eliminar</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="delete_form" action="@Url.Action("eliminarTipo")">
+                        <div class="form-group">
+                            <input hidden type="text" id="idE" name="id" />
+                            <input hidden type="text" id="typeE" name="tipo" />
+                            <h3>Eliminar este tipo eliminará todos los objetos asignados a el, ¿está seguro de continuar?</h3>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="eliminarForm">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

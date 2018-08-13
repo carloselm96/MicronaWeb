@@ -114,43 +114,23 @@
     </div>
 </div>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         <div class="box box-danger">
             <div class="box-header with-border">
-                <h3 class="box-title">Donut Chart</h3>
+                <h3 class="box-title">Distribución del material</h3>
 
                 <div class="box-tools pull-right">
                     <button type="button" class="btn btn-box-tool" data-widget="collapse">
                         <i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                    </button>                    
                 </div>
             </div>
             <div class="box-body">
-                <canvas id="pieChart" style="height:250px"></canvas>
+                <canvas id="chart-area"></canvas>
             </div>
             <!-- /.box-body -->
         </div>
-    </div>
-    <div class="col-md-6">
-        <div class="box">
-            <div class="box-header with-border">
-                <h3 class="box-title">Area Chart</h3>
-
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                    <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                </div>
-            </div>
-            <div class="box-body">
-                <div class="chart">
-                    <canvas id="areaChart" style="height:250px"></canvas>
-                </div>
-            </div>
-        </div>
-    </div>
+    </div>    
 </div>
 
 
@@ -256,57 +236,4 @@
         </table>
     </div>
 </div>
-<!--
-<div class="box box-primary box-solid">
-    <div class="box-header with-border">
-        <div class="box-title">Resultados</div>
-    </div>
-    <div class="box-body">
-        <ul class="products-list product-list-in-box">
 
-            @foreach (var item in Model)
-            {
-                <li class="item">
-                    <div class="product-info">
-                        <div class="product-title">
-                            @{
-                                switch (item.TipoConcentrado)
-                                {
-                                    case 1:
-                                        <a href="@Url.Action("Details","Articulos",new { id=item.IdItem })">@item.Titulo</a>
-                                        break;
-                                    case 2:
-                                        <a href="@Url.Action("Details","CapituloLibro",new { id=item.IdItem })">@item.Titulo</a>
-                                        break;
-                                    case 3:
-                                        <a href="@Url.Action("Details","Libro",new { id=item.IdItem })">@item.Titulo</a>
-                                        break;
-                                    case 4:
-                                        <a href="@Url.Action("Details","Proyectos",new { id=item.IdItem })">@item.Titulo</a>
-                                        break;
-                                    case 5:
-                                        <a href="@Url.Action("Details","Trabajos",new { id=item.IdItem })">@item.Titulo</a>
-                                        break;
-                                }
-                            }
-                        </div>
-                        <span class="product-description">
-                            <ul>
-                                @foreach (var a in item.concentrado_grupos)
-                                {
-                                    <li>
-                                        @a.grupoacademico.Nombre
-                                    </li>
-                                }
-                            </ul>
-                        </span>
-                    </div>
-                </li>
-                                }
-
-        </ul>
-    </div>
-</div>
-
-
--->

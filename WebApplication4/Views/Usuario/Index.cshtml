@@ -64,10 +64,10 @@
                 </td>
                 <td>
                     @{
-                        if (Request.Cookies["UserInfo"]["tipo"] == "Administrador" || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
+                        if ((Request.Cookies["UserInfo"]["tipo"] == "Administrador" || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador")) && item.TipoUsuario != 3)
                         {
-                                <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
-                            if (int.Parse(Request.Cookies["UserInfo"]["id"]) != item.idUsuario)
+                            <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
+                            if (int.Parse(Request.Cookies["UserInfo"]["id"]) != item.idUsuario && item.TipoUsuario!=3)
                             {
                                 <p>@Html.ActionLink("Delete", "Delete", new { id = item.idUsuario }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
                             }

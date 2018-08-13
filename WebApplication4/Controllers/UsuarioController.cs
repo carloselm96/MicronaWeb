@@ -14,7 +14,7 @@ namespace WebApplication4.Controllers
         public ActionResult Index()
         {
             microna2018Entities db = new microna2018Entities();
-            var usuarios = db.usuario.ToList();
+            var usuarios = db.usuario.Where(x => x.Status == "A").ToList();            
             return View(usuarios);
         }
                 
@@ -46,10 +46,11 @@ namespace WebApplication4.Controllers
                         return RedirectToAction("Index", "Home", null);
                     }
                     microna2018Entities db = new microna2018Entities();
-                    if (db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault() != null)
+                    if (db.usuario.Where(x => x.Usuario1 == u.Usuario1 && x.Status=="A").FirstOrDefault() != null)
                     {
                         return RedirectToAction("Create", new { response = 1 });
                     }
+                    u.Status = "A";
                     db.usuario.Add(u);
                     db.SaveChanges();
                     return RedirectToAction("Index",new {response=1 });
@@ -78,7 +79,7 @@ namespace WebApplication4.Controllers
                 {
                     ViewBag.result = "El nombre de usuario ya existe";
                 }
-                var usuario = db.usuario.SingleOrDefault(x => x.idUsuario == id);
+                var usuario = db.usuario.SingleOrDefault(x => x.idUsuario == id && x.Status=="A");
                 return View(usuario);
             }
             else
@@ -99,7 +100,7 @@ namespace WebApplication4.Controllers
             try
             {
                 microna2018Entities db = new microna2018Entities();
-                var aux = db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault();
+                var aux = db.usuario.Where(x => x.Usuario1 == u.Usuario1 && x.Status=="A").FirstOrDefault();
                 if(aux!=null)
                 {
                     if (aux.idUsuario != id)
@@ -107,11 +108,12 @@ namespace WebApplication4.Controllers
                         return RedirectToAction("Edit", new { id = id, response = 2 });
                     }                    
                 }
-                var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
+                var user = db.usuario.Where(x => x.idUsuario == id && x.Status=="A").FirstOrDefault();
                 user.Nombre = u.Nombre;
                 user.Correo = u.Correo;
                 user.Contraseña = u.Contraseña;
                 user.TipoUsuario = u.TipoUsuario;
+                u.Usuario1 = u.Usuario1.ToUpper();
                 user.Usuario1 = u.Usuario1;
                 user.Apellido_Materno = u.Apellido_Materno;
                 user.Apellido_Paterno = u.Apellido_Paterno;
@@ -134,11 +136,35 @@ namespace WebApplication4.Controllers
         }
         [Authorize]
         [HttpPost]
-        public ActionResult validateUserName(string usr)
+        public ActionResult validateUserName(string usr, int? id)
         {
             string output = "True";
+            usr = usr.ToUpper();
             microna2018Entities db = new microna2018Entities();
-            if (db.usuario.Where(x => x.Usuario1 == usr).FirstOrDefault()!=null)
+            usuario u = null;
+            if (id != null)
+            {
+                u = db.usuario.Where(x => x.Usuario1 == usr && x.idUsuario == id && x.Status=="A").FirstOrDefault();
+                if (u != null)
+                {
+                    output = "False";
+                    return Json(output, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    u = db.usuario.Where(x => x.Usuario1 == usr && x.idUsuario != id && x.Status=="A").FirstOrDefault();
+                    if (u!=null)
+                    {                        
+                        return Json(output, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        output = "False";
+                        return Json(output, JsonRequestBehavior.AllowGet);
+                    }
+                }
+            }
+            if (db.usuario.Where(x => x.Usuario1 == usr && x.Status=="A").FirstOrDefault()!=null)
             {
                 output = "False";
             }
@@ -146,8 +172,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: Usuario/Delete/5
-        [Authorize]
-        [HttpPost]
+        [Authorize]        
         public ActionResult Delete(int? id)
         {
             try
@@ -161,14 +186,54 @@ namespace WebApplication4.Controllers
                     return RedirectToAction("Index", "Home", null);
                 }
                 microna2018Entities db = new microna2018Entities();
-                var usuario=db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
-                db.usuario.Remove(usuario);
+                var usuario=db.usuario.Where(x => x.idUsuario == id && x.Status=="A").FirstOrDefault();
+                usuario.Status = "B";
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
             {
                 return RedirectToAction("Index",new { response=2 });
             }
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult validateUser(string usr)
+        {
+            microna2018Entities db = new microna2018Entities();
+            usuario u = null;
+            u = db.usuario.Where(x => x.Usuario1 == usr && x.Status=="A").FirstOrDefault();            
+            if (u != null)
+            {                
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult validateEditUser(string usr, string id)
+        {
+            microna2018Entities db = new microna2018Entities();
+            usuario u = null;
+            u = db.usuario.Where(x => x.Usuario1 == usr && x.Status=="A").FirstOrDefault();
+            if (u != null)
+            {
+                if (id != null)
+                {
+                    if (u.idUsuario != int.Parse(id))
+                    {
+                        return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                    }
+                    else
+                    {
+                        return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+                    }
+                }
+                return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false }, JsonRequestBehavior.AllowGet);
         }
     }
 }
