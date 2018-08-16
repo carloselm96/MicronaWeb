@@ -47,8 +47,8 @@
                 <div class="row">
                 <div class="col-md-4">
                     <div class="form-group">
-                        <label class="control-label">Grupo académico</label>
-                        <select class="form-control selectpicker" name="grupos" multiple>
+                        <label class="control-label">Grupo académico</label>                        
+                        <select class="form-control select2" name="grupos" multiple>
                             @{
                                 if (ViewBag.grupos != null)
                                 {
@@ -64,7 +64,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Tipo de Trabajo</label>
-                        <select class="form-control selectpicker" name="tipo" multiple data-max-options="1">
+                        <select class="form-control select2" name="tipo" multiple data-max-options="1">
                             @{
                                 if (ViewBag.tipos != null)
                                 {
@@ -181,7 +181,7 @@
                                 if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
                                 {
                                     <p>@Html.ActionLink("Editar", "Edit", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-warning" })</p>
-                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
+                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? ", data_placement="left" })</p>
                                 }
                             }
                             <p>@Html.ActionLink("Detalles", "Details", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-primary" })</p>

@@ -28,7 +28,8 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Tipo de artículo</label>
                     <div class="col-md-10">
-                        <select class="form-control" , name="TipoArticulo", id="tipo_art">
+                        <select class="form-control" , name="TipoArticulo", id="tipo_art" required>
+                            <option>Selecciona un tipo</option>
                             @foreach (var TipoArticulo in ViewBag.tipoarticulo)
                             {
                                 if (TipoArticulo.Nombre == "Indizado")
@@ -53,7 +54,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Autores</label>
                     <div class="col-md-10">
-                        <select class="form-control select2" name="Autores" multiple>
+                        <select class="form-control select2" name="Autores" multiple style="width:75%">
                             @foreach (var Usuario in ViewBag.autores)
                             {
                                 <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
@@ -109,7 +110,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Grupo académico</label>
                     <div class="col-md-10">
-                        <select class="form-control selectpicker" name="GrupoAcademico" multiple>
+                        <select class="form-control select2" name="GrupoAcademico" multiple>
                             @foreach (var Grupo in ViewBag.grupo)
                             {
                                 <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
