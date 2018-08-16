@@ -5884,6 +5884,16 @@
     <Content Include="Content\bower_components\mocha\media\logo.svg" />
     <Content Include="Content\bower_components\mocha\mocha.css" />
     <Content Include="Content\bower_components\mocha\mocha.js" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-grid.css" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-grid.min.css" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-reboot.css" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap.css" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap.min.css" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.bundle.js" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.js" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.min.js" />
     <Content Include="Content\bower_components\moment\locale\af.js" />
     <Content Include="Content\bower_components\moment\locale\ar-dz.js" />
     <Content Include="Content\bower_components\moment\locale\ar-kw.js" />
@@ -6859,130 +6869,99 @@
     <Content Include="Content\bower_components\select2\tests\vendor\qunit-1.23.1.js" />
     <Content Include="Content\bower_components\select2\vendor\jquery-2.1.0.js" />
     <Content Include="Content\ChartScript.js" />
+    <Content Include="Content\ConfirmationBoostrap\bootstrap-confirmation.min.js" />
     <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.js" />
     <Content Include="Content\ConfirmationBoostrap\dist\bootstrap-confirmation.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap4.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.bootstrap4.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.dataTables.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.dataTables.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.foundation.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.foundation.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.jqueryui.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.jqueryui.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.semanticui.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\buttons.semanticui.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap4.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.bootstrap4.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.colVis.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.colVis.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.flash.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.flash.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.foundation.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.foundation.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.html5.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.html5.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.jqueryui.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.jqueryui.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.print.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.print.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.semanticui.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\buttons.semanticui.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\dataTables.buttons.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\js\dataTables.buttons.min.js" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\swf\flashExport.swf" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.bootstrap.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.bootstrap.min.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.bootstrap4.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.bootstrap4.min.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.foundation.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.foundation.min.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.jqueryui.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.jqueryui.min.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.semanticui.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\dataTables.semanticui.min.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\jquery.dataTables.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\css\jquery.dataTables.min.css" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\images\sort_asc.png" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\images\sort_asc_disabled.png" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\images\sort_both.png" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\images\sort_desc.png" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\images\sort_desc_disabled.png" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.bootstrap.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.foundation.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.foundation.min.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.jqueryui.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.semanticui.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\jquery.dataTables.js" />
-    <Content Include="Content\Datatable\DataTables-1.10.18\js\jquery.dataTables.min.js" />
-    <Content Include="Content\Datatable\datatables.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\datatables.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\datatables.min.css">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\datatables.min.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap.min.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap4.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.bootstrap4.min.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.dataTables.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.dataTables.min.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.foundation.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.foundation.min.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.jqueryui.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.jqueryui.min.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.semanticui.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\css\responsive.semanticui.min.css" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\dataTables.responsive.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\dataTables.responsive.min.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.bootstrap.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.bootstrap.min.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.bootstrap4.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.bootstrap4.min.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.foundation.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.foundation.min.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.jqueryui.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.jqueryui.min.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.semanticui.js" />
-    <Content Include="Content\Datatable\Responsive-2.2.2\js\responsive.semanticui.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.bootstrap.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.bootstrap.min.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.bootstrap4.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.dataTables.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.dataTables.min.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.foundation.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.foundation.min.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.jqueryui.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.jqueryui.min.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.semanticui.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\buttons.semanticui.min.css" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.bootstrap.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.bootstrap.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.bootstrap4.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.bootstrap4.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.colVis.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.colVis.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.flash.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.flash.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.foundation.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.foundation.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.html5.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.html5.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.jqueryui.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.jqueryui.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.print.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.print.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.semanticui.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\buttons.semanticui.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\dataTables.buttons.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\js\dataTables.buttons.min.js" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\swf\flashExport.swf" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.bootstrap.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.bootstrap.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.bootstrap4.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.foundation.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.foundation.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.jqueryui.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.jqueryui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.semanticui.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\dataTables.semanticui.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\jquery.dataTables.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\css\jquery.dataTables.min.css" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\images\sort_asc.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\images\sort_asc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\images\sort_both.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\images\sort_desc.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\images\sort_desc_disabled.png" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.bootstrap.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.bootstrap.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.bootstrap4.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.bootstrap4.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.foundation.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.foundation.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.jqueryui.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.jqueryui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.semanticui.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\dataTables.semanticui.min.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\jquery.dataTables.js" />
+    <Content Include="Content\DataTables\DataTables-1.10.18\js\jquery.dataTables.min.js" />
+    <Content Include="Content\DataTables\datatables.css" />
+    <Content Include="Content\DataTables\datatables.js" />
+    <Content Include="Content\DataTables\datatables.min.css" />
+    <Content Include="Content\DataTables\datatables.min.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.bootstrap.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.bootstrap.min.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.bootstrap4.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.bootstrap4.min.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.dataTables.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.dataTables.min.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.foundation.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.foundation.min.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.jqueryui.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.jqueryui.min.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.semanticui.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\css\responsive.semanticui.min.css" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\dataTables.responsive.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\dataTables.responsive.min.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.bootstrap.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.bootstrap.min.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.bootstrap4.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.bootstrap4.min.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.foundation.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.foundation.min.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.jqueryui.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.jqueryui.min.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.semanticui.js" />
+    <Content Include="Content\DataTables\Responsive-2.2.2\js\responsive.semanticui.min.js" />
     <Content Include="Content\LoginContent\css\main.css" />
     <Content Include="Content\LoginContent\css\util.css" />
     <Content Include="Content\LoginContent\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -7718,12 +7697,6 @@
     <Content Include="Content\bower_components\select2\src\scss\_dropdown.scss" />
     <Content Include="Content\bower_components\select2\src\scss\_multiple.scss" />
     <Content Include="Content\bower_components\select2\src\scss\_single.scss" />
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\common.scss">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Datatable\Buttons-1.5.2\css\mixins.scss">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
     <EntityDeploy Include="Models\MicronaDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>MicronaDB.Designer.cs</LastGenOutput>
@@ -7862,6 +7835,19 @@
     <Content Include="Content\bower_components\Chart.js-2.7.2\test\fixtures\plugin.filler\fill-line-dataset.json" />
     <Content Include="Content\bower_components\Chart.js-2.7.2\test\fixtures\plugin.filler\fill-radar-boundary-origin-spline.json" />
     <Content Include="Content\bower_components\Chart.js-2.7.2\test\fixtures\plugin.filler\fill-radar-boundary-origin.json" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\common.scss" />
+    <Content Include="Content\DataTables\Buttons-1.5.2\css\mixins.scss" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\.DS_Store" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-grid.css.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap.css.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\css\bootstrap.min.css.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.js.map" />
+    <Content Include="Content\bower_components\bootstrap-4.1.3-dist\js\bootstrap.min.js.map" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
@@ -8050,14 +8036,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Datatable\Datatable\Buttons-1.5.2\css\" />
-    <Folder Include="Content\Datatable\Datatable\Buttons-1.5.2\js\" />
-    <Folder Include="Content\Datatable\Datatable\Buttons-1.5.2\swf\" />
-    <Folder Include="Content\Datatable\Datatable\DataTables-1.10.18\css\" />
-    <Folder Include="Content\Datatable\Datatable\DataTables-1.10.18\images\" />
-    <Folder Include="Content\Datatable\Datatable\DataTables-1.10.18\js\" />
-    <Folder Include="Content\Datatable\Datatable\Responsive-2.2.2\css\" />
-    <Folder Include="Content\Datatable\Datatable\Responsive-2.2.2\js\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

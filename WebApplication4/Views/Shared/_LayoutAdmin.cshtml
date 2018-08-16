@@ -8,14 +8,12 @@
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <!-- Bootstrap 3.3.7 -->
-
-
+    
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- Font Awesome -->
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/font-awesome/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/Ionicons/css/ionicons.min.css">
-    <link rel="stylesheet" runat="server" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
     <!-- Theme style -->
     <link rel="stylesheet" runat="server" href="~/Content/dist/css/AdminLTE.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
@@ -26,7 +24,6 @@
     <!-- jvectormap -->
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/jvectormap/jquery-jvectormap.css">
     <!-- Date Picker -->
-    <link rel="stylesheet" runat="server" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
     <link rel="stylesheet" runat="server" type="text/css" href="~/Content/bootstrap-select/dist/css/bootstrap-select.css" />
 
     <link rel="stylesheet" runat="server" href="~/Content/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
@@ -42,6 +39,8 @@
     <script runat="server" src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
     <!-- Google Font -->
+    <link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" />
+    
     <link rel="stylesheet" runat="server" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-green sidebar-mini">
@@ -252,6 +251,7 @@
     <!-- jQuery UI 1.11.4 -->
     <script runat="server" src="~/Content/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script src="~/Content/DataTables/datatables.min.js"></script>
     <script>
         $.widget.bridge('uibutton', $.ui.button);
     </script>
@@ -284,92 +284,25 @@
     <script runat="server" src="~/Content/dist/js/pages/dashboard.js"></script>
     <!-- AdminLTE for demo purposes -->
     <script runat="server" src="~/Content/dist/js/demo.js"></script>
-    <script runat="server" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-    <script runat="server" src="~/Content/bootstrap-select/dist/js/bootstrap-select.js"></script>
-    <script runat="server" src="~/Content/ConfirmationBoostrap/dist/bootstrap-confirmation.js"></script>
-    <script runat="server" src="http://bootstrap-confirmation.js.org/dist/bootstrap-confirmation2/bootstrap-confirmation.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/dataTables.buttons.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
-    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-    <script src="~/Content/bower_components/select2-4.0.6-rc.1/dist/js/select2.full.js"></script>
-    <script src="~/Content/bower_components/select2-4.0.6-rc.1/dist/js/select2.js"></script>
+    <!--ChartsJS-->
     <script src="~/Content/bower_components/Chart.js-2.7.2/dist/Chart.js"></script>
     <script src="~/Content/bower_components/Chart.js-2.7.2/dist/Chart.bundle.js"></script>
-
     <script src="~/Content/ChartScript.js"></script>
-    <script>
-        $(document).ready(function () {
-            $(function () {
-                $('#datat').DataTable({
-                    dom: 'Bfrtip',
-                    buttons: [
-                        {
-                            extend: 'excel',
-                            text: 'Guardar excel',
-                            className: 'btn btn-warning',
-                            exportOptions: {
-                                modifier: {
-                                    page: 'current'
-                                }
-                            }
-                        },
-                        {
-                            extend: 'pdfHtml5',
-                            text: 'Guardar PDF',
-                            className: 'btn btn-warning',
-                            exportOptions: {
-                                modifier: {
-                                    page: 'current'
-                                }
-                            }
-                        }
-                    ]
-                })
-            })
-            $(function () {
-                $('#basic2').selectpicker({
-                    liveSearch: true,
-                });
-                $('.select2').select2();
-
-            })
-            $(function () {
-                $('.datat').DataTable();
-            })
-            $(function () {
-                $('.date-picker').datepicker({
-                    beforeShow: function (input, inst) {
-                        setTimeout(function () {
-                            inst.dpDiv.css({
-                                top: $(".datepicker").offset().top + 35,
-                                left: $(".datepicker").offset().left
-                            });
-                        }, 0);
-                    },
-                    format: "mm-yyyy",
-                    startView: "months",
-                    minViewMode: "months"
-                });
-            });
-            var update_pizza = function () {
-                if ($("#indizado").is(":selected")) {
-                    $('#ind').prop('disabled', false);
-                }
-                else {
-                    $('#ind').prop('disabled', 'disabled');
-                }
-            };
-            $(update_pizza);
-            $("#tipo_art").change(update_pizza);
-            $('[data-toggle=confirmation]').confirmation();
-
-        });
-    </script>
+    <!--Buttons Datatable-->
+    <script src="~/Content/DataTables/Buttons-1.5.2/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Content/DataTables/Buttons-1.5.2/js/buttons.html5.min.js"></script>
+    <script src="~/Content/DataTables/Buttons-1.5.2/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <!--Confirmation-->
+    <script src="~/Content/ConfirmationBoostrap/bootstrap-confirmation.min.js"></script>    
+    <!--Select2-->
+    <script src="~/Content/bower_components/select2/dist/js/select2.full.min.js"></script>
+    <script src="~/Content/bower_components/select2/dist/js/select2.min.js"></script>
+    <!--Site script-->
     <script src="~/Content/site.js"></script>
-    <script src="~/Content/TableExcel.js"></script>
+    <!--Modal-->
     <script src="~/Content/modalScript.js"></script>
 </body>
 </html>

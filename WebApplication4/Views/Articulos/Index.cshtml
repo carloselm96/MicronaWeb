@@ -24,9 +24,9 @@
                             <label>Autores</label>
                             <select class="form-control select2" name="autores" multiple style="width:100%">
                                 @foreach (var Usuario in ViewBag.autores)
-        {
-                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-}
+                                {
+                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                }
                             </select>                        
                     </div>
                 </div>
@@ -41,7 +41,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Tipo de artículo</label>
-                        <select class="form-control selectpicker" name="tipo" multiple data-max-options="1">                            
+                        <select class="form-control select2" name="tipo" multiple data-max-options="1">                            
                             @{
                                 if (ViewBag.tipo != null)
                                 {
@@ -57,7 +57,7 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label class="control-label">Grupo académico</label>
-                        <select class="form-control selectpicker" multiple data-actions-box="true" name="grupos" multiple>
+                        <select class="form-control select2" multiple data-actions-box="true" name="grupos">
                             @{
                                 if (ViewBag.grupos != null)
                                 {
@@ -202,7 +202,7 @@
                                         if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]) || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
                                         {
                                             <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-warning" })</p>
-                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? " })</p>
+                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? ", data_placement = "left" })</p>
                                         }
                                     }
                                     <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-primary" })</p>
