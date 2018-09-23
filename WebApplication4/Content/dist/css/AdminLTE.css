@@ -1,3 +1,4 @@
+
 /*!
  *   AdminLTE v2.4.2
  *   Author: Almsaeed Studio
@@ -28,7 +29,7 @@ body {
   height: 100%;
   position: relative;
   overflow-x: hidden;
-  overflow-y: hidden;
+  overflow-y: auto;
 }
 .wrapper:before,
 .wrapper:after {
@@ -459,7 +460,7 @@ a:focus {
 .user-panel {
   position: relative;
   width: 100%;
-  padding: 10px;  
+  padding: 10px;
   overflow: hidden;
 }
 .user-panel:before,
@@ -1073,8 +1074,7 @@ a:focus {
   border-bottom-left-radius: 4px;
 }
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
-  height: 50px;
-  color: white;
+  height: 175px;
   padding: 10px;
   text-align: center;
 }
