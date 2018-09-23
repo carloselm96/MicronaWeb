@@ -1,4 +1,5 @@
 ﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -74,23 +75,37 @@ namespace WebApplication4.Controllers
             }
             return View(concent);
         }
+        
 
-
-        /*[Authorize]
-        public ActionResult Index(List<String> grupo)
+        [Authorize]
+        [HttpGet]
+        public ActionResult getPieData()
         {
             microna2018Entities db = new microna2018Entities();
-            var concentrado= db.concentrado.ToList();
-            if (grupo[0] != null)
-            {
-                concentrado = concentrado.Where(x => x.concentrado_grupos.Where(y => y.Grupo == 1).ToList() != null).ToList();
-            }
-            if (grupo[2] != null)
-            {
-                concentrado = concentrado.Where(x => x.concentrado_grupos.Where(y => y.Grupo == 2).ToList() != null).ToList();
-            }
-            return View(concent);
-        }*/
+            var data = new List<pieDataModel>();
+            var articulos = db.articulo.ToList();            
+            var libros = db.libro.ToList();            
+            var trabajos = db.trabajo.ToList();
+            var proyectos = db.proyectos.ToList();
+            var capitulos = db.capitulolibro.ToList();
+            data.Add(new pieDataModel { nameSection = "Articulos", valueNumber = articulos.Count, color= "#f56954" });
+            data.Add(new pieDataModel { nameSection = "Libros", valueNumber = libros.Count, color= "#00a65a" });
+            data.Add(new pieDataModel { nameSection = "Trabajos", valueNumber = trabajos.Count, color= "#f39c12" });
+            data.Add(new pieDataModel { nameSection = "proyectos", valueNumber = proyectos.Count, color= "#00c0ef" });
+            data.Add(new pieDataModel { nameSection = "Capitulos", valueNumber = capitulos.Count, color= "#3c8dbc" });
+            var dataForChart = data.Select(x => new { value = x.valueNumber, colorl = x.color, label =x.nameSection });
+            return Json(dataForChart, JsonRequestBehavior.AllowGet);
+        }
+
+        [Authorize]
+        public ActionResult Configure()
+        {
+            microna2018Entities db = new microna2018Entities();
+            ViewBag.tipos_art = db.tipoarticulo.ToList();
+            ViewBag.tipos_tra = db.tipotrabajo.ToList();
+            ViewBag.tipos_lib = db.tipolibro.ToList();            
+            return View();
+        }
 
         [AllowAnonymous]
         public ActionResult Login()
@@ -103,7 +118,8 @@ namespace WebApplication4.Controllers
         public ActionResult Login(usuario u)
         {
             microna2018Entities db = new microna2018Entities();
-            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1).FirstOrDefault();            
+            u.Usuario1 = u.Usuario1.ToUpper();
+            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1 && x.Status.Equals("A")).FirstOrDefault();            
             if (user!=null)
             {
                 if (user.Contraseña== u.Contraseña)
@@ -145,5 +161,77 @@ namespace WebApplication4.Controllers
             return RedirectToAction("Login", "Home");
         }
 
+        [Authorize]
+        public ActionResult nuevoTipo(string nombre, string tipo)
+        {
+            microna2018Entities db = new microna2018Entities();
+            switch (tipo)
+            {
+                case "1":
+                    tipoarticulo t = new tipoarticulo { Nombre = nombre };
+                    db.tipoarticulo.Add(t);
+                    break;
+                case "2":
+                    tipotrabajo a = new tipotrabajo { Nombre = nombre };
+                    db.tipotrabajo.Add(a);
+                    break;
+                case "3":
+                    tipolibro b = new tipolibro { Nombre = nombre };
+                    db.tipolibro.Add(b);
+                    break;
+
+            }
+            db.SaveChanges();
+            return RedirectToAction("Configure");
+        }
+
+        [Authorize]
+        public ActionResult editarTipo(string nombre, string tipo, int id)
+        {
+            microna2018Entities db = new microna2018Entities();            
+            switch (tipo)
+            {
+                case "1":
+                    tipoarticulo t = db.tipoarticulo.Where(x => x.idTipoArticulo == id).FirstOrDefault();
+                    t.Nombre = nombre;
+                    break;
+                case "2":
+                    tipotrabajo a = db.tipotrabajo.Where(x => x.idTipoTrabajo == id).FirstOrDefault();
+                    a.Nombre = nombre;
+                    break;
+                case "3":
+                    tipolibro b  = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
+                    b.Nombre = nombre;
+                    break;
+
+            }
+            db.SaveChanges();
+            return RedirectToAction("Configure");
+        }
+
+
+        [Authorize]
+        public ActionResult eliminarTipo(string tipo, int id)
+        {
+            microna2018Entities db = new microna2018Entities();
+            switch (tipo)
+            {
+                case "1":
+                    tipoarticulo t = db.tipoarticulo.Where(x => x.idTipoArticulo == id).FirstOrDefault();
+                    db.tipoarticulo.Remove(t);                    
+                    break;
+                case "2":
+                    tipotrabajo a = db.tipotrabajo.Where(x => x.idTipoTrabajo == id).FirstOrDefault();
+                    db.tipotrabajo.Remove(a);
+                    break;
+                case "3":
+                    tipolibro b = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
+                    db.tipolibro.Remove(b);
+                    break;
+
+            }
+            db.SaveChanges();
+            return RedirectToAction("Configure");
+        }
     }
 }

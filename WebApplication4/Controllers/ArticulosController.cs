@@ -309,5 +309,37 @@ namespace WebApplication4.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(@Url);
             return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
         }
+
+        
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Configure(List<string> tipos_eliminar, List<string> tipos_añadir)
+        {
+            microna2018Entities db = new microna2018Entities();
+            List<tipoarticulo> tipos = db.tipoarticulo.ToList();
+
+            if (tipos_eliminar != null)
+            {
+                foreach(var ide in tipos_eliminar)
+                {
+                    tipoarticulo aux = null;
+                    aux=tipos.Where(x => x.idTipoArticulo == int.Parse(ide)).FirstOrDefault();
+                    if (aux != null)
+                    {
+                        tipos.Remove(aux);
+                    }
+                }
+            }
+            if (tipos_añadir != null)
+            {
+                foreach(var a in tipos_añadir)
+                {
+                    tipos.Add(new tipoarticulo { Nombre = a });
+                }
+            }
+            db.SaveChanges();
+            return View();
+        }
     }
 }

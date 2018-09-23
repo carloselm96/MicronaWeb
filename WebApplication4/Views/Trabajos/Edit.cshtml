@@ -92,7 +92,7 @@
                     <div class="form-group">
                         <label class="control-label col-md-2">Grupo académico</label>
                         <div class="col-md-10">
-                            <select class="form-control selectpicker" name="GrupoAcademico" multiple>
+                            <select class="form-control select2" name="GrupoAcademico" multiple>
                                 @foreach (var Grupo in ViewBag.grupos)
                                 {
                                     if (Model.trabajo_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)

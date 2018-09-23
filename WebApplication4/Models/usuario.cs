@@ -38,6 +38,7 @@ namespace WebApplication4.Models
         public Nullable<int> TipoUsuario { get; set; }
         public string Apellido_Paterno { get; set; }
         public string Apellido_Materno { get; set; }
+        public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo> articulo { get; set; }

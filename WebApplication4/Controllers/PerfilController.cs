@@ -58,6 +58,7 @@ namespace WebApplication4.Controllers
                     return RedirectToAction("Index", "Home", null);
                 }
                 int id = int.Parse(Request.Cookies["userInfo"]["id"]);
+                u.Usuario1 = u.Usuario1.ToUpper();
                 var user = db.usuario.Where(x => x.idUsuario == id && x.Contraseña==u.Contraseña).FirstOrDefault();
                 if (user == null)
                 {
@@ -78,7 +79,7 @@ namespace WebApplication4.Controllers
                 {
                     user.Contraseña = new_pass;
                 }                
-                user.Usuario1 = u.Usuario1;
+                user.Usuario1 = u.Usuario1.ToUpper();
                 db.SaveChanges();
                 HttpCookie cookie = new HttpCookie("userInfo");
                 cookie["id"] = Request.Cookies["userInfo"]["id"];
