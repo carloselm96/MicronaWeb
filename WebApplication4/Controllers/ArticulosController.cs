@@ -74,7 +74,7 @@ namespace WebApplication4.Controllers
                     articulos = articulos.Where(x => cg.Contains(x)).ToList();
                 }
             }
-            return View(articulos);
+            return PartialView("_ArticulosIndex",articulos);
         }
 
         // GET: Articulos/Details/5
