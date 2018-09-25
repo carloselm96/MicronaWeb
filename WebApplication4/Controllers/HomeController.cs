@@ -75,7 +75,71 @@ namespace WebApplication4.Controllers
             }
             return View(concent);
         }
-        
+
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Search(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
+        {
+            microna2018Entities db = new microna2018Entities();
+            var concent = db.concentrado.ToList();
+            ViewBag.autores = db.usuario.ToList();
+            if (titulo != null)
+            {
+                concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();
+            }
+            if (Y1 != null)
+            {
+                concent = concent.Where(x => x.Fecha >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                concent = concent.Where(x => x.Fecha <= Y2).ToList();
+            }
+            if (checkgroup != null)
+            {
+                foreach (int i in checkgroup)
+                {
+                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();
+                    List<concentrado> cg = new List<concentrado>();
+                    foreach (var con in g)
+                    {
+                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == con.Concentrado).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    concent = concent.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            if (checktype != null)
+            {
+                List<concentrado> ct = new List<concentrado>();
+                foreach (int i in checktype)
+                {
+                    var g = concent.Where(x => x.TipoConcentrado == i).ToList();
+                    foreach (var con in g)
+                    {
+                        ct.Add(con);
+                    }
+                }
+                concent = ct;
+            }
+            if (autores != null)
+            {
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();
+                    List<concentrado> cg = new List<concentrado>();
+                    foreach (var cap in g)
+                    {
+                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == cap.idConcentrado).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    concent = concent.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            return Json(concent,JsonRequestBehavior.AllowGet);
+        }
 
         [Authorize]
         [HttpGet]

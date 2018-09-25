@@ -202,7 +202,11 @@
                                         if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]) || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
                                         {
                                             <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-warning" })</p>
-                                            <p>@Html.ActionLink("Eliminar", "Delete", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-danger", data_toggle = "confirmation", data_btn_ok_label = "Eliminar", data_btn_cancel_label = "Cancelar", data_title = "Esta acción es irreversible", data_content = "Está seguro de eliminar este elemento? ", data_placement = "left" })</p>
+                                            using(Html.BeginForm("Delete","Articulos",FormMethod.Get, null))
+                                            {
+                                                <input hidden name="id" value="@item.idArticulo"/>
+                                                <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar"/></p>
+                                            }                                            
                                         }
                                     }
                                     <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-primary" })</p>

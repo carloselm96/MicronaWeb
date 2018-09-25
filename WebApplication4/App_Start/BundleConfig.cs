@@ -18,7 +18,7 @@ namespace WebApplication4.App_Start
                 "~/Content/bower_components/select2/dist/css/select2.min.css",
                 "~/Content/dist/css/AdminLTE.min.css",                
                 "~/Content/dist/css/skins/_all-skins.min.css"
-                ));
+                ).Include("~/Content/bower_components/font-awesome/css/font-awesome.min.css", new CssRewriteUrlTransform()));
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                 "~/Content/bower_components/jquery/dist/jquery.min.js",
                 "~/Content/bower_components/jquery-ui/jquery-ui.min.js"
@@ -46,7 +46,9 @@ namespace WebApplication4.App_Start
                 "~/Content/plugins/timepicker/bootstrap-timepicker.min.js",
                 "~/Content/bower_components/jquery-slimscroll/jquery.slimscroll.min.js",
                 "~/Content/bower_components/chart.js/Chart.js",
+                "~/Content/sweetalert.min.js",
                 "~/Content/dist/js/pages/dashboard2.js",
+                "~/Content/site.js",
                 "~/Content/dist/js/demo.js"
                 ));
         }

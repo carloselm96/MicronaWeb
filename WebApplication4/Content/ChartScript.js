@@ -12,55 +12,57 @@ window.chartColors = {
     grey: 'rgb(201, 203, 207)'
 };
 
-$.ajax({
-    cache: false,
-    url: '/Home/getPieData',
-    type: 'GET',    
-    success: function (result) {                
-        var datat = [];
-        var labelt = [];
-        for (var i = 0; i < result.length; i++){
-            labelt.push(result[i].label);
-            datat.push(result[i].value);
-        }
-        var config = {
-            type: 'doughnut',
-            data: {
-                datasets: [{
-                    data: datat,
-                    backgroundColor: [
-                        window.chartColors.red,
-                        window.chartColors.orange,
-                        window.chartColors.yellow,
-                        window.chartColors.green,
-                        window.chartColors.blue,
-                    ],
-                    label: 'Dataset 1'
-                }],
-                labels: labelt
-            },
-            options: {
-                responsive: true,
-                legend: {
-                    position: 'top',
-                },
-                title: {
-                    display: true,
-                    text: 'Distribución de material'
-                },
-                animation: {
-                    animateScale: true,
-                    animateRotate: true
-                }
+function getPie() {
+    $.ajax({
+        cache: false,
+        url: '/Home/getPieData',
+        type: 'GET',
+        success: function (result) {
+            var datat = [];
+            var labelt = [];
+            for (var i = 0; i < result.length; i++) {
+                labelt.push(result[i].label);
+                datat.push(result[i].value);
             }
-        };
-        var ctx = document.getElementById('chart-area').getContext('2d');
-        window.myDoughnut = new Chart(ctx, config);
-    }
-})
+            var config = {
+                type: 'doughnut',
+                data: {
+                    datasets: [{
+                        data: datat,
+                        backgroundColor: [
+                            window.chartColors.red,
+                            window.chartColors.orange,
+                            window.chartColors.yellow,
+                            window.chartColors.green,
+                            window.chartColors.blue,
+                        ],
+                        label: 'Dataset 1'
+                    }],
+                    labels: labelt
+                },
+                options: {
+                    responsive: true,
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Distribución de material'
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            };
+            var ctx = document.getElementById("chart-area").getContext('2d');
+            window.myDoughnut = new Chart(ctx, config);
+        }
+    })
+}
 
 
 
 window.onload = function () {
-    
+    getPie()
 };

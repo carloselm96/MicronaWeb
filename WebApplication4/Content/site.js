@@ -1,49 +1,4 @@
-﻿$(function () {
-    $('#datat').DataTable({
-        dom: 'Bfrtip',
-        buttons: [
-            {
-                extend: 'pdfHtml5',
-                className: "btn btn-large btn-success"
-            },
-            {
-                extend: 'excelHtml5',
-                className: "btn btn-large btn-warning"
-            }
-        ]
-    });
-    $('.select2').select2({
-        liveSearch: true,
-        width: 'resolve'
-    });
-    $('.date-picker').datepicker({
-        beforeShow: function (input, inst) {
-            setTimeout(function () {
-                inst.dpDiv.css({
-                    top: $(".datepicker").offset().top + 35,
-                    left: $(".datepicker").offset().left
-                });
-            }, 0);
-        },
-        format: "mm-yyyy",
-        startView: "months",
-        minViewMode: "months"
-    });
-    
-    $('[data-toggle=confirmation]').confirmation({
-        rootSelector: '[data-toggle=confirmation]'        
-    });
-    $("#tipo_art").on("change", function () {
-        var value = $("option:selected", this).text();
-        if (value == "Indizado") {
-            $("#ind").removeAttr('disabled');
-        }
-        else {
-            $("#ind").attr('disabled', 'disabled');
-
-        }
-    })
-})
+﻿
 
 
 
@@ -141,3 +96,19 @@ function validateUserProfile() {
 
     }
 }
+
+function searchConcentrado() {
+    var dataform = $("#searchForm").serialize();
+    $.ajax({
+        type: "POST",
+        url: "/Home/Search",
+        data: dataform,
+        success: function (data) {
+            var table = $("#datat").DataTable({
+                data: data.data,
+                destroy: true,
+            })
+        }
+    })
+}
+
