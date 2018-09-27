@@ -181,15 +181,17 @@ namespace WebApplication4.Controllers
         [AllowAnonymous]
         public ActionResult Login(usuario u)
         {
+            if (!ModelState.IsValidField("Usuario1") || !ModelState.IsValidField("Contraseña"))
+            {
+                return View();
+            }            
             microna2018Entities db = new microna2018Entities();
             u.Usuario1 = u.Usuario1.ToUpper();
-            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1 && x.Status.Equals("A")).FirstOrDefault();            
-            if (user!=null)
+            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1 && x.Status.Equals("A")).FirstOrDefault();
+            if (user != null)
             {
-                if (user.Contraseña== u.Contraseña)
-                {
-                    //FormsAuthentication.SetAuthCookie(user.Usuario1, false);
-                    //Response.Cookies.Add(FormsAuthentication.GetAuthCookie(user.Usuario1, true));
+                if (user.Contraseña == u.Contraseña)
+                {                        
                     FormsAuthenticationTicket authTicket = new
                         FormsAuthenticationTicket(1, //version
                         user.Usuario1, // user name
@@ -206,12 +208,13 @@ namespace WebApplication4.Controllers
                     userInfo.Values.Add("nombre", user.Nombre);
                     userInfo.Values.Add("tipo", user.tipousuario1.Nombre);
                     userInfo.Values.Add("user", user.Usuario1);
-                    userInfo.Expires = DateTime.Now.AddDays(1);                    
-                    Response.Cookies.Add(userInfo);                    
-                    return RedirectToAction("Index","Home");                    
+                    userInfo.Expires = DateTime.Now.AddDays(1);
+                    Response.Cookies.Add(userInfo);
+                    return RedirectToAction("Index", "Home");
                 }
-            }          
-            return RedirectToAction("Login", "Home");
+            }
+            ModelState.AddModelError("Contraseña", "Contraseña o Usuario Incorrectos");
+            return View();                        
         }
 
         [Authorize]

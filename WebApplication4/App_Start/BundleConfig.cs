@@ -47,6 +47,7 @@ namespace WebApplication4.App_Start
                 "~/Content/bower_components/jquery-slimscroll/jquery.slimscroll.min.js",
                 "~/Content/bower_components/chart.js/Chart.js",
                 "~/Content/sweetalert.min.js",
+                "~/Content/plugins/iCheck/icheck.min.js",
                 "~/Content/dist/js/pages/dashboard2.js",
                 "~/Content/site.js",
                 "~/Content/dist/js/demo.js"

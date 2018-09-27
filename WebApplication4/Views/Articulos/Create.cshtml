@@ -1,14 +1,14 @@
 ﻿@model WebApplication4.Models.articulo
 
 @{
-    ViewBag.Title = "Nuevo Artículo";
+    ViewBag.Title = "Nuevo Capitulo";
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
     
 }
 
 <div class="box">
     <div class="box-header">
-        <h4>Artículo</h4>
+        <h4>Capitulo Libro</h4>
     </div>
     <div class="box-body">
         @using (Html.BeginForm("Create", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data" }))
@@ -28,20 +28,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Tipo de artículo</label>
                     <div class="col-md-10">
-                        <select class="form-control" , name="TipoArticulo", id="tipo_art" required>
-                            <option>Selecciona un tipo</option>
-                            @foreach (var TipoArticulo in ViewBag.tipoarticulo)
-                            {
-                                if (TipoArticulo.Nombre == "Indizado")
-                                {
-                                    <option value="@TipoArticulo.idTipoArticulo" id="indizado">@TipoArticulo.Nombre</option>
-                                }
-                                else
-                                {
-                                    <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
-                                }
-                            }
-                        </select>
+                        @Html.DropDownListFor(model =>model.TipoArticulo,new SelectList(ViewBag.tipoarticulo, "idTipoArticulo", "Nombre"),new { @class = "form-control" })                        
                         @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -53,11 +40,11 @@
                 </div>
                 <div class="form-group">
                     <label class="control-label col-md-2">Autores</label>
-                    <div class="col-md-10">
+                    <div class="col-md-10">                        
                         <select class="form-control select2" name="Autores" multiple style="width:75%">
                             @foreach (var Usuario in ViewBag.autores)
                             {
-                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
                             }
                         </select>
                     </div>
@@ -103,8 +90,9 @@
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">                        
-                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Fecha">
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.Fecha, new { htmlAttributes = new { @class = "form-control datemask" } })
+                        @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
                     </div>
                 </div>
                 <div class="form-group">
@@ -141,5 +129,5 @@
 </div>
 
 
-
+<script src="~/Scripts/form-format1.js"></script>
 

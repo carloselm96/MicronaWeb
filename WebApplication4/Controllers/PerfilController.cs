@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -9,6 +10,9 @@ namespace WebApplication4.Controllers
 {
     public class PerfilController : Controller
     {
+        [StringLength(20, MinimumLength = 5)]
+        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "Caracteres especiales no permitidos")]
+        public string newpassword { get; set; }
         // GET: Perfil
         [HttpGet]
         [Authorize]
@@ -48,7 +52,7 @@ namespace WebApplication4.Controllers
         // POST: Perfil/Edit/5
         [HttpPost]
         [Authorize]
-        public ActionResult Edit(usuario u, string new_pass)
+        public ActionResult Edit(usuario u, string newpass)
         {
             try
             {
@@ -62,32 +66,40 @@ namespace WebApplication4.Controllers
                 var user = db.usuario.Where(x => x.idUsuario == id && x.Contraseña==u.Contraseña).FirstOrDefault();
                 if (user == null)
                 {
-                    return RedirectToAction("Index", "Home", null);
+                    ModelState.AddModelError("Contraseña","La contraseña anterior es incorrecta");
+                    return View(u);
 
                 }
-                var aux = db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault();
-                if (aux != null)
+                if (newpass != null)
                 {
-                    if (aux.idUsuario != id)
-                    {
-                        return RedirectToAction("Edit", new { id = id, response = 2 });
-                    }
+                    user.Contraseña = newpass;
                 }
-                user.Nombre = u.Nombre;
-                user.Correo = u.Correo;
-                if (new_pass != null)
+                if (ModelState.IsValid)
                 {
-                    user.Contraseña = new_pass;
-                }                
-                user.Usuario1 = u.Usuario1.ToUpper();
-                db.SaveChanges();
-                HttpCookie cookie = new HttpCookie("userInfo");
-                cookie["id"] = Request.Cookies["userInfo"]["id"];
-                cookie["nombre"] = user.Nombre;
-                cookie["user"] = user.Usuario1;
-                cookie["tipo"] = Request.Cookies["userInfo"]["tipo"];
-                Response.Cookies.Add(cookie);
-                return RedirectToAction("Index",user.idUsuario);
+                    var aux = db.usuario.Where(x => x.Usuario1 == u.Usuario1).FirstOrDefault();
+                    if (aux != null)
+                    {
+                        if (aux.idUsuario != id)
+                        {
+                            return RedirectToAction("Edit", new { id = id, response = 2 });
+                        }
+                    }
+                    user.Nombre = u.Nombre;
+                    user.Correo = u.Correo;
+                    user.Usuario1 = u.Usuario1.ToUpper();
+                    db.SaveChanges();
+                    HttpCookie cookie = new HttpCookie("userInfo");
+                    cookie["id"] = Request.Cookies["userInfo"]["id"];
+                    cookie["nombre"] = user.Nombre;
+                    cookie["user"] = user.Usuario1;
+                    cookie["tipo"] = Request.Cookies["userInfo"]["tipo"];
+                    Response.Cookies.Add(cookie);
+                    return RedirectToAction("Index", user.idUsuario);
+                }
+                else
+                {
+                    return View(u);
+                }
             }
             catch
             {

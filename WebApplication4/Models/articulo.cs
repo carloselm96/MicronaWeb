@@ -11,7 +11,9 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class articulo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,15 +24,25 @@ namespace WebApplication4.Models
         }
     
         public int idArticulo { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<int> Volumen { get; set; }
+        [DisplayName("Pagina de Inicio")]
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<int> PagInicio { get; set; }
+        [DisplayName("Pagina Final")]
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<int> PagFinal { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public string Revista { get; set; }
         public string ISSN { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
+        [DisplayName("Tipo de Articulo")]
         public Nullable<int> TipoArticulo { get; set; }
         public Nullable<int> Indice { get; set; }
     

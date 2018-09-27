@@ -24,7 +24,7 @@ namespace WebApplication4.Controllers
         public ActionResult Create(int? response)
         {
             microna2018Entities db = new microna2018Entities();
-            ViewBag.TipoUsuario = db.tipoarticulo.ToList();
+            ViewBag.TipoUsuario = db.tipousuario.ToList();
             if (response != null)
             {
                 ViewBag.result = "El nombre de usuario ya existe";
@@ -46,9 +46,16 @@ namespace WebApplication4.Controllers
                         return RedirectToAction("Index", "Home", null);
                     }
                     microna2018Entities db = new microna2018Entities();
+                    if (!ModelState.IsValid)
+                    {
+                        ViewBag.TipoUsuario = db.tipousuario.ToList();
+                        return View(u);
+                    }
                     if (db.usuario.Where(x => x.Usuario1 == u.Usuario1 && x.Status=="A").FirstOrDefault() != null)
                     {
-                        return RedirectToAction("Create", new { response = 1 });
+                        ModelState.AddModelError("Usuario1", "El usuario ya existe");
+                        ViewBag.TipoUsuario = db.tipousuario.ToList();
+                        return View(u);
                     }
                     u.Status = "A";
                     db.usuario.Add(u);

@@ -96,7 +96,7 @@ namespace WebApplication4.Controllers
             microna2018Entities db = new microna2018Entities();
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.ToList();            
             return View();
         }
 
@@ -105,66 +105,81 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
-            archivo file = null;
-            try
+            microna2018Entities db = new microna2018Entities();
+            if (Autores==null)
             {
-                string dir = "~/Content/Archivos/Articulos";
-                string fileName="";
-                string path="";                
-                microna2018Entities db = new microna2018Entities();
-                if (!Directory.Exists(dir))
+                ViewBag.tipoarticulo = db.tipoarticulo.ToList();
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
+                return View(a);
+            }
+            if (ModelState.IsValid)
+            {
+                archivo file = null;
+                try
                 {
-                    DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
-                }
-                if (ffile != null && ffile.ContentLength > 0)
-                {
-                    fileName = Path.GetFileName(ffile.FileName);
-                    path= Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
-                    ffile.SaveAs(path);
-                    file = new archivo();
-                    file.Nombre = fileName;
-                    file.url = path;
-                    db.archivo.Add(file);
+                    string dir = "~/Content/Archivos/Articulos";
+                    string fileName = "";
+                    string path = "";                    
+                    if (!Directory.Exists(dir))
+                    {
+                        DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
+                    }
+                    if (ffile != null && ffile.ContentLength > 0)
+                    {
+                        fileName = Path.GetFileName(ffile.FileName);
+                        path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
+                        ffile.SaveAs(path);
+                        file = new archivo();
+                        file.Nombre = fileName;
+                        file.url = path;
+                        db.archivo.Add(file);
+                        db.SaveChanges();
+                    }
+
+                    if (file != null)
+                    {
+                        a.Archivo = file.idarchivo;
+                    }
+                    a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+                    db.articulo.Add(a);
+                    if (GrupoAcademico != null)
+                    {
+                        foreach (var s in GrupoAcademico)
+                        {
+                            articulo_grupo ag = new articulo_grupo
+                            {
+                                id_articulo = a.idArticulo,
+                                id_grupo = int.Parse(s)
+                            };
+                            db.articulo_grupo.Add(ag);
+                        }
+                    }
+                    if (Autores != null)
+                    {
+                        foreach (var s in Autores)
+                        {
+                            articulo_usuario lb = new articulo_usuario
+                            {
+                                idArticulo = a.idArticulo,
+                                idUsuario = int.Parse(s)
+                            };
+                            db.articulo_usuario.Add(lb);
+                        }
+                    }
                     db.SaveChanges();
+                    return RedirectToAction("Index", new { response = 1 });
                 }
-                
-                if (file != null)
+                catch
                 {
-                    a.Archivo = file.idarchivo;
-                }                
-                a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);                                                                                            
-                db.articulo.Add(a);
-                if (GrupoAcademico != null)
-                {
-                    foreach (var s in GrupoAcademico)
-                    {
-                        articulo_grupo ag = new articulo_grupo
-                        {
-                            id_articulo = a.idArticulo,
-                            id_grupo = int.Parse(s)
-                        };
-                        db.articulo_grupo.Add(ag);
-                    }
+                    return RedirectToAction("Index", new { response = 2 });
                 }
-                if (Autores != null)
-                {
-                    foreach (var s in Autores)
-                    {
-                        articulo_usuario lb = new articulo_usuario
-                        {
-                            idArticulo = a.idArticulo,
-                            idUsuario = int.Parse(s)
-                        };
-                        db.articulo_usuario.Add(lb);
-                    }
-                }
-                db.SaveChanges();
-                return RedirectToAction("Index", new { response = 1 });
             }
-            catch
-            {
-                return RedirectToAction("Index", new { response = 2 });
-            }
+            ViewBag.tipoarticulo = db.tipoarticulo.ToList();
+            ViewBag.grupo = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
+            return View(a);
         }
 
         // GET: Articulos/Edit/5

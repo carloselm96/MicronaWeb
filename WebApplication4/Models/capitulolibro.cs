@@ -11,7 +11,8 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class capitulolibro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,10 +23,13 @@ namespace WebApplication4.Models
         }
     
         public int idCapituloLibro { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         public string Participantes { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public string Libro { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }

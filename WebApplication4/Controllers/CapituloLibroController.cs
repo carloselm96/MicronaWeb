@@ -113,12 +113,25 @@ namespace WebApplication4.Controllers
         public ActionResult Create(capitulolibro lib, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
+            microna2018Entities db = new microna2018Entities();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                return View(lib);
+            }
+            if (Autores.Count < 1)
+            {
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
+                return View(lib);
+            }
             try
             {
                 string dir = "~/Content/Archivos/Capitulos";
                 string fileName = "";
                 string path = "";
-                microna2018Entities db = new microna2018Entities();
                 if (!Directory.Exists(dir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
@@ -199,9 +212,22 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public ActionResult Edit(int id, capitulolibro lib, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
-            try
+            microna2018Entities db = new microna2018Entities();
+            if (!ModelState.IsValid)
             {
-                microna2018Entities db = new microna2018Entities();
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                return View(lib);
+            }
+            if (Autores==null)
+            {
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
+                return View(lib);
+            }
+            try
+            {                
                 var l = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
                 l.Nombre = lib.Nombre;
                 l.ISBN = lib.ISBN;                                

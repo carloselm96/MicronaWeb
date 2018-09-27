@@ -114,12 +114,26 @@ namespace WebApplication4.Controllers
         public ActionResult Create(trabajo t, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
+            microna2018Entities db = new microna2018Entities();
+            if (!ModelState.IsValid)
+            {
+                ViewBag.tipo = db.tipotrabajo.ToList();
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                return View(t);
+            }
+            if (Autores == null)
+            {
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
+                return View(t);
+            }
             try
             {
                 string dir = "~/Content/Archivos/Trabajo";
                 string fileName = "";
-                string path = "";
-                microna2018Entities db = new microna2018Entities();
+                string path = "";                
                 if (!Directory.Exists(dir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
@@ -201,9 +215,24 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
-            try
+            microna2018Entities db = new microna2018Entities();
+            if (!ModelState.IsValid)
             {
-                microna2018Entities db = new microna2018Entities();
+                ViewBag.tipo = db.tipotrabajo.ToList();
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                return View(t);
+            }
+            if (Autores == null)
+            {
+                ViewBag.tipo = db.tipotrabajo.ToList();
+                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.autores = db.usuario.ToList();
+                ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
+                return View(t);
+            }
+            try
+            {                
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
                 trabajo.Nombre = t.Nombre;
                 trabajo.Pais = t.Pais;

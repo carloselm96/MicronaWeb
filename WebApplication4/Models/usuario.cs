@@ -11,7 +11,9 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -31,13 +33,26 @@ namespace WebApplication4.Models
         }
     
         public int idUsuario { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public string Nombre { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
+        [StringLength(160, MinimumLength = 5)]
+        [DisplayName("Nombre de Usuario")]
         public string Usuario1 { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
+        [StringLength(20, MinimumLength = 5)]
+        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$",ErrorMessage = "Caracteres especiales no permitidos")]
         public string Contraseña { get; set; }
-        public string Correo { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
+        public string Correo { get; set; }        
+        [DisplayName("Tipo de Usuario")]
         public Nullable<int> TipoUsuario { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
+        [DisplayName("Apellido Paterno")]
         public string Apellido_Paterno { get; set; }
-        public string Apellido_Materno { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
+        [DisplayName("Apellido Materno")]
+        public string Apellido_Materno { get; set; }        
         public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
