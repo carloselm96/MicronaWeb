@@ -10,17 +10,30 @@ namespace WebApplication4.Controllers
 {
     public class ProyectosController : Controller
     {
+        microna2018Entities db = new microna2018Entities();
         // GET: Proyectos
         [Authorize]
-        public ActionResult Index(string Nombre, List <string> autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos)
+        public ActionResult Index(string response)
         {
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
-            microna2018Entities db = new microna2018Entities();
+            
             ViewBag.autores = db.usuario.ToList();
             ViewBag.grupos = db.grupoacademico.ToList();            
+            List<proyectos> proyect = db.proyectos.ToList();            
+            return View(proyect);
+        }
+
+        
+        [Authorize]
+        [HttpGet]
+        public ActionResult Search(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, List<string> grupos)
+        {            
+            
+            ViewBag.autores = db.usuario.ToList();
+            ViewBag.grupos = db.grupoacademico.ToList();
             List<proyectos> proyect = db.proyectos.ToList();
             if (Nombre != null)
             {
@@ -41,7 +54,7 @@ namespace WebApplication4.Controllers
                     proyect = proyect.Where(x => cg.Contains(x)).ToList();
                 }
             }
-                if (Y1 != null)
+            if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
                 proyect = proyect.Where(x => x.FechaInicio >= Y1).ToList();
@@ -65,9 +78,8 @@ namespace WebApplication4.Controllers
                     proyect = proyect.Where(x => cg.Contains(x)).ToList();
                 }
             }
-            return View(proyect);
+            return PartialView("_ProyectosPartial",proyect);
         }
-
         // GET: Proyectos/Details/5
         [Authorize]
         public ActionResult Details(int? id)
@@ -78,7 +90,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Proyectos", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var proyecto = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 return View(proyecto);
             }
@@ -92,7 +104,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            microna2018Entities db = new microna2018Entities();            
+                        
             ViewBag.grupo = db.grupoacademico.ToList();
             ViewBag.autores = db.usuario.ToList();
             return View();
@@ -109,7 +121,7 @@ namespace WebApplication4.Controllers
                 string dir = "~/Content/Archivos/Proyectos";
                 string fileName = "";
                 string path = "";
-                microna2018Entities db = new microna2018Entities();
+                
                 if (!Directory.Exists(dir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
@@ -176,7 +188,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Proyectos", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var a = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
                 {
@@ -200,7 +212,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                microna2018Entities db = new microna2018Entities();
+                
                 var p = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 p.nombre = pro.nombre;                
                 p.FechaFinal = pro.FechaFinal;
@@ -278,7 +290,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Proyectos", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var proyecto = db.proyectos.Where(x => x.idProyecto == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != proyecto.Usuario)
                 {

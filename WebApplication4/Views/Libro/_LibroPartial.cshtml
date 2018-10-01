@@ -1,0 +1,152 @@
+﻿@model IEnumerable<WebApplication4.Models.libro>
+
+<table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Año)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+
+            </th>
+            <th>
+                Editorial
+            </th>
+            <th>
+                País
+            </th>
+            <th>
+                Estatus
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+            <th>
+                Subido por
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Año)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ISBN)
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.libro_usuario)
+                        {
+                            <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Editorial)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Pais)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipolibro1.Nombre)
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.libro_grupo)
+                        {
+                            <p>@a.grupoacademico.Nombre</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                </td>
+                <td>
+                    @{
+                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                        {
+                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idLibro }, new { @class = "btn btn-large btn-warning" })</p>
+                            using (Html.BeginForm("Delete", "Libro", FormMethod.Get, null))
+                            {
+                                <input hidden name="id" value="@item.idLibro" />
+                                <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar" /></p>
+                            }
+                        }
+                    }
+                    <p>@Html.ActionLink("Detalles", "Details", new { id = item.idLibro }, new { @class = "btn btn-large btn-primary" })</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Año)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                Editorial
+            </th>
+            <th>
+                País
+            </th>
+            <th>
+                Estatus
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+            <th>
+                Subido por
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    $(function () {
+        $('#datat').DataTable();
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez elimnado no se podra recuperar este archivo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    })
+</script>

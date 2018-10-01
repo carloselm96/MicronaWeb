@@ -11,7 +11,9 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+
+    [DataContract(IsReference = true)]
     public partial class articulo_usuario
     {
         public int idarticulo_usuario { get; set; }

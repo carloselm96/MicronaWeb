@@ -13,7 +13,10 @@ namespace WebApplication4.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
+    using System.Runtime.Serialization;
+    using System.Web.Script.Serialization;
 
+    [DataContract(IsReference = true)]
     public partial class articulo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -45,13 +48,18 @@ namespace WebApplication4.Models
         [DisplayName("Tipo de Articulo")]
         public Nullable<int> TipoArticulo { get; set; }
         public Nullable<int> Indice { get; set; }
-    
+
+        [ScriptIgnore]
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [ScriptIgnore]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
+        [ScriptIgnore]
         public virtual tipoarticulo tipoarticulo1 { get; set; }
+        [ScriptIgnore]
         public virtual usuario usuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        [ScriptIgnore]
         public virtual ICollection<articulo_usuario> articulo_usuario { get; set; }
     }
 }

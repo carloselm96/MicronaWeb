@@ -1,0 +1,163 @@
+﻿@model IEnumerable<WebApplication4.Models.articulo>
+
+
+<table class="display table table-bordered table-striped table-hover" id="datat">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Volumen)
+            </th>
+            <th>
+                Páginas
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Revista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                Indice
+            </th>
+            <th>
+                Tipo de Artículo
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+            <th>
+                Subido por
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Volumen)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PagInicio)-@Html.DisplayFor(modelItem => item.PagFinal)
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.articulo_usuario)
+                        {
+                            <p>@a.usuario.Nombre @a.usuario.Apellido_Materno @a.usuario.Apellido_Paterno</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Revista)
+                    <p>ISSN: @Html.DisplayFor(modelItem => item.ISSN)</p>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Indice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tipoarticulo1.Nombre)
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.articulo_grupo)
+                        {
+                            <p>@a.grupoacademico.Nombre</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                </td>
+                <td>
+                    @{
+                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]) || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
+                        {
+                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-warning" })</p>
+                            using (Html.BeginForm("Delete", "Articulos", FormMethod.Get, null))
+                            {
+                                <input hidden name="id" value="@item.idArticulo" />
+                                <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar" /></p>
+                            }
+                        }
+                    }
+                    <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-primary" })</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Volumen)
+            </th>
+            <th>
+                Páginas
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Revista)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                Indice
+            </th>
+            <th>
+                Tipo de Artículo
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+            <th>
+                Subido por
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    $(function () {
+        $('#datat').DataTable();        
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez elimnado no se podra recuperar este archivo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    })
+</script>

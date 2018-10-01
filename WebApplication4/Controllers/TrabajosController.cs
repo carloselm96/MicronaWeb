@@ -10,16 +10,28 @@ namespace WebApplication4.Controllers
 {
     public class TrabajosController : Controller
     {
+        microna2018Entities db = new microna2018Entities();
         // GET: Trabajos
-  
+
         [Authorize]
-        public ActionResult Index(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, string tipo)
+        public ActionResult Index(string response)
         {
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
-            microna2018Entities db = new microna2018Entities();
+            
+            ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.tipos = db.tipotrabajo.ToList();
+            ViewBag.autores = db.usuario.ToList();
+            List<trabajo> trabajos = db.trabajo.ToList();            
+            return View(trabajos);
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Search(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, List<string> grupos, string tipo)
+        {                        
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipos = db.tipotrabajo.ToList();
             ViewBag.autores = db.usuario.ToList();
@@ -75,9 +87,8 @@ namespace WebApplication4.Controllers
                     trabajos = trabajos.Where(x => cg.Contains(x)).ToList();
                 }
             }
-            return View(trabajos);
+            return PartialView("_TrabajosPartial",trabajos);
         }
-
         // GET: Trabajos/Details/5
         [Authorize]
         public ActionResult Details(int? id)
@@ -88,7 +99,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Trabajos", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
                 return View(trabajo);
             }
@@ -102,7 +113,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Create()
         {
-            microna2018Entities db = new microna2018Entities();
+            
             ViewBag.tipo = db.tipotrabajo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
             ViewBag.autores = db.usuario.ToList();
@@ -114,7 +125,7 @@ namespace WebApplication4.Controllers
         public ActionResult Create(trabajo t, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
-            microna2018Entities db = new microna2018Entities();
+            
             if (!ModelState.IsValid)
             {
                 ViewBag.tipo = db.tipotrabajo.ToList();
@@ -197,7 +208,7 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Trabajos", null);
             }
-            microna2018Entities db = new microna2018Entities();
+            
             var a = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
             if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
             {
@@ -215,7 +226,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Edit(int id, trabajo t, List<string> GrupoAcademico, HttpPostedFileBase ffile, List<string> Autores)
         {
-            microna2018Entities db = new microna2018Entities();
+            
             if (!ModelState.IsValid)
             {
                 ViewBag.tipo = db.tipotrabajo.ToList();
@@ -312,7 +323,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Trabajos", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != trabajo.Usuario)
                 {

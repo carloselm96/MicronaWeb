@@ -12,76 +12,21 @@ namespace WebApplication4.Controllers
 {
     public class HomeController : Controller
     {
+        microna2018Entities db = new microna2018Entities();
         // GET: Home        
         [Authorize]
-        public ActionResult Index(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
-        {
-            microna2018Entities db = new microna2018Entities();
+        public ActionResult Index()
+        {         
             var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.ToList();
-            if (titulo != null)
-            {
-                concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();
-            }
-            if (Y1 != null)
-            {
-                concent = concent.Where(x => x.Fecha >= Y1).ToList();
-            }
-            if (Y2 != null)
-            {
-                concent = concent.Where(x => x.Fecha <= Y2).ToList();
-            }
-            if (checkgroup!=null)
-            {
-                foreach (int i in checkgroup)
-                {
-                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();
-                    List<concentrado> cg = new List<concentrado>();
-                    foreach (var con in g)
-                    {
-                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == con.Concentrado).FirstOrDefault();
-                        cg.Add(sample);
-                    }
-                    concent = concent.Where(x => cg.Contains(x)).ToList();
-                }
-            }
-            if (checktype != null)
-            {
-                List<concentrado> ct = new List<concentrado>();
-                foreach (int i in checktype)
-                {
-                    var g = concent.Where(x => x.TipoConcentrado == i).ToList();
-                    foreach (var con in g)
-                    {                        
-                        ct.Add(con);
-                    }                    
-                }
-                concent = ct;
-            }
-            if (autores != null)
-            {
-                foreach (string s in autores)
-                {
-                    int i = int.Parse(s);
-                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();
-                    List<concentrado> cg = new List<concentrado>();
-                    foreach (var cap in g)
-                    {
-                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == cap.idConcentrado).FirstOrDefault();
-                        cg.Add(sample);
-                    }
-                    concent = concent.Where(x => cg.Contains(x)).ToList();
-                }
-            }
+            ViewBag.autores = db.usuario.ToList();            
             return View(concent);
         }
 
 
         [Authorize]
-        [HttpPost]
+        [HttpGet]
         public ActionResult Search(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
-        {
-            microna2018Entities db = new microna2018Entities();
+        {            
             var concent = db.concentrado.ToList();
             ViewBag.autores = db.usuario.ToList();
             if (titulo != null)
@@ -138,14 +83,14 @@ namespace WebApplication4.Controllers
                     concent = concent.Where(x => cg.Contains(x)).ToList();
                 }
             }
-            return Json(concent,JsonRequestBehavior.AllowGet);
+            return PartialView("_ConcentradoPartial", concent);
         }
 
         [Authorize]
         [HttpGet]
         public ActionResult getPieData()
         {
-            microna2018Entities db = new microna2018Entities();
+            
             var data = new List<pieDataModel>();
             var articulos = db.articulo.ToList();            
             var libros = db.libro.ToList();            
@@ -164,7 +109,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Configure()
         {
-            microna2018Entities db = new microna2018Entities();
+            
             ViewBag.tipos_art = db.tipoarticulo.ToList();
             ViewBag.tipos_tra = db.tipotrabajo.ToList();
             ViewBag.tipos_lib = db.tipolibro.ToList();            
@@ -184,10 +129,8 @@ namespace WebApplication4.Controllers
             if (!ModelState.IsValidField("Usuario1") || !ModelState.IsValidField("Contraseña"))
             {
                 return View();
-            }            
-            microna2018Entities db = new microna2018Entities();
-            u.Usuario1 = u.Usuario1.ToUpper();
-            var user = db.usuario.Where(x => u.Usuario1 == x.Usuario1 && x.Status.Equals("A")).FirstOrDefault();
+            }                                    
+            var user = db.usuario.Where(x => u.Usuario1.ToUpper() == x.Usuario1.ToUpper() && x.Status.Equals("A")).FirstOrDefault();
             if (user != null)
             {
                 if (user.Contraseña == u.Contraseña)
@@ -207,7 +150,7 @@ namespace WebApplication4.Controllers
                     userInfo.Values.Add("id", user.idUsuario.ToString());
                     userInfo.Values.Add("nombre", user.Nombre);
                     userInfo.Values.Add("tipo", user.tipousuario1.Nombre);
-                    userInfo.Values.Add("user", user.Usuario1);
+                    userInfo.Values.Add("user", user.Usuario1.ToLower());
                     userInfo.Expires = DateTime.Now.AddDays(1);
                     Response.Cookies.Add(userInfo);
                     return RedirectToAction("Index", "Home");
@@ -231,7 +174,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult nuevoTipo(string nombre, string tipo)
         {
-            microna2018Entities db = new microna2018Entities();
+            
             switch (tipo)
             {
                 case "1":
@@ -255,7 +198,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult editarTipo(string nombre, string tipo, int id)
         {
-            microna2018Entities db = new microna2018Entities();            
+                        
             switch (tipo)
             {
                 case "1":
@@ -280,7 +223,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult eliminarTipo(string tipo, int id)
         {
-            microna2018Entities db = new microna2018Entities();
+            
             switch (tipo)
             {
                 case "1":

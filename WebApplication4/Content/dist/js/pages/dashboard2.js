@@ -1,9 +1,6 @@
 $(function () {
     $('#datat').DataTable();
-    $('.select2').select2();
-    $("#searchBttn").on("click", function () {
-        searchConcentrado();
-    });
+    $('.select2').select2();    
     $(".swalalert").click(function (e) {
         e.preventDefault();
         // stop the default behavior(navigation)

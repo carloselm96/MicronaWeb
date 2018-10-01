@@ -1,0 +1,132 @@
+﻿@model IEnumerable<WebApplication4.Models.proyectos>
+
+<table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
+    <thead>
+        <tr>
+            <th>
+                Nombre
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Financiamiento)
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFinal)
+            </th>
+            <th>
+                Grupo académico
+            </th>
+            <th>
+                Subido por
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Financiamiento)
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.proyecto_usuario)
+                        {
+                            <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaInicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FechaFinal)
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.proyecto_grupo)
+                        {
+                            <p>@a.grupoacademico.Nombre</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                </td>
+                <td>
+                    @{
+                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
+                        {
+                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idProyecto }, new { @class = "btn btn-large btn-warning" })</p>
+
+                            using (Html.BeginForm("Delete", "Proyectos", FormMethod.Get, null))
+                            {
+                                <input hidden name="id" value="@item.idProyecto" />
+                                <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar" /></p>
+                            }
+                        }
+                    }
+                    <p>@Html.ActionLink("Detalles", "Details", new { id = item.idProyecto }, new { @class = "btn btn-large btn-primary" })</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Financiamiento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaInicio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FechaFinal)
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+            <th>
+                Subido por
+            </th>
+            <th></th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    $(function () {
+        $('#datat').DataTable();
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez elimnado no se podra recuperar este archivo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    })
+</script>

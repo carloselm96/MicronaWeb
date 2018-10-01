@@ -10,15 +10,32 @@ namespace WebApplication4.Controllers
 {
     public class ArticulosController : Controller
     {
+        microna2018Entities db = new microna2018Entities();
         // GET: Articulos
         [Authorize]
-        public ActionResult Index(string response,string Nombre, List<string> autores, string Revista, DateTime? Y1, DateTime? Y2, List<string> grupos, string tipo)
+        public ActionResult Index(string response)
         {            
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
-            microna2018Entities db = new microna2018Entities();
+            
+            ViewBag.grupos = db.grupoacademico.ToList();
+            ViewBag.autores = db.usuario.ToList();
+            ViewBag.tipo = db.tipoarticulo.ToList();
+            var articulos = db.articulo.ToList();      
+            return View(articulos);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Search(string response, string Nombre, List<string> autores, string Revista, DateTime? Y1, DateTime? Y2, List<string> grupos, string tipo)
+        {
+            if (response != null)
+            {
+                ViewBag.response = int.Parse(response);
+            }
+
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.autores = db.usuario.ToList();
             ViewBag.tipo = db.tipoarticulo.ToList();
@@ -26,7 +43,7 @@ namespace WebApplication4.Controllers
             if (Nombre != null)
             {
                 articulos = articulos.Where(x => x.Nombre.Contains(Nombre)).ToList();
-            }            
+            }
             if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
@@ -39,7 +56,7 @@ namespace WebApplication4.Controllers
             if (Revista != null)
             {
                 articulos = articulos.Where(x => x.Revista.Contains(Revista)).ToList();
-            }            
+            }
             if (grupos != null)
             {
                 foreach (string s in grupos)
@@ -74,9 +91,8 @@ namespace WebApplication4.Controllers
                     articulos = articulos.Where(x => cg.Contains(x)).ToList();
                 }
             }
-            return View(articulos);
+            return PartialView("_ArticuloPArtial", articulos);
         }
-
         // GET: Articulos/Details/5
         [Authorize]
         public ActionResult Details(int? id)
@@ -85,7 +101,7 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Articulos", null);
             }
-            microna2018Entities db = new microna2018Entities();
+            
             var art=db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
             return View(art);
         }
@@ -93,7 +109,7 @@ namespace WebApplication4.Controllers
         // GET: Articulos/Create
         public ActionResult Create()
         {           
-            microna2018Entities db = new microna2018Entities();
+            
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
             ViewBag.autores = db.usuario.ToList();            
@@ -105,7 +121,6 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Create(articulo a, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
-            microna2018Entities db = new microna2018Entities();
             if (Autores==null)
             {
                 ViewBag.tipoarticulo = db.tipoarticulo.ToList();
@@ -190,7 +205,7 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Articulos", null);
             }
-            microna2018Entities db = new microna2018Entities();
+            
             var a = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
             if(int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
             {
@@ -210,7 +225,7 @@ namespace WebApplication4.Controllers
         {            
             try
             {
-                microna2018Entities db = new microna2018Entities();
+                
                 var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
                 articulo.Nombre = a.Nombre;                
                 articulo.Fecha = a.Fecha;                
@@ -294,7 +309,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Articulos", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var articulo = db.articulo.Where(x => x.idArticulo == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != articulo.Usuario)
                 {
@@ -331,7 +346,7 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public ActionResult Configure(List<string> tipos_eliminar, List<string> tipos_añadir)
         {
-            microna2018Entities db = new microna2018Entities();
+            
             List<tipoarticulo> tipos = db.tipoarticulo.ToList();
 
             if (tipos_eliminar != null)

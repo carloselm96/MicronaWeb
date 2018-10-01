@@ -5,250 +5,158 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="box box-primary box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">Busqueda avanzada</h3>
-    </div>
-    <div class="box-body">
-        @using (Html.BeginForm("Index", "Articulos", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Nombre:</label>
-                        <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">                                                
-                            <label>Autores</label>
-                            <select class="form-control select2" name="autores" multiple style="width:100%">
-                                @foreach (var Usuario in ViewBag.autores)
+
+<link href="~/Content/loading-style.css" rel="stylesheet" />
+
+<div onload="myFunction()">
+    <div id="loader"></div>
+    <div id="myDiv" style="display:none" class="animate-bottom">
+        <div class="box box-primary box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Busqueda avanzada</h3>
+            </div>
+            <div class="box-body">
+                <form id="searchForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Nombre:</label>
+                                <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Autores</label>
+                                <select class="form-control select2" name="autores" multiple style="width:100%">
+                                    @foreach (var Usuario in ViewBag.autores)
                                 {
                                     <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
-                            </select>                        
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Revista:</label>
-                        <input id="revistaSearch" Name="Revista" type="text" class="form-control" style="width: 100%;" />
-                    </div>
-                </div>                
-            </div>
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Tipo de artículo</label>
-                        <select class="form-control select2" name="tipo" multiple data-max-options="1">                            
-                            @{
-                                if (ViewBag.tipo != null)
-                                {
-                                    foreach (var TipoArticulo in ViewBag.tipo)
-                                    {
-                                        <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
-                                    }
-                                }
                             }
-                        </select>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Grupo académico</label>
-                        <select class="form-control select2" multiple data-actions-box="true" name="grupos">
-                            @{
-                                if (ViewBag.grupos != null)
-                                {
-                                    foreach (var Grupo in ViewBag.grupos)
-                                    {
-                                        <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
-                                    }
-                                }
-                            }
-                        </select>
-                    </div>
-                </div>               
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Año:</label>
-                        <div class="input-daterange" id="">
-                            <div class="input-group">
-                                <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y1" autocomplete="off">
-                                <span class="input-group-addon">al</span>
-                                <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y2" autocomplete="off">
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Revista:</label>
+                                <input id="revistaSearch" Name="Revista" type="text" class="form-control" style="width: 100%;" />
                             </div>
                         </div>
                     </div>
-                </div>                
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Tipo de artículo</label>
+                                <select class="form-control select2" name="tipo" multiple data-max-options="1">
+                                    @{
+                                    if (ViewBag.tipo != null)
+                                    {
+                                        foreach (var TipoArticulo in ViewBag.tipo)
+                                        {
+                                            <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
+                                    }
+                                }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Grupo académico</label>
+                                <select class="form-control select2" multiple data-actions-box="true" name="grupos">
+                                    @{
+                                    if (ViewBag.grupos != null)
+                                    {
+                                        foreach (var Grupo in ViewBag.grupos)
+                                        {
+                                            <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                                    }
+                                }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Año:</label>
+                                <div class="input-daterange" id="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y1" autocomplete="off">
+                                        <span class="input-group-addon">al</span>
+                                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y2" autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="searchBtn" class="btn btn-success">Buscar</button>
+                </form>
             </div>
-            <button type="submit" class="btn btn-success">Buscar</button>
-        }
-    </div>
-</div>
-
-
-<div class="box">
+        </div>
+        <div class="box">
             <div class="box-body table-responsive">
                 <div class="row margin-bottom">
                     <div class="col-sm-2">
                         @Html.ActionLink("Nuevo Articulo", "Create", null, new { @class = "btn btn-large btn-success" })
-                    </div>                    
+                    </div>
                 </div>
                 @{
-                    if (ViewBag.response != null)
+                if (ViewBag.response != null)
+                {
+                    switch (ViewBag.response)
                     {
-                        switch (ViewBag.response)
-                        {
-                            case 1:
-                                <div class="alert alert-success">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    <strong>Completado!</strong> Se ha realizado correctamente la acción
-                                </div>
-                                break;
-                            case 2:
-                                <div class="alert alert-warning">
-                                    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                                    <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
-                                </div>
-                                break;
-                        }
-                    }
+                        case 1:
+                            <div class="alert alert-success">
+                                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                                <strong>Completado!</strong> Se ha realizado correctamente la acción
+                            </div>
+                        break;
+                    case 2:
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
+                        </div>
+                    break;
+            }
+        }
                 }
-                <table class="display table table-bordered table-striped table-hover" id="datat">
-                    <thead>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Nombre)
-                            </th>                            
-                            <th>
-                                @Html.DisplayNameFor(model => model.Volumen)
-                            </th>
-                            <th>
-                                Páginas
-                            </th>
-                            <th>
-                                Autores
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Revista)
-                            </th>                            
-                            <th>
-                                @Html.DisplayNameFor(model => model.Fecha)
-                            </th>
-                            <th>
-                                Indice
-                            </th>
-                            <th>
-                                Tipo de Artículo
-                            </th>
-                            <th>
-                                Grupo Académico
-                            </th>
-                            <th>
-                                Subido por
-                            </th>
-                            <th></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Nombre)
-                                </td>                                
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Volumen)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PagInicio)-@Html.DisplayFor(modelItem => item.PagFinal)
-                                </td>
-                                <td>
-                                    @{ 
-                                        foreach(var a in item.articulo_usuario)
-                                        {
-                                            <p>@a.usuario.Nombre @a.usuario.Apellido_Materno @a.usuario.Apellido_Paterno</p>
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Revista)
-                                    <p>ISSN: @Html.DisplayFor(modelItem => item.ISSN)</p>
-                                </td>                                
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Fecha)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Indice)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.tipoarticulo1.Nombre)
-                                </td>
-                                <td>
-                                    @{
-                                        foreach (var a in item.articulo_grupo)
-                                        {
-                                            <p>@a.grupoacademico.Nombre</p>
-                                        }
-                                    }
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-                                </td>
-                                <td>
-                                    @{
-                                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]) || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
-                                        {
-                                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-warning" })</p>
-                                            using(Html.BeginForm("Delete","Articulos",FormMethod.Get, null))
-                                            {
-                                                <input hidden name="id" value="@item.idArticulo"/>
-                                                <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar"/></p>
-                                            }                                            
-                                        }
-                                    }
-                                    <p>@Html.ActionLink("Detalles", "Details", new { id = item.idArticulo }, new { @class = "btn btn-sm btn-primary" })</p>
-                                </td>
-                            </tr>
-                                        }
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Nombre)
-                            </th>                            
-                            <th>
-                                @Html.DisplayNameFor(model => model.Volumen)
-                            </th>
-                            <th>
-                                Páginas
-                            </th>
-                            <th>
-                                Autores
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Revista)
-                            </th>                            
-                            <th>
-                                @Html.DisplayNameFor(model => model.Fecha)
-                            </th>
-                            <th>
-                                Indice
-                            </th>
-                            <th>
-                                Tipo de Artículo
-                            </th>
-                            <th>
-                                Grupo Académico
-                            </th>
-                            <th>
-                                Subido por
-                            </th>
-                            <th></th>
-                        </tr>
-                    </tfoot>
-                </table>
+
+                
+                <div id="searchResult">
+                    @{ Html.RenderPartial("_ArticuloPartial", Model); }
+                </div>
             </div>
         </div>
+    </div>
+</div>
+
+<script>
+    var myVar;
+
+    function myFunction() { 
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("myDiv").style.display = "none";
+        myVar = setTimeout(showPage, 1000);
+    }
+
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+
+    $(document).ready(function () {        
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+        $("#searchBtn").on("click", function () {            
+             var val = $('#searchForm').serialize();              
+            $.ajax({
+                url: "@Url.Action("Search")",
+                type: "GET",                
+                data: val,
+                success: function (partialViewResult) {  
+                    myFunction();
+                    $("#searchResult").html(partialViewResult);
+                }
+            })
+        });
+    });
+</script>

@@ -120,7 +120,7 @@ namespace WebApplication4.Controllers
                 user.Correo = u.Correo;
                 user.Contraseña = u.Contraseña;
                 user.TipoUsuario = u.TipoUsuario;
-                u.Usuario1 = u.Usuario1.ToUpper();
+                u.Usuario1 = u.Usuario1;
                 user.Usuario1 = u.Usuario1;
                 user.Apellido_Materno = u.Apellido_Materno;
                 user.Apellido_Paterno = u.Apellido_Paterno;

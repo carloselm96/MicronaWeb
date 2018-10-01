@@ -5,223 +5,150 @@
     Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<div class="box box-primary box-solid">
-    <div class="box-header with-border">
-        <h3 class="box-title">Busqueda avanzada</h3>
-    </div>
-    <div class="box-body">
-        @using (Html.BeginForm("Index", "Trabajos", FormMethod.Post, new { enctype = "multipart/form-data" }))
-        {
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Nombre:</label>
-                        <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="form-group">                        
-                        
-                            <label>Autores</label>
-                            <select class="form-control select2" name="autores" multiple>
-                                @foreach (var Usuario in ViewBag.autores)
-        {
-                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-}
-                            </select>                        
-                    </div>
-                </div>                                
-                <div class="col-md-3">
-                    <div class="form-group">
-                        <label>Año:</label>
-                        <div class="input-daterange" id="datepicker">
-                            <div class="input-group">
-                                <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y1" autocomplete="off">                                
-                                <span class="input-group-addon">al</span>
-                                <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y2" autocomplete="off">                                
+
+<link href="~/Content/loading-style.css" rel="stylesheet" />
+
+<div onload="myFunction()">
+    <div id="loader"></div>
+    <div id="myDiv" style="display:none" class="animate-bottom">
+        <div class="box box-primary box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Busqueda avanzada</h3>
+            </div>
+            <div class="box-body">
+                <form id="searchForm">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Nombre:</label>
+                                <input id="nombreSearch" name="Nombre" type="text" class="form-control" style="width: 100%;" />
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+
+                                <label>Autores</label>
+                                <select class="form-control select2" name="autores" multiple>
+                                    @foreach (var Usuario in ViewBag.autores)
+                                    {
+                                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="form-group">
+                                <label>Año:</label>
+                                <div class="input-daterange" id="datepicker">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y1" autocomplete="off">
+                                        <span class="input-group-addon">al</span>
+                                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Y2" autocomplete="off">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-                <div class="row">
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Grupo académico</label>                        
-                        <select class="form-control select2" name="grupos" multiple>
-                            @{
-                                if (ViewBag.grupos != null)
-                                {
-                                    foreach (var Grupo in ViewBag.grupos)
-                                    {
-                                        <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Grupo académico</label>
+                                <select class="form-control select2" name="grupos" multiple>
+                                    @{
+                                        if (ViewBag.grupos != null)
+                                        {
+                                            foreach (var Grupo in ViewBag.grupos)
+                                            {
+                                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                                            }
+                                        }
                                     }
-                                }
-                            }
-                        </select>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label class="control-label">Tipo de Trabajo</label>
+                                <select class="form-control select2" name="tipo" multiple data-max-options="1">
+                                    @{
+                                        if (ViewBag.tipos != null)
+                                        {
+                                            foreach (var TipoTrabajo in ViewBag.tipos)
+                                            {
+                                                <option value="@TipoTrabajo.idTipoTrabajo">@TipoTrabajo.Nombre</option>
+                                            }
+                                        }
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" id="searchBtn" class="btn btn-success">Buscar</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="box">
+            <div class="box-body table-responsive">
+                <div class="row margin-bottom">
+                    <div class="col-sm-2">
+                        @Html.ActionLink("Nuevo Trabajo", "Create", null, new { @class = "btn btn-large btn-success" })
                     </div>
                 </div>
-                <div class="col-md-4">
-                    <div class="form-group">
-                        <label class="control-label">Tipo de Trabajo</label>
-                        <select class="form-control select2" name="tipo" multiple data-max-options="1">
-                            @{
-                                if (ViewBag.tipos != null)
-                                {
-                                    foreach (var TipoTrabajo in ViewBag.tipos)
-                                    {
-                                        <option value="@TipoTrabajo.idTipoTrabajo">@TipoTrabajo.Nombre</option>
-                                    }
-                                }
-                            }
-                        </select>
-                    </div>
+                @{
+                    if (ViewBag.response != null)
+                    {
+                        switch (ViewBag.response)
+                        {
+                            case 1:
+                                <div class="alert alert-success">
+                                    <strong>Completado!</strong> Se ha realizado correctamente la acción
+                                </div>
+                                break;
+                            case 2:
+                                <div class="alert alert-warning">
+                                    <strong>Error!</strong> Ha ocurrido un error al tratar de hacer la acción
+                                </div>
+                                break;
+                        }
+                    }
+                }
+                <div id="searchResult">
+                    @{ Html.RenderPartial("_TrabajosPartial", Model); }
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Buscar</button>
-        }
+        </div>
     </div>
 </div>
 
-<div class="box">
-    <div class="box-body table-responsive">
-        <div class="row margin-bottom">
-            <div class="col-sm-2">
-                @Html.ActionLink("Nuevo Trabajo", "Create", null, new { @class = "btn btn-large btn-success" })
-            </div>            
-        </div>
-        @{
-            if (ViewBag.response != null)
-            {
-                switch (ViewBag.response)
-                {
-                    case 1:
-                        <div class="alert alert-success">
-                            <strong>Completado!</strong> Se ha realizado correctamente la acción
-                        </div>
-                        break;
-                    case 2:
-                        <div class="alert alert-warning">
-                            <strong>Error!</strong> Ha ocurrido un error al tratar de hacer la acción
-                        </div>
-                        break;
+<script>
+    var myVar;
+
+    function myFunction() {
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("myDiv").style.display = "none";
+        myVar = setTimeout(showPage, 1000);
+    }
+
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+
+    $(document).ready(function () {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+        $("#searchBtn").on("click", function () {
+             var val = $('#searchForm').serialize();
+            $.ajax({
+                url: "@Url.Action("Search")",
+                type: "GET",
+                data: val,
+                success: function (partialViewResult) {
+                    myFunction();
+                    $("#searchResult").html(partialViewResult);
                 }
-            }
-        }
-        <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
-            <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Año)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Autores)
-                    </th>
-                    <th>
-                        Lugar de presentación
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Pais)
-                    </th>
-                    <th>
-                        Tipo de Trabajo
-                    </th>
-                    <th>
-                        Grupo academico
-                    </th>
-                    <th>
-                        Subido por
-                    </th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Nombre)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Año)
-                        </td>
-                        <td>
-                            @{
-                                foreach (var p in item.trabajo_usuario)
-                                {
-                                    <p>@p.usuario.Nombre @p.usuario.Apellido_Paterno @p.usuario.Apellido_Materno</p>
-                                }
-                            }  
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Presentacion)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Pais)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.tipotrabajo1.Nombre)
-                        </td>
-                        <td>
-                            @{
-                                foreach (var a in item.trabajo_grupo)
-                                {
-                                    <p>@a.grupoacademico.Nombre</p>
-                                }
-                            }  
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-                        </td>
-                        <td>
-                            @{
-                                if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
-                                {
-                                    <p>@Html.ActionLink("Editar", "Edit", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-warning" })</p>
-                                    using(Html.BeginForm("Delete","Trabajo",FormMethod.Get, null))
-                                {
-                                    <input hidden name="id" value="@item.idTrabajo"/>
-                                    <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar"/></p>
-                                }                                            
-                                }
-                            }
-                            <p>@Html.ActionLink("Detalles", "Details", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-primary" })</p>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Nombre)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Año)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Autores)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Presentacion)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Pais)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.tipotrabajo1.Nombre)
-                    </th>
-                    <th>
-                        Grupo Academico
-                    </th>
-                    <th>
-                        Subido por
-                    </th>
-                    <th></th>
-                </tr>
-            </tfoot>
-        </table>
-    </div>
-</div>
+            })
+        });
+    });
+</script>

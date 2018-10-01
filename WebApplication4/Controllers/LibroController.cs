@@ -10,26 +10,26 @@ namespace WebApplication4.Controllers
 {
     public class LibroController : Controller
     {
-        // GET: Libro
-        /*public ActionResult Index(string response)
-        {
-            if (response != null)
-            {
-                ViewBag.response = int.Parse(response);
-            }
-            microna2018Entities db = new microna2018Entities();
-            var libros = db.libro.ToList();
-            return View(libros);
-        }*/
+        microna2018Entities db = new microna2018Entities();
 
         [Authorize]
-        public ActionResult Index(string Nombre, DateTime? Y1, DateTime? Y2, string response, List<string> grupos, List<string> autores)
+        public ActionResult Index(string response)
         {
             if (response != null)
             {
                 ViewBag.response = int.Parse(response);
             }
-            microna2018Entities db = new microna2018Entities();
+            ViewBag.autores = db.usuario.ToList();
+            ViewBag.grupos = db.grupoacademico.ToList();
+            List<libro> libros = db.libro.ToList();           
+            return View(libros);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Search(string Nombre, DateTime? Y1, DateTime? Y2, List<string> grupos, List<string> autores)
+        {            
+            
             ViewBag.autores = db.usuario.ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             List<libro> libros = db.libro.ToList();
@@ -37,7 +37,7 @@ namespace WebApplication4.Controllers
             {
                 libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
             }
-            
+
             if (Y1 != null)
             {
                 //int year1 = int.Parse(Y1);
@@ -46,7 +46,7 @@ namespace WebApplication4.Controllers
             if (Y2 != null)
             {
                 libros = libros.Where(x => x.Año <= Y2).ToList();
-            }            
+            }
             if (grupos != null)
             {
                 foreach (string s in grupos)
@@ -77,7 +77,7 @@ namespace WebApplication4.Controllers
                     libros = libros.Where(x => cg.Contains(x)).ToList();
                 }
             }
-            return View(libros);
+            return PartialView("_LibroPartial",libros);
         }
         // GET: Libro/Details/5
         public ActionResult Details(int? id)
@@ -86,7 +86,7 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Libro", null);
             }
-            microna2018Entities db = new microna2018Entities();
+            
             var libro = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
             return View(libro);
         }
@@ -94,7 +94,7 @@ namespace WebApplication4.Controllers
         // GET: Libro/Create
         public ActionResult Create()
         {
-            microna2018Entities db = new microna2018Entities();
+            
             ViewBag.tipolibro = db.tipolibro.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
             ViewBag.autores = db.usuario.ToList();
@@ -112,7 +112,7 @@ namespace WebApplication4.Controllers
                 string dir = "~/Content/Archivos/Libros";
                 string fileName = "";
                 string path = "";
-                microna2018Entities db = new microna2018Entities();
+                
                 if (!Directory.Exists(dir))
                 {
                     DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
@@ -177,7 +177,7 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Libro", null);
             }
-            microna2018Entities db = new microna2018Entities();
+            
             var a = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
             if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
             {
@@ -196,7 +196,7 @@ namespace WebApplication4.Controllers
         {
             try
             {
-                microna2018Entities db = new microna2018Entities();
+                
                 var l = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
                 l.Nombre = lib.Nombre;
                 l.ISBN = lib.ISBN;
@@ -275,7 +275,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "Libro", null);
                 }
-                microna2018Entities db = new microna2018Entities();
+                
                 var libr = db.libro.Where(x => x.idLibro == id).FirstOrDefault();
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.Usuario)
                 {

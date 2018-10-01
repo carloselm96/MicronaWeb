@@ -7042,6 +7042,7 @@
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\dist\js\plugins\font-awesome\css\font-awesome.css" />
     <Content Include="Content\dist\js\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\loading-style.css" />
     <Content Include="Content\LoginContent\css\main.css" />
     <Content Include="Content\LoginContent\css\util.css" />
     <Content Include="Content\LoginContent\fonts\font-awesome-4.7.0\css\font-awesome.css" />
@@ -7981,6 +7982,11 @@
     <Content Include="Views\Perfil\Index.cshtml" />
     <Content Include="Views\Perfil\Edit.cshtml" />
     <Content Include="Views\Home\Configure.cshtml" />
+    <Content Include="Views\Articulos\_ArticuloPartial.cshtml" />
+    <Content Include="Views\Home\_ConcentradoPartial.cshtml" />
+    <Content Include="Views\CapituloLibro\_CapituloPartial.cshtml" />
+    <Content Include="Views\Libro\_LibroPartial.cshtml" />
+    <Content Include="Views\Proyectos\_ProyectosPartial.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -8113,6 +8119,7 @@
     <Content Include="Views\Trabajos\Create.cshtml" />
     <Content Include="Views\Trabajos\Edit.cshtml" />
     <Content Include="Views\Trabajos\Details.cshtml" />
+    <Content Include="Views\Trabajos\_TrabajosPartial.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

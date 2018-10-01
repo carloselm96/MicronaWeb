@@ -25,8 +25,11 @@ namespace WebApplication4.Models
         public int idProyecto { get; set; }
         [Required(ErrorMessage = "Este campo es necesario")]
         public string nombre { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public string Financiamiento { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<System.DateTime> FechaInicio { get; set; }
+        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<System.DateTime> FechaFinal { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
