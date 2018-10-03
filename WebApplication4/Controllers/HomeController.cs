@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers
         public ActionResult Index()
         {         
             var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.ToList();            
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();            
             return View(concent);
         }
 
@@ -28,7 +28,7 @@ namespace WebApplication4.Controllers
         public ActionResult Search(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
         {            
             var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             if (titulo != null)
             {
                 concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();

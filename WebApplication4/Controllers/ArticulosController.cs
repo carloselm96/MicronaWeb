@@ -21,7 +21,7 @@ namespace WebApplication4.Controllers
             }
             
             ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.tipo = db.tipoarticulo.ToList();
             var articulos = db.articulo.ToList();      
             return View(articulos);
@@ -37,7 +37,7 @@ namespace WebApplication4.Controllers
             }
 
             ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.tipo = db.tipoarticulo.ToList();
             var articulos = db.articulo.ToList();
             if (Nombre != null)
@@ -112,7 +112,7 @@ namespace WebApplication4.Controllers
             
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();            
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();            
             return View();
         }
 
@@ -125,7 +125,7 @@ namespace WebApplication4.Controllers
             {
                 ViewBag.tipoarticulo = db.tipoarticulo.ToList();
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(a);
             }
@@ -193,7 +193,7 @@ namespace WebApplication4.Controllers
             }
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             return View(a);
         }
 
@@ -213,7 +213,7 @@ namespace WebApplication4.Controllers
             }
             a.articulo_grupo = db.articulo_grupo.Where(x => x.id_articulo == id).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.tipoarticulo = db.tipoarticulo.ToList();
             return View(a);
         }

@@ -1,5 +1,5 @@
 $(function () {
-    $('#datat').DataTable();
+    
     $('.select2').select2();    
     $(".swalalert").click(function (e) {
         e.preventDefault();

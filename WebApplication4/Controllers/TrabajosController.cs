@@ -23,7 +23,7 @@ namespace WebApplication4.Controllers
             
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipos = db.tipotrabajo.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             List<trabajo> trabajos = db.trabajo.ToList();            
             return View(trabajos);
         }
@@ -34,7 +34,7 @@ namespace WebApplication4.Controllers
         {                        
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipos = db.tipotrabajo.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             List<trabajo> trabajos = db.trabajo.ToList();
             if (Nombre != null)
             {
@@ -116,7 +116,7 @@ namespace WebApplication4.Controllers
             
             ViewBag.tipo = db.tipotrabajo.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             return View();
         }
 
@@ -130,13 +130,13 @@ namespace WebApplication4.Controllers
             {
                 ViewBag.tipo = db.tipotrabajo.ToList();
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 return View(t);
             }
             if (Autores == null)
             {
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(t);
             }
@@ -217,7 +217,7 @@ namespace WebApplication4.Controllers
             a.trabajo_grupo = db.trabajo_grupo.Where(x => x.id_trabajo == id).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipo = db.tipotrabajo.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             return View(a);
         }
 
@@ -231,14 +231,14 @@ namespace WebApplication4.Controllers
             {
                 ViewBag.tipo = db.tipotrabajo.ToList();
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 return View(t);
             }
             if (Autores == null)
             {
                 ViewBag.tipo = db.tipotrabajo.ToList();
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(t);
             }

@@ -28,7 +28,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Año, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
-                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="Año">
+                        <input type="text" class="form-control pull-right datemask" name="Año">
                         @Html.ValidationMessageFor(model => model.Año, "", new { @class = "text-danger" })
                     </div>
                 </div>

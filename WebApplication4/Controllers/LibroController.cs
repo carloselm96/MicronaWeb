@@ -19,7 +19,7 @@ namespace WebApplication4.Controllers
             {
                 ViewBag.response = int.Parse(response);
             }
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             List<libro> libros = db.libro.ToList();           
             return View(libros);
@@ -30,7 +30,7 @@ namespace WebApplication4.Controllers
         public ActionResult Search(string Nombre, DateTime? Y1, DateTime? Y2, List<string> grupos, List<string> autores)
         {            
             
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             List<libro> libros = db.libro.ToList();
             if (Nombre != null)
@@ -97,7 +97,7 @@ namespace WebApplication4.Controllers
             
             ViewBag.tipolibro = db.tipolibro.ToList();
             ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             return View();
         }
 
@@ -186,7 +186,7 @@ namespace WebApplication4.Controllers
             a.libro_grupo = db.libro_grupo.Where(x => x.id_libro == id).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.tipolibro = db.tipolibro.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             return View(a);
         }
 

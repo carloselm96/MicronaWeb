@@ -26,6 +26,7 @@ namespace WebApplication4.Models
         [Required(ErrorMessage = "Este campo es necesario")]
         public string Nombre { get; set; }
         [Required(ErrorMessage = "Este campo es necesario")]
+        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         public string Participantes { get; set; }

@@ -53,14 +53,14 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">                    
-                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="FechaInicio" value="@Model.FechaInicio">                    
+                        <input type="text" class="form-control pull-right datemask" name="FechaInicio" value="@Model.FechaInicio">                    
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">                    
-                        <input type="text" class="form-control pull-right date-picker" id="datepicker" name="FechaFinal" value="@Model.FechaFinal">                    
+                        <input type="text" class="form-control pull-right datemask" name="FechaFinal" value="@Model.FechaFinal">                    
                 </div>
             </div>
             <div class="form-group">

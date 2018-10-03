@@ -22,7 +22,7 @@ namespace WebApplication4.Controllers
             }
             
             ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.tipo = db.tipolibro.ToList();
             List<capitulolibro> libros = db.capitulolibro.ToList();            
             return View(libros);
@@ -33,7 +33,7 @@ namespace WebApplication4.Controllers
         public ActionResult Search(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, List<string> grupos, string Libro)
         {                        
             ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.tipo = db.tipolibro.ToList();
             List<capitulolibro> libros = db.capitulolibro.ToList();
             if (Nombre != null)
@@ -105,7 +105,7 @@ namespace WebApplication4.Controllers
         {
                         
             ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             return View();
         }
 
@@ -119,13 +119,13 @@ namespace WebApplication4.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 return View(lib);
             }
             if (Autores.Count < 1)
             {
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(lib);
             }
@@ -204,7 +204,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
             a.capitulo_grupo = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
-            ViewBag.autores = db.usuario.ToList();
+            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
             ViewBag.grupos = db.grupoacademico.ToList();            
             return View(a);
         }
@@ -218,13 +218,13 @@ namespace WebApplication4.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 return View(lib);
             }
             if (Autores==null)
             {
                 ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.ToList();
+                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(lib);
             }

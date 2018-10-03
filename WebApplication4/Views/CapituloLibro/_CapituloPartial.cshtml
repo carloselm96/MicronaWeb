@@ -37,7 +37,7 @@
                     @Html.DisplayFor(modelItem => item.Nombre)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Año)
+                    @Html.DisplayFor(modelItem => item.Año, "{0:dd/MM/yyyy}")  
                 </td>
                 <td>
                     @{
@@ -115,7 +115,13 @@
 
 <script>
     $(function () {
-        $('#datat').DataTable();
+        
+        $('#datat').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
+            ]
+        });   
         $(".swalalert").click(function (e) {
             e.preventDefault();
             // stop the default behavior(navigation)

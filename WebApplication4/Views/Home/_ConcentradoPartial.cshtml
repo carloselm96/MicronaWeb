@@ -58,7 +58,7 @@
                     @item.tipoconcentrado1.Nombre
                 </td>
                 <td>
-                    @item.Fecha
+                    @Html.DisplayFor(modelItem => item.Fecha, "{0:dd/MM/yyyy}")
                 </td>
                 <td>
                     <ul>
@@ -96,7 +96,13 @@
 
 <script>
     $(function () {
-        $('#datat').DataTable();        
+        
+        $('#datat').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
+            ]
+        });         
         $(".swalalert").click(function (e) {
             e.preventDefault();
             // stop the default behavior(navigation)
