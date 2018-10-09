@@ -13,9 +13,7 @@ namespace WebApplication4.Models
     using System.Collections.Generic;
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Runtime.Serialization;
 
-    [DataContract(IsReference = true)]
     public partial class usuario
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,29 +30,32 @@ namespace WebApplication4.Models
             this.proyectos = new HashSet<proyectos>();
             this.trabajo = new HashSet<trabajo>();
             this.trabajo_usuario = new HashSet<trabajo_usuario>();
+            this.tesis = new HashSet<tesis>();
+            this.tesis1 = new HashSet<tesis>();
         }
     
         public int idUsuario { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
-        [StringLength(160, MinimumLength = 5)]
-        [DisplayName("Nombre de Usuario")]
+        [DisplayName("Usuario")]
+        [Required]
+        [RegularExpression(@"^[0-9ña-zÑA-Z''-'\s]{1,40}$", ErrorMessage = "Los caracteres especiales no son permitidos en este campo")]
+        [MinLength(5, ErrorMessage = "El usuario debe ser de al menos 5 caracteres")]
         public string Usuario1 { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
-        [StringLength(20, MinimumLength = 5)]
-        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$",ErrorMessage = "Caracteres especiales no permitidos")]
+        [Required]
+        [RegularExpression(@"^[0-9ña-zÑA-Z''-'\s]{1,40}$", ErrorMessage = "Los caracteres especiales no son permitidos en este campo")]
+        [MinLength(5,ErrorMessage ="La contraseña debe ser de al menos 5 caracteres")]
         public string Contraseña { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
-        public string Correo { get; set; }        
+        [Required]
+        public string Correo { get; set; }
         [DisplayName("Tipo de Usuario")]
+        [Required]
         public Nullable<int> TipoUsuario { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
         [DisplayName("Apellido Paterno")]
+        [Required]
         public string Apellido_Paterno { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
         [DisplayName("Apellido Materno")]
-        public string Apellido_Materno { get; set; }        
+        [Required]
+        public string Apellido_Materno { get; set; }
         public string Status { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -80,5 +81,9 @@ namespace WebApplication4.Models
         public virtual ICollection<trabajo> trabajo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trabajo_usuario> trabajo_usuario { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tesis> tesis { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tesis> tesis1 { get; set; }
     }
 }

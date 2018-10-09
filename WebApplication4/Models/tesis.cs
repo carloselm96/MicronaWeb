@@ -14,36 +14,42 @@ namespace WebApplication4.Models
     using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class capitulolibro
+    public partial class tesis
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public capitulolibro()
+        public tesis()
         {
-            this.capitulo_grupo = new HashSet<capitulo_grupo>();
-            this.capitulo_usuario = new HashSet<capitulo_usuario>();
+            this.tesis_grupo = new HashSet<tesis_grupo>();
         }
     
-        public int idCapituloLibro { get; set; }
+        public int idtesis { get; set; }
         [Required]
-        public string Nombre { get; set; }
+        [DisplayName("Titulo")]
+        public string titulo { get; set; }
+        [Required]
+        [DisplayName("Autor")]
+        public Nullable<int> usuario { get; set; }
         [Required]
         [DisplayName("Fecha")]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> Año { get; set; }
-        public string ISBN { get; set; }
-        public string Participantes { get; set; }
+        public Nullable<System.DateTime> fecha { get; set; }
+        public Nullable<int> archivo { get; set; }
         [Required]
-        public string Libro { get; set; }
+        [DisplayName("Director")]
+        public string director { get; set; }
         [Required]
-        public Nullable<int> Usuario { get; set; }
-        public Nullable<int> Archivo { get; set; }
+        [DisplayName("Asesor")]
+        public Nullable<int> asesor { get; set; }        
+        [DisplayName("Codirector")]
+        public string codirector { get; set; }        
+        [DisplayName("Jurado")]
+        public string jurado { get; set; }
     
         public virtual archivo archivo1 { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<capitulo_grupo> capitulo_grupo { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<capitulo_usuario> capitulo_usuario { get; set; }
         public virtual usuario usuario1 { get; set; }
+        public virtual usuario usuario2 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tesis_grupo> tesis_grupo { get; set; }
     }
 }

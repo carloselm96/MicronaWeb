@@ -1,0 +1,89 @@
+﻿@model WebApplication4.Models.tesis
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div class="box">
+    <div class="box-body">
+        <div class="dl-horizontal">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.titulo)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.titulo)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.fecha)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.fecha)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.director)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.director)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.codirector)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.codirector)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.jurado)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.jurado)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.archivo1.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.archivo1.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.usuario1.Nombre)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.usuario2.Nombre)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.usuario2.Nombre)
+                </dd>
+
+            </dl>
+        </div>
+
+    </div>
+    <div class="box-footer">
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idtesis }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+

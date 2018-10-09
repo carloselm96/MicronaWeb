@@ -28,7 +28,7 @@
                 <div class="form-group">
                     <label class="control-label col-md-2">Tipo de artículo</label>
                     <div class="col-md-10">
-                        @Html.DropDownListFor(model =>model.TipoArticulo,new SelectList(ViewBag.tipoarticulo, "idTipoArticulo", "Nombre"),new { @class = "form-control" })                        
+                        @Html.DropDownListFor(model =>model.TipoArticulo,new SelectList(ViewBag.tipoarticulo, "idTipoArticulo", "Nombre"),new { @class = "form-control", id = "tipoart" })                        
                         @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
                     </div>
                 </div>
@@ -131,3 +131,18 @@
 
 
 
+<script>
+    $(function () {
+        if ($("#tipoart option:selected").text() == "Indizado") {
+            $("#ind").removeAttr('disabled');
+        }
+        $("#tipoart").on("change", function () {            
+            if ($("#tipoart option:selected").text() == "Indizado") {
+                $("#ind").removeAttr('disabled');
+            }
+            else {
+                $("#ind").attr('disabled', 'disabled');
+            }
+        })
+    })
+</script>

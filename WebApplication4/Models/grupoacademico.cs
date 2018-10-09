@@ -23,6 +23,7 @@ namespace WebApplication4.Models
             this.libro_grupo = new HashSet<libro_grupo>();
             this.proyecto_grupo = new HashSet<proyecto_grupo>();
             this.trabajo_grupo = new HashSet<trabajo_grupo>();
+            this.tesis_grupo = new HashSet<tesis_grupo>();
         }
     
         public int idGrupoAcademico { get; set; }
@@ -40,5 +41,7 @@ namespace WebApplication4.Models
         public virtual ICollection<proyecto_grupo> proyecto_grupo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trabajo_grupo> trabajo_grupo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tesis_grupo> tesis_grupo { get; set; }
     }
 }

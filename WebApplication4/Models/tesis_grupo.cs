@@ -12,13 +12,13 @@ namespace WebApplication4.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class articulo_usuario
+    public partial class tesis_grupo
     {
-        public int idarticulo_usuario { get; set; }
-        public Nullable<int> idArticulo { get; set; }
-        public Nullable<int> idUsuario { get; set; }
+        public int idtesis_grupo { get; set; }
+        public Nullable<int> idtesis { get; set; }
+        public Nullable<int> idgrupo { get; set; }
     
-        public virtual articulo articulo { get; set; }
-        public virtual usuario usuario { get; set; }
+        public virtual grupoacademico grupoacademico { get; set; }
+        public virtual tesis tesis { get; set; }
     }
 }

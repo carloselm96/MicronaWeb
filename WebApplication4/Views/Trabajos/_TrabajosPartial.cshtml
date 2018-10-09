@@ -73,7 +73,7 @@
                         if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]))
                         {
                             <p>@Html.ActionLink("Editar", "Edit", new { id = item.idTrabajo }, new { @class = "btn btn-large btn-warning" })</p>
-                            using (Html.BeginForm("Delete", "Trabajo", FormMethod.Get, null))
+                            using (Html.BeginForm("Delete", "Trabajos", FormMethod.Get, null))
                             {
                                 <input hidden name="id" value="@item.idTrabajo" />
                                 <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar" /></p>

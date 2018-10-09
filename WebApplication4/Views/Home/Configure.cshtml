@@ -10,9 +10,28 @@
             <div class="box-header with-border">
                 <h3 class="box-title">Tipos de Articulo</h3>
             </div>
+            @{
+                if (ViewContext.RouteData.Values["result"] != null)
+                {
+                    if (ViewContext.RouteData.Values["result"] == "1")
+                    {
+                        <div class="alert alert-success">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Completado!</strong> Se ha realizado correctamente la acción
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-warning">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
+                        </div>
+                    }
+                }
+            }
             <div class="box-body table-responsive">
                 <p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevo" data-whatever="1">
+                    <button type="button" class="btn btn-default newbutton" data-tipo="1">
                         Nuevo Tipo de Artículo
                     </button>
                 </p>
@@ -34,10 +53,15 @@
                                         @s.Nombre
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@s.idTipoArticulo" data-w2="@s.Nombre" data-tipo="1">Editar</button>
+                                        <button type="button" class="btn btn-primary edit" data-id="@s.idTipoArticulo" data-nombre="@s.Nombre" data-tipo="1">Editar</button>
                                     </td>
                                     <td>
-                                       <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete" data-whatever="@s.idTipoArticulo" data-tipo="1">Eliminar</button>
+                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        {
+                                            <input hidden name="id" value="@s.idTipoArticulo" />
+                                            <input hidden name="tipo" value="1" />
+                                            <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -54,7 +78,7 @@
             </div>
             <div class="box-body table-responsive">
                 <p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevo" data-whatever="2">
+                    <button type="button" class="btn btn-default newbutton" data-tipo="2">
                         Nuevo Tipo de Trabajo
                     </button>
                 </p>
@@ -76,10 +100,15 @@
                                         @s.Nombre
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@s.idTipoTrabajo" data-nombre="@s.Nombre" data-tipo="2">Editar</button>
+                                        <button type="button" class="btn btn-primary edit" data-id="@s.idTipoTrabajo" data-nombre="@s.Nombre" data-tipo="2">Editar</button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete" data-whatever="@s.idTipoTrabajo" data-tipo="2">Eliminar</button>
+                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        {
+                                        <input hidden name="id" value="@s.idTipoTrabajo" />
+                                        <input hidden name="tipo" value="2"/>
+                                        <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -99,7 +128,7 @@
             </div>
             <div class="box-body table-responsive">
                 <p>
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#modal-nuevo" data-whatever="3">
+                    <button type="button" class="btn btn-default newbutton" data-tipo="3">
                         Nuevo Tipo de Libro
                     </button>
                 </p>
@@ -121,10 +150,15 @@
                                         @s.Nombre
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal" data-whatever="@s.idTipoLibro" data-w2="@s.Nombre" data-tipo="3">Editar</button>
+                                        <button type="button" class="btn btn-primary edit" data-id="@s.idTipoLibro" data-nombre="@s.Nombre" data-tipo="3">Editar</button>
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#modal-delete" data-whatever="@s.idTipoLibro" data-tipo="3">Eliminar</button>
+                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        {
+                                            <input hidden name="id" value="@s.idTipoLibro" />
+                                            <input hidden name="tipo" value="3" />
+                                            <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                        }
                                     </td>
                                 </tr>
                             }
@@ -134,90 +168,59 @@
             </div>
         </div>
     </div>
+    <div id="modal-wrapper">
 
-</div>
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="exampleModalLabel">Editar</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="edit_form" action="@Url.Action("editarTipo")">
-                        <div class="form-group">
-                            <input hidden type="text" name="tipo" id="tipoEd" required />
-                            <input hidden type="text" id="idEd" name="id" required />
-                            <label for="recipient-name" class="col-form-label">Nombre</label>
-                            <input type="text" class="form-control" id="recipient-name" name="nombre" required>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-primary" id="guardarForm">Guardar</button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
-<div class="modal fade" id="modal-nuevo">
-    <div class="modal-dialog">
-        <div class="modal-content">
 
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Nuevo tipo</h4>
-            </div>
-            <div class="modal-body">
-                <form id="new_form" action="@Url.Action("nuevoTipo")">
-                    <div class="form-group">
-                        <input type="text" hidden name="tipo" id="type" required />
-                        <label class="control-label">Nombre</label>
-                        <input type="text" class="form-control" name="nombre" required/>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn btn-primary" id="submitForm">Guardar</button>
-            </div>
-
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
-<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <h4 class="modal-title" id="exampleModalLabel">Eliminar</h4>
-                </div>
-                <div class="modal-body">
-                    <form id="delete_form" action="@Url.Action("eliminarTipo")">
-                        <div class="form-group">
-                            <input hidden type="text" id="idE" name="id" />
-                            <input hidden type="text" id="typeE" name="tipo" />
-                            <h3>Eliminar este tipo eliminará todos los objetos asignados a el, ¿está seguro de continuar?</h3>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="button" class="btn btn-primary" id="eliminarForm">Guardar</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 <script src="~/Content/modalScript.js"></script>
+<script>
+    $(document).ready(function () {        
+        $(".newbutton").on("click", function () {
+            var type = $(this).data("tipo");         
+            $.ajax({
+                url: "@Url.Action("getModal")",
+                type: "GET",
+                data: { type: type, modal: "Create" },
+                success: function (partialViewResult) {  
+                    $("#modal-wrapper").html(partialViewResult);
+                    $("#modal-wrapper .modal").modal("show");                    
+                }
+            })
+        });
+        $(".edit").on("click", function () {
+            var type = $(this).data("tipo");  
+            var id = $(this).data("id");  
+            var nombre = $(this).data("nombre");  
+            $.ajax({
+                url: "@Url.Action("getModal")",
+                type: "GET",
+                data: { type: type, modal: "Edit",id:id, name:nombre },
+                success: function (partialViewResult) {  
+                    $("#modal-wrapper").html(partialViewResult);
+                    $("#modal-wrapper .modal").modal("show");                    
+                }
+            })
+        });
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez eliminado este tipo se eliminaran todos los documentos asignados a el",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    });
+</script>

@@ -11,12 +11,8 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
-    using System.Runtime.Serialization;
-    using System.Web.Script.Serialization;
 
-    [DataContract(IsReference = true)]
     public partial class articulo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -27,40 +23,32 @@ namespace WebApplication4.Models
         }
     
         public int idArticulo { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [Required]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [Required]
         public Nullable<int> Volumen { get; set; }
-        [DisplayName("Pagina de Inicio")]
-        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<int> PagInicio { get; set; }
-        [DisplayName("Pagina Final")]
-        [Required(ErrorMessage = "Este campo es necesario")]
         public Nullable<int> PagFinal { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [Required]
         public string Revista { get; set; }
         public string ISSN { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
+        [Required]
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
-        [DisplayName("Tipo de Articulo")]
+        [Required]
         public Nullable<int> TipoArticulo { get; set; }
         public Nullable<int> Indice { get; set; }
-
-        [ScriptIgnore]
+    
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [ScriptIgnore]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
-        [ScriptIgnore]
         public virtual tipoarticulo tipoarticulo1 { get; set; }
-        [ScriptIgnore]
         public virtual usuario usuario1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        [ScriptIgnore]
         public virtual ICollection<articulo_usuario> articulo_usuario { get; set; }
     }
 }

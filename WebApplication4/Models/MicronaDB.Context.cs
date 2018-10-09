@@ -51,5 +51,7 @@ namespace WebApplication4.Models
         public virtual DbSet<trabajo_grupo> trabajo_grupo { get; set; }
         public virtual DbSet<trabajo_usuario> trabajo_usuario { get; set; }
         public virtual DbSet<usuario> usuario { get; set; }
+        public virtual DbSet<tesis> tesis { get; set; }
+        public virtual DbSet<tesis_grupo> tesis_grupo { get; set; }
     }
 }

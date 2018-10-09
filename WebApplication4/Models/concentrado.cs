@@ -22,12 +22,12 @@ namespace WebApplication4.Models
             this.concentrado_grupos = new HashSet<concentrado_grupos>();
         }
     
-
-        public int idConcentrado { get; set; }        
-        public string Titulo { get; set; }        
+        public int idConcentrado { get; set; }
+        public string Titulo { get; set; }
+        [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        public Nullable<System.DateTime> Fecha { get; set; }        
-        public Nullable<int> TipoConcentrado { get; set; }        
+        public Nullable<System.DateTime> Fecha { get; set; }
+        public Nullable<int> TipoConcentrado { get; set; }
         public Nullable<int> IdItem { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

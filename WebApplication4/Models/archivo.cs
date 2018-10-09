@@ -11,9 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Runtime.Serialization;
-
-    [DataContract(IsReference = true)]
+    
     public partial class archivo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,6 +22,7 @@ namespace WebApplication4.Models
             this.libro = new HashSet<libro>();
             this.proyectos = new HashSet<proyectos>();
             this.trabajo = new HashSet<trabajo>();
+            this.tesis = new HashSet<tesis>();
         }
     
         public int idarchivo { get; set; }
@@ -40,5 +39,7 @@ namespace WebApplication4.Models
         public virtual ICollection<proyectos> proyectos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<trabajo> trabajo { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tesis> tesis { get; set; }
     }
 }

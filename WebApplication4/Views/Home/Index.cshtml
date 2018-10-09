@@ -48,9 +48,9 @@
 
                                 <select class="form-control select2" name="autores" multiple>
                                     @foreach (var Usuario in ViewBag.autores)
-                                {
-                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                            }
+                                    {
+                                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                    }
                                 </select>
                             </div>
                         </div>
@@ -116,6 +116,17 @@
                 </form>
             </div>
         </div>
+
+        <div class="box box-primary box-solid">
+            <div class="box-header with-border">
+                <div class="box-title">Resultados</div>
+            </div>
+            <div class="box-body  table-responsive">
+                <div id="searchResult">
+                    @{ Html.RenderPartial("_ConcentradoPartial", Model); }
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div class="box box-danger">
@@ -130,20 +141,10 @@
                     </div>
                     <div class="box-body">
                         <div class="col-md-6">
-                            <canvas id="chart-area" style="height:250px"></canvas>
+                            <canvas id="chart-area" style="height:550px"></canvas>
                         </div>
                     </div>
                     <!-- /.box-body -->
-                </div>
-            </div>
-        </div>
-        <div class="box box-primary box-solid">
-            <div class="box-header with-border">
-                <div class="box-title">Resultados</div>
-            </div>
-            <div class="box-body  table-responsive">
-                <div id="searchResult">
-                    @{ Html.RenderPartial("_ConcentradoPartial", Model); }
                 </div>
             </div>
         </div>

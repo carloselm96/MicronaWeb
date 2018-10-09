@@ -15055,6 +15055,8 @@
     <Content Include="Views\CapituloLibro\_CapituloPartial.cshtml" />
     <Content Include="Views\Libro\_LibroPartial.cshtml" />
     <Content Include="Views\Proyectos\_ProyectosPartial.cshtml" />
+    <Content Include="Views\Home\_CreateModal.cshtml" />
+    <Content Include="Views\Home\_EditModal.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
@@ -15070,6 +15072,7 @@
     <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
     <Compile Include="Controllers\ProyectosController.cs" />
+    <Compile Include="Controllers\TesisController.cs" />
     <Compile Include="Controllers\TrabajosController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
@@ -15142,6 +15145,12 @@
     <Compile Include="Models\proyecto_usuario.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\tesis.cs">
+      <DependentUpon>MicronaDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tesis_grupo.cs">
+      <DependentUpon>MicronaDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\tipoarticulo.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
@@ -15166,6 +15175,7 @@
     <Compile Include="Models\trabajo_usuario.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\TypeModel.cs" />
     <Compile Include="Models\usuario.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
@@ -15188,6 +15198,11 @@
     <Content Include="Views\Trabajos\Edit.cshtml" />
     <Content Include="Views\Trabajos\Details.cshtml" />
     <Content Include="Views\Trabajos\_TrabajosPartial.cshtml" />
+    <Content Include="Views\Tesis\Index.cshtml" />
+    <Content Include="Views\Tesis\_TesisPartial.cshtml" />
+    <Content Include="Views\Tesis\Details.cshtml" />
+    <Content Include="Views\Tesis\Create.cshtml" />
+    <Content Include="Views\Tesis\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -11,6 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class trabajo
@@ -23,15 +24,18 @@ namespace WebApplication4.Models
         }
     
         public int idTrabajo { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [Required]
+        [DisplayName("Nombre")]
         public string Nombre { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
-        [DataType(DataType.Date), DisplayFormat(DataFormatString = @"{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [Required]
+        [DisplayName("Fecha")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Año { get; set; }
+        [Required]
+        [DisplayName("Tipo de Trabajo")]
         public Nullable<int> TipoTrabajo { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
         public string Autores { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
         public string Presentacion { get; set; }
         public string Pais { get; set; }
         public Nullable<int> Usuario { get; set; }

@@ -11,6 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class proyectos
@@ -23,14 +24,21 @@ namespace WebApplication4.Models
         }
     
         public int idProyecto { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [DisplayName("Nombre del Proyecto")]
+        [Required]
         public string nombre { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
         public string Financiamiento { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [Required]
+        [DisplayName("Fecha de Inicio")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaInicio { get; set; }
-        [Required(ErrorMessage = "Este campo es necesario")]
+        [Required]
+        [DisplayName("Fecha Final")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaFinal { get; set; }
+        [Required]      
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         public string Clave { get; set; }

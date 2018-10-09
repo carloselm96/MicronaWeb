@@ -106,6 +106,21 @@ namespace WebApplication4.Controllers
             return Json(dataForChart, JsonRequestBehavior.AllowGet);
         }
 
+
+        [Authorize]
+        public PartialViewResult getModal(string type, string modal, int? id, string name)
+        {
+            switch (modal)
+            {
+                case "Create":
+                    return PartialView("_CreateModal", new TypeModel { type=type });                    
+                case "Edit":
+                    return PartialView("_EditModal", new TypeModel { id=int.Parse(id+""), type=type, name=name });
+               
+            }
+            return null;           
+        }
+
         [Authorize]
         public ActionResult Configure()
         {
@@ -172,46 +187,46 @@ namespace WebApplication4.Controllers
         }
 
         [Authorize]
-        public ActionResult nuevoTipo(string nombre, string tipo)
+        public ActionResult nuevoTipo(string name, string type)
         {
             
-            switch (tipo)
+            switch (type)
             {
                 case "1":
-                    tipoarticulo t = new tipoarticulo { Nombre = nombre };
+                    tipoarticulo t = new tipoarticulo { Nombre = name };
                     db.tipoarticulo.Add(t);
                     break;
                 case "2":
-                    tipotrabajo a = new tipotrabajo { Nombre = nombre };
+                    tipotrabajo a = new tipotrabajo { Nombre = name };
                     db.tipotrabajo.Add(a);
                     break;
                 case "3":
-                    tipolibro b = new tipolibro { Nombre = nombre };
+                    tipolibro b = new tipolibro { Nombre = name };
                     db.tipolibro.Add(b);
                     break;
 
             }
             db.SaveChanges();
-            return RedirectToAction("Configure");
+            return RedirectToAction("Configure",new { result="1" });
         }
 
         [Authorize]
-        public ActionResult editarTipo(string nombre, string tipo, int id)
+        public ActionResult editarTipo(string name, string type, int id)
         {
                         
-            switch (tipo)
+            switch (type)
             {
                 case "1":
                     tipoarticulo t = db.tipoarticulo.Where(x => x.idTipoArticulo == id).FirstOrDefault();
-                    t.Nombre = nombre;
+                    t.Nombre = name;
                     break;
                 case "2":
                     tipotrabajo a = db.tipotrabajo.Where(x => x.idTipoTrabajo == id).FirstOrDefault();
-                    a.Nombre = nombre;
+                    a.Nombre = name;
                     break;
                 case "3":
                     tipolibro b  = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
-                    b.Nombre = nombre;
+                    b.Nombre = name;
                     break;
 
             }

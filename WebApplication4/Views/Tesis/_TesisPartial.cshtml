@@ -1,0 +1,145 @@
+﻿@model IEnumerable<WebApplication4.Models.tesis>
+
+@{
+    ViewBag.Title = "_TesisPartial";
+    
+}
+
+<table class="display table table-bordered table-striped table-hover" id="datat">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuario)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.asesor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codirector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jurado)
+            </th>
+            <th>Grupo Académico</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.titulo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha)
+                </td>                
+                <td>
+                    @Html.DisplayFor(modelItem => item.director)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.asesor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.codirector)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jurado)
+                </td>
+                <td>
+                    @foreach(var grupo in item.tesis_grupo){
+                        <p>@grupo.grupoacademico.Nombre</p>
+                    }
+                </td>
+                <td>
+                    @{
+                        if (item.usuario1.idUsuario == int.Parse(Request.Cookies["userInfo"]["id"]) || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
+                        {
+                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idtesis }, new { @class = "btn btn-sm btn-warning" })</p>
+                            using (Html.BeginForm("Delete", "Tesis", FormMethod.Get, null))
+                            {
+                                <input hidden name="id" value="@item.idtesis" />
+                                <p><input type="button" class="btn btn-sm btn-danger swalalert" value="Eliminar" /></p>
+                            }
+                        }
+                    }
+                    <p>@Html.ActionLink("Detalles", "Details", new { id = item.idtesis }, new { @class = "btn btn-sm btn-primary" })</p>
+                </td>
+            </tr>
+        }
+    </tbody>
+        <tfoot>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.titulo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.usuario)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.fecha)
+                </th>
+
+                <th>
+                    @Html.DisplayNameFor(model => model.director)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.asesor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.codirector)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.jurado)
+                </th>
+                <th>Grupo Académico</th>
+                <th></th>
+            </tr>
+        </tfoot>
+</table>
+
+<script>
+    $(function () {
+
+        $('#datat').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
+            ]
+        });
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez elimnado no se podra recuperar este archivo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    })
+</script>
