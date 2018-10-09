@@ -42,18 +42,20 @@ namespace WebApplication4.Controllers
             }
             if (autores != null)
             {
+                List<trabajo> cg = new List<trabajo>();
                 foreach (string s in autores)
                 {
                     int i = int.Parse(s);
                     var g = db.trabajo_usuario.Where(x => x.idUsuario == i).ToList();
-                    List<trabajo> cg = new List<trabajo>();
+                    
                     foreach (var cap in g)
                     {
                         trabajo sample = db.trabajo.Where(x => x.idTrabajo == cap.idTrabajo).FirstOrDefault();
                         cg.Add(sample);
                     }
-                    trabajos = trabajos.Where(x => cg.Contains(x)).ToList();
+                    
                 }
+                trabajos = trabajos.Where(x => cg.Contains(x)).ToList();
             }
             if (Lugar != null)
             {

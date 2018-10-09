@@ -41,18 +41,20 @@ namespace WebApplication4.Controllers
             }
             if (autores != null)
             {
+                List<proyectos> cg = new List<proyectos>();
                 foreach (string s in autores)
                 {
                     int i = int.Parse(s);
                     var g = db.proyecto_usuario.Where(x => x.idusuario == i).ToList();
-                    List<proyectos> cg = new List<proyectos>();
+                    
                     foreach (var cap in g)
                     {
                         proyectos sample = db.proyectos.Where(x => x.idProyecto == cap.idproyecto).FirstOrDefault();
                         cg.Add(sample);
                     }
-                    proyect = proyect.Where(x => cg.Contains(x)).ToList();
+                    
                 }
+                proyect = proyect.Where(x => cg.Contains(x)).ToList();
             }
             if (Y1 != null)
             {

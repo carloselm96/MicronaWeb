@@ -55,18 +55,20 @@ namespace WebApplication4.Controllers
             }
             if (grupos != null)
             {
+                List<capitulolibro> cg = new List<capitulolibro>();
                 foreach (string s in grupos)
                 {
                     int i = int.Parse(s);
                     var g = db.capitulo_grupo.Where(x => x.id_grupo == i).ToList();
-                    List<capitulolibro> cg = new List<capitulolibro>();
+                    
                     foreach (var cap in g)
                     {
                         capitulolibro sample = db.capitulolibro.Where(x => x.idCapituloLibro == cap.id_capitulo).FirstOrDefault();
                         cg.Add(sample);
                     }
-                    libros = libros.Where(x => cg.Contains(x)).ToList();
+                    
                 }
+                libros = libros.Where(x => cg.Contains(x)).ToList();
             }
             if (autores != null)
             {

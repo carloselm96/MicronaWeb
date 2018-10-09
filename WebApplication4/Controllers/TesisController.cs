@@ -48,18 +48,20 @@ namespace WebApplication4.Controllers
             }            
             if (grupos != null)
             {
+                List<tesis> cg = new List<tesis>();
                 foreach (string s in grupos)
                 {
                     int i = int.Parse(s);
                     var g = db.tesis_grupo.Where(x => x.idgrupo == i).ToList();
-                    List<tesis> cg = new List<tesis>();
+                    
                     foreach (var cap in g)
                     {
                         tesis sample = db.tesis.Where(x => x.idtesis == cap.idtesis).FirstOrDefault();
                         cg.Add(sample);
                     }
-                    tesis = tesis.Where(x => cg.Contains(x)).ToList();
+                    
                 }
+                tesis = tesis.Where(x => cg.Contains(x)).ToList();
             }
             if (autor != null)
             {
@@ -93,7 +95,7 @@ namespace WebApplication4.Controllers
         // POST: Tesis/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(tesis tesis, HttpPostedFileBase ffile, List<string> GrupoAcademico)
+        public ActionResult Create(tesis tesis, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
         {
             archivo file = null;
 
@@ -140,6 +142,18 @@ namespace WebApplication4.Controllers
                             idgrupo = int.Parse(s)
                         };
                         db.tesis_grupo.Add(ag);
+                    }
+                }
+                if (Autores != null)
+                {
+                    foreach (var s in Autores)
+                    {
+                        tesis_usuario lb = new capitulo_usuario
+                        {
+                            idCapitulo = lib.idCapituloLibro,
+                            idUsuario = int.Parse(s)
+                        };
+                        db.capitulo_usuario.Add(lb);
                     }
                 }
                 db.SaveChanges();

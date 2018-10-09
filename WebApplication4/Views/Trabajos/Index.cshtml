@@ -28,7 +28,7 @@
                             <div class="form-group">
 
                                 <label>Autores</label>
-                                <select class="form-control select2" name="autores" multiple>
+                                <select class="form-control select2" name="autores" multiple>                             
                                     @foreach (var Usuario in ViewBag.autores)
                                     {
                                         <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
@@ -69,8 +69,9 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label">Tipo de Trabajo</label>
-                                <select class="form-control select2" name="tipo" multiple data-max-options="1">
+                                <select class="form-control select2" name="tipo">
                                     @{
+                                        <option selected>Seleccione una opcion</option>
                                         if (ViewBag.tipos != null)
                                         {
                                             foreach (var TipoTrabajo in ViewBag.tipos)

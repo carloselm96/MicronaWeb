@@ -31,12 +31,12 @@ namespace WebApplication4.Models
         [Required]
         [DisplayName("Fecha de Inicio")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> FechaInicio { get; set; }
         [Required]
         [DisplayName("Fecha Final")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> FechaFinal { get; set; }
         [Required]      
         public Nullable<int> Usuario { get; set; }

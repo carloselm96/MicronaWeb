@@ -43,17 +43,17 @@ namespace WebApplication4.Controllers
             }
             if (checkgroup != null)
             {
+                List<concentrado> cg = new List<concentrado>();
                 foreach (int i in checkgroup)
-                {
-                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();
-                    List<concentrado> cg = new List<concentrado>();
+                {                    
+                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();                    
                     foreach (var con in g)
                     {
                         concentrado sample = db.concentrado.Where(x => x.idConcentrado == con.Concentrado).FirstOrDefault();
                         cg.Add(sample);
-                    }
-                    concent = concent.Where(x => cg.Contains(x)).ToList();
+                    }                    
                 }
+                concent = concent.Where(x => cg.Contains(x)).ToList();
             }
             if (checktype != null)
             {
@@ -70,18 +70,18 @@ namespace WebApplication4.Controllers
             }
             if (autores != null)
             {
+                List<concentrado> cg = new List<concentrado>();
                 foreach (string s in autores)
                 {
                     int i = int.Parse(s);
-                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();
-                    List<concentrado> cg = new List<concentrado>();
+                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();                    
                     foreach (var cap in g)
                     {
                         concentrado sample = db.concentrado.Where(x => x.idConcentrado == cap.idConcentrado).FirstOrDefault();
                         cg.Add(sample);
-                    }
-                    concent = concent.Where(x => cg.Contains(x)).ToList();
+                    }                    
                 }
+                concent = concent.Where(x => cg.Contains(x)).ToList();
             }
             return PartialView("_ConcentradoPartial", concent);
         }

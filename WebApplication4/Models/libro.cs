@@ -29,7 +29,7 @@ namespace WebApplication4.Models
         [Required]
         [DisplayName("Fecha")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         [Required]

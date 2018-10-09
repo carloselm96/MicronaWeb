@@ -43,7 +43,9 @@
                     @Html.DisplayFor(modelItem => item.titulo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.usuario)
+                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Paterno)
+                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Materno)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.fecha)

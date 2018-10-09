@@ -29,13 +29,13 @@ namespace WebApplication4.Models
         [Required]
         [DisplayName("Fecha")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
         public string Participantes { get; set; }
         [Required]
         public string Libro { get; set; }
-        [Required]
+
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
     

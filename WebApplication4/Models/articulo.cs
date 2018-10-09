@@ -34,9 +34,8 @@ namespace WebApplication4.Models
         public string ISSN { get; set; }
         [Required]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> Fecha { get; set; }
-        [Required]
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         [Required]

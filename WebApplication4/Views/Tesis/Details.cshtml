@@ -51,30 +51,37 @@
                     @Html.DisplayFor(model => model.jurado)
                 </dd>
 
-                <dt>
-                    @Html.DisplayNameFor(model => model.archivo1.Nombre)
-                </dt>
-
-                <dd>
-                    @Html.DisplayFor(model => model.archivo1.Nombre)
-                </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.usuario1.Nombre)
+                    Autor
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.usuario1.Nombre)
+                    @Html.DisplayFor(model => model.usuario1.Apellido_Paterno)
+                    @Html.DisplayFor(model => model.usuario1.Apellido_Materno)
                 </dd>
 
                 <dt>
-                    @Html.DisplayNameFor(model => model.usuario2.Nombre)
+                    Subido Por
                 </dt>
 
                 <dd>
                     @Html.DisplayFor(model => model.usuario2.Nombre)
+                    @Html.DisplayFor(model => model.usuario2.Apellido_Paterno)
+                    @Html.DisplayFor(model => model.usuario2.Apellido_Materno)
                 </dd>
-
+                <dd>
+                    @Html.DisplayFor(model => model.archivo1.Nombre)
+                </dd>
+                @{
+                    if (Model.archivo1 != null)
+                    {
+                        <dd>
+                            @Html.ActionLink("Descargar", "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                        </dd>
+                    }
+                }
             </dl>
         </div>
 

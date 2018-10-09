@@ -15057,7 +15057,9 @@
     <Content Include="Views\Proyectos\_ProyectosPartial.cshtml" />
     <Content Include="Views\Home\_CreateModal.cshtml" />
     <Content Include="Views\Home\_EditModal.cshtml" />
-    <None Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <None Include="Views\Shared\_LayoutAdmin.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

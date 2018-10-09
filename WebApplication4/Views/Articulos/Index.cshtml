@@ -46,15 +46,16 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label">Tipo de artículo</label>
-                                <select class="form-control select2" name="tipo" multiple data-max-options="1">
+                                <select class="form-control select2" name="tipo">
+                                    <option selected>Seleccione una opcion</option>
                                     @{
-                                    if (ViewBag.tipo != null)
-                                    {
-                                        foreach (var TipoArticulo in ViewBag.tipo)
+                                        if (ViewBag.tipo != null)
                                         {
-                                            <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
-                                    }
-                                }
+                                            foreach (var TipoArticulo in ViewBag.tipo)
+                                            {
+                                                <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
+                                            }
+                                        }
                                     }
                                 </select>
                             </div>

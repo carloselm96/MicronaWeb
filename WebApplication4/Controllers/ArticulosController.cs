@@ -59,18 +59,19 @@ namespace WebApplication4.Controllers
             }
             if (grupos != null)
             {
+                List<articulo> cg = new List<articulo>();
                 foreach (string s in grupos)
                 {
                     int i = int.Parse(s);
                     var g = db.articulo_grupo.Where(x => x.id_grupo == i).ToList();
-                    List<articulo> cg = new List<articulo>();
+                    
                     foreach (var cap in g)
                     {
                         articulo sample = db.articulo.Where(x => x.idArticulo == cap.id_articulo).FirstOrDefault();
                         cg.Add(sample);
-                    }
-                    articulos = articulos.Where(x => cg.Contains(x)).ToList();
+                    }                    
                 }
+                articulos = articulos.Where(x => cg.Contains(x)).ToList();
             }
             if (tipo != null)
             {
@@ -129,6 +130,7 @@ namespace WebApplication4.Controllers
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(a);
             }
+            a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
             if (ModelState.IsValid)
             {
                 archivo file = null;

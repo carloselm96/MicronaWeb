@@ -26,13 +26,12 @@ namespace WebApplication4.Models
         [Required]
         [DisplayName("Titulo")]
         public string titulo { get; set; }
-        [Required]
         [DisplayName("Autor")]
         public Nullable<int> usuario { get; set; }
         [Required]
         [DisplayName("Fecha")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> archivo { get; set; }
         [Required]
@@ -45,9 +44,12 @@ namespace WebApplication4.Models
         public string codirector { get; set; }        
         [DisplayName("Jurado")]
         public string jurado { get; set; }
-    
+
+        [DisplayName("Archivo")]
         public virtual archivo archivo1 { get; set; }
+        [DisplayName("Autor")]
         public virtual usuario usuario1 { get; set; }
+        [DisplayName("Subido Por")]
         public virtual usuario usuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tesis_grupo> tesis_grupo { get; set; }

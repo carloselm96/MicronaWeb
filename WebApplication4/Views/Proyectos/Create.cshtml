@@ -48,7 +48,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Fecha de Inicio</label>
                 <div class="col-md-10">
-                    <input type="date" name="FechaInicio" class="form-control"/>                    
+                    @Html.TextBoxFor(model => model.FechaInicio, new { @class = "form-control datemask" })
                     @Html.ValidationMessageFor(model => model.FechaInicio, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -56,7 +56,7 @@
             <div class="form-group">
                 <label class="control-label col-md-2">Fecha Final</label>               
                 <div class="col-md-10">
-                    <input type="date" name="FechaFinal" class="form-control" />
+                    @Html.TextBoxFor(model => model.FechaFinal, new { @class = "form-control datemask" })
                     @Html.ValidationMessageFor(model => model.FechaFinal, "", new { @class = "text-danger" })
                 </div>
             </div>
