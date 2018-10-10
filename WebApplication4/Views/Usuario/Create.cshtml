@@ -74,7 +74,22 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.TipoUsuario, "Tipo de Usuario", htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.TipoUsuario, new SelectList(ViewBag.TipoUsuario, "idTipoUsuario", "Nombre"), new { @class = "form-control" })
+                    <select class="form-control select2" name="TipoUsuario">
+                        @foreach (var a in ViewBag.TipoUsuario)
+                        {
+                            if (a.idTipoUsuario == 3)
+                            {
+                                if (Request.Cookies["userInfo"]["tipo"].Equals("Super-Administrador"))
+                                {
+                                    <option value="@a.idTipoUsuario">@a.Nombre</option>
+                                }
+                            }
+                            else
+                            {
+                                <option value="@a.idTipoUsuario">@a.Nombre</option>
+                            }
+                        }
+                    </select>                    
                     @Html.ValidationMessageFor(model => model.TipoUsuario, "", new { @class = "text-danger" })
                 </div>
             </div>

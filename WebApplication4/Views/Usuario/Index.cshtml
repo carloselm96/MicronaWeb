@@ -64,16 +64,27 @@
                 </td>
                 <td>
                     @{
-                        if ((Request.Cookies["UserInfo"]["tipo"] == "Administrador" || Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador")) && item.TipoUsuario != 3)
+                        if (item.TipoUsuario == 3 && int.Parse(Request.Cookies["UserInfo"]["id"]) == item.idUsuario)
                         {
                             <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
-                            if (int.Parse(Request.Cookies["UserInfo"]["id"]) != item.idUsuario && item.TipoUsuario!=3)
+                        }
+                        else
+                        {
+                            if ((Request.Cookies["UserInfo"]["tipo"] == "Administrador" || Request.Cookies["UserInfo"]["tipo"] == "Super-administrador") && item.TipoUsuario != 3)
                             {
-                                using(Html.BeginForm("Delete","Usuario",FormMethod.Get, null))
-                                            {
-                                                <input hidden name="id" value="@item.idUsuario"/>
-                                                <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar"/></p>
-                                            }                                            
+                                if (int.Parse(Request.Cookies["UserInfo"]["id"]) != item.idUsuario)
+                                {
+                                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
+                                    using (Html.BeginForm("Delete", "Usuario", FormMethod.Get, null))
+                                    {
+                                        <input hidden name="id" value="@item.idUsuario" />
+                                        <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                    }
+                                }
+                                else
+                                {
+                                    <p>@Html.ActionLink("Edit", "Edit", "Perfil", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
+                                }
                             }
                         }
                     }
