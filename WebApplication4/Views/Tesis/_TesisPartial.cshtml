@@ -12,12 +12,11 @@
                 @Html.DisplayNameFor(model => model.titulo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuario)
+                @Html.DisplayNameFor(model => model.usuario2)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.fecha)
             </th>
-
             <th>
                 @Html.DisplayNameFor(model => model.director)
             </th>
@@ -31,6 +30,7 @@
                 @Html.DisplayNameFor(model => model.jurado)
             </th>
             <th>Grupo Académico</th>
+            <th>@Html.DisplayNameFor(model => model.usuario1)</th>
             <th></th>
         </tr>
     </thead>
@@ -43,9 +43,9 @@
                     @Html.DisplayFor(modelItem => item.titulo)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Paterno)
-                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Materno)
+                    @Html.DisplayFor(modelItem => item.usuario21.Nombre)
+                    @Html.DisplayFor(modelItem => item.usuario21.Apellido_Paterno)
+                    @Html.DisplayFor(modelItem => item.usuario21.Apellido_Materno)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.fecha)
@@ -66,6 +66,11 @@
                     @foreach(var grupo in item.tesis_grupo){
                         <p>@grupo.grupoacademico.Nombre</p>
                     }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Paterno)
+                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Materno)
                 </td>
                 <td>
                     @{

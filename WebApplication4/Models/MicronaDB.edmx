@@ -180,6 +180,7 @@
           <Property Name="asesor" Type="int" />
           <Property Name="codirector" Type="varchar" MaxLength="45" />
           <Property Name="jurado" Type="mediumtext" />
+          <Property Name="autor" Type="int" />
         </EntityType>
         <EntityType Name="tesis_grupo">
           <Key>
@@ -698,6 +699,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_TesisAutor">
+          <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+          <End Role="tesis" Type="Self.tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="tesis">
+              <PropertyRef Name="autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_TesisGrupo_Tesis">
           <End Role="tesis" Type="Self.tesis" Multiplicity="0..1" />
           <End Role="tesis_grupo" Type="Self.tesis_grupo" Multiplicity="*" />
@@ -982,6 +995,10 @@
             <End Role="tesis" EntitySet="tesis" />
           </AssociationSet>
           <AssociationSet Name="FK_TesisAsesor" Association="Self.FK_TesisAsesor">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="tesis" EntitySet="tesis" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TesisAutor" Association="Self.FK_TesisAutor">
             <End Role="usuario" EntitySet="usuario" />
             <End Role="tesis" EntitySet="tesis" />
           </AssociationSet>
@@ -1352,6 +1369,7 @@
           <Property Name="Status" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tesis" Relationship="microna2018Model.FK_TesisAsesor" FromRole="usuario" ToRole="tesis" />
           <NavigationProperty Name="tesis1" Relationship="microna2018Model.FK_TesisUsuario" FromRole="usuario" ToRole="tesis" />
+          <NavigationProperty Name="tesis11" Relationship="microna2018Model.FK_TesisAutor" FromRole="usuario" ToRole="tesis" />
         </EntityType>
         <Association Name="FK_Articulo_Archivo">
           <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
@@ -2026,6 +2044,10 @@
             <End Role="tesis" EntitySet="tesis" />
             <End Role="tesis_grupo" EntitySet="tesis_grupo" />
           </AssociationSet>
+          <AssociationSet Name="FK_TesisAutor" Association="microna2018Model.FK_TesisAutor">
+            <End Role="usuario" EntitySet="usuario" />
+            <End Role="tesis" EntitySet="tesis" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tesis">
           <Key>
@@ -2044,6 +2066,8 @@
           <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_TesisAsesor" FromRole="tesis" ToRole="usuario" />
           <NavigationProperty Name="usuario2" Relationship="microna2018Model.FK_TesisUsuario" FromRole="tesis" ToRole="usuario" />
           <NavigationProperty Name="tesis_grupo" Relationship="microna2018Model.FK_TesisGrupo_Tesis" FromRole="tesis" ToRole="tesis_grupo" />
+          <Property Name="autor" Type="Int32" />
+          <NavigationProperty Name="usuario21" Relationship="microna2018Model.FK_TesisAutor" FromRole="tesis" ToRole="usuario" />
         </EntityType>
         <Association Name="FK_TesisArchivo">
           <End Type="microna2018Model.archivo" Role="archivo" Multiplicity="0..1">
@@ -2114,6 +2138,18 @@
             </Principal>
             <Dependent Role="tesis_grupo">
               <PropertyRef Name="idtesis" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TesisAutor">
+          <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+          <End Type="microna2018Model.tesis" Role="tesis" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usuario">
+              <PropertyRef Name="idUsuario" />
+            </Principal>
+            <Dependent Role="tesis">
+              <PropertyRef Name="autor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2393,6 +2429,7 @@
           <EntitySetMapping Name="tesis">
             <EntityTypeMapping TypeName="microna2018Model.tesis">
               <MappingFragment StoreEntitySet="tesis">
+                <ScalarProperty Name="autor" ColumnName="autor" />
                 <ScalarProperty Name="jurado" ColumnName="jurado" />
                 <ScalarProperty Name="codirector" ColumnName="codirector" />
                 <ScalarProperty Name="asesor" ColumnName="asesor" />

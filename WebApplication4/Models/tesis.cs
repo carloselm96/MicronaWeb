@@ -21,17 +21,17 @@ namespace WebApplication4.Models
         {
             this.tesis_grupo = new HashSet<tesis_grupo>();
         }
-    
+
         public int idtesis { get; set; }
         [Required]
         [DisplayName("Titulo")]
         public string titulo { get; set; }
-        [DisplayName("Autor")]
+        [DisplayName("Subido Por")]
         public Nullable<int> usuario { get; set; }
         [Required]
         [DisplayName("Fecha")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> fecha { get; set; }
         public Nullable<int> archivo { get; set; }
         [Required]
@@ -39,19 +39,23 @@ namespace WebApplication4.Models
         public string director { get; set; }
         [Required]
         [DisplayName("Asesor")]
-        public Nullable<int> asesor { get; set; }        
+        public Nullable<int> asesor { get; set; }
         [DisplayName("Codirector")]
-        public string codirector { get; set; }        
+        public string codirector { get; set; }
         [DisplayName("Jurado")]
         public string jurado { get; set; }
-
+        [DisplayName("Autor")]
+        [Required]
+        public Nullable<int> autor { get; set; }
+    
         [DisplayName("Archivo")]
         public virtual archivo archivo1 { get; set; }
-        [DisplayName("Autor")]
-        public virtual usuario usuario1 { get; set; }
         [DisplayName("Subido Por")]
+        public virtual usuario usuario1 { get; set; }
+        [DisplayName("Autor")]
         public virtual usuario usuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tesis_grupo> tesis_grupo { get; set; }
+        public virtual usuario usuario21 { get; set; }
     }
 }

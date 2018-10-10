@@ -132,6 +132,7 @@ namespace WebApplication4.Controllers
                 }
                 tesis.usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
                 db.tesis.Add(tesis);
+                db.SaveChanges();
                 if (GrupoAcademico != null)
                 {
                     foreach (var s in GrupoAcademico)
@@ -144,24 +145,12 @@ namespace WebApplication4.Controllers
                         db.tesis_grupo.Add(ag);
                     }
                 }
-                if (Autores != null)
-                {
-                    foreach (var s in Autores)
-                    {
-                        tesis_usuario lb = new capitulo_usuario
-                        {
-                            idCapitulo = lib.idCapituloLibro,
-                            idUsuario = int.Parse(s)
-                        };
-                        db.capitulo_usuario.Add(lb);
-                    }
-                }
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
-            catch
-            {                
-                return RedirectToAction("Index", new { response = 2 });
+            catch(Exception e)
+            {
+                return Content(e + "");
             }
         }
 

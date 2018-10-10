@@ -32,8 +32,9 @@ namespace WebApplication4.Models
             this.trabajo_usuario = new HashSet<trabajo_usuario>();
             this.tesis = new HashSet<tesis>();
             this.tesis1 = new HashSet<tesis>();
+            this.tesis11 = new HashSet<tesis>();
         }
-    
+
         public int idUsuario { get; set; }
         public string Nombre { get; set; }
         [DisplayName("Usuario")]
@@ -43,7 +44,7 @@ namespace WebApplication4.Models
         public string Usuario1 { get; set; }
         [Required]
         [RegularExpression(@"^[0-9ña-zÑA-Z''-'\s]{1,40}$", ErrorMessage = "Los caracteres especiales no son permitidos en este campo")]
-        [MinLength(5,ErrorMessage ="La contraseña debe ser de al menos 5 caracteres")]
+        [MinLength(5, ErrorMessage = "La contraseña debe ser de al menos 5 caracteres")]
         public string Contraseña { get; set; }
         [Required]
         public string Correo { get; set; }
@@ -57,7 +58,7 @@ namespace WebApplication4.Models
         [Required]
         public string Apellido_Materno { get; set; }
         public string Status { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo> articulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -85,5 +86,7 @@ namespace WebApplication4.Models
         public virtual ICollection<tesis> tesis { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tesis> tesis1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<tesis> tesis11 { get; set; }
     }
 }

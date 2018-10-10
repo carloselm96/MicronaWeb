@@ -77,6 +77,7 @@
         <EntityTypeShape EntityType="microna2018Model.tesis_grupo" Width="1.5" PointX="13.5" PointY="5.75" />
         <AssociationConnector Association="microna2018Model.FK_GrupoTesis_Grupo" />
         <AssociationConnector Association="microna2018Model.FK_TesisGrupo_Tesis" />
+        <AssociationConnector Association="microna2018Model.FK_TesisAutor" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
