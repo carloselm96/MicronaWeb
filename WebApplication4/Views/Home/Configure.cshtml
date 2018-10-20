@@ -168,6 +168,53 @@
             </div>
         </div>
     </div>
+    <div class="col-md-6">
+        <div class="box box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Tipos de Libro</h3>
+            </div>
+            <div class="box-body table-responsive">
+                <p>
+                    <button type="button" class="btn btn-default newbutton" data-tipo="4">
+                        Nuevo Grupo Académico
+                    </button>
+                </p>
+                <table class="display table table-responsive table-bordered table-striped table-hover datat">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (ViewBag.tipos_grup != null)
+                        {
+                            foreach (var s in ViewBag.tipos_grup)
+                            {
+                                <tr>
+                                    <td>
+                                        @s.Nombre
+                                    </td>
+                                    <td>
+                                        <button type="button" class="btn btn-primary edit" data-id="@s.idGrupoAcademico" data-nombre="@s.Nombre" data-tipo="4">Editar</button>
+                                    </td>
+                                    <td>
+                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        {
+                                            <input hidden name="id" value="@s.idGrupoAcademico" />
+                                            <input hidden name="tipo" value="4" />
+                                            <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
     <div id="modal-wrapper">
 
     </div>

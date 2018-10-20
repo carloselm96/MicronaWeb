@@ -127,7 +127,8 @@ namespace WebApplication4.Controllers
             
             ViewBag.tipos_art = db.tipoarticulo.ToList();
             ViewBag.tipos_tra = db.tipotrabajo.ToList();
-            ViewBag.tipos_lib = db.tipolibro.ToList();            
+            ViewBag.tipos_lib = db.tipolibro.ToList();
+            ViewBag.tipos_grup = db.grupoacademico.ToList();
             return View();
         }
 
@@ -189,25 +190,36 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult nuevoTipo(string name, string type)
         {
-            
-            switch (type)
-            {
-                case "1":
-                    tipoarticulo t = new tipoarticulo { Nombre = name };
-                    db.tipoarticulo.Add(t);
-                    break;
-                case "2":
-                    tipotrabajo a = new tipotrabajo { Nombre = name };
-                    db.tipotrabajo.Add(a);
-                    break;
-                case "3":
-                    tipolibro b = new tipolibro { Nombre = name };
-                    db.tipolibro.Add(b);
-                    break;
 
+            try
+            {
+                switch (type)
+                {
+                    case "1":
+                        tipoarticulo t = new tipoarticulo { Nombre = name };
+                        db.tipoarticulo.Add(t);
+                        break;
+                    case "2":
+                        tipotrabajo a = new tipotrabajo { Nombre = name };
+                        db.tipotrabajo.Add(a);
+                        break;
+                    case "3":
+                        tipolibro b = new tipolibro { Nombre = name };
+                        db.tipolibro.Add(b);
+                        break;
+                    case "4":
+                        grupoacademico g = new grupoacademico { Nombre = name };
+                        db.grupoacademico.Add(g);
+                        break;
+
+                }
+                db.SaveChanges();
+                return RedirectToAction("Configure", new { result = "1" });
             }
-            db.SaveChanges();
-            return RedirectToAction("Configure",new { result="1" });
+            catch
+            {
+                return RedirectToAction("Configure", new { result = "2" });
+            }
         }
 
         [Authorize]
@@ -227,6 +239,10 @@ namespace WebApplication4.Controllers
                 case "3":
                     tipolibro b  = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
                     b.Nombre = name;
+                    break;
+                case "4":
+                    grupoacademico g = db.grupoacademico.Where(x => x.idGrupoAcademico == id).FirstOrDefault();
+                    g.Nombre = name;
                     break;
 
             }
@@ -252,6 +268,10 @@ namespace WebApplication4.Controllers
                 case "3":
                     tipolibro b = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
                     db.tipolibro.Remove(b);
+                    break;
+                case "4":
+                    grupoacademico g = db.grupoacademico.Where(x => x.idGrupoAcademico == id).FirstOrDefault();
+                    db.grupoacademico.Remove(g);
                     break;
 
             }
