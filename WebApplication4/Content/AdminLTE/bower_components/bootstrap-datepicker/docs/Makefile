@@ -86,8 +86,8 @@ devhelp:
 	@echo
 	@echo "Build finished."
 	@echo "To view the help file:"
-	@echo "# mkdir -p $$HOME/.local/share/devhelp/bootstrap-datepicker"
-	@echo "# ln -s $(BUILDDIR)/devhelp $$HOME/.local/share/devhelp/bootstrap-datepicker"
+	@echo "# mkdir -p $$Admin/.local/share/devhelp/bootstrap-datepicker"
+	@echo "# ln -s $(BUILDDIR)/devhelp $$Admin/.local/share/devhelp/bootstrap-datepicker"
 	@echo "# devhelp"
 
 epub:

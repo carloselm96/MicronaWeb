@@ -13548,6 +13548,7 @@
     <Content Include="Content\LoginContent\vendor\select2\select2.min.css" />
     <Content Include="Content\LoginContent\vendor\select2\select2.min.js" />
     <Content Include="Content\Microna-logo-2 %282%29.png" />
+    <Content Include="Content\Microna-logo-2.png" />
     <Content Include="Content\modalScript.js" />
     <Content Include="Content\plugins\bootstrap-slider\bootstrap-slider.js" />
     <Content Include="Content\plugins\bootstrap-slider\slider.css" />
@@ -15029,8 +15030,8 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Articulos\Index.cshtml" />
     <Content Include="Views\Articulos\Create.cshtml" />
     <Content Include="Views\Articulos\Details.cshtml" />
@@ -15049,14 +15050,19 @@
     <Content Include="Views\Proyectos\Details.cshtml" />
     <Content Include="Views\Perfil\Index.cshtml" />
     <Content Include="Views\Perfil\Edit.cshtml" />
-    <Content Include="Views\Home\Configure.cshtml" />
+    <Content Include="Views\Admin\Configure.cshtml" />
     <Content Include="Views\Articulos\_ArticuloPartial.cshtml" />
-    <Content Include="Views\Home\_ConcentradoPartial.cshtml" />
+    <Content Include="Views\Admin\_ConcentradoPartial.cshtml" />
     <Content Include="Views\CapituloLibro\_CapituloPartial.cshtml" />
     <Content Include="Views\Libro\_LibroPartial.cshtml" />
     <Content Include="Views\Proyectos\_ProyectosPartial.cshtml" />
-    <Content Include="Views\Home\_CreateModal.cshtml" />
-    <Content Include="Views\Home\_EditModal.cshtml" />
+    <Content Include="Views\Admin\_CreateModal.cshtml" />
+    <Content Include="Views\Admin\_EditModal.cshtml" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_ConcentradoPartial.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -15070,6 +15076,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\ArticulosController.cs" />
     <Compile Include="Controllers\CapituloLibroController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />

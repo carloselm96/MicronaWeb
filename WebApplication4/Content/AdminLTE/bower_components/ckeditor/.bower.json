@@ -13,7 +13,7 @@
   ],
   "authors": "CKSource (http://cksource.com/)",
   "license": "For licensing, see LICENSE.md or http://ckeditor.com/license.",
-  "homepage": "http://ckeditor.com",
+  "Adminpage": "http://ckeditor.com",
   "main": "./ckeditor.js",
   "moduleType": "globals",
   "version": "4.8.0",

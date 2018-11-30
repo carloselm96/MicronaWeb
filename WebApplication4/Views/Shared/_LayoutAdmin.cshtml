@@ -14,7 +14,11 @@
     @Scripts.Render("~/bundles/jquery")
     <link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" />
 
-
+    <style>
+        .select2 {
+            width: 100% !important;
+        }
+    </style>
 
     <![endif]-->
     <!-- Google Font -->
@@ -42,31 +46,24 @@
                     <ul class="nav navbar-nav">
                         <!-- Messages: style can be found in dropdown.less-->
                         <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown user user-menu">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="~/Content/dist/img/default_user.png" class="user-image" alt="User Image">
-                                @{
-                                    if (Request.Cookies["userInfo"] != null)
-                                    {
-                                        <span class="hidden-xs">@Request.Cookies["userInfo"]["nombre"]</span>
-                                    }
+                        
+                            @{
+                                if (Request.Cookies["userInfo"] != null)
+                                {
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@Request.Cookies["userInfo"]["nombre"]<span class="caret"></span></a>
+                                        <ul class="dropdown-menu" role="menu">
+                                            <li><a href="@Url.Action("Index","Perfil",null)">Perfil</a></li>
+                                            <li><a href="@Url.Action("Logout","Admin",null)">Cerrar Sesión</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><a href="@Url.Action("Index","Home",null)">Página Principal</a></li>
+
                                 }
-                            </a>
-                            <ul class="dropdown-menu">
-                                <!-- Menu Footer-->
-                                <li class="user-footer">
-                                    <div class="pull-left">
-                                        @Html.ActionLink("Perfil", "Index", "Perfil", null, new { @class = "btn btn-default btn-flat" })
-                                    </div>
-                                    <div class="pull-right">
-                                        @Html.ActionLink("Cerrar Sesión", "Logout", "Home", null, new { @class = "btn btn-default btn-flat" })
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
-                        </li>
+                            }
+                            <li>
+                                <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+                            </li>                                               
                     </ul>
                 </div>
             </nav>
@@ -94,7 +91,7 @@
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">CONCENTRADO</li>
                     <li>
-                        <a href="@Url.Action("Index", "Home", null)">
+                        <a href="@Url.Action("Index", "Admin", null)">
                             <i class="fa fa-briefcase"></i> <span>Concentrado Total</span>
                         </a>
                     </li>
@@ -189,7 +186,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="@Url.Action("Configure", "Home")">
+                                    <a href="@Url.Action("Configure", "Admin")">
                                         <i class='fa fa-users'></i> <span>Configuracion</span>
                                     </a>
                                 </li>
@@ -231,8 +228,8 @@
             <ul class="nav nav-tabs nav-justified control-sidebar-tabs"></ul>
             <!-- Tab panes -->
             <div class="tab-content">
-                <!-- Home tab content -->
-                <div class="tab-pane" id="control-sidebar-home-tab">
+                <!-- Admin tab content -->
+                <div class="tab-pane" id="control-sidebar-Admin-tab">
 
                     <!-- /.control-sidebar-menu -->
 
@@ -313,7 +310,7 @@
 
 
 
-
+        </div>
         @Scripts.Render("~/bundles/bowercomponents")
         <script src="~/Content/DataTables/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>

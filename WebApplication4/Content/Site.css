@@ -16,3 +16,6 @@ textarea {
     max-width: 280px;
 }
 
+.select2 {
+    width: 100% !important;
+}

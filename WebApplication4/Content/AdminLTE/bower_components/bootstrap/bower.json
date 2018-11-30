@@ -11,7 +11,7 @@
     "framework",
     "web"
   ],
-  "homepage": "http://getbootstrap.com",
+  "Adminpage": "http://getbootstrap.com",
   "license": "MIT",
   "moduleType": "globals",
   "main": [

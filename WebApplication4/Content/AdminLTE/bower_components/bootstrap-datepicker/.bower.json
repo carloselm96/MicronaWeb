@@ -9,7 +9,7 @@
     "jquery": ">=1.7.1 <4.0.0"
   },
   "ignore": [],
-  "homepage": "https://github.com/eternicode/bootstrap-datepicker",
+  "Adminpage": "https://github.com/eternicode/bootstrap-datepicker",
   "version": "1.7.1",
   "_release": "1.7.1",
   "_resolution": {

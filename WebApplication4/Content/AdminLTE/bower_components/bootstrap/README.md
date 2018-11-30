@@ -85,7 +85,7 @@ Bootstrap's documentation, included in this repo in the root directory, is built
 2. From the root `/bootstrap` directory, run `bundle exec jekyll serve` in the command line.
 4. Open `http://localhost:9001` in your browser, and voilà.
 
-Learn more about using Jekyll by reading its [documentation](http://jekyllrb.com/docs/home/).
+Learn more about using Jekyll by reading its [documentation](http://jekyllrb.com/docs/Admin/).
 
 ### Documentation for previous releases
 

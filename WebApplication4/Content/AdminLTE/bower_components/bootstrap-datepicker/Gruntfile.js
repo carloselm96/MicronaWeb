@@ -10,7 +10,7 @@ module.exports = function(grunt){
         pkg: grunt.file.readJSON('package.json'),
         banner: [
             '/*!',
-            ' * Datepicker for Bootstrap v<%= pkg.version %> (<%= pkg.homepage %>)',
+            ' * Datepicker for Bootstrap v<%= pkg.version %> (<%= pkg.Adminpage %>)',
             ' *',
             ' * Licensed under the Apache License v2.0 (http://www.apache.org/licenses/LICENSE-2.0)',
             ' */'

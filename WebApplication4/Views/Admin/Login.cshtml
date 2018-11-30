@@ -23,13 +23,13 @@
             <img src="~/Content/Microna-logo-2 (2).png" style="width:auto; height:100%; display:block; margin-left: auto; margin-right: auto" />
         </div>
         <div class="login-logo">
-            <a href="@Url.Action("Index", "Home")"><b></b>Repository</a>
+            <a href="@Url.Action("Index", "Admin")"><b></b>Repository</a>
         </div>
         <!-- /.login-logo -->
         <div class="login-box-body">
             <p class="login-box-msg">Inicia Sesión</p>
 
-            @using (Html.BeginForm("Login", "Home", FormMethod.Post, new { @class = "login100-form validate-form" }))
+            @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "login100-form validate-form" }))
         {
             <div class="form-group has-feedback">
                 <input class="form-control" placeholder="Usuario" name="Usuario1">
