@@ -9,176 +9,112 @@
 
 <link href="~/Content/loading-style.css" rel="stylesheet" />
 
-<div onload="myFunction()" style="margin:0;">
-    <div id="loader"></div>
-    <div id="myDiv" style="display:none" class="animate-bottom">
-        <div class="box box-success ">            
-            <div class="box-body">
-                <form id="searchForm">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <h4><b>Titulo:</b></h4>
-                            <input name="titulo" type="text" placeholder="Insertar Titulo" class="form-control" />
-                        </div>
-                    </div>
-                    <input type="button" value="Buscar" class="btn btn-success btn-lg" id="searchBtn" />
-                </form>
-            </div>
-        </div>
 
 
-        <div class="box box-success collapsed-box">
-            <div class="box-header with-border">
-                <div class="box-title">Busqueda avanzada</div>
-                <div class="box-tools pull-right">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                        <i class="fa fa-plus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="box-body">
-                <form id="searchForm">
-                    <div class="row">
-                        <div class="form-group col-md-12">
-                            <h4><b>Titulo:</b></h4>
-                            <input name="titulo" type="text" placeholder="Insertar Titulo" class="form-control" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="form-group">
-                                <h4><b>Año:</b></h4>
-                                <div class="input-daterange" id="">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control pull-right datemask" name="Y1">
-                                        <span class="input-group-addon">al</span>
-                                        <input type="text" class="form-control pull-right datemask" name="Y2">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="form-group">
-                                <h4><b>Autores:</b></h4>
-                                <div class="col-md-12">
-                                    <select class="form-control select2" name="autores" multiple>
-                                        @foreach (var Usuario in ViewBag.autores)
-                                        {
-                                            <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-5">
-                            <h4><b>Tipo de Material:</b></h4>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="checktype" type="checkbox" value="1"> Articulos
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="checktype" type="checkbox" value="2"> Trabajos Presentados
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="checktype" type="checkbox" value="3"> Libros
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="checktype" type="checkbox" value="4"> Capitulos de Libros
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="checktype" type="checkbox" value="5"> Proyectos
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="checktype" type="checkbox" value="6"> Tesis
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-5">
-                            <h4><b>Grupo Académico</b></h4>
-                            <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="1"> Nanomateriales
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="3"> Dispositivos y Circuitos Integrados
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="4"> Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="2"> Aplicaciones de materiales y nanociencia
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <input type="button" value="Buscar" class="btn btn-success btn-lg" id="searchBtn" />
-                </form>
-            </div>
-        </div>
-
-        <div class="box box-primary box-solid">
-            <div class="box-header with-border">
-                <div class="box-title">Resultados</div>
-            </div>
-            <div class="box-body  table-responsive">
-                <div id="searchResult">
-
-                </div>
-            </div>
-        </div>
-
+<div class="box box-default">
+    <div class="box-header with-border">
+        <h3 class="box-title">Blank Box</h3>
     </div>
+    <div class="box-body">
+        The great content goes here
+    </div>
+    <!-- /.box-body -->
 </div>
-    <script>
-    var myVar;
 
-    function myFunction() {
-        document.getElementById("loader").style.display = "block";
-        document.getElementById("myDiv").style.display = "none";
-        myVar = setTimeout(showPage, 1000);
-    }
 
-    function showPage() {
-      document.getElementById("loader").style.display = "none";
-        document.getElementById("myDiv").style.display = "block";
-    }
+<div class="row">
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>150</h3>
 
-    $(document).ready(function () {
-        document.getElementById("loader").style.display = "none";
-        document.getElementById("myDiv").style.display = "block";
-        $("#searchBtn").on("click", function () {
-             var val = $('#searchForm').serialize();
-            $.ajax({
-                url: "@Url.Action("Search")",
-                type: "GET",
-                data: val,
-                success: function (partialViewResult) {
-                    myFunction();
-                    $("#searchResult").html(partialViewResult);
-                }
-            })
-        });
-    });
-    </script>    
+                <p>Artículos</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-pencil"></i>
+            </div>
+            <a href="#" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Trabajos Entregados</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-files-o"></i>
+            </div>
+            <a href="#" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>44</h3>
+
+                <p>Libros</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-book"></i>
+            </div>
+            <a href="#" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    
+    <!-- ./col -->
+</div>
+<div class="row">
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-aqua">
+            <div class="inner">
+                <h3>150</h3>
+
+                <p>Tesis</p>
+            </div>
+            <div class="icon">
+                <i class="fa fa-angle-left pull-right"></i>
+            </div>
+            <a href="#" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-green">
+            <div class="inner">
+                <h3>53<sup style="font-size: 20px">%</sup></h3>
+
+                <p>Capítulo Libro</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+    <!-- ./col -->
+    <div class="col-lg-4 col-xs-6">
+        <!-- small box -->
+        <div class="small-box bg-yellow">
+            <div class="inner">
+                <h3>44</h3>
+
+                <p>Proyectos</p>
+            </div>
+            <div class="icon">
+                <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+        </div>
+    </div>
+
+    <!-- ./col -->
+</div>
