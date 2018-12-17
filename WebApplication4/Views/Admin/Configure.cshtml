@@ -56,7 +56,7 @@
                                         <button type="button" class="btn btn-primary edit" data-id="@s.idTipoArticulo" data-nombre="@s.Nombre" data-tipo="1">Editar</button>
                                     </td>
                                     <td>
-                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        @using (Html.BeginForm("EliminarTipo", "Admin", FormMethod.Get, null))
                                         {
                                             <input hidden name="id" value="@s.idTipoArticulo" />
                                             <input hidden name="tipo" value="1" />
@@ -103,7 +103,7 @@
                                         <button type="button" class="btn btn-primary edit" data-id="@s.idTipoTrabajo" data-nombre="@s.Nombre" data-tipo="2">Editar</button>
                                     </td>
                                     <td>
-                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        @using (Html.BeginForm("EliminarTipo", "Admin", FormMethod.Get, null))
                                         {
                                         <input hidden name="id" value="@s.idTipoTrabajo" />
                                         <input hidden name="tipo" value="2"/>
@@ -153,7 +153,7 @@
                                         <button type="button" class="btn btn-primary edit" data-id="@s.idTipoLibro" data-nombre="@s.Nombre" data-tipo="3">Editar</button>
                                     </td>
                                     <td>
-                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        @using (Html.BeginForm("EliminarTipo", "Admin", FormMethod.Get, null))
                                         {
                                             <input hidden name="id" value="@s.idTipoLibro" />
                                             <input hidden name="tipo" value="3" />
@@ -171,7 +171,7 @@
     <div class="col-md-6">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Tipos de Libro</h3>
+                <h3 class="box-title">Grupos Académicos</h3>
             </div>
             <div class="box-body table-responsive">
                 <p>
@@ -200,7 +200,7 @@
                                         <button type="button" class="btn btn-primary edit" data-id="@s.idGrupoAcademico" data-nombre="@s.Nombre" data-tipo="4">Editar</button>
                                     </td>
                                     <td>
-                                        @using (Html.BeginForm("EliminarTipo", "Home", FormMethod.Get, null))
+                                        @using (Html.BeginForm("EliminarTipo", "Admin", FormMethod.Get, null))
                                         {
                                             <input hidden name="id" value="@s.idGrupoAcademico" />
                                             <input hidden name="tipo" value="4" />

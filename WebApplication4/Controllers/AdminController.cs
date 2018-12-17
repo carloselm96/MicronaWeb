@@ -7,18 +7,20 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using WebApplication4.Models;
+using WebApplication4.Models.DataAccess;
 
 namespace WebApplication4.Controllers
 {
     public class AdminController : Controller
     {
-        microna2018Entities db = new microna2018Entities();
+        DataAccess dt = new DataAccess();
         // GET: Home        
         [Authorize]
         public ActionResult Index()
-        {         
-            var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();            
+        {
+            var concent = dt.getConcentrado();
+            ViewBag.grupos = dt.getGrupos();
+            ViewBag.autores = dt.getAutores();
             return View(concent);
         }
 
@@ -26,85 +28,32 @@ namespace WebApplication4.Controllers
         [Authorize]
         [HttpGet]
         public ActionResult Search(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
-        {            
-            var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
-            if (titulo != null)
-            {
-                concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();
-            }
-            if (Y1 != null)
-            {
-                concent = concent.Where(x => x.Fecha >= Y1).ToList();
-            }
-            if (Y2 != null)
-            {
-                concent = concent.Where(x => x.Fecha <= Y2).ToList();
-            }
-            if (checkgroup != null)
-            {
-                List<concentrado> cg = new List<concentrado>();
-                foreach (int i in checkgroup)
-                {                    
-                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();                    
-                    foreach (var con in g)
-                    {
-                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == con.Concentrado).FirstOrDefault();
-                        cg.Add(sample);
-                    }                    
-                }
-                concent = concent.Where(x => cg.Contains(x)).ToList();
-            }
-            if (checktype != null)
-            {
-                List<concentrado> ct = new List<concentrado>();
-                foreach (int i in checktype)
-                {
-                    var g = concent.Where(x => x.TipoConcentrado == i).ToList();
-                    foreach (var con in g)
-                    {
-                        ct.Add(con);
-                    }
-                }
-                concent = ct;
-            }
-            if (autores != null)
-            {
-                List<concentrado> cg = new List<concentrado>();
-                foreach (string s in autores)
-                {
-                    int i = int.Parse(s);
-                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();                    
-                    foreach (var cap in g)
-                    {
-                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == cap.idConcentrado).FirstOrDefault();
-                        cg.Add(sample);
-                    }                    
-                }
-                concent = concent.Where(x => cg.Contains(x)).ToList();
-            }
+        {
+            var concent = dt.getAllConcentrado(titulo, Y1, Y2, autores, checkgroup, checktype);
+            ViewBag.grupos = dt.getConcentrado();
+            ViewBag.autores = dt.getAutores();            
             return PartialView("_ConcentradoPartial", concent);
         }
 
-        [Authorize]
+     /*   [Authorize]
         [HttpGet]
         public ActionResult getPieData()
         {
             
             var data = new List<pieDataModel>();
-            var articulos = db.articulo.ToList();            
+            int articulos = dt.getAllArticulos().Count;           
             var libros = db.libro.ToList();            
             var trabajos = db.trabajo.ToList();
             var proyectos = db.proyectos.ToList();
             var capitulos = db.capitulolibro.ToList();
-            data.Add(new pieDataModel { nameSection = "Articulos", valueNumber = articulos.Count, color= "#f56954" });
+            data.Add(new pieDataModel { nameSection = "Articulos", valueNumber = articulos, color= "#f56954" });
             data.Add(new pieDataModel { nameSection = "Libros", valueNumber = libros.Count, color= "#00a65a" });
             data.Add(new pieDataModel { nameSection = "Trabajos", valueNumber = trabajos.Count, color= "#f39c12" });
             data.Add(new pieDataModel { nameSection = "proyectos", valueNumber = proyectos.Count, color= "#00c0ef" });
             data.Add(new pieDataModel { nameSection = "Capitulos", valueNumber = capitulos.Count, color= "#3c8dbc" });
             var dataForChart = data.Select(x => new { value = x.valueNumber, colorl = x.color, label =x.nameSection });
             return Json(dataForChart, JsonRequestBehavior.AllowGet);
-        }
+        }*/
 
 
         [Authorize]
@@ -125,10 +74,10 @@ namespace WebApplication4.Controllers
         public ActionResult Configure()
         {
             
-            ViewBag.tipos_art = db.tipoarticulo.ToList();
-            ViewBag.tipos_tra = db.tipotrabajo.ToList();
-            ViewBag.tipos_lib = db.tipolibro.ToList();
-            ViewBag.tipos_grup = db.grupoacademico.ToList();
+            ViewBag.tipos_art = dt.getTiposArticulo();
+            ViewBag.tipos_tra = dt.getTiposTrabajo();
+            ViewBag.tipos_lib = dt.getTiposLibro();
+            ViewBag.tipos_grup = dt.getGrupos();
             return View();
         }
 
@@ -146,7 +95,7 @@ namespace WebApplication4.Controllers
             {
                 return View();
             }                                    
-            var user = db.usuario.Where(x => u.Usuario1.ToUpper() == x.Usuario1.ToUpper() && x.Status.Equals("A")).FirstOrDefault();
+            var user = dt.getAutores().Where(x => u.Usuario1.ToUpper() == x.Usuario1.ToUpper() && x.Status.Equals("A")).FirstOrDefault();
             if (user != null)
             {
                 if (user.Contraseña == u.Contraseña)
@@ -196,62 +145,17 @@ namespace WebApplication4.Controllers
         public ActionResult nuevoTipo(string name, string type)
         {
 
-            try
+            if (dt.addTipo(name, type))
             {
-                switch (type)
-                {
-                    case "1":
-                        tipoarticulo t = new tipoarticulo { Nombre = name };
-                        db.tipoarticulo.Add(t);
-                        break;
-                    case "2":
-                        tipotrabajo a = new tipotrabajo { Nombre = name };
-                        db.tipotrabajo.Add(a);
-                        break;
-                    case "3":
-                        tipolibro b = new tipolibro { Nombre = name };
-                        db.tipolibro.Add(b);
-                        break;
-                    case "4":
-                        grupoacademico g = new grupoacademico { Nombre = name };
-                        db.grupoacademico.Add(g);
-                        break;
-
-                }
-                db.SaveChanges();
                 return RedirectToAction("Configure", new { result = "1" });
             }
-            catch
-            {
-                return RedirectToAction("Configure", new { result = "2" });
-            }
+            return RedirectToAction("Configure", new { result = "2" });             
         }
 
         [Authorize]
         public ActionResult editarTipo(string name, string type, int id)
         {
-                        
-            switch (type)
-            {
-                case "1":
-                    tipoarticulo t = db.tipoarticulo.Where(x => x.idTipoArticulo == id).FirstOrDefault();
-                    t.Nombre = name;
-                    break;
-                case "2":
-                    tipotrabajo a = db.tipotrabajo.Where(x => x.idTipoTrabajo == id).FirstOrDefault();
-                    a.Nombre = name;
-                    break;
-                case "3":
-                    tipolibro b  = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
-                    b.Nombre = name;
-                    break;
-                case "4":
-                    grupoacademico g = db.grupoacademico.Where(x => x.idGrupoAcademico == id).FirstOrDefault();
-                    g.Nombre = name;
-                    break;
-
-            }
-            db.SaveChanges();
+            dt.editTipo(name, type, id);
             return RedirectToAction("Configure");
         }
 
@@ -259,28 +163,8 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult eliminarTipo(string tipo, int id)
         {
-            
-            switch (tipo)
-            {
-                case "1":
-                    tipoarticulo t = db.tipoarticulo.Where(x => x.idTipoArticulo == id).FirstOrDefault();
-                    db.tipoarticulo.Remove(t);                    
-                    break;
-                case "2":
-                    tipotrabajo a = db.tipotrabajo.Where(x => x.idTipoTrabajo == id).FirstOrDefault();
-                    db.tipotrabajo.Remove(a);
-                    break;
-                case "3":
-                    tipolibro b = db.tipolibro.Where(x => x.idTipoLibro == id).FirstOrDefault();
-                    db.tipolibro.Remove(b);
-                    break;
-                case "4":
-                    grupoacademico g = db.grupoacademico.Where(x => x.idGrupoAcademico == id).FirstOrDefault();
-                    db.grupoacademico.Remove(g);
-                    break;
 
-            }
-            db.SaveChanges();
+            dt.deleteTipo(tipo, id);
             return RedirectToAction("Configure");
         }
     }

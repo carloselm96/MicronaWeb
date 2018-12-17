@@ -6,67 +6,91 @@
 
 
 
+
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>AdminLTE 2 | Log in</title>
-    <link href="~/Content/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" />
-    @Styles.Render("~/bundles/styles")
-    <link href="~/Content/plugins/iCheck/square/blue.css" rel="stylesheet" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+    <title>Login V15</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/css/main.css">
+    <!--===============================================================================================-->
 </head>
-<body class="hold-transition login-page">
-    <div class="login-box">
-        <div style="width:400px; height:150px">
-            <img src="~/Content/Microna-logo-2 (2).png" style="width:auto; height:100%; display:block; margin-left: auto; margin-right: auto" />
-        </div>
-        <div class="login-logo">
-            <a href="@Url.Action("Index", "Admin")"><b></b>Repository</a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="login-box-body">
-            <p class="login-box-msg">Inicia Sesión</p>
+<body>
 
-            @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "login100-form validate-form" }))
-        {
-            <div class="form-group has-feedback">
-                <input class="form-control" placeholder="Usuario" name="Usuario1">
-                <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-                @Html.ValidationMessageFor(model => model.Usuario1, null, new { @class = "text-danger" })
-
-            </div>
-            <div class="form-group has-feedback">
-                <input type="password" class="form-control" placeholder="Password" name="Contraseña">
-                <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                @Html.ValidationMessageFor(model => model.Contraseña, null, new { @class = "text-danger" })
-            </div>
-            <div class="row">
-                <!-- /.col -->
-                <div class="col-xs-4">
-                    <button type="submit" class="btn btn-primary btn-block btn-flat">Sign In</button>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url(@Url.Content("~/Content/Login_v15/images/Microna.PNG"));">
+                    <span class="login100-form-title-1">
+                        Inicio de Sesión
+                    </span>
                 </div>
-                <!-- /.col -->
+                @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "login100-form validate-form" }))
+                {
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="El usuario es requerido">
+                        <span class="label-input100">Usuario</span>
+                        <input class="input100" type="text" name="Usuario1" placeholder="Inserte Usuario">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <br />@Html.ValidationMessageFor(model => model.Usuario1, null, new { @class = "txt1" }){
+
+                    }
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="La contraseña es requerida">
+                        <span class="label-input100">Contraseña</span>
+                        <input class="input100" type="password" name="Contraseña" placeholder="Inserte Contraseña">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <br />@Html.ValidationMessageFor(model => model.Contraseña, null, new { @class = "txt1" })
+
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                }
+
             </div>
-    }
-
         </div>
-        <!-- /.login-box-body -->
     </div>
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    @Scripts.Render("~/bundles/bowercomponents")
 
-    <script>
-        $(function () {
-            $('input').iCheck({
-                checkboxClass: 'icheckbox_square-blue',
-                radioClass: 'iradio_square-blue',
-                increaseArea: '20%' /* optional */
-            });
-        });
-    </script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/Login_v15/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/Login_v15/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/js/main.js"></script>
+
 </body>
 </html>

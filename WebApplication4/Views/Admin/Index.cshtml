@@ -94,26 +94,14 @@
                         <div class="col-md-5">
                             <h4><b>Grupo Académico</b></h4>
                             <div class="form-group">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="1"> Nanomateriales
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="3"> Dispositivos y Circuitos Integrados
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="4"> Sistemas Hibridos: Nanoelectrónica, Nanobioelectrónica y Nanodispositivos
-                                    </label>
-                                </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox" name="checkgroup" value="2"> Aplicaciones de materiales y nanociencia
-                                    </label>
-                                </div>
+                                @foreach (var grupo in ViewBag.grupos)
+                                {
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="checkgroup" value="@grupo.idGrupoAcademico"> @grupo.Nombre
+                                        </label>
+                                    </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -131,28 +119,9 @@
                     @{ Html.RenderPartial("_ConcentradoPartial", Model); }
                 </div>
             </div>
+            
         </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="box box-danger">
-                    <div class="box-header with-border">
-                        <h3 class="box-title">Distribución del material</h3>
-
-                        <div class="box-tools pull-right">
-                            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                <i class="fa fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="box-body">
-                        <div class="col-md-6">
-                            <canvas id="chart-area" style="height:550px"></canvas>
-                        </div>
-                    </div>
-                    <!-- /.box-body -->
-                </div>
-            </div>
-        </div>
+        
     </div>
 </div>
     <script>
@@ -173,7 +142,7 @@
         document.getElementById("loader").style.display = "none";
         document.getElementById("myDiv").style.display = "block";
         $("#searchBtn").on("click", function () {
-             var val = $('#searchForm').serialize();
+            var val = $('#searchForm').serialize();            
             $.ajax({
                 url: "@Url.Action("Search")",
                 type: "GET",

@@ -1,0 +1,162 @@
+﻿@model IEnumerable<WebApplication4.Models.concentrado>
+<div class="row">
+    <div class="col-md-9">
+        <div class="box box-solid box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <div class="box-body">
+                <table id="datat" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Results</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <dt><a href="@Url.Action("Details","Home",new { id=item.IdItem })">@item.Titulo</a></dt>
+                                    <dl>
+                                        <dd>
+                                            @{
+                                                foreach (var a in item.concentrado_autores)
+                                                {
+                                                    @a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno
+                                                }
+                                            }
+                                        </dd>
+                                        <dd>@Html.DisplayFor(modelItem => item.Fecha, "{0:dd/MM/yyyy}")</dd>
+                                        <dd>@item.tipoconcentrado1.Nombre</dd>
+                                        <dd>
+                                            @foreach (var a in item.concentrado_grupos)
+                                            {
+                                                <li>
+                                                    @a.grupoacademico.Nombre
+                                                </li>
+                                            }
+                                        </dd>
+                                    </dl>
+                                </td>
+                            </tr>
+                        }
+                  
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Results</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box box-solid box-default">
+            <div class="box-body">
+                <label>Año</label>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Micro y Nanomateriales (1)
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Nanociencia (4)
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Microprocesadores(5)
+                        </label>
+                    </div>
+                </div>
+                <label>Año</label>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Micro y Nanomateriales (1)
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Nanociencia (4)
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Microprocesadores(5)
+                        </label>
+                    </div>
+                </div>
+                <label>Año</label>
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Micro y Nanomateriales (1)
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Nanociencia (4)
+                        </label>
+                    </div>
+
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox">
+                            Microprocesadores(5)
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+
+        $('#datat').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
+            ]
+        });
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez elimnado no se podra recuperar este archivo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    })
+</script>

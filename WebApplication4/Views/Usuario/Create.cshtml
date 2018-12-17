@@ -79,10 +79,10 @@
                         {
                             if (a.idTipoUsuario == 3)
                             {
-                                if (Request.Cookies["userInfo"]["tipo"].Equals("Super-Administrador"))
+                                if (Request.Cookies["userInfo"]["tipo"].Equals("Super-administrador"))
                                 {
                                     <option value="@a.idTipoUsuario">@a.Nombre</option>
-                                }
+                                }                                
                             }
                             else
                             {

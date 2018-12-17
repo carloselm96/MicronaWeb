@@ -4,82 +4,83 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Models;
+using WebApplication4.Models.DataAccess;
 
 namespace WebApplication4.Controllers
 {
     public class HomeController : Controller
     {
         microna2018Entities db = new microna2018Entities();
+        DataAccess dt = new DataAccess();
         // GET: Home
         [AllowAnonymous]
         public ActionResult Index()
         {
-            var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.Where(x => x.Status.Equals("A")).ToList();
-            return View(concent);
+            //var concent = db.concentrado.ToList();
+            ViewBag.autores = dt.getAutores();
+            ViewBag.grupos = dt.getGrupos();
+            return View();
         }
 
         [AllowAnonymous]
         [HttpGet]
         public ActionResult Search(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
         {
-            var concent = db.concentrado.ToList();
-            ViewBag.autores = db.usuario.Where(x => x.Status.Equals("A")).ToList();
-            if (titulo != null)
-            {
-                concent = concent.Where(x => x.Titulo.Contains(titulo)).ToList();
-            }
-            if (Y1 != null)
-            {
-                concent = concent.Where(x => x.Fecha >= Y1).ToList();
-            }
-            if (Y2 != null)
-            {
-                concent = concent.Where(x => x.Fecha <= Y2).ToList();
-            }
-            if (checkgroup != null)
-            {
-                List<concentrado> cg = new List<concentrado>();
-                foreach (int i in checkgroup)
-                {
-                    var g = db.concentrado_grupos.Where(x => x.Grupo == i).ToList();
-                    foreach (var con in g)
-                    {
-                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == con.Concentrado).FirstOrDefault();
-                        cg.Add(sample);
-                    }
-                }
-                concent = concent.Where(x => cg.Contains(x)).ToList();
-            }
-            if (checktype != null)
-            {
-                List<concentrado> ct = new List<concentrado>();
-                foreach (int i in checktype)
-                {
-                    var g = concent.Where(x => x.TipoConcentrado == i).ToList();
-                    foreach (var con in g)
-                    {
-                        ct.Add(con);
-                    }
-                }
-                concent = ct;
-            }
-            if (autores != null)
-            {
-                List<concentrado> cg = new List<concentrado>();
-                foreach (string s in autores)
-                {
-                    int i = int.Parse(s);
-                    var g = db.concentrado_autores.Where(x => x.idAutor == i).ToList();
-                    foreach (var cap in g)
-                    {
-                        concentrado sample = db.concentrado.Where(x => x.idConcentrado == cap.idConcentrado).FirstOrDefault();
-                        cg.Add(sample);
-                    }
-                }
-                concent = concent.Where(x => cg.Contains(x)).ToList();
-            }
+            var concent = dt.getConcentrado(titulo, Y1, Y2, autores, checkgroup, checktype);
+            ViewBag.autores = dt.getAutores();
+           
             return PartialView("_ConcentradoPartial", concent);
+        }
+
+        [AllowAnonymous]
+        [HttpGet]
+        public ActionResult SearchResult(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
+        {
+            var concent = dt.getConcentrado(titulo,Y1,Y2,autores,checkgroup,checktype);
+            ViewBag.grupos = dt.getGrupos();            
+            return PartialView(concent);
+        }
+
+        [AllowAnonymous]        
+        public ActionResult HomeSearch(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
+        {
+            var concent = db.concentrado.ToList();
+            ViewBag.autores = dt.getAutores();
+            ViewBag.grupos = dt.getGrupos();
+            
+            return View("SearchResult",concent);
+        }
+
+        [AllowAnonymous]
+        public ActionResult HomeSearchType(string type)
+        {
+            var concent = db.concentrado.ToList();
+            switch (type)
+            {
+                case "articulo":
+                    concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 1).ToList();
+                    break;
+                case "capitulo":
+                    concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 2).ToList();
+                    break;
+                case "libro":
+                    concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 3).ToList();
+                    break;
+                case "proyecto":
+                    concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 4).ToList();
+                    break;
+                case "tesis":
+                    concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 6).ToList();
+                    break;
+                case "trabajo":
+                    concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 5).ToList();
+                    break;
+                default:
+                    return RedirectToAction("Index");
+            }
+            ViewBag.autores = dt.getAutores();
+            ViewBag.grupos = dt.getGrupos();
+            return View("SearchResult", concent);
         }
     }
 }
