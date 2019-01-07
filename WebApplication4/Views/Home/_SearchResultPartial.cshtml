@@ -1,4 +1,7 @@
 ﻿@model IEnumerable<WebApplication4.Models.concentrado>
+    @{ 
+        var list = Model;
+    }
 <div class="row">
     <div class="col-md-9">
         <div class="box box-solid box-primary">
@@ -18,13 +21,15 @@
                         {
                             <tr>
                                 <td>
-                                    <dt><a href="@Url.Action("Details","Home",new { id=item.IdItem })">@item.Titulo</a></dt>
+                                    <dt><a href="@Url.Action("Details","Home",new { id=item.idConcentrado })">@item.Titulo</a></dt>
                                     <dl>
                                         <dd>
                                             @{
+                                                
                                                 foreach (var a in item.concentrado_autores)
                                                 {
-                                                    @a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno
+                                                    var sb=a.usuario.Nombre.Split(' ');
+                                                <p>@a.usuario.Apellido_Paterno, @sb[0] @sb[1].Substring(0, 1).</p>
                                                 }
                                             }
                                         </dd>
@@ -56,107 +61,48 @@
     <div class="col-md-3">
         <div class="box box-solid box-default">
             <div class="box-body">
-                <label>Año</label>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Micro y Nanomateriales (1)
-                        </label>
+                @{
+                    <label>Autores Relacionados</label>
+                    <div class="form-group">
+                        @foreach (var a in ViewBag.autoresRel)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="autor" value="@a.idUsuario">
+                                    @{
+                                        var sb = a.Nombre.Split(' ');
+                                    }
+                                    @a.Apellido_Paterno, @sb[0] @sb[1].Substring(0, 1).
+                                </label>
+                            </div>
+                        }
                     </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Nanociencia (4)
-                        </label>
+                }
+                @{
+                    <label>Grupos Académicos Relacionados</label>
+                    <div class="form-group">
+                        @foreach (var a in ViewBag.gruposRel)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="grupo" value="@a.idGrupoAcademico">
+                                    @a.Nombre
+                                </label>
+                            </div>
+                        }
                     </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Microprocesadores(5)
-                        </label>
-                    </div>
-                </div>
-                <label>Año</label>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Micro y Nanomateriales (1)
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Nanociencia (4)
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Microprocesadores(5)
-                        </label>
-                    </div>
-                </div>
-                <label>Año</label>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Micro y Nanomateriales (1)
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Nanociencia (4)
-                        </label>
-                    </div>
-
-                    <div class="checkbox">
-                        <label>
-                            <input type="checkbox">
-                            Microprocesadores(5)
-                        </label>
-                    </div>
-                </div>
+                }
             </div>
         </div>
     </div>
 </div>
 <script>
     $(function () {
-
         $('#datat').DataTable({
             dom: 'Bfrtip',
             buttons: [
                 {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
             ]
         });
-        $(".swalalert").click(function (e) {
-            e.preventDefault();
-            // stop the default behavior(navigation)
-            var _form = $(this).closest("form");
-            //get a reference to the container form
-
-            swal({
-                title: "Esta seguro?",
-                text: "Una vez elimnado no se podra recuperar este archivo",
-                icon: "warning",
-                buttons: true,
-                dangerMode: true,
-            }).then((willDelete) => {
-                if (willDelete) {
-                    _form.submit();
-                } else {
-                    swal("Se ha cancelado la accion");
-                }
-            });
-        })
     })
 </script>

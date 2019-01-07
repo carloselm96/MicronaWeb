@@ -17,129 +17,133 @@
             <h3 class="box-title">Busqueda</h3>
         </div>
         <!-- /.box-header -->
-        @using (Html.BeginForm("HomeSearch", "Home")) {
+        @using (Html.BeginForm("HomeSearch", "Home", FormMethod.Get))
+        {
+            <div class="box-body">
+                <div class="box-group" id="accordion">
+                    <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                    <div class="panel box box-primary">
 
-        <div class="box-body">
-            <div class="box-group" id="accordion">
-                <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
-                <div class="panel box box-primary">
+                        <div class="box-body">
+                            <div class="input-group input-group-lg">
+                                <input type="text" name="titulo" required class="form-control" placeholder="Escriba título de artículo, libro, trabajo...">
+                                <span class="input-group-btn">
+                                    <button type="submit" id="searchBtn" class="btn btn-info btn-flat">Buscar</button>
+                                </span>
+                            </div>
+                            <div class="pull-right">
+                                <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                    Busqueda Avanzada
+                                </a>
+                            </div>
+                        </div>
 
-                    <div class="box-body">
-                        <div class="input-group input-group-lg">
-                            <input type="text" name="titulo" required class="form-control" placeholder="Escriba título de artículo, libro, trabajo...">
-                            <span class="input-group-btn">
-                                <button type="submit" id="searchBtn" class="btn btn-info btn-flat">Buscar</button>
-                            </span>
-                        </div>
-                        <div class="pull-right">
-                            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-                                Busqueda Avanzada
-                            </a>
-                        </div>
                     </div>
+                    <div id="collapseTwo" class="panel-collapse collapse">
+                        <div class="box-body">
 
-                </div>
-                <div id="collapseTwo" class="panel-collapse collapse">
-                    <div class="box-body">
-
-                        <div class="row">
-                            <div class="col-md-5">
-                                <div class="form-group">
-                                    <h4><b>Fecha:</b></h4>
-                                    <div class="input-daterange" id="">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control pull-right datemask" name="Y1">
-                                            <span class="input-group-addon">al</span>
-                                            <input type="text" class="form-control pull-right datemask" name="Y2">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <div class="form-group">
+                                        <h4><b>Fecha:</b></h4>
+                                        <div class="input-daterange" id="">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control pull-right datemask" name="Y1">
+                                                <span class="input-group-addon">al</span>
+                                                <input type="text" class="form-control pull-right datemask" name="Y2">
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <h4><b>Autores:</b></h4>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <h4><b>Autores:</b></h4>
 
-                                    <select class="form-control select2" name="autores" multiple>
-                                        @foreach (var Usuario in ViewBag.autores)
-                                        {
-                                            <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                        }
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-5">
-                                <h4><b>Tipo de Material:</b></h4>
-                                <div class="form-group">                                    
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="checktype" type="checkbox" value="1"> Articulos
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="checktype" type="checkbox" value="2"> Trabajos Presentados
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="checktype" type="checkbox" value="3"> Libros
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="checktype" type="checkbox" value="4"> Capitulos de Libros
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="checktype" type="checkbox" value="5"> Proyectos
-                                        </label>
-                                    </div>
-                                    <div class="checkbox">
-                                        <label>
-                                            <input name="checktype" type="checkbox" value="6"> Tesis
-                                        </label>
+                                        <select class="form-control select2" name="autores" multiple>
+                                            @foreach (var Usuario in ViewBag.autores)
+                                            {
+
+                                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-md-5">
-                                <h4><b>Grupo Académico</b></h4>
-                                <div class="form-group">
-                                    @foreach (var grupo in ViewBag.grupos)
-                                    {
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <h4><b>Tipo de Material:</b></h4>
+                                    <div class="form-group">
                                         <div class="checkbox">
                                             <label>
-                                                <input type="checkbox" name="checkgroup" value="@grupo.idGrupoAcademico"> @grupo.Nombre
+                                                <input name="checktype" type="checkbox" value="1"> Articulos
                                             </label>
                                         </div>
-                                    }                                
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checktype" type="checkbox" value="2"> Trabajos Presentados
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checktype" type="checkbox" value="3"> Libros
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checktype" type="checkbox" value="4"> Capitulos de Libros
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checktype" type="checkbox" value="5"> Proyectos
+                                            </label>
+                                        </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input name="checktype" type="checkbox" value="6"> Tesis
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-5">
+                                    <h4><b>Grupo Académico</b></h4>
+                                    <div class="form-group">
+                                        @foreach (var grupo in ViewBag.grupos)
+                                        {
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" name="checkgroup" value="@grupo.idGrupoAcademico"> @grupo.Nombre
+                                                </label>
+                                            </div>
+                                        }
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         }
-        <!-- /.box-body -->
-    </div>
+            <!-- /.box-body -->
+        </div>
     <!-- /.box -->
+</div>
+<div id="loadDiv">
+
 </div>
 <div class="row">
     <div class="col-lg-4 col-xs-6">
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>150</h3>
+                <h3>@ViewBag.objectsArray["Articulos"]</h3>
 
                 <p>Artículos</p>
             </div>
             <div class="icon">
                 <i class="fa fa-pencil"></i>
             </div>
-            <a href="@Url.Action("HomeSearchType","home", new { type="articulo"})" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="@Url.Action("HomeSearch","home", new { checktype="1"})" class="small-box-footer">Ver todos <i class="fa fa-arrow-circle-right"></i></a>
         </div>
     </div>
     <!-- ./col -->
@@ -147,7 +151,7 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>@ViewBag.objectsArray["Trabajos"]</h3>
 
                 <p>Trabajos Entregados</p>
             </div>
@@ -162,7 +166,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>44</h3>
+                <h3>@ViewBag.objectsArray["Libros"]</h3>
 
                 <p>Libros</p>
             </div>
@@ -180,7 +184,7 @@
         <!-- small box -->
         <div class="small-box bg-aqua">
             <div class="inner">
-                <h3>150</h3>
+                <h3>@ViewBag.objectsArray["Tesis"]</h3>
 
                 <p>Tesis</p>
             </div>
@@ -195,7 +199,7 @@
         <!-- small box -->
         <div class="small-box bg-green">
             <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3>@ViewBag.objectsArray["Capitulos"]</h3>
 
                 <p>Capítulo Libro</p>
             </div>
@@ -210,7 +214,7 @@
         <!-- small box -->
         <div class="small-box bg-yellow">
             <div class="inner">
-                <h3>44</h3>
+                <h3>@ViewBag.objectsArray["Proyectos"]</h3>
 
                 <p>Proyectos</p>
             </div>

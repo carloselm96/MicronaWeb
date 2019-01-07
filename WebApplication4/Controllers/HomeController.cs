@@ -19,7 +19,19 @@ namespace WebApplication4.Controllers
             //var concent = db.concentrado.ToList();
             ViewBag.autores = dt.getAutores();
             ViewBag.grupos = dt.getGrupos();
+            ViewBag.objectsArray = dt.getConcentradoData();
             return View();
+        }
+
+        [AllowAnonymous]
+        public ActionResult Details(int? id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("Index");
+            }
+            var concentrado = dt.getConcentradoById(id);
+            return View(concentrado);
         }
 
         [AllowAnonymous]
@@ -37,17 +49,22 @@ namespace WebApplication4.Controllers
         public ActionResult SearchResult(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
         {
             var concent = dt.getConcentrado(titulo,Y1,Y2,autores,checkgroup,checktype);
-            ViewBag.grupos = dt.getGrupos();            
+            ViewBag.grupos = dt.getGrupos();
+            ViewBag.autores = dt.getAutores();
+            ViewBag.autoresRel = dt.getRelatedUsers(concent.Select(x => x.idConcentrado).ToList());
+            ViewBag.gruposRel = dt.getRelatedGrupos(concent.Select(x => x.idConcentrado).ToList());
             return PartialView(concent);
         }
 
         [AllowAnonymous]        
         public ActionResult HomeSearch(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
         {
-            var concent = db.concentrado.ToList();
+            List<concentrado> concent = dt.getFilteredConcentrado(titulo, Y1, Y2, autores, checkgroup, checktype);            
             ViewBag.autores = dt.getAutores();
             ViewBag.grupos = dt.getGrupos();
-            
+            ViewBag.autoresRel = dt.getRelatedUsers(concent.Select(x => x.idConcentrado).ToList());
+            ViewBag.gruposRel = dt.getRelatedGrupos(concent.Select(x => x.idConcentrado).ToList());
+
             return View("SearchResult",concent);
         }
 
@@ -78,6 +95,8 @@ namespace WebApplication4.Controllers
                 default:
                     return RedirectToAction("Index");
             }
+            ViewBag.autoresRel = dt.getRelatedUsers(concent.Select(x => x.idConcentrado).ToList());
+            ViewBag.gruposRel = dt.getRelatedGrupos(concent.Select(x => x.idConcentrado).ToList());
             ViewBag.autores = dt.getAutores();
             ViewBag.grupos = dt.getGrupos();
             return View("SearchResult", concent);

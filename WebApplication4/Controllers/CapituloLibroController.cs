@@ -5,13 +5,15 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.Models;
+using WebApplication4.Models.DataAccess;
 
 namespace WebApplication4.Controllers
 {
     public class CapituloLibroController : Controller
     {
 
-        microna2018Entities db = new microna2018Entities();
+        DataAccess dt = new DataAccess();
+        
 
         [Authorize]        
         public ActionResult Index(string response)
@@ -21,10 +23,10 @@ namespace WebApplication4.Controllers
                 ViewBag.response = int.Parse(response);
             }
             
-            ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
-            ViewBag.tipo = db.tipolibro.ToList();
-            List<capitulolibro> libros = db.capitulolibro.ToList();            
+            ViewBag.grupos = dt.getGrupos();
+            ViewBag.autores = dt.getAutores();
+            
+            List<capitulolibro> libros=dt.getAllCapitulos();          
             return View(libros);
         }
 
@@ -32,59 +34,10 @@ namespace WebApplication4.Controllers
         [HttpGet]
         public ActionResult Search(string Nombre, List<string> autores, string Lugar, DateTime? Y1, DateTime? Y2, List<string> grupos, string Libro)
         {                        
-            ViewBag.grupos = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
-            ViewBag.tipo = db.tipolibro.ToList();
-            List<capitulolibro> libros = db.capitulolibro.ToList();
-            if (Nombre != null)
-            {
-                libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
-            }
-            if (Y1 != null)
-            {
-                //int year1 = int.Parse(Y1);
-                libros = libros.Where(x => x.Año >= Y1).ToList();
-            }
-            if (Y2 != null)
-            {
-                libros = libros.Where(x => x.Año <= Y2).ToList();
-            }
-            if (Libro != null)
-            {
-                libros = libros.Where(x => x.Libro.Contains(Libro)).ToList();
-            }
-            if (grupos != null)
-            {
-                List<capitulolibro> cg = new List<capitulolibro>();
-                foreach (string s in grupos)
-                {
-                    int i = int.Parse(s);
-                    var g = db.capitulo_grupo.Where(x => x.id_grupo == i).ToList();
-                    
-                    foreach (var cap in g)
-                    {
-                        capitulolibro sample = db.capitulolibro.Where(x => x.idCapituloLibro == cap.id_capitulo).FirstOrDefault();
-                        cg.Add(sample);
-                    }
-                    
-                }
-                libros = libros.Where(x => cg.Contains(x)).ToList();
-            }
-            if (autores != null)
-            {
-                foreach (string s in autores)
-                {
-                    int i = int.Parse(s);
-                    var g = db.capitulo_usuario.Where(x => x.idUsuario == i).ToList();
-                    List<capitulolibro> cg = new List<capitulolibro>();
-                    foreach (var cap in g)
-                    {
-                        capitulolibro sample = db.capitulolibro.Where(x => x.idCapituloLibro == cap.idCapitulo).FirstOrDefault();
-                        cg.Add(sample);
-                    }
-                    libros = libros.Where(x => cg.Contains(x)).ToList();
-                }
-            }
+            ViewBag.grupos = dt.getGrupos();
+            ViewBag.autores = dt.getAutores();
+
+            var libros = dt.getFilteredCapitulos(Nombre, autores, Lugar, Y1, Y2, grupos, Libro);
             return PartialView("_CapituloPartial",libros);
         }
 
@@ -96,8 +49,8 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "CapituloLibro", null);
             }
-            
-            var capitulo = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
+
+            var capitulo = dt.getCapituloById(id.GetValueOrDefault());
             return View(capitulo);
         }
 
@@ -106,8 +59,8 @@ namespace WebApplication4.Controllers
         public ActionResult Create()
         {
                         
-            ViewBag.grupo = db.grupoacademico.ToList();
-            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
+            ViewBag.grupo = dt.getGrupos();
+            ViewBag.autores = dt.getAutores();
             return View();
         }
 
@@ -120,14 +73,14 @@ namespace WebApplication4.Controllers
             
             if (!ModelState.IsValid)
             {
-                ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
+                ViewBag.grupo = dt.getGrupos();
+                ViewBag.autores = dt.getAutores();
                 return View(lib);
             }
             if (Autores.Count < 1)
             {
-                ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
+                ViewBag.grupo = dt.getGrupos();
+                ViewBag.autores = dt.getAutores();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(lib);
             }
@@ -147,42 +100,10 @@ namespace WebApplication4.Controllers
                     ffile.SaveAs(path);
                     file = new archivo();
                     file.Nombre = fileName;
-                    file.url = path;
-                    db.archivo.Add(file);
-                    db.SaveChanges();
-                }
-
-                if (file != null)
-                {
-                    lib.Archivo = file.idarchivo;
+                    file.url = path;                    
                 }
                 lib.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
-                db.capitulolibro.Add(lib);
-                if (GrupoAcademico != null)
-                {
-                    foreach (var s in GrupoAcademico)
-                    {
-                        capitulo_grupo ag = new capitulo_grupo
-                        {
-                            id_capitulo = lib.idCapituloLibro,
-                            id_grupo = int.Parse(s)
-                        };
-                        db.capitulo_grupo.Add(ag);
-                    }
-                }
-                if (Autores != null)
-                {
-                    foreach (var s in Autores)
-                    {
-                        capitulo_usuario lb = new capitulo_usuario
-                        {
-                            idCapitulo = lib.idCapituloLibro,
-                            idUsuario = int.Parse(s)
-                        };
-                        db.capitulo_usuario.Add(lb);
-                    }
-                }
-                db.SaveChanges();
+                dt.createCapitulo(lib, file, GrupoAcademico, Autores);
                 return RedirectToAction("Index", new { response = 1 });
             }
             catch
@@ -200,14 +121,14 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index", "CapituloLibro", null);
             }
             
-            var a = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
+            var a = dt.getCapituloById(id.GetValueOrDefault());
             if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
             {
                 return RedirectToAction("Index");
             }
-            a.capitulo_grupo = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
-            ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
-            ViewBag.grupos = db.grupoacademico.ToList();            
+            a.capitulo_grupo = dt.getCapitulosGrupoById(id.GetValueOrDefault());
+            ViewBag.autores = dt.getAutores();
+            ViewBag.grupos = dt.getGrupos();            
             return View(a);
         }
 
@@ -219,63 +140,22 @@ namespace WebApplication4.Controllers
             
             if (!ModelState.IsValid)
             {
-                ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
+                ViewBag.grupo = dt.getGrupos();
+                ViewBag.autores = dt.getAutores();
                 return View(lib);
             }
             if (Autores==null)
             {
-                ViewBag.grupo = db.grupoacademico.ToList();
-                ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
+                ViewBag.grupo = dt.getGrupos();
+                ViewBag.autores = dt.getAutores();
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(lib);
             }
             try
-            {                
-                var l = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
-                l.Nombre = lib.Nombre;
-                l.ISBN = lib.ISBN;                                
-                l.Participantes = lib.Participantes;
-                l.Año = lib.Año;
-                var autores_eliminar = db.capitulo_usuario.Where(x => x.idCapitulo == id).ToList();
-                if (autores_eliminar != null)
-                {
-                    foreach (var G in autores_eliminar)
-                    {
-                        db.capitulo_usuario.Remove(G);
-                    }
-                }
-                if (Autores != null)
-                {
-                    foreach (var G in Autores)
-                    {
-                        db.capitulo_usuario.Add(new capitulo_usuario { idCapitulo = id, idUsuario = int.Parse(G) });
-                    }
-                }
-                var grupos_eliminar = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
-                if (grupos_eliminar != null)
-                {
-                    foreach (var G in grupos_eliminar)
-                    {
-                        db.capitulo_grupo.Remove(G);
-                    }
-                }
-                if (GrupoAcademico != null)
-                {
-                    foreach (var G in GrupoAcademico)
-                    {
-                        db.capitulo_grupo.Add(new capitulo_grupo { id_capitulo = id, id_grupo = int.Parse(G) });
-                    }
-                }
+            {
+                archivo file=null;
                 if (ffile != null && ffile.ContentLength > 0)
                 {
-                    if (l.archivo1 != null)
-                    {
-                        var archivo = new archivo();
-                        archivo = db.archivo.Where(x => x.idarchivo == l.Archivo).FirstOrDefault();
-                        System.IO.File.Delete(l.archivo1.url);
-                        db.archivo.Remove(archivo);
-                    }
                     string dir = "~/Content/Archivos/Capitulos";
                     if (!Directory.Exists(dir))
                     {
@@ -284,19 +164,16 @@ namespace WebApplication4.Controllers
                     string fileName = Path.GetFileName(ffile.FileName);
                     string path = Path.Combine(Server.MapPath(dir), DateTime.Now.ToString("yyyyMMddHHmmss") + "-" + fileName);
                     ffile.SaveAs(path);
-                    archivo file = new archivo();
+                    file = new archivo();
                     file.Nombre = fileName;
                     file.url = path;
-                    db.archivo.Add(file);
-                    db.SaveChanges();
-                    l.Archivo = file.idarchivo;
                 }
-                db.SaveChanges();
+                dt.editCapitulo(id, lib, GrupoAcademico, Autores, file);
                 return RedirectToAction("Index", new { response = 1 });
             }
-            catch
+            catch(Exception e)
             {
-                return View();
+                return Content(e+"");
             }
         }
 
@@ -309,22 +186,13 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", "CapituloLibro", null);
                 }
-                
-                var libr = db.capitulolibro.Where(x => x.idCapituloLibro == id).FirstOrDefault();
+
+                var libr = dt.getCapituloById(id.GetValueOrDefault());
                 if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.Usuario)
                 {
                     return RedirectToAction("Index");
                 }
-                var a_g = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
-                if (a_g != null)
-                {
-                    foreach (var a in a_g)
-                    {
-                        db.capitulo_grupo.Remove(a);
-                    }
-                }
-                db.capitulolibro.Remove(libr);
-                db.SaveChanges();
+                dt.removeCapitulo(libr);
                 return RedirectToAction("Index", new { response = 1 });
             }
             catch

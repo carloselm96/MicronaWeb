@@ -11,6 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class articulo
@@ -23,22 +24,20 @@ namespace WebApplication4.Models
         }
     
         public int idArticulo { get; set; }
-        [Required]
+        [DisplayName("Usuario")]
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
-        [Required]
         public Nullable<int> Volumen { get; set; }
+        [DisplayName("Pagina Inicio")]
         public Nullable<int> PagInicio { get; set; }
+        [DisplayName("Pagina Final")]
         public Nullable<int> PagFinal { get; set; }
-        [Required]
         public string Revista { get; set; }
         public string ISSN { get; set; }
-        [Required]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
-        [Required]
         public Nullable<int> TipoArticulo { get; set; }
         public Nullable<int> Indice { get; set; }
     

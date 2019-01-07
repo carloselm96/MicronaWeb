@@ -11,9 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class proyectos
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,21 +22,10 @@ namespace WebApplication4.Models
         }
     
         public int idProyecto { get; set; }
-        [DisplayName("Nombre del Proyecto")]
-        [Required]
         public string nombre { get; set; }
         public string Financiamiento { get; set; }
-        [Required]
-        [DisplayName("Fecha de Inicio")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> FechaInicio { get; set; }
-        [Required]
-        [DisplayName("Fecha Final")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> FechaFinal { get; set; }
-        [Required]      
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         public string Clave { get; set; }

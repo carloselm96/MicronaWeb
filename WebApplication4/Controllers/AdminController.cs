@@ -18,7 +18,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            var concent = dt.getConcentrado();
+            var concent = dt.getAllConcentrado();
             ViewBag.grupos = dt.getGrupos();
             ViewBag.autores = dt.getAutores();
             return View(concent);
@@ -29,9 +29,10 @@ namespace WebApplication4.Controllers
         [HttpGet]
         public ActionResult Search(string titulo, DateTime? Y1, DateTime? Y2, List<string> autores, int?[] checkgroup, int?[] checktype)
         {
-            var concent = dt.getAllConcentrado(titulo, Y1, Y2, autores, checkgroup, checktype);
-            ViewBag.grupos = dt.getConcentrado();
-            ViewBag.autores = dt.getAutores();            
+            var concent = dt.getFilteredConcentrado(titulo, Y1, Y2, autores, checkgroup, checktype);
+            ViewBag.grupos = dt.getGrupos();
+            ViewBag.autores = dt.getAutores();
+            
             return PartialView("_ConcentradoPartial", concent);
         }
 

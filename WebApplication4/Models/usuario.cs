@@ -34,31 +34,31 @@ namespace WebApplication4.Models
             this.tesis1 = new HashSet<tesis>();
             this.tesis11 = new HashSet<tesis>();
         }
-
+    
         public int idUsuario { get; set; }
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
         [DisplayName("Usuario")]
-        [Required]
-        [RegularExpression(@"^[0-9ña-zÑA-Z''-'\s]{1,40}$", ErrorMessage = "Los caracteres especiales no son permitidos en este campo")]
-        [MinLength(5, ErrorMessage = "El usuario debe ser de al menos 5 caracteres")]
+        [Required(ErrorMessage ="Este Campo es Necesario")]
+        [StringLength(5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
+        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "No se permiten caracteres especiales")]
         public string Usuario1 { get; set; }
-        [Required]
-        [RegularExpression(@"^[0-9ña-zÑA-Z''-'\s]{1,40}$", ErrorMessage = "Los caracteres especiales no son permitidos en este campo")]
-        [MinLength(5, ErrorMessage = "La contraseña debe ser de al menos 5 caracteres")]
+        [Required(ErrorMessage = "Este Campo es Necesario")]
+        [StringLength(5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
+        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "No se permiten caracteres especiales")]
         public string Contraseña { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Correo { get; set; }
         [DisplayName("Tipo de Usuario")]
-        [Required]
         public Nullable<int> TipoUsuario { get; set; }
         [DisplayName("Apellido Paterno")]
-        [Required]
+        [Required(ErrorMessage = "Este Campo es Necesario")]        
         public string Apellido_Paterno { get; set; }
         [DisplayName("Apellido Materno")]
-        [Required]
+        [Required(ErrorMessage = "Este Campo es Necesario")]        
         public string Apellido_Materno { get; set; }
         public string Status { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo> articulo { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

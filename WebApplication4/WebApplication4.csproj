@@ -15233,6 +15233,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Views\Home\_SearchResultPartial.cshtml" />
+    <Content Include="Views\Home\Details.cshtml" />
     <None Include="Views\Shared\_LayoutAdmin.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
@@ -15247,6 +15248,7 @@
     <Compile Include="Controllers\ArticulosController.cs" />
     <Compile Include="Controllers\CapituloLibroController.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LibroController.cs" />
     <Compile Include="Controllers\PerfilController.cs" />
@@ -15392,6 +15394,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

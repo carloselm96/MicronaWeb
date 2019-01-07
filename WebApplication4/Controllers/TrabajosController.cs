@@ -70,7 +70,7 @@ namespace WebApplication4.Controllers
             {
                 trabajos = trabajos.Where(x => x.Año <= Y2).ToList();
             }
-            if (tipo != null)
+            if (!String.IsNullOrEmpty(tipo))
             {
                 trabajos = trabajos.Where(x => x.TipoTrabajo == int.Parse(tipo)).ToList();
             }

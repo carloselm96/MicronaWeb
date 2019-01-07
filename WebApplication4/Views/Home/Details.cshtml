@@ -1,0 +1,94 @@
+﻿@model WebApplication4.Models.concentrado
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<section class="invoice">
+    <!-- title row -->
+    <div class="row">
+        <div class="col-xs-12">
+            <h2 class="page-header">
+                <i class="fa fa-files-o"></i> @Model.Titulo             
+            </h2>
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- info row -->
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">            
+            <address>
+                <strong>Autores</strong><br>
+                @{
+                    foreach (var a in Model.concentrado_autores)
+                    {
+
+                        var sb = a.usuario.Nombre.Split(' ');
+                        <p>@a.usuario.Apellido_Paterno, @sb[0] @sb[1].Substring(0, 1).</p>
+                    }
+                }
+            </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>Grupos Académicos</strong><br>
+                @{
+                    foreach (var a in Model.concentrado_grupos)
+                    {
+
+                        <p>@a.grupoacademico.Nombre</p>
+                    }
+                }
+            </address>
+        </div>
+        <!-- /.col -->
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>Fecha</strong><br>
+                @Model.Fecha
+            </address>
+        </div>
+        <!-- /.col -->
+        <!-- /.col -->
+    </div>
+    <div class="row invoice-info">
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>Tipo de Material</strong><br>
+                @{
+                    @Model.tipoconcentrado1.Nombre
+                }
+            </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>URL</strong><br>
+                @{
+                    <a href="@Request.Url.AbsoluteUri">@Request.Url.AbsoluteUri</a>
+                }
+            </address>
+        </div>
+        <div class="col-sm-4 invoice-col">
+            <address>
+                <strong>Página de MICRONA</strong><br>
+                @{
+                    <a href="//www.uv.mx/veracruz/microna">www.uv.mx/veracruz/microna</a>
+                }
+            </address>
+        </div>
+    </div>
+    <div class="row no-print">
+        <div class="col-xs-12">
+            <button type="button" class="btn btn-success pull-right" style="margin-right: 5px;">
+                <i class="fa fa-eye"></i> Ver Datos Completos
+            </button>
+            <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
+                <i class="fa fa-download"></i> Descargar
+            </button>
+        </div>
+    </div>
+</section>
+<!-- /.content -->
+<div class="clearfix"></div>
+

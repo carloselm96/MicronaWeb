@@ -11,9 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class libro
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -24,23 +22,13 @@ namespace WebApplication4.Models
         }
     
         public int idLibro { get; set; }
-        [Required]
         public string Nombre { get; set; }
-        [Required]
-        [DisplayName("Fecha")]
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode= true)]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
-        [Required]
-        [DisplayName("Tipo de Libro")]
         public Nullable<int> TipoLibro { get; set; }
-        [Required]
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
-        [Required]
         public string Editorial { get; set; }
-        [Required]
         public string Pais { get; set; }
     
         public virtual archivo archivo1 { get; set; }
