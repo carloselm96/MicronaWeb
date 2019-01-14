@@ -15228,13 +15228,21 @@
     <Content Include="Views\Shared\_LayoutHome.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\_ConcentradoPartial.cshtml" />
+    <Content Include="Views\Home\Index.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\_ConcentradoPartial.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Home\SearchResult.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Views\Home\_SearchResultPartial.cshtml" />
-    <Content Include="Views\Home\Details.cshtml" />
+    <Content Include="Views\Home\_SearchResultPartial.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Views\Home\Details.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Views\Error\PageNotFound.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

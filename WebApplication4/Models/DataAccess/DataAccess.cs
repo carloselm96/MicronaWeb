@@ -755,13 +755,6 @@ namespace WebApplication4.Models.DataAccess
                     db.libro_usuario.Remove(G);
                 }
             }
-            if (Autores != null)
-            {
-                foreach (var G in Autores)
-                {
-                    db.libro_usuario.Add(new libro_usuario { idLibro = id, idUsuario = int.Parse(G) });
-                }
-            }
             var grupos_eliminar = db.libro_grupo.Where(x => x.id_libro == id).ToList();
             if (grupos_eliminar != null)
             {
@@ -770,6 +763,15 @@ namespace WebApplication4.Models.DataAccess
                     db.libro_grupo.Remove(G);
                 }
             }
+            db.SaveChanges();
+            if (Autores != null)
+            {
+                foreach (var G in Autores)
+                {
+                    db.libro_usuario.Add(new libro_usuario { idLibro = id, idUsuario = int.Parse(G) });
+                }
+            }
+            
             if (GrupoAcademico != null)
             {
                 foreach (var G in GrupoAcademico)

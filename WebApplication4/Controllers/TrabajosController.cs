@@ -232,7 +232,7 @@ namespace WebApplication4.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.tipo = db.tipotrabajo.ToList();
-                ViewBag.grupo = db.grupoacademico.ToList();
+                ViewBag.grupos = db.grupoacademico.ToList();
                 ViewBag.autores = db.usuario.Where(x=> x.Status.Equals("A")).ToList();
                 return View(t);
             }
@@ -249,6 +249,7 @@ namespace WebApplication4.Controllers
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
                 trabajo.Nombre = t.Nombre;
                 trabajo.Pais = t.Pais;
+                trabajo.Año = t.Año;
                 trabajo.Presentacion = t.Presentacion;
                 trabajo.TipoTrabajo = t.TipoTrabajo;                
                 var grupos_eliminar = db.trabajo_grupo.Where(x => x.id_trabajo == id).ToList();

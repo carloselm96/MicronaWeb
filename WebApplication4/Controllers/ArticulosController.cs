@@ -195,7 +195,8 @@ namespace WebApplication4.Controllers
                     {
                         return RedirectToAction("Index", new { response = 2 });
                     }
-                }                
+                }
+                return Content(e + "");
                 return RedirectToAction("Index", new { response = 2 });
             }
         }
