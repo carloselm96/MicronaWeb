@@ -9,7 +9,7 @@ namespace WebApplication4.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Index()
+        public ActionResult PageNotFound()
         {
             return View();
         }

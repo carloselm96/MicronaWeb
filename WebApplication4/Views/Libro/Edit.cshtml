@@ -29,10 +29,24 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Año, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
-                    <input type="text" class="form-control pull-right datemask" name="Fecha" value="@Model.Año">
+                    <input type="text" class="form-control pull-right datemask" name="Año" value="@Html.DisplayFor(Model=>Model.Año, "{0:dd/MM/yyyy}")">
                 </div>
             </div>
 
+            <div class="form-group">
+                @Html.LabelFor(model => model.Editorial, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Editorial, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Editorial, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Pais, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Pais, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Pais, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.ISBN, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -45,66 +59,66 @@
                 <div class="col-md-10">
                     <select class="form-control" , name="TipoLibro">
                         @foreach (var tp in ViewBag.tipolibro)
-                {
-                    if (Model.TipoLibro == tp.idTipoLibro)
-                    {
-                        <option value="@tp.idTipoLibro" selected>@tp.Nombre</option>
-            }
-            else
-            {
-                <option value="@tp.idTipoLibro">@tp.Nombre</option>
-    }
-}
+                        {
+                            if (Model.TipoLibro == tp.idTipoLibro)
+                            {
+                                <option value="@tp.idTipoLibro" selected>@tp.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@tp.idTipoLibro">@tp.Nombre</option>
+                            }
+                        }
                     </select>
                     @Html.ValidationMessageFor(model => model.TipoLibro, "", new { @class = "text-danger" })
                 </div>
             </div>
-            
-           <div class="form-group">
-                    <label class="control-label col-md-2">Autores</label>
-                    <div class="col-md-10">
-                        <select class="form-control select2" name="Autores" multiple>
-                            @foreach (var Usuario in ViewBag.autores)
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Autores</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="Autores" multiple>
+                        @foreach (var Usuario in ViewBag.autores)
+                        {
+                            if (Model.libro_usuario.Where(x => x.idUsuario == Usuario.idUsuario).FirstOrDefault() != null)
                             {
-                                if (Model.libro_usuario.Where(x => x.idUsuario == Usuario.idUsuario).FirstOrDefault() != null)
-                                {
-                                    <option selected value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
-                                else
-                                {
-                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
+                                <option selected value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
                             }
-                        </select>
-                    </div>
-               </div>
+                            else
+                            {
+                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 <label class="control-label col-md-2">Grupo académico</label>
                 <div class="col-md-10">
                     <select class="form-control select2" name="GrupoAcademico" multiple>
                         @foreach (var Grupo in ViewBag.grupos)
-                {
-                    if (Model.libro_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
-                    {
-                        <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
-            }
-            else
-            {
-                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
-    }
-}
+                        {
+                            if (Model.libro_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
+                            {
+                                <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
             @if (Model.archivo1 != null)
-    {
-        <div class="form-group">
-            <label class="control-label col-md-2">Archivo actual: </label>
-            <div class="col-md-10">
-                @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
-            </div>
-        </div>
-}
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Archivo actual: </label>
+                    <div class="col-md-10">
+                        @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </div>
+                </div>
+            }
             <div class="form-group">
                 <label class="control-label col-md-2">Nuevo Archivo</label>
                 <div class="col-md-10">

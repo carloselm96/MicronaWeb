@@ -1,4 +1,4 @@
-﻿@model WebApplication4.Models.usuario
+﻿@model WebApplication4.Models.LoginUser
 
 @{
     Layout = null;
@@ -50,18 +50,18 @@
                 {
                     <div class="wrap-input100 validate-input m-b-26" data-validate="El usuario es requerido">
                         <span class="label-input100">Usuario</span>
-                        <input class="input100" type="text" name="Usuario1" placeholder="Inserte Usuario">
+                        <input class="input100" type="text" name="UserName" placeholder="Inserte Usuario">
                         <span class="focus-input100"></span>
                     </div>
-                    <br />@Html.ValidationMessageFor(model => model.Usuario1, null, new { @class = "txt1" }){
+                    <br />@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "txt1" }){
 
                     }
                     <div class="wrap-input100 validate-input m-b-18" data-validate="La contraseña es requerida">
                         <span class="label-input100">Contraseña</span>
-                        <input class="input100" type="password" name="Contraseña" placeholder="Inserte Contraseña">
+                        <input class="input100" type="password" name="Password" placeholder="Inserte Contraseña">
                         <span class="focus-input100"></span>
                     </div>
-                    <br />@Html.ValidationMessageFor(model => model.Contraseña, null, new { @class = "txt1" })
+                    <br />@Html.ValidationMessageFor(model => model.Password, null, new { @class = "txt1" }){ }
 
 
                     <div class="container-login100-form-btn">

@@ -8,8 +8,10 @@ using WebApplication4.Models.DataAccess;
 
 namespace WebApplication4.Controllers
 {
+    [HandleError]
     public class HomeController : Controller
     {
+        
         microna2018Entities db = new microna2018Entities();
         DataAccess dt = new DataAccess();
         // GET: Home
@@ -31,6 +33,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index");
             }
             var concentrado = dt.getConcentradoById(id);
+            ViewBag.HasFile = dt.getDownloadUrl(id.GetValueOrDefault())!=null ? true : false ;
             return View(concentrado);
         }
 
@@ -69,10 +72,11 @@ namespace WebApplication4.Controllers
         }
 
         [AllowAnonymous]
-        public ActionResult HomeSearchType(string type)
+        [HttpGet]
+        public ActionResult HomeSearchType(string checktype)
         {
             var concent = db.concentrado.ToList();
-            switch (type)
+            switch (checktype)
             {
                 case "articulo":
                     concent=concent.Where(x => x.tipoconcentrado1.idtipoconcentrado == 1).ToList();
@@ -100,6 +104,18 @@ namespace WebApplication4.Controllers
             ViewBag.autores = dt.getAutores();
             ViewBag.grupos = dt.getGrupos();
             return View("SearchResult", concent);
+        }
+
+        [AllowAnonymous]
+        public FileResult Download(int? id)
+        {
+            var archivo = dt.getDownloadUrl(id.GetValueOrDefault());
+            if (archivo != null)
+            {
+                byte[] fileBytes = System.IO.File.ReadAllBytes(archivo.url);
+                return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, archivo.Nombre);
+            }
+            return null;
         }
     }
 }

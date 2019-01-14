@@ -35,7 +35,7 @@
     <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>2</WarningLevel>
     <IncludeIisSettings>true</IncludeIisSettings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -13499,6 +13499,7 @@
     <Content Include="Content\dist\js\pages\dashboard2.js" />
     <Content Include="Content\dist\js\plugins\font-awesome\css\font-awesome.css" />
     <Content Include="Content\dist\js\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="Content\ErrorStyleSheet.css" />
     <Content Include="Content\listing\css\bootstrap.min.css" />
     <Content Include="Content\listing\css\demo.css" />
     <Content Include="Content\listing\css\font-awesome.min.css" />
@@ -15234,9 +15235,12 @@
     </Content>
     <Content Include="Views\Home\_SearchResultPartial.cshtml" />
     <Content Include="Views\Home\Details.cshtml" />
-    <None Include="Views\Shared\_LayoutAdmin.cshtml">
+    <Content Include="Views\Error\PageNotFound.cshtml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
+    </Content>
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -15302,6 +15306,7 @@
     <Compile Include="Models\libro_usuario.cs">
       <DependentUpon>MicronaDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginUser.cs" />
     <Compile Include="Models\MicronaDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -15394,7 +15399,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />

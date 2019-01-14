@@ -90,16 +90,13 @@ namespace WebApplication4.Controllers
         
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult Login(usuario u)
+        public ActionResult Login(LoginUser u)
         {
-            if (!ModelState.IsValidField("Usuario1") || !ModelState.IsValidField("Contraseña"))
-            {
-                return View();
-            }                                    
-            var user = dt.getAutores().Where(x => u.Usuario1.ToUpper() == x.Usuario1.ToUpper() && x.Status.Equals("A")).FirstOrDefault();
+                    
+            var user = dt.getAutores().Where(x => u.UserName.ToUpper() == x.Usuario1.ToUpper() && x.Status.Equals("A")).FirstOrDefault();
             if (user != null)
             {
-                if (user.Contraseña == u.Contraseña)
+                if (user.Contraseña == u.Password)
                 {                        
                     FormsAuthenticationTicket authTicket = new
                         FormsAuthenticationTicket(1, //version
@@ -122,7 +119,7 @@ namespace WebApplication4.Controllers
                     return RedirectToAction("Index", "Admin");
                 }
             }
-            ModelState.AddModelError("Contraseña", "Contraseña o Usuario Incorrectos");
+            ModelState.AddModelError("Password", "Contraseña o Usuario Incorrectos");
             return View();                        
         }
 

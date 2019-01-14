@@ -54,6 +54,10 @@ namespace WebApplication4.Controllers
             }
             
             var art=dt.getArticuloById(id);
+            if (art == null)
+            {
+                return RedirectToAction("Index", "Articulos", null);
+            }
             return View(art);
         }
 
@@ -176,7 +180,7 @@ namespace WebApplication4.Controllers
                 }
                 return RedirectToAction("Index", new { response = 1 });
             }
-            catch
+            catch(Exception e)
             {
                 if (fileIsSaved)
                 {
@@ -191,7 +195,7 @@ namespace WebApplication4.Controllers
                     {
                         return RedirectToAction("Index", new { response = 2 });
                     }
-                }
+                }                
                 return RedirectToAction("Index", new { response = 2 });
             }
         }

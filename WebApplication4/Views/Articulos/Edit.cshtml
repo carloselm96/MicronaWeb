@@ -112,7 +112,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">                        
-                            <input type="text" class="form-control pull-right datemask" name="Fecha" value="@Model.Fecha">                        
+                            <input type="text" class="form-control pull-right datemask" name="Fecha" value="@Html.DisplayFor(Model=>Model.Fecha, "{0:dd/MM/yyyy}")">                        
                     </div>
                 </div>
 

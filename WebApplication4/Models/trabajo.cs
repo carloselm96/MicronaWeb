@@ -11,7 +11,9 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.ComponentModel.DataAnnotations;
+
     public partial class trabajo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +24,12 @@ namespace WebApplication4.Models
         }
     
         public int idTrabajo { get; set; }
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
+        [DisplayName("Fecha")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Año { get; set; }
+        [DisplayName("Tipo de Trabajo")]       
         public Nullable<int> TipoTrabajo { get; set; }
         public string Autores { get; set; }
         public string Presentacion { get; set; }

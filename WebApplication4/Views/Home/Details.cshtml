@@ -24,7 +24,7 @@
                     {
 
                         var sb = a.usuario.Nombre.Split(' ');
-                        <p>@a.usuario.Apellido_Paterno, @sb[0] @sb[1].Substring(0, 1).</p>
+                        <p>@a.usuario.Apellido_Paterno, @a.usuario.Nombre</p>
                     }
                 }
             </address>
@@ -46,7 +46,8 @@
         <div class="col-sm-4 invoice-col">
             <address>
                 <strong>Fecha</strong><br>
-                @Model.Fecha
+                
+                @Html.DisplayFor(Model=>Model.Fecha, "{0:dd/MM/yyyy}")
             </address>
         </div>
         <!-- /.col -->
@@ -79,13 +80,16 @@
         </div>
     </div>
     <div class="row no-print">
+        
         <div class="col-xs-12">
-            <button type="button" class="btn btn-success pull-right" style="margin-right: 5px;">
-                <i class="fa fa-eye"></i> Ver Datos Completos
-            </button>
-            <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-                <i class="fa fa-download"></i> Descargar
-            </button>
+            @if (ViewBag.HasFile != null)
+            {
+                if (ViewBag.HasFile == true)
+                {
+                    @Html.ActionLink("Descargar", "Download", new { id = Model.idConcentrado })
+                }
+            }
+
         </div>
     </div>
 </section>

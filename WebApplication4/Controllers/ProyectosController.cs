@@ -322,5 +322,12 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index", new { response = 2 });
             }
         }
+
+        [Authorize]
+        public FileResult Download(string Url, string name)
+        {
+            byte[] fileBytes = System.IO.File.ReadAllBytes(@Url);
+            return File(fileBytes, System.Net.Mime.MediaTypeNames.Application.Octet, name);
+        }
     }
 }

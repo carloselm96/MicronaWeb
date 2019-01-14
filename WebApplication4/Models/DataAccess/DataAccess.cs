@@ -288,7 +288,7 @@ namespace WebApplication4.Models.DataAccess
 
         //Edit
         public bool editArticulo(int id, articulo a, List<string> GrupoAcademico, archivo file, List<string> Autores)
-        {
+        {            
             var articulo = this.getArticuloById(id);
             articulo.Nombre = a.Nombre;
             articulo.Fecha = a.Fecha;
@@ -298,30 +298,9 @@ namespace WebApplication4.Models.DataAccess
             articulo.Revista = a.Revista;
             articulo.Volumen = a.Volumen;
             articulo.TipoArticulo = a.TipoArticulo;
-            articulo.articulo_usuario = null;
-            var autores_eliminar = db.articulo_usuario.Where(x => x.idArticulo == id).ToList();
-            if (autores_eliminar != null)
-            {
-                foreach (var G in autores_eliminar)
-                {
-                    db.articulo_usuario.Remove(G);
-                }
-            }
-            if (Autores != null)
-            {
-                foreach (var G in Autores)
-                {
-                    articulo.articulo_usuario.Add(new articulo_usuario { idArticulo = id, idUsuario = int.Parse(G) });
-                }
-            }
-            var grupo_eliminar = db.articulo_grupo.Where(x => x.id_articulo == id).ToList();
-            if (grupo_eliminar != null)
-            {
-                foreach (var G in grupo_eliminar)
-                {
-                    db.articulo_grupo.Remove(G);
-                }
-            }
+            db.articulo_grupo.RemoveRange(db.articulo_grupo.Where(x => x.id_articulo == id));
+            db.articulo_usuario.RemoveRange(db.articulo_usuario.Where(x => x.idArticulo == id));
+            db.SaveChanges();
             if (GrupoAcademico != null)
             {
                 foreach (var G in GrupoAcademico)
@@ -329,6 +308,15 @@ namespace WebApplication4.Models.DataAccess
                     articulo.articulo_grupo.Add(new articulo_grupo { id_articulo = id, id_grupo = int.Parse(G) });
                 }
             }
+            
+            if (Autores != null)
+            {
+                foreach (var G in Autores)
+                {
+                    articulo.articulo_usuario.Add(new articulo_usuario { idArticulo = id, idUsuario = int.Parse(G) });
+                }
+            }
+            
             if (file != null)
             {
                 if (articulo.archivo1 != null)
@@ -582,27 +570,14 @@ namespace WebApplication4.Models.DataAccess
             l.ISBN = cap.ISBN;
             l.Participantes = cap.Participantes;
             l.Año = cap.Año;
-            var autores_eliminar = db.capitulo_usuario.Where(x => x.idCapitulo == id).ToList();
-            if (autores_eliminar != null)
-            {
-                foreach (var G in autores_eliminar)
-                {
-                    db.capitulo_usuario.Remove(G);
-                }
-            }
+            db.capitulo_usuario.RemoveRange(db.capitulo_usuario.Where(x => x.idCapitulo == id));
+            db.capitulo_grupo.RemoveRange(db.capitulo_grupo.Where(x => x.id_capitulo == id));
+            db.SaveChanges();
             if (Autores != null)
             {
                 foreach (var G in Autores)
                 {
                     db.capitulo_usuario.Add(new capitulo_usuario { idCapitulo = id, idUsuario = int.Parse(G) });
-                }
-            }
-            var grupos_eliminar = db.capitulo_grupo.Where(x => x.id_capitulo == id).ToList();
-            if (grupos_eliminar != null)
-            {
-                foreach (var G in grupos_eliminar)
-                {
-                    db.capitulo_grupo.Remove(G);
                 }
             }
             if (GrupoAcademico != null)
@@ -634,6 +609,202 @@ namespace WebApplication4.Models.DataAccess
             db.capitulolibro.Remove(c);
             db.SaveChanges();
         }
+
+        /*----------------- Libro ---------------------*/
+
+        public List<libro> getAllLibros()
+        {
+            return db.libro.ToList();
+        }
+
+        public libro getLibroById(int id)
+        {
+            return db.libro.Where(x => x.idLibro == id).FirstOrDefault();
+        }
+
+        public List<libro> getFilteredLibros(string Nombre, DateTime? Y1, DateTime? Y2, List<string> grupos, List<string> autores)
+        {
+            List<libro> libros = this.getAllLibros();
+            if (Nombre != null)
+            {
+                libros = libros.Where(x => x.Nombre.Contains(Nombre)).ToList();
+            }
+
+            if (Y1 != null)
+            {
+                //int year1 = int.Parse(Y1);
+                libros = libros.Where(x => x.Año >= Y1).ToList();
+            }
+            if (Y2 != null)
+            {
+                libros = libros.Where(x => x.Año <= Y2).ToList();
+            }
+            if (grupos != null)
+            {
+                List<libro> cg = new List<libro>();
+                foreach (string s in grupos)
+                {
+                    int i = int.Parse(s);
+                    var g = db.libro_grupo.Where(x => x.id_grupo == i).ToList();
+
+                    foreach (var cap in g)
+                    {
+                        libro sample = db.libro.Where(x => x.idLibro == cap.id_libro).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+
+                }
+                libros = libros.Where(x => cg.Contains(x)).ToList();
+            }
+            if (autores != null)
+            {
+                foreach (string s in autores)
+                {
+                    int i = int.Parse(s);
+                    var g = db.libro_usuario.Where(x => x.idUsuario == i).ToList();
+                    List<libro> cg = new List<libro>();
+                    foreach (var cap in g)
+                    {
+                        libro sample = db.libro.Where(x => x.idLibro == cap.idLibro).FirstOrDefault();
+                        cg.Add(sample);
+                    }
+                    libros = libros.Where(x => cg.Contains(x)).ToList();
+                }
+            }
+            return libros;
+        }
+
+        public bool createLibro(libro lib, archivo file, List<string> GrupoAcademico, List<string> Autores)
+        {
+            
+            if (file != null)
+            {
+                db.archivo.Add(file);
+                db.SaveChanges();
+                lib.Archivo = file.idarchivo;
+            }
+            db.libro.Add(lib);
+            db.SaveChanges();
+            if (GrupoAcademico != null)
+            {
+                foreach (var s in GrupoAcademico)
+                {
+                    libro_grupo ag = new libro_grupo
+                    {
+                        id_libro = lib.idLibro,
+                        id_grupo = int.Parse(s)
+                    };
+                    db.libro_grupo.Add(ag);
+                }
+            }
+            if (Autores != null)
+            {
+                foreach (var s in Autores)
+                {
+                    libro_usuario lb = new libro_usuario
+                    {
+                        idLibro = lib.idLibro,
+                        idUsuario = int.Parse(s)
+                    };
+                    db.libro_usuario.Add(lb);
+                }
+            }
+            db.SaveChanges();
+            return true;
+        }
+
+        public List<tipolibro> getTipoLibro()
+        {
+            return db.tipolibro.ToList();
+        }
+
+        public List<libro_grupo> GetLibro_Grupos(int? id)
+        {
+            if (id != null)
+            {
+                return db.libro_grupo.Where(x => x.id_libro == id).ToList();
+            }
+            return db.libro_grupo.ToList();
+        }
+
+        public bool editLibro(int id, libro lib, List<string> GrupoAcademico, archivo file, List<string> Autores)
+        {
+            var l = this.getLibroById(id);
+            if (l.archivo1 != null)
+            {
+                var archivo = new archivo();
+                archivo = db.archivo.Where(x => x.idarchivo == l.Archivo).FirstOrDefault();
+                System.IO.File.Delete(l.archivo1.url);
+                db.archivo.Remove(archivo);
+            }
+            if (file !=null)
+            {
+                db.archivo.Add(file);
+                db.SaveChanges();
+                l.Archivo = file.idarchivo;
+            }
+            l.Nombre = lib.Nombre;
+            l.ISBN = lib.ISBN;
+            l.TipoLibro = lib.TipoLibro;
+            l.Año = lib.Año;
+            var autores_eliminar = db.libro_usuario.Where(x => x.idLibro == id).ToList();
+            if (autores_eliminar != null)
+            {
+                foreach (var G in autores_eliminar)
+                {
+                    db.libro_usuario.Remove(G);
+                }
+            }
+            if (Autores != null)
+            {
+                foreach (var G in Autores)
+                {
+                    db.libro_usuario.Add(new libro_usuario { idLibro = id, idUsuario = int.Parse(G) });
+                }
+            }
+            var grupos_eliminar = db.libro_grupo.Where(x => x.id_libro == id).ToList();
+            if (grupos_eliminar != null)
+            {
+                foreach (var G in grupos_eliminar)
+                {
+                    db.libro_grupo.Remove(G);
+                }
+            }
+            if (GrupoAcademico != null)
+            {
+                foreach (var G in GrupoAcademico)
+                {
+                    db.libro_grupo.Add(new libro_grupo { id_libro = id, id_grupo = int.Parse(G) });
+                }
+            }            
+            db.SaveChanges();
+            return true;
+        }
+
+        public bool removeLibro(int id)
+        {
+            var libr = this.getLibroById(id);
+            var a_g = db.libro_grupo.Where(x => x.id_libro == id).ToList();
+            if (a_g != null)
+            {
+                foreach (var a in a_g)
+                {
+                    db.libro_grupo.Remove(a);
+                }
+            }
+            var l_a = db.libro_usuario.Where(x => x.idLibro == id).ToList();
+            if (l_a != null)
+            {
+                foreach (var a in l_a)
+                {
+                    db.libro_usuario.Remove(a);
+                }
+            }
+            db.libro.Remove(libr);
+            db.SaveChanges();
+            return true;
+        }
+
         /*----------------- Usuarios ---------------------*/
 
         //Obtener Usuario por ID
@@ -738,6 +909,35 @@ namespace WebApplication4.Models.DataAccess
             return query2.Select(x => x.g).Distinct().ToList();
         }
 
+        public archivo getDownloadUrl(int id)
+        {
+            concentrado con = db.concentrado.Where(x => x.idConcentrado == id).FirstOrDefault();            
+            archivo arc = null;            
+            switch (con.TipoConcentrado)
+            {
+                case 1:
+                    arc=db.articulo.Where(x => x.idArticulo == con.IdItem).FirstOrDefault().archivo1;                    
+                    break;
+                case 2:
+                    arc=db.capitulolibro.Where(x => x.idCapituloLibro == con.IdItem).FirstOrDefault().archivo1;                    
+                    break;
+                case 3:
+                    arc=db.libro.Where(x => x.idLibro == con.IdItem).FirstOrDefault().archivo1;                    
+                    break;
+                case 4:
+                    arc=db.proyectos.Where(x => x.idProyecto == con.IdItem).FirstOrDefault().archivo1;                    
+                    break;
+                case 5:
+                    arc=db.trabajo.Where(x => x.idTrabajo == con.IdItem).FirstOrDefault().archivo1;                    
+                    break;
+                case 6:
+                    arc=db.tesis.Where(x => x.idtesis == con.IdItem).FirstOrDefault().archivo1;                    
+                    break;
+                default:
+                    break;
+            }
+            return arc;
+        }
 
     }
 }

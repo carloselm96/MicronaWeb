@@ -49,7 +49,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Año, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">                        
-                            <input type="text" class="form-control datemask" name="Año" />
+                            <input type="text" class="form-control datemask" name="Año" value="@Html.DisplayFor(Model=>Model.Año, "{0:dd/MM/yyyy}")"/>
                             @Html.ValidationMessageFor(model => model.Año, "", new { @class = "text-danger" })                        
                     </div>
                 </div>

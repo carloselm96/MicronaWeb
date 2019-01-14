@@ -29,7 +29,7 @@
                                                 foreach (var a in item.concentrado_autores)
                                                 {
                                                     var sb=a.usuario.Nombre.Split(' ');
-                                                <p>@a.usuario.Apellido_Paterno, @sb[0] @sb[1].Substring(0, 1).</p>
+                                                <p>@a.usuario.Apellido_Paterno, @a.usuario.Nombre</p>
                                                 }
                                             }
                                         </dd>
@@ -69,10 +69,7 @@
                             <div class="checkbox">
                                 <label>
                                     <input type="checkbox" name="autor" value="@a.idUsuario">
-                                    @{
-                                        var sb = a.Nombre.Split(' ');
-                                    }
-                                    @a.Apellido_Paterno, @sb[0] @sb[1].Substring(0, 1).
+                                    @a.Apellido_Paterno, @a.Nombre
                                 </label>
                             </div>
                         }
