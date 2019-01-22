@@ -1,0 +1,1109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="microna2018Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="archivo">
+    <Key>
+      <PropertyRef Name="idarchivo" />
+    </Key>
+    <Property Name="idarchivo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="url" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="articulo" Relationship="Self.FK_Articulo_Archivo" FromRole="archivo" ToRole="articulo" />
+    <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Capitulo_Archivo" FromRole="archivo" ToRole="capitulolibro" />
+    <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Archivo" FromRole="archivo" ToRole="libro" />
+    <NavigationProperty Name="proyectos" Relationship="Self.FK_Proyectos_Archivo" FromRole="archivo" ToRole="proyectos" />
+    <NavigationProperty Name="trabajo" Relationship="Self.FK_Trabajo_Archivo" FromRole="archivo" ToRole="trabajo" />
+    <NavigationProperty Name="tesis" Relationship="microna2018Model.FK_TesisArchivo" FromRole="archivo" ToRole="tesis" />
+  </EntityType>
+  <EntityType Name="articulo">
+    <Key>
+      <PropertyRef Name="idArticulo" />
+    </Key>
+    <Property Name="idArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Volumen" Type="Int32" />
+    <Property Name="PagInicio" Type="Int32" />
+    <Property Name="PagFinal" Type="Int32" />
+    <Property Name="Revista" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="ISSN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" />
+    <Property Name="Usuario" Type="Int32" />
+    <Property Name="Archivo" Type="Int32" />
+    <Property Name="TipoArticulo" Type="Int32" />
+    <Property Name="Indice" Type="Int32" />
+    <NavigationProperty Name="archivo1" Relationship="Self.FK_Articulo_Archivo" FromRole="articulo" ToRole="archivo" />
+    <NavigationProperty Name="articulo_grupo" Relationship="Self.FK_ARTGRU_ART" FromRole="articulo" ToRole="articulo_grupo" />
+    <NavigationProperty Name="tipoarticulo1" Relationship="Self.FK_Articulo_Tipo" FromRole="articulo" ToRole="tipoarticulo" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_Articulo_Usuario" FromRole="articulo" ToRole="usuario" />
+    <NavigationProperty Name="articulo_usuario" Relationship="Self.FK_ArtUs_Art" FromRole="articulo" ToRole="articulo_usuario" />
+  </EntityType>
+  <EntityType Name="articulo_grupo">
+    <Key>
+      <PropertyRef Name="idarticulo_grupo" />
+    </Key>
+    <Property Name="idarticulo_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_articulo" Type="Int32" />
+    <Property Name="id_grupo" Type="Int32" />
+    <NavigationProperty Name="articulo" Relationship="Self.FK_ARTGRU_ART" FromRole="articulo_grupo" ToRole="articulo" />
+    <NavigationProperty Name="grupoacademico" Relationship="Self.FK_ARTGRU_GRUPO" FromRole="articulo_grupo" ToRole="grupoacademico" />
+  </EntityType>
+  <EntityType Name="articulo_usuario">
+    <Key>
+      <PropertyRef Name="idarticulo_usuario" />
+    </Key>
+    <Property Name="idarticulo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idArticulo" Type="Int32" />
+    <Property Name="idUsuario" Type="Int32" />
+    <NavigationProperty Name="articulo" Relationship="Self.FK_ArtUs_Art" FromRole="articulo_usuario" ToRole="articulo" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_ArtUs_Us" FromRole="articulo_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="capitulo_grupo">
+    <Key>
+      <PropertyRef Name="idcapitulo_grupo" />
+    </Key>
+    <Property Name="idcapitulo_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_capitulo" Type="Int32" />
+    <Property Name="id_grupo" Type="Int32" />
+    <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Cap_Grupo" FromRole="capitulo_grupo" ToRole="capitulolibro" />
+    <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Grupo_Cap" FromRole="capitulo_grupo" ToRole="grupoacademico" />
+  </EntityType>
+  <EntityType Name="capitulo_usuario">
+    <Key>
+      <PropertyRef Name="idcapitulo_usuario" />
+    </Key>
+    <Property Name="idcapitulo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idCapitulo" Type="Int32" />
+    <Property Name="idUsuario" Type="Int32" />
+    <NavigationProperty Name="capitulolibro" Relationship="Self.FK_CapUs_Capitulo" FromRole="capitulo_usuario" ToRole="capitulolibro" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_CapUs_Usuario" FromRole="capitulo_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="capitulolibro">
+    <Key>
+      <PropertyRef Name="idCapituloLibro" />
+    </Key>
+    <Property Name="idCapituloLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Año" Type="DateTime" />
+    <Property Name="ISBN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Participantes" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Libro" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="Int32" />
+    <Property Name="Archivo" Type="Int32" />
+    <NavigationProperty Name="archivo1" Relationship="Self.FK_Capitulo_Archivo" FromRole="capitulolibro" ToRole="archivo" />
+    <NavigationProperty Name="capitulo_grupo" Relationship="Self.FK_Cap_Grupo" FromRole="capitulolibro" ToRole="capitulo_grupo" />
+    <NavigationProperty Name="capitulo_usuario" Relationship="Self.FK_CapUs_Capitulo" FromRole="capitulolibro" ToRole="capitulo_usuario" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_Capitulo_Usuario" FromRole="capitulolibro" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="concentrado">
+    <Key>
+      <PropertyRef Name="idConcentrado" />
+    </Key>
+    <Property Name="idConcentrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Titulo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Fecha" Type="DateTime" />
+    <Property Name="TipoConcentrado" Type="Int32" />
+    <Property Name="IdItem" Type="Int32" />
+    <NavigationProperty Name="concentrado_autores" Relationship="Self.FK_Autor_Con" FromRole="concentrado" ToRole="concentrado_autores" />
+    <NavigationProperty Name="tipoconcentrado1" Relationship="Self.FK_Concentrado_Tipo" FromRole="concentrado" ToRole="tipoconcentrado" />
+    <NavigationProperty Name="concentrado_grupos" Relationship="Self.FK_Grupo_Concentrado" FromRole="concentrado" ToRole="concentrado_grupos" />
+  </EntityType>
+  <EntityType Name="concentrado_autores">
+    <Key>
+      <PropertyRef Name="idConcentrado_Autores" />
+    </Key>
+    <Property Name="idConcentrado_Autores" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idConcentrado" Type="Int32" />
+    <Property Name="idAutor" Type="Int32" />
+    <NavigationProperty Name="concentrado" Relationship="Self.FK_Autor_Con" FromRole="concentrado_autores" ToRole="concentrado" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_Con_Autor" FromRole="concentrado_autores" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="concentrado_grupos">
+    <Key>
+      <PropertyRef Name="idConcentrado_Grupos" />
+    </Key>
+    <Property Name="idConcentrado_Grupos" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Concentrado" Type="Int32" />
+    <Property Name="Grupo" Type="Int32" />
+    <NavigationProperty Name="concentrado1" Relationship="Self.FK_Grupo_Concentrado" FromRole="concentrado_grupos" ToRole="concentrado" />
+    <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Concentrado_Grupo" FromRole="concentrado_grupos" ToRole="grupoacademico" />
+  </EntityType>
+  <EntityType Name="grupoacademico">
+    <Key>
+      <PropertyRef Name="idGrupoAcademico" />
+    </Key>
+    <Property Name="idGrupoAcademico" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="80" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="articulo_grupo" Relationship="Self.FK_ARTGRU_GRUPO" FromRole="grupoacademico" ToRole="articulo_grupo" />
+    <NavigationProperty Name="capitulo_grupo" Relationship="Self.FK_Grupo_Cap" FromRole="grupoacademico" ToRole="capitulo_grupo" />
+    <NavigationProperty Name="concentrado_grupos" Relationship="Self.FK_Concentrado_Grupo" FromRole="grupoacademico" ToRole="concentrado_grupos" />
+    <NavigationProperty Name="libro_grupo" Relationship="Self.FK_Grupo_Lib" FromRole="grupoacademico" ToRole="libro_grupo" />
+    <NavigationProperty Name="proyecto_grupo" Relationship="Self.FK_Grupo_Proyecto" FromRole="grupoacademico" ToRole="proyecto_grupo" />
+    <NavigationProperty Name="trabajo_grupo" Relationship="Self.FK_TrabajoGrupo_Grupo" FromRole="grupoacademico" ToRole="trabajo_grupo" />
+    <NavigationProperty Name="tesis_grupo" Relationship="microna2018Model.FK_GrupoTesis_Grupo" FromRole="grupoacademico" ToRole="tesis_grupo" />
+  </EntityType>
+  <EntityType Name="libro">
+    <Key>
+      <PropertyRef Name="idLibro" />
+    </Key>
+    <Property Name="idLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Año" Type="DateTime" />
+    <Property Name="ISBN" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="TipoLibro" Type="Int32" />
+    <Property Name="Usuario" Type="Int32" />
+    <Property Name="Archivo" Type="Int32" />
+    <Property Name="Editorial" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="archivo1" Relationship="Self.FK_Libro_Archivo" FromRole="libro" ToRole="archivo" />
+    <NavigationProperty Name="libro_grupo" Relationship="Self.FK_Lib_Grupo" FromRole="libro" ToRole="libro_grupo" />
+    <NavigationProperty Name="tipolibro1" Relationship="Self.FK_Libro_Tipo" FromRole="libro" ToRole="tipolibro" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_Libro_Usuario" FromRole="libro" ToRole="usuario" />
+    <NavigationProperty Name="libro_usuario" Relationship="Self.FK_LibUs_Libro" FromRole="libro" ToRole="libro_usuario" />
+  </EntityType>
+  <EntityType Name="libro_grupo">
+    <Key>
+      <PropertyRef Name="idlibro_grupo" />
+    </Key>
+    <Property Name="idlibro_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_libro" Type="Int32" />
+    <Property Name="id_grupo" Type="Int32" />
+    <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Grupo_Lib" FromRole="libro_grupo" ToRole="grupoacademico" />
+    <NavigationProperty Name="libro" Relationship="Self.FK_Lib_Grupo" FromRole="libro_grupo" ToRole="libro" />
+  </EntityType>
+  <EntityType Name="libro_usuario">
+    <Key>
+      <PropertyRef Name="idlibro_usuario" />
+    </Key>
+    <Property Name="idlibro_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idLibro" Type="Int32" />
+    <Property Name="idUsuario" Type="Int32" />
+    <NavigationProperty Name="libro" Relationship="Self.FK_LibUs_Libro" FromRole="libro_usuario" ToRole="libro" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_LibUs_Usuario" FromRole="libro_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="proyecto_grupo">
+    <Key>
+      <PropertyRef Name="idproyecto_grupo" />
+    </Key>
+    <Property Name="idproyecto_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_proyecto" Type="Int32" />
+    <Property Name="id_grupo" Type="Int32" />
+    <NavigationProperty Name="grupoacademico" Relationship="Self.FK_Grupo_Proyecto" FromRole="proyecto_grupo" ToRole="grupoacademico" />
+    <NavigationProperty Name="proyectos" Relationship="Self.FK_Proyecto_Grupo" FromRole="proyecto_grupo" ToRole="proyectos" />
+  </EntityType>
+  <EntityType Name="proyecto_usuario">
+    <Key>
+      <PropertyRef Name="idproyecto_usuario" />
+    </Key>
+    <Property Name="idproyecto_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idproyecto" Type="Int32" />
+    <Property Name="idusuario" Type="Int32" />
+    <NavigationProperty Name="proyectos" Relationship="Self.FK_ProUs_Proyecto" FromRole="proyecto_usuario" ToRole="proyectos" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_ProUs_Usuario" FromRole="proyecto_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="proyectos">
+    <Key>
+      <PropertyRef Name="idProyecto" />
+    </Key>
+    <Property Name="idProyecto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Financiamiento" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="FechaInicio" Type="DateTime" />
+    <Property Name="FechaFinal" Type="DateTime" />
+    <Property Name="Usuario" Type="Int32" />
+    <Property Name="Archivo" Type="Int32" />
+    <Property Name="Clave" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="archivo1" Relationship="Self.FK_Proyectos_Archivo" FromRole="proyectos" ToRole="archivo" />
+    <NavigationProperty Name="proyecto_grupo" Relationship="Self.FK_Proyecto_Grupo" FromRole="proyectos" ToRole="proyecto_grupo" />
+    <NavigationProperty Name="proyecto_usuario" Relationship="Self.FK_ProUs_Proyecto" FromRole="proyectos" ToRole="proyecto_usuario" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_Proyectos_Usuario" FromRole="proyectos" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="tipoarticulo">
+    <Key>
+      <PropertyRef Name="idTipoArticulo" />
+    </Key>
+    <Property Name="idTipoArticulo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="articulo" Relationship="Self.FK_Articulo_Tipo" FromRole="tipoarticulo" ToRole="articulo" />
+  </EntityType>
+  <EntityType Name="tipoconcentrado">
+    <Key>
+      <PropertyRef Name="idtipoconcentrado" />
+    </Key>
+    <Property Name="idtipoconcentrado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="concentrado" Relationship="Self.FK_Concentrado_Tipo" FromRole="tipoconcentrado" ToRole="concentrado" />
+  </EntityType>
+  <EntityType Name="tipolibro">
+    <Key>
+      <PropertyRef Name="idTipoLibro" />
+    </Key>
+    <Property Name="idTipoLibro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Tipo" FromRole="tipolibro" ToRole="libro" />
+  </EntityType>
+  <EntityType Name="tipotrabajo">
+    <Key>
+      <PropertyRef Name="idTipoTrabajo" />
+    </Key>
+    <Property Name="idTipoTrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="trabajo" Relationship="Self.FK_Trabajo_Tipo" FromRole="tipotrabajo" ToRole="trabajo" />
+  </EntityType>
+  <EntityType Name="tipousuario">
+    <Key>
+      <PropertyRef Name="idTipoUsuario" />
+    </Key>
+    <Property Name="idTipoUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_Usuario_Tipo" FromRole="tipousuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="trabajo">
+    <Key>
+      <PropertyRef Name="idTrabajo" />
+    </Key>
+    <Property Name="idTrabajo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Año" Type="DateTime" />
+    <Property Name="TipoTrabajo" Type="Int32" />
+    <Property Name="Autores" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Presentacion" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Pais" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario" Type="Int32" />
+    <Property Name="Archivo" Type="Int32" />
+    <NavigationProperty Name="archivo1" Relationship="Self.FK_Trabajo_Archivo" FromRole="trabajo" ToRole="archivo" />
+    <NavigationProperty Name="tipotrabajo1" Relationship="Self.FK_Trabajo_Tipo" FromRole="trabajo" ToRole="tipotrabajo" />
+    <NavigationProperty Name="usuario1" Relationship="Self.FK_Trabajo_Usuario" FromRole="trabajo" ToRole="usuario" />
+    <NavigationProperty Name="trabajo_grupo" Relationship="Self.FK_TrabajoGrupo_Trabajo" FromRole="trabajo" ToRole="trabajo_grupo" />
+    <NavigationProperty Name="trabajo_usuario" Relationship="Self.FK_TrabUsu_Trabajo" FromRole="trabajo" ToRole="trabajo_usuario" />
+  </EntityType>
+  <EntityType Name="trabajo_grupo">
+    <Key>
+      <PropertyRef Name="idtrabajo_grupo" />
+    </Key>
+    <Property Name="idtrabajo_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="id_trabajo" Type="Int32" />
+    <Property Name="id_grupo" Type="Int32" />
+    <NavigationProperty Name="grupoacademico" Relationship="Self.FK_TrabajoGrupo_Grupo" FromRole="trabajo_grupo" ToRole="grupoacademico" />
+    <NavigationProperty Name="trabajo" Relationship="Self.FK_TrabajoGrupo_Trabajo" FromRole="trabajo_grupo" ToRole="trabajo" />
+  </EntityType>
+  <EntityType Name="trabajo_usuario">
+    <Key>
+      <PropertyRef Name="idtrabajo_usuario" />
+    </Key>
+    <Property Name="idtrabajo_usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idTrabajo" Type="Int32" />
+    <Property Name="idUsuario" Type="Int32" />
+    <NavigationProperty Name="trabajo" Relationship="Self.FK_TrabUsu_Trabajo" FromRole="trabajo_usuario" ToRole="trabajo" />
+    <NavigationProperty Name="usuario" Relationship="Self.FK_TrabUsu_Usuario" FromRole="trabajo_usuario" ToRole="usuario" />
+  </EntityType>
+  <EntityType Name="usuario">
+    <Key>
+      <PropertyRef Name="idUsuario" />
+    </Key>
+    <Property Name="idUsuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Usuario1" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Contraseña" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Correo" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="TipoUsuario" Type="Int32" />
+    <Property Name="Apellido_Paterno" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <Property Name="Apellido_Materno" Type="String" MaxLength="1073741823" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="articulo" Relationship="Self.FK_Articulo_Usuario" FromRole="usuario" ToRole="articulo" />
+    <NavigationProperty Name="articulo_usuario" Relationship="Self.FK_ArtUs_Us" FromRole="usuario" ToRole="articulo_usuario" />
+    <NavigationProperty Name="capitulo_usuario" Relationship="Self.FK_CapUs_Usuario" FromRole="usuario" ToRole="capitulo_usuario" />
+    <NavigationProperty Name="capitulolibro" Relationship="Self.FK_Capitulo_Usuario" FromRole="usuario" ToRole="capitulolibro" />
+    <NavigationProperty Name="concentrado_autores" Relationship="Self.FK_Con_Autor" FromRole="usuario" ToRole="concentrado_autores" />
+    <NavigationProperty Name="libro" Relationship="Self.FK_Libro_Usuario" FromRole="usuario" ToRole="libro" />
+    <NavigationProperty Name="libro_usuario" Relationship="Self.FK_LibUs_Usuario" FromRole="usuario" ToRole="libro_usuario" />
+    <NavigationProperty Name="proyecto_usuario" Relationship="Self.FK_ProUs_Usuario" FromRole="usuario" ToRole="proyecto_usuario" />
+    <NavigationProperty Name="proyectos" Relationship="Self.FK_Proyectos_Usuario" FromRole="usuario" ToRole="proyectos" />
+    <NavigationProperty Name="tipousuario1" Relationship="Self.FK_Usuario_Tipo" FromRole="usuario" ToRole="tipousuario" />
+    <NavigationProperty Name="trabajo" Relationship="Self.FK_Trabajo_Usuario" FromRole="usuario" ToRole="trabajo" />
+    <NavigationProperty Name="trabajo_usuario" Relationship="Self.FK_TrabUsu_Usuario" FromRole="usuario" ToRole="trabajo_usuario" />
+    <Property Name="Status" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tesis" Relationship="microna2018Model.FK_TesisAsesor" FromRole="usuario" ToRole="tesis" />
+    <NavigationProperty Name="tesis1" Relationship="microna2018Model.FK_TesisUsuario" FromRole="usuario" ToRole="tesis" />
+    <NavigationProperty Name="tesis11" Relationship="microna2018Model.FK_TesisAutor" FromRole="usuario" ToRole="tesis" />
+  </EntityType>
+  <Association Name="FK_Articulo_Archivo">
+    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="archivo">
+        <PropertyRef Name="idarchivo" />
+      </Principal>
+      <Dependent Role="articulo">
+        <PropertyRef Name="Archivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Capitulo_Archivo">
+    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+    <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="archivo">
+        <PropertyRef Name="idarchivo" />
+      </Principal>
+      <Dependent Role="capitulolibro">
+        <PropertyRef Name="Archivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Libro_Archivo">
+    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+    <End Role="libro" Type="Self.libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="archivo">
+        <PropertyRef Name="idarchivo" />
+      </Principal>
+      <Dependent Role="libro">
+        <PropertyRef Name="Archivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyectos_Archivo">
+    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+    <End Role="proyectos" Type="Self.proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="archivo">
+        <PropertyRef Name="idarchivo" />
+      </Principal>
+      <Dependent Role="proyectos">
+        <PropertyRef Name="Archivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajo_Archivo">
+    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+    <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="archivo">
+        <PropertyRef Name="idarchivo" />
+      </Principal>
+      <Dependent Role="trabajo">
+        <PropertyRef Name="Archivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ARTGRU_ART">
+    <End Role="articulo" Type="Self.articulo" Multiplicity="0..1" />
+    <End Role="articulo_grupo" Type="Self.articulo_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articulo">
+        <PropertyRef Name="idArticulo" />
+      </Principal>
+      <Dependent Role="articulo_grupo">
+        <PropertyRef Name="id_articulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Articulo_Tipo">
+    <End Role="tipoarticulo" Type="Self.tipoarticulo" Multiplicity="0..1" />
+    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoarticulo">
+        <PropertyRef Name="idTipoArticulo" />
+      </Principal>
+      <Dependent Role="articulo">
+        <PropertyRef Name="TipoArticulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Articulo_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="articulo">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtUs_Art">
+    <End Role="articulo" Type="Self.articulo" Multiplicity="0..1" />
+    <End Role="articulo_usuario" Type="Self.articulo_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="articulo">
+        <PropertyRef Name="idArticulo" />
+      </Principal>
+      <Dependent Role="articulo_usuario">
+        <PropertyRef Name="idArticulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ARTGRU_GRUPO">
+    <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+    <End Role="articulo_grupo" Type="Self.articulo_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="articulo_grupo">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ArtUs_Us">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="articulo_usuario" Type="Self.articulo_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="articulo_usuario">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Cap_Grupo">
+    <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="0..1" />
+    <End Role="capitulo_grupo" Type="Self.capitulo_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="capitulolibro">
+        <PropertyRef Name="idCapituloLibro" />
+      </Principal>
+      <Dependent Role="capitulo_grupo">
+        <PropertyRef Name="id_capitulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grupo_Cap">
+    <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+    <End Role="capitulo_grupo" Type="Self.capitulo_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="capitulo_grupo">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CapUs_Capitulo">
+    <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="0..1" />
+    <End Role="capitulo_usuario" Type="Self.capitulo_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="capitulolibro">
+        <PropertyRef Name="idCapituloLibro" />
+      </Principal>
+      <Dependent Role="capitulo_usuario">
+        <PropertyRef Name="idCapitulo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CapUs_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="capitulo_usuario" Type="Self.capitulo_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="capitulo_usuario">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Capitulo_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="capitulolibro" Type="Self.capitulolibro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="capitulolibro">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Autor_Con">
+    <End Role="concentrado" Type="Self.concentrado" Multiplicity="0..1" />
+    <End Role="concentrado_autores" Type="Self.concentrado_autores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="concentrado">
+        <PropertyRef Name="idConcentrado" />
+      </Principal>
+      <Dependent Role="concentrado_autores">
+        <PropertyRef Name="idConcentrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Concentrado_Tipo">
+    <End Role="tipoconcentrado" Type="Self.tipoconcentrado" Multiplicity="0..1" />
+    <End Role="concentrado" Type="Self.concentrado" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipoconcentrado">
+        <PropertyRef Name="idtipoconcentrado" />
+      </Principal>
+      <Dependent Role="concentrado">
+        <PropertyRef Name="TipoConcentrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grupo_Concentrado">
+    <End Role="concentrado" Type="Self.concentrado" Multiplicity="0..1" />
+    <End Role="concentrado_grupos" Type="Self.concentrado_grupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="concentrado">
+        <PropertyRef Name="idConcentrado" />
+      </Principal>
+      <Dependent Role="concentrado_grupos">
+        <PropertyRef Name="Concentrado" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Con_Autor">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="concentrado_autores" Type="Self.concentrado_autores" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="concentrado_autores">
+        <PropertyRef Name="idAutor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Concentrado_Grupo">
+    <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+    <End Role="concentrado_grupos" Type="Self.concentrado_grupos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="concentrado_grupos">
+        <PropertyRef Name="Grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grupo_Lib">
+    <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+    <End Role="libro_grupo" Type="Self.libro_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="libro_grupo">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Grupo_Proyecto">
+    <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+    <End Role="proyecto_grupo" Type="Self.proyecto_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="proyecto_grupo">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrabajoGrupo_Grupo">
+    <End Role="grupoacademico" Type="Self.grupoacademico" Multiplicity="0..1" />
+    <End Role="trabajo_grupo" Type="Self.trabajo_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="trabajo_grupo">
+        <PropertyRef Name="id_grupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Lib_Grupo">
+    <End Role="libro" Type="Self.libro" Multiplicity="0..1" />
+    <End Role="libro_grupo" Type="Self.libro_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libro">
+        <PropertyRef Name="idLibro" />
+      </Principal>
+      <Dependent Role="libro_grupo">
+        <PropertyRef Name="id_libro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Libro_Tipo">
+    <End Role="tipolibro" Type="Self.tipolibro" Multiplicity="0..1" />
+    <End Role="libro" Type="Self.libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipolibro">
+        <PropertyRef Name="idTipoLibro" />
+      </Principal>
+      <Dependent Role="libro">
+        <PropertyRef Name="TipoLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Libro_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="libro" Type="Self.libro" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="libro">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LibUs_Libro">
+    <End Role="libro" Type="Self.libro" Multiplicity="0..1" />
+    <End Role="libro_usuario" Type="Self.libro_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="libro">
+        <PropertyRef Name="idLibro" />
+      </Principal>
+      <Dependent Role="libro_usuario">
+        <PropertyRef Name="idLibro" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_LibUs_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="libro_usuario" Type="Self.libro_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="libro_usuario">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyecto_Grupo">
+    <End Role="proyectos" Type="Self.proyectos" Multiplicity="0..1" />
+    <End Role="proyecto_grupo" Type="Self.proyecto_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyectos">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="proyecto_grupo">
+        <PropertyRef Name="id_proyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProUs_Proyecto">
+    <End Role="proyectos" Type="Self.proyectos" Multiplicity="0..1" />
+    <End Role="proyecto_usuario" Type="Self.proyecto_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="proyectos">
+        <PropertyRef Name="idProyecto" />
+      </Principal>
+      <Dependent Role="proyecto_usuario">
+        <PropertyRef Name="idproyecto" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProUs_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="proyecto_usuario" Type="Self.proyecto_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="proyecto_usuario">
+        <PropertyRef Name="idusuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Proyectos_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="proyectos" Type="Self.proyectos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="proyectos">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajo_Tipo">
+    <End Role="tipotrabajo" Type="Self.tipotrabajo" Multiplicity="0..1" />
+    <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipotrabajo">
+        <PropertyRef Name="idTipoTrabajo" />
+      </Principal>
+      <Dependent Role="trabajo">
+        <PropertyRef Name="TipoTrabajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Usuario_Tipo">
+    <End Role="tipousuario" Type="Self.tipousuario" Multiplicity="0..1" />
+    <End Role="usuario" Type="Self.usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tipousuario">
+        <PropertyRef Name="idTipoUsuario" />
+      </Principal>
+      <Dependent Role="usuario">
+        <PropertyRef Name="TipoUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Trabajo_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="trabajo" Type="Self.trabajo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="trabajo">
+        <PropertyRef Name="Usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrabajoGrupo_Trabajo">
+    <End Role="trabajo" Type="Self.trabajo" Multiplicity="0..1" />
+    <End Role="trabajo_grupo" Type="Self.trabajo_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trabajo">
+        <PropertyRef Name="idTrabajo" />
+      </Principal>
+      <Dependent Role="trabajo_grupo">
+        <PropertyRef Name="id_trabajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrabUsu_Trabajo">
+    <End Role="trabajo" Type="Self.trabajo" Multiplicity="0..1" />
+    <End Role="trabajo_usuario" Type="Self.trabajo_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="trabajo">
+        <PropertyRef Name="idTrabajo" />
+      </Principal>
+      <Dependent Role="trabajo_usuario">
+        <PropertyRef Name="idTrabajo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TrabUsu_Usuario">
+    <End Role="usuario" Type="Self.usuario" Multiplicity="0..1" />
+    <End Role="trabajo_usuario" Type="Self.trabajo_usuario" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="trabajo_usuario">
+        <PropertyRef Name="idUsuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="microna2018Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="archivo" EntityType="Self.archivo" />
+    <EntitySet Name="articulo" EntityType="Self.articulo" />
+    <EntitySet Name="articulo_grupo" EntityType="Self.articulo_grupo" />
+    <EntitySet Name="articulo_usuario" EntityType="Self.articulo_usuario" />
+    <EntitySet Name="capitulo_grupo" EntityType="Self.capitulo_grupo" />
+    <EntitySet Name="capitulo_usuario" EntityType="Self.capitulo_usuario" />
+    <EntitySet Name="capitulolibro" EntityType="Self.capitulolibro" />
+    <EntitySet Name="concentrado" EntityType="Self.concentrado" />
+    <EntitySet Name="concentrado_autores" EntityType="Self.concentrado_autores" />
+    <EntitySet Name="concentrado_grupos" EntityType="Self.concentrado_grupos" />
+    <EntitySet Name="grupoacademico" EntityType="Self.grupoacademico" />
+    <EntitySet Name="libro" EntityType="Self.libro" />
+    <EntitySet Name="libro_grupo" EntityType="Self.libro_grupo" />
+    <EntitySet Name="libro_usuario" EntityType="Self.libro_usuario" />
+    <EntitySet Name="proyecto_grupo" EntityType="Self.proyecto_grupo" />
+    <EntitySet Name="proyecto_usuario" EntityType="Self.proyecto_usuario" />
+    <EntitySet Name="proyectos" EntityType="Self.proyectos" />
+    <EntitySet Name="tipoarticulo" EntityType="Self.tipoarticulo" />
+    <EntitySet Name="tipoconcentrado" EntityType="Self.tipoconcentrado" />
+    <EntitySet Name="tipolibro" EntityType="Self.tipolibro" />
+    <EntitySet Name="tipotrabajo" EntityType="Self.tipotrabajo" />
+    <EntitySet Name="tipousuario" EntityType="Self.tipousuario" />
+    <EntitySet Name="trabajo" EntityType="Self.trabajo" />
+    <EntitySet Name="trabajo_grupo" EntityType="Self.trabajo_grupo" />
+    <EntitySet Name="trabajo_usuario" EntityType="Self.trabajo_usuario" />
+    <EntitySet Name="usuario" EntityType="Self.usuario" />
+    <AssociationSet Name="FK_Articulo_Archivo" Association="Self.FK_Articulo_Archivo">
+      <End Role="archivo" EntitySet="archivo" />
+      <End Role="articulo" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Capitulo_Archivo" Association="Self.FK_Capitulo_Archivo">
+      <End Role="archivo" EntitySet="archivo" />
+      <End Role="capitulolibro" EntitySet="capitulolibro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Libro_Archivo" Association="Self.FK_Libro_Archivo">
+      <End Role="archivo" EntitySet="archivo" />
+      <End Role="libro" EntitySet="libro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyectos_Archivo" Association="Self.FK_Proyectos_Archivo">
+      <End Role="archivo" EntitySet="archivo" />
+      <End Role="proyectos" EntitySet="proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajo_Archivo" Association="Self.FK_Trabajo_Archivo">
+      <End Role="archivo" EntitySet="archivo" />
+      <End Role="trabajo" EntitySet="trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ARTGRU_ART" Association="Self.FK_ARTGRU_ART">
+      <End Role="articulo" EntitySet="articulo" />
+      <End Role="articulo_grupo" EntitySet="articulo_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Articulo_Tipo" Association="Self.FK_Articulo_Tipo">
+      <End Role="tipoarticulo" EntitySet="tipoarticulo" />
+      <End Role="articulo" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Articulo_Usuario" Association="Self.FK_Articulo_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="articulo" EntitySet="articulo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtUs_Art" Association="Self.FK_ArtUs_Art">
+      <End Role="articulo" EntitySet="articulo" />
+      <End Role="articulo_usuario" EntitySet="articulo_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ARTGRU_GRUPO" Association="Self.FK_ARTGRU_GRUPO">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="articulo_grupo" EntitySet="articulo_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ArtUs_Us" Association="Self.FK_ArtUs_Us">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="articulo_usuario" EntitySet="articulo_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Cap_Grupo" Association="Self.FK_Cap_Grupo">
+      <End Role="capitulolibro" EntitySet="capitulolibro" />
+      <End Role="capitulo_grupo" EntitySet="capitulo_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grupo_Cap" Association="Self.FK_Grupo_Cap">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="capitulo_grupo" EntitySet="capitulo_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CapUs_Capitulo" Association="Self.FK_CapUs_Capitulo">
+      <End Role="capitulolibro" EntitySet="capitulolibro" />
+      <End Role="capitulo_usuario" EntitySet="capitulo_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CapUs_Usuario" Association="Self.FK_CapUs_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="capitulo_usuario" EntitySet="capitulo_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Capitulo_Usuario" Association="Self.FK_Capitulo_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="capitulolibro" EntitySet="capitulolibro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Autor_Con" Association="Self.FK_Autor_Con">
+      <End Role="concentrado" EntitySet="concentrado" />
+      <End Role="concentrado_autores" EntitySet="concentrado_autores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Concentrado_Tipo" Association="Self.FK_Concentrado_Tipo">
+      <End Role="tipoconcentrado" EntitySet="tipoconcentrado" />
+      <End Role="concentrado" EntitySet="concentrado" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grupo_Concentrado" Association="Self.FK_Grupo_Concentrado">
+      <End Role="concentrado" EntitySet="concentrado" />
+      <End Role="concentrado_grupos" EntitySet="concentrado_grupos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Con_Autor" Association="Self.FK_Con_Autor">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="concentrado_autores" EntitySet="concentrado_autores" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Concentrado_Grupo" Association="Self.FK_Concentrado_Grupo">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="concentrado_grupos" EntitySet="concentrado_grupos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grupo_Lib" Association="Self.FK_Grupo_Lib">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="libro_grupo" EntitySet="libro_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Grupo_Proyecto" Association="Self.FK_Grupo_Proyecto">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="proyecto_grupo" EntitySet="proyecto_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrabajoGrupo_Grupo" Association="Self.FK_TrabajoGrupo_Grupo">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="trabajo_grupo" EntitySet="trabajo_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Lib_Grupo" Association="Self.FK_Lib_Grupo">
+      <End Role="libro" EntitySet="libro" />
+      <End Role="libro_grupo" EntitySet="libro_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Libro_Tipo" Association="Self.FK_Libro_Tipo">
+      <End Role="tipolibro" EntitySet="tipolibro" />
+      <End Role="libro" EntitySet="libro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Libro_Usuario" Association="Self.FK_Libro_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="libro" EntitySet="libro" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LibUs_Libro" Association="Self.FK_LibUs_Libro">
+      <End Role="libro" EntitySet="libro" />
+      <End Role="libro_usuario" EntitySet="libro_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_LibUs_Usuario" Association="Self.FK_LibUs_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="libro_usuario" EntitySet="libro_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyecto_Grupo" Association="Self.FK_Proyecto_Grupo">
+      <End Role="proyectos" EntitySet="proyectos" />
+      <End Role="proyecto_grupo" EntitySet="proyecto_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProUs_Proyecto" Association="Self.FK_ProUs_Proyecto">
+      <End Role="proyectos" EntitySet="proyectos" />
+      <End Role="proyecto_usuario" EntitySet="proyecto_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProUs_Usuario" Association="Self.FK_ProUs_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="proyecto_usuario" EntitySet="proyecto_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Proyectos_Usuario" Association="Self.FK_Proyectos_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="proyectos" EntitySet="proyectos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajo_Tipo" Association="Self.FK_Trabajo_Tipo">
+      <End Role="tipotrabajo" EntitySet="tipotrabajo" />
+      <End Role="trabajo" EntitySet="trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Usuario_Tipo" Association="Self.FK_Usuario_Tipo">
+      <End Role="tipousuario" EntitySet="tipousuario" />
+      <End Role="usuario" EntitySet="usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Trabajo_Usuario" Association="Self.FK_Trabajo_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="trabajo" EntitySet="trabajo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrabajoGrupo_Trabajo" Association="Self.FK_TrabajoGrupo_Trabajo">
+      <End Role="trabajo" EntitySet="trabajo" />
+      <End Role="trabajo_grupo" EntitySet="trabajo_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrabUsu_Trabajo" Association="Self.FK_TrabUsu_Trabajo">
+      <End Role="trabajo" EntitySet="trabajo" />
+      <End Role="trabajo_usuario" EntitySet="trabajo_usuario" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TrabUsu_Usuario" Association="Self.FK_TrabUsu_Usuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="trabajo_usuario" EntitySet="trabajo_usuario" />
+    </AssociationSet>
+    <EntitySet Name="tesis" EntityType="microna2018Model.tesis" />
+    <AssociationSet Name="FK_TesisArchivo" Association="microna2018Model.FK_TesisArchivo">
+      <End Role="archivo" EntitySet="archivo" />
+      <End Role="tesis" EntitySet="tesis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TesisAsesor" Association="microna2018Model.FK_TesisAsesor">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tesis" EntitySet="tesis" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TesisUsuario" Association="microna2018Model.FK_TesisUsuario">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tesis" EntitySet="tesis" />
+    </AssociationSet>
+    <EntitySet Name="tesis_grupo" EntityType="microna2018Model.tesis_grupo" />
+    <AssociationSet Name="FK_GrupoTesis_Grupo" Association="microna2018Model.FK_GrupoTesis_Grupo">
+      <End Role="grupoacademico" EntitySet="grupoacademico" />
+      <End Role="tesis_grupo" EntitySet="tesis_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TesisGrupo_Tesis" Association="microna2018Model.FK_TesisGrupo_Tesis">
+      <End Role="tesis" EntitySet="tesis" />
+      <End Role="tesis_grupo" EntitySet="tesis_grupo" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TesisAutor" Association="microna2018Model.FK_TesisAutor">
+      <End Role="usuario" EntitySet="usuario" />
+      <End Role="tesis" EntitySet="tesis" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tesis">
+    <Key>
+      <PropertyRef Name="idtesis" />
+    </Key>
+    <Property Name="idtesis" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="titulo" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="usuario" Type="Int32" />
+    <Property Name="fecha" Type="DateTime" />
+    <Property Name="archivo" Type="Int32" />
+    <Property Name="director" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="asesor" Type="Int32" />
+    <Property Name="codirector" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="jurado" Type="String" MaxLength="16777215" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="archivo1" Relationship="microna2018Model.FK_TesisArchivo" FromRole="tesis" ToRole="archivo" />
+    <NavigationProperty Name="usuario1" Relationship="microna2018Model.FK_TesisAsesor" FromRole="tesis" ToRole="usuario" />
+    <NavigationProperty Name="usuario2" Relationship="microna2018Model.FK_TesisUsuario" FromRole="tesis" ToRole="usuario" />
+    <NavigationProperty Name="tesis_grupo" Relationship="microna2018Model.FK_TesisGrupo_Tesis" FromRole="tesis" ToRole="tesis_grupo" />
+    <Property Name="autor" Type="Int32" />
+    <NavigationProperty Name="usuario21" Relationship="microna2018Model.FK_TesisAutor" FromRole="tesis" ToRole="usuario" />
+  </EntityType>
+  <Association Name="FK_TesisArchivo">
+    <End Type="microna2018Model.archivo" Role="archivo" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="microna2018Model.tesis" Role="tesis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="archivo">
+        <PropertyRef Name="idarchivo" />
+      </Principal>
+      <Dependent Role="tesis">
+        <PropertyRef Name="archivo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TesisAsesor">
+    <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+    <End Type="microna2018Model.tesis" Role="tesis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tesis">
+        <PropertyRef Name="asesor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TesisUsuario">
+    <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+    <End Type="microna2018Model.tesis" Role="tesis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tesis">
+        <PropertyRef Name="usuario" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tesis_grupo">
+    <Key>
+      <PropertyRef Name="idtesis_grupo" />
+    </Key>
+    <Property Name="idtesis_grupo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idtesis" Type="Int32" />
+    <Property Name="idgrupo" Type="Int32" />
+    <NavigationProperty Name="grupoacademico" Relationship="microna2018Model.FK_GrupoTesis_Grupo" FromRole="tesis_grupo" ToRole="grupoacademico" />
+    <NavigationProperty Name="tesis" Relationship="microna2018Model.FK_TesisGrupo_Tesis" FromRole="tesis_grupo" ToRole="tesis" />
+  </EntityType>
+  <Association Name="FK_GrupoTesis_Grupo">
+    <End Type="microna2018Model.grupoacademico" Role="grupoacademico" Multiplicity="0..1" />
+    <End Type="microna2018Model.tesis_grupo" Role="tesis_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="grupoacademico">
+        <PropertyRef Name="idGrupoAcademico" />
+      </Principal>
+      <Dependent Role="tesis_grupo">
+        <PropertyRef Name="idgrupo" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TesisGrupo_Tesis">
+    <End Type="microna2018Model.tesis" Role="tesis" Multiplicity="0..1" />
+    <End Type="microna2018Model.tesis_grupo" Role="tesis_grupo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tesis">
+        <PropertyRef Name="idtesis" />
+      </Principal>
+      <Dependent Role="tesis_grupo">
+        <PropertyRef Name="idtesis" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TesisAutor">
+    <End Type="microna2018Model.usuario" Role="usuario" Multiplicity="0..1" />
+    <End Type="microna2018Model.tesis" Role="tesis" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="usuario">
+        <PropertyRef Name="idUsuario" />
+      </Principal>
+      <Dependent Role="tesis">
+        <PropertyRef Name="autor" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

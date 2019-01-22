@@ -1,0 +1,102 @@
+﻿@model WebApplication4.Models.libro
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box">
+    <div class="box-body">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.Año)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Año)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.ISBN)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.ISBN)
+            </dd>
+
+            <dt>
+                Autores
+            </dt>
+
+            <dd>
+                @{
+                    foreach (var a in Model.libro_usuario)
+                    {
+                        <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                    }
+                }
+            </dd>
+            <dt>
+                Tipo de Libro
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.tipolibro1.Nombre)
+            </dd>
+            <dt>
+                Grupo académico
+            </dt>
+
+            <dd>
+                <ul>
+                    @{
+                        foreach (var a in Model.libro_grupo)
+                        {
+                            <li>@a.grupoacademico.Nombre</li>
+                        }
+                    }
+                </ul>
+
+            </dd>
+
+            <dt>
+                Publicado por 
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.usuario1.Nombre)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.archivo1.Nombre)
+            </dt>
+
+            <dd>
+                Archivo
+            </dd>
+            @{
+                if (Model.archivo1 != null)
+                {
+                    <dd>
+                        @Html.ActionLink("Descargar", "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </dd>
+                }
+            }
+        </dl>
+    </div>
+    <div class="box-footer">
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = Model.idLibro }) |
+            @Html.ActionLink("Back to List", "Index")
+        </p>
+    </div>
+</div>
+

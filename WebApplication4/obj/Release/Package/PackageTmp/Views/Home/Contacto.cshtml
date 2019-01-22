@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Contacto";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="col-md-12">
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">Contacto</h3>
+    </div>
+    <!-- /.box-header -->    
+    <div class="box-body">
+        @{
+            if (ViewBag.text != null)
+            {
+                @Html.Raw(ViewBag.text)
+            }
+        }
+    </div>
+    
+    <!-- /.box-body -->
+</div>
+    </div>
+<!-- /.box -->
+

@@ -88,7 +88,7 @@ namespace WebApplication4.Controllers
                     file.Nombre = fileName;
                     file.url = path;
                 }
-                lib.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+                lib.Usuario = int.Parse(Session["id"].ToString());
                 dt.createLibro(lib, file, GrupoAcademico, Autores);
                 return RedirectToAction("Index", new { response = 1 });
             }
@@ -108,7 +108,7 @@ namespace WebApplication4.Controllers
             }
             
             var a = dt.getLibroById(id.GetValueOrDefault());
-            if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+            if (int.Parse(Session["id"].ToString()) != a.Usuario && Session["tipo"].ToString().Equals("2"))
             {
                 return RedirectToAction("Index");
             }
@@ -162,7 +162,7 @@ namespace WebApplication4.Controllers
                 }
                 
                 var libr = dt.getLibroById(id.GetValueOrDefault());
-                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.Usuario)
+                if (int.Parse(Session["id"].ToString()) != libr.Usuario)
                 {
                     return RedirectToAction("Index");
                 }

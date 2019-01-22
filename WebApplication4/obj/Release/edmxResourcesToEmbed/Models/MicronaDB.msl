@@ -1,0 +1,297 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="microna2018ModelStoreContainer" CdmEntityContainer="microna2018Entities">
+    <EntitySetMapping Name="archivo">
+      <EntityTypeMapping TypeName="microna2018Model.archivo">
+        <MappingFragment StoreEntitySet="archivo">
+          <ScalarProperty Name="idarchivo" ColumnName="idarchivo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="url" ColumnName="url" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="articulo">
+      <EntityTypeMapping TypeName="microna2018Model.articulo">
+        <MappingFragment StoreEntitySet="articulo">
+          <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Volumen" ColumnName="Volumen" />
+          <ScalarProperty Name="PagInicio" ColumnName="PagInicio" />
+          <ScalarProperty Name="PagFinal" ColumnName="PagFinal" />
+          <ScalarProperty Name="Revista" ColumnName="Revista" />
+          <ScalarProperty Name="ISSN" ColumnName="ISSN" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="TipoArticulo" ColumnName="TipoArticulo" />
+          <ScalarProperty Name="Indice" ColumnName="Indice" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="articulo_grupo">
+      <EntityTypeMapping TypeName="microna2018Model.articulo_grupo">
+        <MappingFragment StoreEntitySet="articulo_grupo">
+          <ScalarProperty Name="idarticulo_grupo" ColumnName="idarticulo_grupo" />
+          <ScalarProperty Name="id_articulo" ColumnName="id_articulo" />
+          <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="articulo_usuario">
+      <EntityTypeMapping TypeName="microna2018Model.articulo_usuario">
+        <MappingFragment StoreEntitySet="articulo_usuario">
+          <ScalarProperty Name="idarticulo_usuario" ColumnName="idarticulo_usuario" />
+          <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="capitulo_grupo">
+      <EntityTypeMapping TypeName="microna2018Model.capitulo_grupo">
+        <MappingFragment StoreEntitySet="capitulo_grupo">
+          <ScalarProperty Name="idcapitulo_grupo" ColumnName="idcapitulo_grupo" />
+          <ScalarProperty Name="id_capitulo" ColumnName="id_capitulo" />
+          <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="capitulo_usuario">
+      <EntityTypeMapping TypeName="microna2018Model.capitulo_usuario">
+        <MappingFragment StoreEntitySet="capitulo_usuario">
+          <ScalarProperty Name="idcapitulo_usuario" ColumnName="idcapitulo_usuario" />
+          <ScalarProperty Name="idCapitulo" ColumnName="idCapitulo" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="capitulolibro">
+      <EntityTypeMapping TypeName="microna2018Model.capitulolibro">
+        <MappingFragment StoreEntitySet="capitulolibro">
+          <ScalarProperty Name="idCapituloLibro" ColumnName="idCapituloLibro" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="Participantes" ColumnName="Participantes" />
+          <ScalarProperty Name="Libro" ColumnName="Libro" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="concentrado">
+      <EntityTypeMapping TypeName="microna2018Model.concentrado">
+        <MappingFragment StoreEntitySet="concentrado">
+          <ScalarProperty Name="idConcentrado" ColumnName="idConcentrado" />
+          <ScalarProperty Name="Titulo" ColumnName="Titulo" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+          <ScalarProperty Name="TipoConcentrado" ColumnName="TipoConcentrado" />
+          <ScalarProperty Name="IdItem" ColumnName="IdItem" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="concentrado_autores">
+      <EntityTypeMapping TypeName="microna2018Model.concentrado_autores">
+        <MappingFragment StoreEntitySet="concentrado_autores">
+          <ScalarProperty Name="idConcentrado_Autores" ColumnName="idConcentrado_Autores" />
+          <ScalarProperty Name="idConcentrado" ColumnName="idConcentrado" />
+          <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="concentrado_grupos">
+      <EntityTypeMapping TypeName="microna2018Model.concentrado_grupos">
+        <MappingFragment StoreEntitySet="concentrado_grupos">
+          <ScalarProperty Name="idConcentrado_Grupos" ColumnName="idConcentrado_Grupos" />
+          <ScalarProperty Name="Concentrado" ColumnName="Concentrado" />
+          <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="grupoacademico">
+      <EntityTypeMapping TypeName="microna2018Model.grupoacademico">
+        <MappingFragment StoreEntitySet="grupoacademico">
+          <ScalarProperty Name="idGrupoAcademico" ColumnName="idGrupoAcademico" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="libro">
+      <EntityTypeMapping TypeName="microna2018Model.libro">
+        <MappingFragment StoreEntitySet="libro">
+          <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="ISBN" ColumnName="ISBN" />
+          <ScalarProperty Name="TipoLibro" ColumnName="TipoLibro" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="Editorial" ColumnName="Editorial" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="libro_grupo">
+      <EntityTypeMapping TypeName="microna2018Model.libro_grupo">
+        <MappingFragment StoreEntitySet="libro_grupo">
+          <ScalarProperty Name="idlibro_grupo" ColumnName="idlibro_grupo" />
+          <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+          <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="libro_usuario">
+      <EntityTypeMapping TypeName="microna2018Model.libro_usuario">
+        <MappingFragment StoreEntitySet="libro_usuario">
+          <ScalarProperty Name="idlibro_usuario" ColumnName="idlibro_usuario" />
+          <ScalarProperty Name="idLibro" ColumnName="idLibro" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proyecto_grupo">
+      <EntityTypeMapping TypeName="microna2018Model.proyecto_grupo">
+        <MappingFragment StoreEntitySet="proyecto_grupo">
+          <ScalarProperty Name="idproyecto_grupo" ColumnName="idproyecto_grupo" />
+          <ScalarProperty Name="id_proyecto" ColumnName="id_proyecto" />
+          <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proyecto_usuario">
+      <EntityTypeMapping TypeName="microna2018Model.proyecto_usuario">
+        <MappingFragment StoreEntitySet="proyecto_usuario">
+          <ScalarProperty Name="idproyecto_usuario" ColumnName="idproyecto_usuario" />
+          <ScalarProperty Name="idproyecto" ColumnName="idproyecto" />
+          <ScalarProperty Name="idusuario" ColumnName="idusuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="proyectos">
+      <EntityTypeMapping TypeName="microna2018Model.proyectos">
+        <MappingFragment StoreEntitySet="proyectos">
+          <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
+          <ScalarProperty Name="nombre" ColumnName="nombre" />
+          <ScalarProperty Name="Financiamiento" ColumnName="Financiamiento" />
+          <ScalarProperty Name="FechaInicio" ColumnName="FechaInicio" />
+          <ScalarProperty Name="FechaFinal" ColumnName="FechaFinal" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoarticulo">
+      <EntityTypeMapping TypeName="microna2018Model.tipoarticulo">
+        <MappingFragment StoreEntitySet="tipoarticulo">
+          <ScalarProperty Name="idTipoArticulo" ColumnName="idTipoArticulo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipoconcentrado">
+      <EntityTypeMapping TypeName="microna2018Model.tipoconcentrado">
+        <MappingFragment StoreEntitySet="tipoconcentrado">
+          <ScalarProperty Name="idtipoconcentrado" ColumnName="idtipoconcentrado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipolibro">
+      <EntityTypeMapping TypeName="microna2018Model.tipolibro">
+        <MappingFragment StoreEntitySet="tipolibro">
+          <ScalarProperty Name="idTipoLibro" ColumnName="idTipoLibro" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipotrabajo">
+      <EntityTypeMapping TypeName="microna2018Model.tipotrabajo">
+        <MappingFragment StoreEntitySet="tipotrabajo">
+          <ScalarProperty Name="idTipoTrabajo" ColumnName="idTipoTrabajo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tipousuario">
+      <EntityTypeMapping TypeName="microna2018Model.tipousuario">
+        <MappingFragment StoreEntitySet="tipousuario">
+          <ScalarProperty Name="idTipoUsuario" ColumnName="idTipoUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trabajo">
+      <EntityTypeMapping TypeName="microna2018Model.trabajo">
+        <MappingFragment StoreEntitySet="trabajo">
+          <ScalarProperty Name="idTrabajo" ColumnName="idTrabajo" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Año" ColumnName="Año" />
+          <ScalarProperty Name="TipoTrabajo" ColumnName="TipoTrabajo" />
+          <ScalarProperty Name="Autores" ColumnName="Autores" />
+          <ScalarProperty Name="Presentacion" ColumnName="Presentacion" />
+          <ScalarProperty Name="Pais" ColumnName="Pais" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Archivo" ColumnName="Archivo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trabajo_grupo">
+      <EntityTypeMapping TypeName="microna2018Model.trabajo_grupo">
+        <MappingFragment StoreEntitySet="trabajo_grupo">
+          <ScalarProperty Name="idtrabajo_grupo" ColumnName="idtrabajo_grupo" />
+          <ScalarProperty Name="id_trabajo" ColumnName="id_trabajo" />
+          <ScalarProperty Name="id_grupo" ColumnName="id_grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="trabajo_usuario">
+      <EntityTypeMapping TypeName="microna2018Model.trabajo_usuario">
+        <MappingFragment StoreEntitySet="trabajo_usuario">
+          <ScalarProperty Name="idtrabajo_usuario" ColumnName="idtrabajo_usuario" />
+          <ScalarProperty Name="idTrabajo" ColumnName="idTrabajo" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="usuario">
+      <EntityTypeMapping TypeName="microna2018Model.usuario">
+        <MappingFragment StoreEntitySet="usuario">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="idUsuario" ColumnName="idUsuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Usuario1" ColumnName="Usuario" />
+          <ScalarProperty Name="Contraseña" ColumnName="Contraseña" />
+          <ScalarProperty Name="Correo" ColumnName="Correo" />
+          <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
+          <ScalarProperty Name="Apellido_Paterno" ColumnName="Apellido_Paterno" />
+          <ScalarProperty Name="Apellido_Materno" ColumnName="Apellido_Materno" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tesis">
+      <EntityTypeMapping TypeName="microna2018Model.tesis">
+        <MappingFragment StoreEntitySet="tesis">
+          <ScalarProperty Name="autor" ColumnName="autor" />
+          <ScalarProperty Name="jurado" ColumnName="jurado" />
+          <ScalarProperty Name="codirector" ColumnName="codirector" />
+          <ScalarProperty Name="asesor" ColumnName="asesor" />
+          <ScalarProperty Name="director" ColumnName="director" />
+          <ScalarProperty Name="archivo" ColumnName="archivo" />
+          <ScalarProperty Name="fecha" ColumnName="fecha" />
+          <ScalarProperty Name="usuario" ColumnName="usuario" />
+          <ScalarProperty Name="titulo" ColumnName="titulo" />
+          <ScalarProperty Name="idtesis" ColumnName="idtesis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tesis_grupo">
+      <EntityTypeMapping TypeName="microna2018Model.tesis_grupo">
+        <MappingFragment StoreEntitySet="tesis_grupo">
+          <ScalarProperty Name="idgrupo" ColumnName="idgrupo" />
+          <ScalarProperty Name="idtesis" ColumnName="idtesis" />
+          <ScalarProperty Name="idtesis_grupo" ColumnName="idtesis_grupo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

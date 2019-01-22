@@ -166,7 +166,8 @@ namespace WebApplication4.Controllers
                 {
                     t.Archivo = file.idarchivo;
                 }
-                t.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+                
+                t.Usuario = int.Parse(Session["id"].ToString());
                 db.trabajo.Add(t);     
                 
                 if (GrupoAcademico != null)
@@ -212,7 +213,7 @@ namespace WebApplication4.Controllers
             }
             
             var a = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
-            if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+            if (int.Parse(Session["id"].ToString()) != a.Usuario && Session["tipo"].ToString().Equals("2"))
             {
                 return RedirectToAction("Index");
             }
@@ -328,7 +329,7 @@ namespace WebApplication4.Controllers
                 }
                 
                 var trabajo = db.trabajo.Where(x => x.idTrabajo == id).FirstOrDefault();
-                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != trabajo.Usuario)
+                if (int.Parse(Session["id"].ToString()) != trabajo.Usuario)
                 {
                     return RedirectToAction("Index");
                 }

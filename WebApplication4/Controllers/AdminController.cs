@@ -1,6 +1,7 @@
 ﻿using System;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Security.Claims;
 using System.Web;
@@ -74,7 +75,14 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Configure()
         {
-            
+            string fileName = "~/Content/Files/test.txt";
+            string fullpath = HttpContext.Server.MapPath(fileName);            
+            if (System.IO.File.Exists(fullpath))
+            {
+                string text = "";
+                text=System.IO.File.ReadAllText(Server.MapPath(fileName));                
+                ViewBag.text = text;
+            }
             ViewBag.tipos_art = dt.getTiposArticulo();
             ViewBag.tipos_tra = dt.getTiposTrabajo();
             ViewBag.tipos_lib = dt.getTiposLibro();
@@ -98,24 +106,12 @@ namespace WebApplication4.Controllers
             {
                 if (user.Contraseña == u.Password)
                 {                        
-                    FormsAuthenticationTicket authTicket = new
-                        FormsAuthenticationTicket(1, //version
-                        user.Usuario1, // user name
-                        DateTime.Now,             //creation
-                        DateTime.Now.AddDays(1), //Expiration (you can set it to 1 month
-                        false,  //Persistent
-                        user.tipousuario1.Nombre);
-                    HttpCookie cookie1 = new HttpCookie(
-                    FormsAuthentication.FormsCookieName,
-                    FormsAuthentication.Encrypt(authTicket));
-                    Response.Cookies.Add(cookie1);
-                    HttpCookie userInfo = new HttpCookie("userInfo");
-                    userInfo.Values.Add("id", user.idUsuario.ToString());
-                    userInfo.Values.Add("nombre", user.Nombre);
-                    userInfo.Values.Add("tipo", user.tipousuario1.Nombre);
-                    userInfo.Values.Add("user", user.Usuario1.ToLower());
-                    userInfo.Expires = DateTime.Now.AddDays(1);
-                    Response.Cookies.Add(userInfo);
+                    FormsAuthentication.SetAuthCookie(user.Usuario1,true);
+                    
+                    Session["username"] = user.Usuario1;
+                    Session["id"] = user.idUsuario;
+                    Session["tipo"] = user.TipoUsuario;
+                    Session["name"] = user.Nombre;                    
                     return RedirectToAction("Index", "Admin");
                 }
             }
@@ -126,15 +122,7 @@ namespace WebApplication4.Controllers
         [Authorize]
         public ActionResult Logout()
         {
-            if(Request.Cookies["userInfo"] != null)
-            {
-                HttpCookie currentUserCookie = Request.Cookies["userInfo"];
-                Response.Cookies.Remove("userInfo");
-                currentUserCookie.Expires = DateTime.Now.AddDays(-10);
-                currentUserCookie.Value = null;
-                Response.SetCookie(currentUserCookie);
-                Request.Cookies["userInfo"].Expires = DateTime.Now.AddDays(-1);
-            }
+            Session.Contents.RemoveAll();
             FormsAuthentication.SignOut();            
             return RedirectToAction("Index", "Home");
         }
@@ -164,6 +152,42 @@ namespace WebApplication4.Controllers
 
             dt.deleteTipo(tipo, id);
             return RedirectToAction("Configure");
+        }
+
+        [Authorize]
+        [HttpPost]
+        [ValidateInput(false)]
+        public ActionResult updateContacto(string[] description)
+        {
+            try
+            {
+                string dir = "~/Content/Files/";
+                string file= "~/Content/Files/test.txt";
+
+                string fileName = "~/Content/Files/test.txt";
+                string fullpath = HttpContext.Server.MapPath(fileName);
+                if (!Directory.Exists(dir))
+                {
+                    DirectoryInfo di = Directory.CreateDirectory(Server.MapPath(dir));
+                }
+                if (System.IO.File.Exists(fullpath))
+                {
+                    System.IO.File.Delete(fullpath);
+                }                
+                string path = Server.MapPath(file);
+                using (StreamWriter sw = System.IO.File.CreateText(path))
+                {
+                    foreach (string s in description)
+                    {
+                        sw.WriteLine(s);
+                    }
+                }
+                return RedirectToAction("Configure");
+            }
+            catch(Exception e)
+            {
+                return Content("Error: "+e);
+            }
         }
     }
 }

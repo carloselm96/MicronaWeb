@@ -8,13 +8,14 @@ using WebApplication4.Models.DataAccess;
 
 namespace WebApplication4.Controllers
 {
+    [Authorize]
     public class UsuarioController : Controller
     {
         DataAccess dt = new DataAccess();
 
 
         // GET: Usuario
-        [Authorize]
+        
         public ActionResult Index()
         {
             microna2018Entities db = new microna2018Entities();
@@ -24,7 +25,7 @@ namespace WebApplication4.Controllers
                 
 
         // GET: Usuario/Create
-        [Authorize]
+        
         public ActionResult Create(int? response)
         {
             microna2018Entities db = new microna2018Entities();
@@ -33,7 +34,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: Usuario/Create
-        [Authorize]
+        
         [HttpPost]
         public ActionResult Create(usuario u)
         {
@@ -41,7 +42,7 @@ namespace WebApplication4.Controllers
             {
                 if (validateAccess())
                 {
-                    if (u.TipoUsuario == 3 && Request.Cookies["userInfo"]["tipo"] != "Super-administrador")
+                    if (u.TipoUsuario == 3 && Session["tipo"].ToString().Equals("3"))
                     {
                         return RedirectToAction("Index", "Home", null);
                     }                    
@@ -68,7 +69,7 @@ namespace WebApplication4.Controllers
         }
 
         // GET: Usuario/Edit/5
-        [Authorize]
+        
         public ActionResult Edit(int? id, int? response)
         {
             if (id==null)
@@ -88,7 +89,7 @@ namespace WebApplication4.Controllers
 
         // POST: Usuario/Edit/5
         [HttpPost]
-        [Authorize]
+        
         public ActionResult Edit(int id, usuario u)
         {
             if (!validateAccess())
@@ -108,13 +109,13 @@ namespace WebApplication4.Controllers
                     return View(u);
                 }
                 
-                if (int.Parse(Request.Cookies["userInfo"]["id"]) == id)
+                if (int.Parse(Session["id"].ToString()) == id)
                 {
                     HttpCookie cookie = new HttpCookie("userInfo");
-                    cookie["id"] = Request.Cookies["userInfo"]["id"];
+                    cookie["id"] = Session["id"].ToString();
                     cookie["nombre"] = u.Nombre;
                     cookie["user"] = u.Usuario1;
-                    cookie["tipo"] = Request.Cookies["userInfo"]["tipo"];
+                    cookie["tipo"] = Session["tipo"].ToString();
                     Response.Cookies.Add(cookie);
                 }
                 return RedirectToAction("Index");
@@ -126,7 +127,7 @@ namespace WebApplication4.Controllers
         }
 
         // POST: Usuario/Delete/5
-        [Authorize]        
+                
         public ActionResult Delete(int? id)
         {
             try
@@ -153,7 +154,7 @@ namespace WebApplication4.Controllers
 
         public bool validateAccess()
         {
-            if (Request.Cookies["userInfo"]["tipo"] != "Administrador" && Request.Cookies["userInfo"]["tipo"] != "Super-administrador")
+            if (Session["tipo"].ToString() != "2" && Session["tipo"].ToString() != "3")
             {
                 return false;
             }

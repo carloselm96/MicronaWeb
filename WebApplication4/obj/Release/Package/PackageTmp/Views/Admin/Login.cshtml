@@ -1,0 +1,96 @@
+﻿@model WebApplication4.Models.LoginUser
+
+@{
+    Layout = null;
+}
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Login V15</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--===============================================================================================-->
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/bootstrap/css/bootstrap.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/animate/animate.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/css-hamburgers/hamburgers.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/animsition/css/animsition.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/select2/select2.min.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/vendor/daterangepicker/daterangepicker.css">
+    <!--===============================================================================================-->
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/css/util.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/Login_v15/css/main.css">
+    <!--===============================================================================================-->
+</head>
+<body>
+
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-form-title" style="background-image: url(@Url.Content("~/Content/Login_v15/images/Microna.PNG"));">
+                    <span class="login100-form-title-1">
+                        Inicio de Sesión
+                    </span>
+                </div>
+                @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "login100-form validate-form" }))
+                {
+                    <div class="wrap-input100 validate-input m-b-26" data-validate="El usuario es requerido">
+                        <span class="label-input100">Usuario</span>
+                        <input class="input100" type="text" name="UserName" placeholder="Inserte Usuario">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <br />@Html.ValidationMessageFor(model => model.UserName, null, new { @class = "txt1" }){
+
+                    }
+                    <div class="wrap-input100 validate-input m-b-18" data-validate="La contraseña es requerida">
+                        <span class="label-input100">Contraseña</span>
+                        <input class="input100" type="password" name="Password" placeholder="Inserte Contraseña">
+                        <span class="focus-input100"></span>
+                    </div>
+                    <br />@Html.ValidationMessageFor(model => model.Password, null, new { @class = "txt1" }){ }
+
+
+                    <div class="container-login100-form-btn">
+                        <button class="login100-form-btn" type="submit">
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/jquery/jquery-3.2.1.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/animsition/js/animsition.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/bootstrap/js/popper.js"></script>
+    <script src="~/Content/Login_v15/vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/select2/select2.min.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/daterangepicker/moment.min.js"></script>
+    <script src="~/Content/Login_v15/vendor/daterangepicker/daterangepicker.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/vendor/countdowntime/countdowntime.js"></script>
+    <!--===============================================================================================-->
+    <script src="~/Content/Login_v15/js/main.js"></script>
+
+</body>
+</html>

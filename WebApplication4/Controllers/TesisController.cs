@@ -130,7 +130,7 @@ namespace WebApplication4.Controllers
                 {
                     tesis.archivo = file.idarchivo;
                 }
-                tesis.usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+                tesis.usuario = int.Parse(Session["id"].ToString().ToString());
                 db.tesis.Add(tesis);
                 db.SaveChanges();
                 if (GrupoAcademico != null)
@@ -164,7 +164,7 @@ namespace WebApplication4.Controllers
             }
 
             var a = db.tesis.Where(x => x.idtesis == id).FirstOrDefault();
-            if (int.Parse(Request.Cookies["userInfo"]["id"]) != a.usuario)
+            if (int.Parse(Session["id"].ToString().ToString()) != a.usuario && Session["tipo"].ToString().Equals("2"))
             {
                 return RedirectToAction("Index");
             }
@@ -255,7 +255,7 @@ namespace WebApplication4.Controllers
                 }
 
                 var libr = db.tesis.Where(x => x.idtesis == id).FirstOrDefault();
-                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != libr.usuario)
+                if (int.Parse(Session["id"].ToString().ToString()) != libr.usuario)
                 {
                     return RedirectToAction("Index");
                 }

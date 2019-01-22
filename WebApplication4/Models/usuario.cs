@@ -40,11 +40,11 @@ namespace WebApplication4.Models
         public string Nombre { get; set; }
         [DisplayName("Usuario")]
         [Required(ErrorMessage ="Este Campo es Necesario")]
-        [StringLength(5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
+        [StringLength(20,MinimumLength = 5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
         [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "No se permiten caracteres especiales")]
         public string Usuario1 { get; set; }
         [Required(ErrorMessage = "Este Campo es Necesario")]
-        [StringLength(5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
+        [StringLength(20,MinimumLength = 5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
         [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "No se permiten caracteres especiales")]
         public string Contraseña { get; set; }
         [Required(ErrorMessage = "Este Campo es Necesario")]

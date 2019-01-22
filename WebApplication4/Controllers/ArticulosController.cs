@@ -85,7 +85,7 @@ namespace WebApplication4.Controllers
                 ModelState.AddModelError("Nombre", "El campo autores no puede ir vacio");
                 return View(a);
             }
-            a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+            a.Usuario = int.Parse(Session["id"].ToString());
             if (ModelState.IsValid)
             {
                 archivo file = null;
@@ -107,7 +107,7 @@ namespace WebApplication4.Controllers
                         file.Nombre = fileName;
                         file.url = path;
                     }
-                    a.Usuario = int.Parse(Request.Cookies["userInfo"]["id"]);
+                    a.Usuario = int.Parse(Session["id"].ToString());
 
                     if (dt.createArticulo(a, file, GrupoAcademico, Autores))
                     {
@@ -139,7 +139,7 @@ namespace WebApplication4.Controllers
             }
             
             var a = dt.getArticuloById(id);
-            if(int.Parse(Request.Cookies["userInfo"]["id"]) != a.Usuario)
+            if(int.Parse(Session["id"].ToString()) != a.Usuario && Session["tipo"].ToString().Equals("2"))
             {
                 return RedirectToAction("Index");
             }
@@ -214,7 +214,7 @@ namespace WebApplication4.Controllers
                 }
                 
                 var articulo = dt.getArticuloById(id);
-                if (int.Parse(Request.Cookies["UserInfo"]["Id"]) != articulo.Usuario)
+                if (int.Parse(Session["id"].ToString()) != articulo.Usuario)
                 {
                     return RedirectToAction("Index");
                 }

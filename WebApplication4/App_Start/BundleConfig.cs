@@ -48,6 +48,14 @@ namespace WebApplication4.App_Start
                 "~/Content/Login_v15/css/main.css"
                 ));
 
+            bundles.Add(new StyleBundle("~/bundles/editorstyle").Include(
+                "~/Conent/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css"
+                ));
+
+            bundles.Add(new ScriptBundle("~/bundles/editorscript").Include(
+                "~/Conent/AdminLTE/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"
+                ));
+
             bundles.Add(new ScriptBundle("~/bundles/bowercomponents").Include(
                 "~/Content/bower_components/jquery/dist/jquery.min.js",
                 "~/Content/bower_components/bootstrap/dist/js/bootstrap.min.js",

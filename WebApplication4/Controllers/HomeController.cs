@@ -107,6 +107,21 @@ namespace WebApplication4.Controllers
         }
 
         [AllowAnonymous]
+        public ActionResult Contacto()
+        {
+            string fileName = "~/Content/Files/test.txt";
+            string fullpath = HttpContext.Server.MapPath(fileName);
+            if (System.IO.File.Exists(fullpath))
+            {
+                string text = "";
+                text = System.IO.File.ReadAllText(Server.MapPath(fileName));
+
+                ViewBag.text = text;
+            }
+            return View();
+        }
+
+        [Authorize]
         public FileResult Download(int? id)
         {
             var archivo = dt.getDownloadUrl(id.GetValueOrDefault());

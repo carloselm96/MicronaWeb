@@ -1,0 +1,157 @@
+﻿@model IEnumerable<WebApplication4.Models.concentrado>
+@{
+    /**/
+
+    ViewBag.Title = "Concentrado Total";
+    ViewBag.Controlador = "Lista";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<link href="~/Content/loading-style.css" rel="stylesheet" />
+
+<div onload="myFunction()" style="margin:0;">
+    <div id="loader"></div>
+    <div id="myDiv" style="display:none" class="animate-bottom">
+        <div class="box box-success ">
+            <div class="box-header with-border">
+                <div class="box-title">Busqueda avanzada</div>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form id="searchForm">
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <h4><b>Titulo:</b></h4>
+                            <input name="titulo" type="text" placeholder="Insertar Titulo" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="form-group">
+                                <h4><b>Año:</b></h4>
+                                <div class="input-daterange" id="">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control pull-right datemask" name="Y1">
+                                        <span class="input-group-addon">al</span>
+                                        <input type="text" class="form-control pull-right datemask" name="Y2">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <h4><b>Autores:</b></h4>
+
+                                <select class="form-control select2" name="autores" multiple>
+                                    @foreach (var Usuario in ViewBag.autores)
+                                    {
+                                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <h4><b>Tipo de Material:</b></h4>
+                            <div class="form-group">
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checktype" type="checkbox" value="1"> Articulos
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checktype" type="checkbox" value="2"> Trabajos Presentados
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checktype" type="checkbox" value="3"> Libros
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checktype" type="checkbox" value="4"> Capitulos de Libros
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checktype" type="checkbox" value="5"> Proyectos
+                                    </label>
+                                </div>
+                                <div class="checkbox">
+                                    <label>
+                                        <input name="checktype" type="checkbox" value="6"> Tesis
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <h4><b>Grupo Académico</b></h4>
+                            <div class="form-group">
+                                @foreach (var grupo in ViewBag.grupos)
+                                {
+                                    <div class="checkbox">
+                                        <label>
+                                            <input type="checkbox" name="checkgroup" value="@grupo.idGrupoAcademico"> @grupo.Nombre
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                    <input type="button" value="Buscar" class="btn btn-success btn-lg" id="searchBtn" />
+                </form>
+            </div>
+        </div>
+
+        <div class="box box-primary box-solid">
+            <div class="box-header with-border">
+                <div class="box-title">Resultados</div>
+            </div>
+            <div class="box-body  table-responsive">
+                <div id="searchResult">
+                    @{ Html.RenderPartial("_ConcentradoPartial", Model); }
+                </div>
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+    <script>
+    var myVar;
+
+    function myFunction() {
+        document.getElementById("loader").style.display = "block";
+        document.getElementById("myDiv").style.display = "none";
+        myVar = setTimeout(showPage, 1000);
+    }
+
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+    }
+
+    $(document).ready(function () {
+        document.getElementById("loader").style.display = "none";
+        document.getElementById("myDiv").style.display = "block";
+        $("#searchBtn").on("click", function () {
+            var val = $('#searchForm').serialize();            
+            $.ajax({
+                url: "@Url.Action("Search")",
+                type: "GET",
+                data: val,
+                success: function (partialViewResult) {
+                    myFunction();
+                    $("#searchResult").html(partialViewResult);
+                }
+            })
+        });
+    });
+    </script>    

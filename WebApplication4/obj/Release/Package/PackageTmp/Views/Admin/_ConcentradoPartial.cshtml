@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WebApplication4.Models.concentrado>
+
+<table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
+    <thead>
+        <tr>
+            <th>
+                Titulo
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                Tipo de Material
+            </th>
+            <th>
+                Año
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @{
+                        switch (item.TipoConcentrado)
+                        {
+                            case 1:
+                                <a href="@Url.Action("Details","Articulos",new { id=item.IdItem })">@item.Titulo</a>
+                                break;
+                            case 2:
+                                <a href="@Url.Action("Details","CapituloLibro",new { id=item.IdItem })">@item.Titulo</a>
+                                break;
+                            case 3:
+                                <a href="@Url.Action("Details","Libro",new { id=item.IdItem })">@item.Titulo</a>
+                                break;
+                            case 4:
+                                <a href="@Url.Action("Details","Proyectos",new { id=item.IdItem })">@item.Titulo</a>
+                                break;
+                            case 5:
+                                <a href="@Url.Action("Details","Trabajos",new { id=item.IdItem })">@item.Titulo</a>
+                                break;
+                            case 6:
+                                <a href="@Url.Action("Details","Tesis",new { id=item.IdItem })">@item.Titulo</a>
+                                break;
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var a in item.concentrado_autores)
+                        {
+                            <p>@a.usuario.Nombre @a.usuario.Apellido_Paterno @a.usuario.Apellido_Materno</p>
+                        }
+                    }
+                </td>
+                <td>
+                    @item.tipoconcentrado1.Nombre
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fecha, "{0:dd/MM/yyyy}")
+                </td>
+                <td>
+                    <ul>
+                        @foreach (var a in item.concentrado_grupos)
+                        {
+                            <li>
+                                @a.grupoacademico.Nombre
+                            </li>
+                        }
+                    </ul>
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <th>
+                Titulo
+            </th>
+            <th>
+                Autores
+            </th>
+            <th>
+                Tipo de Material
+            </th>
+            <th>
+                Año
+            </th>
+            <th>
+                Grupo Académico
+            </th>
+        </tr>
+    </tfoot>
+</table>
+
+<script>
+    $(function () {
+        
+        $('#datat').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
+            ]
+        });         
+        $(".swalalert").click(function (e) {
+            e.preventDefault();
+            // stop the default behavior(navigation)
+            var _form = $(this).closest("form");
+            //get a reference to the container form 
+
+            swal({
+                title: "Esta seguro?",
+                text: "Una vez elimnado no se podra recuperar este archivo",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+            }).then((willDelete) => {
+                if (willDelete) {
+                    _form.submit();
+                } else {
+                    swal("Se ha cancelado la accion");
+                }
+            });
+        })
+    })
+</script>

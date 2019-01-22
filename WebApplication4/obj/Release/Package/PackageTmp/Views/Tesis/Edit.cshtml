@@ -1,0 +1,138 @@
+﻿@model WebApplication4.Models.tesis
+
+@{
+    ViewBag.Title = "Editar";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="box">
+    <div class="box-header">
+        <div class="box-title"> <h3>Tesis</h3></div>
+    </div>
+    <div class="box-body">
+
+        @using (Html.BeginForm("Edit", "Tesis", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.idtesis)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.titulo, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.titulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Autores</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="Autores" style="width:75%">
+                        @foreach (var Usuario in ViewBag.autores)
+                        {
+                            if (Model.usuario1 == Usuario)
+                            {
+                                <option value="@Usuario.idUsuario" selected>@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                            else
+                            {
+                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control datemask" name="Fecha"value="@Html.DisplayFor(Model=>Model.fecha, "{0:dd/MM/yyyy}")" />
+                    @Html.ValidationMessageFor(model => model.fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.director, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.director, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.director, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.asesor, "asesor", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownList("asesor", new SelectList(ViewBag.Autores, "idUsuario", "Nombre"), htmlAttributes: new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.asesor, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.codirector, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.codirector, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.codirector, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.jurado, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.jurado, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.jurado, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Grupo académico</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="GrupoAcademico" multiple>
+                        @foreach (var Grupo in ViewBag.grupos)
+                        {
+                            if (Model.tesis_grupo.Where(x => x.idgrupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
+                            {
+                                <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            @if (Model.archivo1 != null)
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Archivo actual: </label>
+                    <div class="col-md-10">
+                        @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2">Nuevo Archivo</label>
+                <div class="col-md-10">
+                    <input type="file" name="ffile" class="form-control" accept="application/pdf" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+
+
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+
+

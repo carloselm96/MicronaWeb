@@ -1,0 +1,193 @@
+﻿
+@{
+    ViewBag.Title = "SearchResutl";
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Busqueda</h3>
+            </div>
+            <!-- /.box-header -->
+            @using (Html.BeginForm("HomeSearch", "Home", FormMethod.Get))
+            {
+
+                <div class="box-body">
+                    <div class="box-group" id="accordion">
+                        <!-- we are adding the .panel class so bootstrap.js collapse plugin detects it -->
+                        <div class="panel box box-primary">
+
+                            <div class="box-body">
+                                <div class="input-group input-group-lg">
+                                    <input type="text" name="titulo" required class="form-control" placeholder="Escriba título de artículo, libro, trabajo...">
+                                    <span class="input-group-btn">
+                                        <button type="submit" id="searchBtn" class="btn btn-info btn-flat">Buscar</button>
+                                    </span>
+                                </div>
+                                <div class="pull-right">
+                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                                        Busqueda Avanzada
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse">
+                            <div class="box-body">
+
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <div class="form-group">
+                                            <h4><b>Fecha:</b></h4>
+                                            <div class="input-daterange" id="">
+                                                <div class="input-group">
+                                                    <input type="text" class="form-control pull-right datemask" name="Y1">
+                                                    <span class="input-group-addon">al</span>
+                                                    <input type="text" class="form-control pull-right datemask" name="Y2">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <h4><b>Autores:</b></h4>
+
+                                            <select class="form-control select2" name="autores" multiple>
+                                                @foreach (var Usuario in ViewBag.autores)
+                                                {
+                                                    
+                                                <option value="@Usuario.idUsuario">
+                                                    @Usuario.Apellido_Paterno @Usuario.Nombre
+                                                </option>
+                                                }
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-5">
+                                        <h4><b>Tipo de Material:</b></h4>
+                                        <div class="form-group">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="checktype" type="checkbox" value="1"> Articulos
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="checktype" type="checkbox" value="2"> Trabajos Presentados
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="checktype" type="checkbox" value="3"> Libros
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="checktype" type="checkbox" value="4"> Capitulos de Libros
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="checktype" type="checkbox" value="5"> Proyectos
+                                                </label>
+                                            </div>
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input name="checktype" type="checkbox" value="6"> Tesis
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <h4><b>Grupo Académico</b></h4>
+                                        <div class="form-group">
+                                            @foreach (var grupo in ViewBag.grupos)
+                                            {
+                                                <div class="checkbox">
+                                                    <label>
+                                                        <input type="checkbox" name="checkgroup" value="@grupo.idGrupoAcademico"> @grupo.Nombre
+                                                    </label>
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+            <!-- /.box-body -->
+        </div>
+        <!-- /.box -->
+    </div>
+</div>
+<div id="searchResult">
+    @{ Html.RenderPartial("_SearchResultPartial"); }
+</div>
+
+<script>
+
+    function GetURLParameter(sParam) {
+        var sPageURL = window.location.search.substring(1);
+        var sURLVariables = sPageURL.split('&');
+        for (var i = 0; i < sURLVariables.length; i++) {
+            var sParameterName = sURLVariables[i].split('=');
+            if (sParameterName[0] == sParam) {
+                return sParameterName[1];
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        var titulo = GetURLParameter("titulo");
+        if (titulo == undefined) {
+            titulo = "";
+        }
+        if (Y2 == undefined) {
+            Y2 = "";
+        }
+        if (Y1 == undefined) {
+            Y1 = "";
+        }
+
+        var Y1 = GetURLParameter("Y1");
+        var Y2 = GetURLParameter("Y1");
+        var autores = GetURLParameter("autores");
+        var checkgroup = GetURLParameter("checkgroup");
+        var checktype = GetURLParameter("checktype");
+        $("input[name='autor']").on("change", function () {
+            var val = "?titulo=" + titulo + "&Y1=" + Y1 + "&Y2=" + Y2 + "&autores=" + $("input[name='autor']:checked").val();            
+            if (checkgroup != undefined) {
+                for (var i = 0; i < checkgroup.length; i++) {
+                    val = val + "&checkgroup=" + checkgroup[i];
+                }
+            }
+            if (checktype != undefined) {
+                for (var i = 0; i < checktype.length; i++) {
+                    val = val + "&checktype=" + checktype[i];
+                }
+            }           
+            window.location.href = '@Url.Action("HomeSearch", "Home")' + val;
+        });
+        $("input[name='grupo']").on("change", function () {
+            var val = "?titulo=" + titulo + "&Y1=" + Y1 + "&Y2=" + Y2 + "&checkgroup=" + $("input[name='grupo']:checked").val();            
+            if (autores != undefined) {
+                for (var i = 0; i < autores.length; i++) {
+                    val = val + "&autores=" + autores[i];
+                }
+            }
+            if (checktype != undefined) {
+                for (var i = 0; i < checktype.length; i++) {
+                    val = val + "&checktype=" + checktype[i];
+                }
+            }           
+            window.location.href = '@Url.Action("HomeSearch", "Home")' + val;
+        });
+    });
+</script>  

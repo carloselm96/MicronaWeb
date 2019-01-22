@@ -1,0 +1,105 @@
+﻿@model IEnumerable<WebApplication4.Models.concentrado>
+    @{ 
+        var list = Model;
+    }
+<div class="row">
+    <div class="col-md-9">
+        <div class="box box-solid box-primary">
+            <div class="box-header with-border">
+                <h3 class="box-title">Resultados</h3>
+            </div>
+            <div class="box-body">
+                <table id="datat" class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Results</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <dt><a href="@Url.Action("Details","Home",new { id=item.idConcentrado })">@item.Titulo</a></dt>
+                                    <dl>
+                                        <dd>
+                                            @{
+                                                
+                                                foreach (var a in item.concentrado_autores)
+                                                {
+                                                    var sb=a.usuario.Nombre.Split(' ');
+                                                <p>@a.usuario.Apellido_Paterno, @a.usuario.Nombre</p>
+                                                }
+                                            }
+                                        </dd>
+                                        <dd>@Html.DisplayFor(modelItem => item.Fecha, "{0:dd/MM/yyyy}")</dd>
+                                        <dd>@item.tipoconcentrado1.Nombre</dd>
+                                        <dd>
+                                            @foreach (var a in item.concentrado_grupos)
+                                            {
+                                                <li>
+                                                    @a.grupoacademico.Nombre
+                                                </li>
+                                            }
+                                        </dd>
+                                    </dl>
+                                </td>
+                            </tr>
+                        }
+                  
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <th>Results</th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="box box-solid box-default">
+            <div class="box-body">
+                @{
+                    <label>Autores Relacionados</label>
+                    <div class="form-group">
+                        @foreach (var a in ViewBag.autoresRel)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="autor" value="@a.idUsuario">
+                                    @a.Apellido_Paterno, @a.Nombre
+                                </label>
+                            </div>
+                        }
+                    </div>
+                }
+                @{
+                    <label>Grupos Académicos Relacionados</label>
+                    <div class="form-group">
+                        @foreach (var a in ViewBag.gruposRel)
+                        {
+                            <div class="checkbox">
+                                <label>
+                                    <input type="checkbox" name="grupo" value="@a.idGrupoAcademico">
+                                    @a.Nombre
+                                </label>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $(function () {
+        $('#datat').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}
+            ]
+        });
+    })
+</script>

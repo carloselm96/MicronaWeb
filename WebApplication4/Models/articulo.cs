@@ -24,7 +24,7 @@ namespace WebApplication4.Models
         }
     
         public int idArticulo { get; set; }
-        [DisplayName("Usuario")]
+        [DisplayName("Titulo")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
         public Nullable<int> Volumen { get; set; }

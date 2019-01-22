@@ -19,7 +19,7 @@ namespace WebApplication4.Controllers
         public ActionResult Index()
         {
             microna2018Entities db = new microna2018Entities();
-            int? id = int.Parse(Request.Cookies["userInfo"]["id"]);
+            int? id = int.Parse(Session["id"].ToString());
             if (id != null)
             {
                 var user = db.usuario.Where(x => x.idUsuario == id).FirstOrDefault();
@@ -36,7 +36,7 @@ namespace WebApplication4.Controllers
             {
                 return RedirectToAction("Index", "Home", null);
             }
-            if (id != int.Parse(Request.Cookies["userInfo"]["id"]))
+            if (id != int.Parse(Session["id"].ToString()))
             {
                 return RedirectToAction("Index", "Home", null);
             }
@@ -57,11 +57,11 @@ namespace WebApplication4.Controllers
             try
             {
                 microna2018Entities db = new microna2018Entities();
-                if (Request.Cookies["userInfo"]["id"] == null)
+                if (Session["id"].ToString() == null)
                 {
                     return RedirectToAction("Index", "Home", null);
                 }
-                int id = int.Parse(Request.Cookies["userInfo"]["id"]);                
+                int id = int.Parse(Session["id"].ToString());                
                 var user = db.usuario.Where(x => x.idUsuario == id && x.Contraseña==u.Contraseña).FirstOrDefault();
                 if (user == null)
                 {
@@ -90,10 +90,10 @@ namespace WebApplication4.Controllers
                     user.Usuario1 = u.Usuario1;
                     db.SaveChanges();
                     HttpCookie cookie = new HttpCookie("userInfo");
-                    cookie["id"] = Request.Cookies["userInfo"]["id"];
+                    cookie["id"] = Session["id"].ToString();
                     cookie["nombre"] = user.Nombre;
                     cookie["user"] = user.Usuario1.ToLower();
-                    cookie["tipo"] = Request.Cookies["userInfo"]["tipo"];
+                    cookie["tipo"] = Session["tipo"].ToString();
                     Response.Cookies.Add(cookie);
                     return RedirectToAction("Index", user.idUsuario);
                 }

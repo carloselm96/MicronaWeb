@@ -6612,6 +6612,12 @@
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.js" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.css" />
     <Content Include="Content\AdminLTE\plugins\timepicker\bootstrap-timepicker.min.js" />
+    <Content Include="Content\Archivos\ArtArbitrado\20180504153714-examen_Emmanuel_Castillo.c" />
+    <Content Include="Content\Archivos\ArtArbitrado\20180507115454-examen_Emmanuel_Castillo.c" />
+    <Content Include="Content\Archivos\ArtArbitrado\20180507120850-examen_Emmanuel_Castillo.c" />
+    <Content Include="Content\Archivos\ArtArbitrado\20180508111451-examen_Emmanuel_Castillo.c" />
+    <Content Include="Content\Archivos\ArtArbitrado\20180516171050-examen_Emmanuel_Castillo.c" />
+    <Content Include="Content\Archivos\ArtArbitrado\20180516171132-examen_Emmanuel_Castillo.c" />
     <Content Include="Content\bootstrap-select\dist\css\bootstrap-select.css" />
     <Content Include="Content\bootstrap-select\dist\css\bootstrap-select.min.css" />
     <Content Include="Content\bootstrap-select\dist\js\bootstrap-select.js" />
@@ -15169,6 +15175,47 @@
     <Content Include="Content\Login_v15\vendor\bootstrap\css\bootstrap-reboot.min.css.map" />
     <Content Include="Content\Login_v15\vendor\bootstrap\css\bootstrap.css.map" />
     <Content Include="Content\Login_v15\vendor\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\Archivos\Articulos\20180522115830-ApplicationInsights.config" />
+    <Content Include="Content\Archivos\Articulos\20180522154814-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180522161430-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180523171017-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180523171934-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180523172306-Getting Started with Entity Framework 6 Code First using MVC 5.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180523181606-Getting Started with Entity Framework 6 Code First using MVC 5.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180523181643-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180525235216-IMSS.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180530005542-IMSS.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180622010104-López Mijangos Carlos Ernesto - Curriculum.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180622104949-López Mijangos Carlos Ernesto - Curriculum.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180622111420-López Mijangos Carlos Ernesto - Curriculum.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180622111720-López Mijangos Carlos Ernesto - Curriculum.pdf" />
+    <Content Include="Content\Archivos\Articulos\20180710103020-calCreditos %284%29-1.pdf" />
+    <Content Include="Content\Archivos\Articulos\20181217213302-Sistema MICRONA  Dashboard %281%29 %281%29.pdf" />
+    <Content Include="Content\Archivos\Articulos\20181217223455-Cartas a Chepita - Jaime Sabines.pdf" />
+    <Content Include="Content\Archivos\Articulos\20181219223352-Rutas de Transporte-4 %281%29.pdf" />
+    <Content Include="Content\Archivos\Articulos\20190116190105-QPRA-12-E-CR_creditos %281%29.pdf" />
+    <Content Include="Content\Archivos\Capitulos\20180526005538-guia paciente renal.pdf" />
+    <Content Include="Content\Archivos\Capitulos\20180526152925-guia paciente renal.pdf" />
+    <Content Include="Content\Archivos\Capitulos\20180526194421-aeal_explica_alimentacion_nutricion.pdf" />
+    <Content Include="Content\Archivos\Capitulos\20180528164929-Getting Started with Entity Framework 6 Code First using MVC 5.pdf" />
+    <Content Include="Content\Archivos\Capitulos\20181007144232-Sistema MICRONA  Dashboard %281%29.pdf" />
+    <Content Include="Content\Archivos\Capitulos\20190106231610-QPRA-12-E-CR_creditos.pdf" />
+    <Content Include="Content\Archivos\Libros\20180525131900-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Libros\20180525132344-Getting Started with Entity Framework 6 Code First using MVC 5 %281%29.pdf" />
+    <Content Include="Content\Archivos\Libros\20180526000716-postada tesis onco.pdf" />
+    <Content Include="Content\Archivos\Libros\20180526005454-guia paciente renal.pdf" />
+    <Content Include="Content\Archivos\Libros\20181008230829-Sistema MICRONA  Dashboard %281%29 %281%29.pdf" />
+    <Content Include="Content\Archivos\Libros\20190113204053-QPRA-12-E-CR_creditos %281%29.pdf" />
+    <Content Include="Content\Archivos\Libros\20190113204136-Cartas a Chepita - Jaime Sabines.pdf" />
+    <Content Include="Content\Archivos\Libros\20190113204836-QPRA-12-E-CR_creditos %281%29.pdf" />
+    <Content Include="Content\Archivos\Proyectos\20180527195414-IMSS.pdf" />
+    <Content Include="Content\Archivos\Proyectos\20180528102853-Getting Started with Entity Framework 6 Code First using MVC 5 %281%29.pdf" />
+    <Content Include="Content\Archivos\Proyectos\20180528165102-Getting Started with Entity Framework 6 Code First using MVC 5 %281%29.pdf" />
+    <Content Include="Content\Archivos\Proyectos\20190113224848-QPRA-12-E-CR_creditos %281%29.pdf" />
+    <Content Include="Content\Archivos\Trabajos\20180524165006-Getting Started with Entity Framework 6 Code First using MVC 5.pdf" />
+    <Content Include="Content\Archivos\Trabajo\20180524164031-Produccion-Nanomateriales.pdf" />
+    <Content Include="Content\Archivos\Trabajo\20180525235517-Carlos Ernesto López Mijangos - Reporte Calificaciones.pdf" />
+    <Content Include="Content\Archivos\Trabajo\20180710105628-calCreditos %284%29-1.pdf" />
     <None Include="Properties\PublishProfiles\CustomProfile.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile1.pubxml" />
     <None Include="Properties\PublishProfiles\CustomProfile2.pubxml" />
@@ -15398,16 +15445,14 @@
     <Content Include="Views\Tesis\Details.cshtml" />
     <Content Include="Views\Tesis\Create.cshtml" />
     <Content Include="Views\Tesis\Edit.cshtml" />
+    <Content Include="Views\Home\Contacto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  </ItemGroup>  
   <ItemGroup>
     <Service Include="{4A0DDDB5-7A95-4FBF-97CC-616D07737A77}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
