@@ -25,7 +25,7 @@
         <EntityTypeShape EntityType="microna2018Model.tipoarticulo" Width="2.25" PointX="6" PointY="4.875" IsExpanded="true" />
         <EntityTypeShape EntityType="microna2018Model.tipoconcentrado" Width="2" PointX="6.75" PointY="31.125" IsExpanded="true" />
         <EntityTypeShape EntityType="microna2018Model.tipolibro" Width="2" PointX="6" PointY="34.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="microna2018Model.tipotrabajo" Width="2" PointX="3" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="microna2018Model.tipotrabajo" Width="2" PointX="1.5" PointY="15.125" IsExpanded="true" />
         <EntityTypeShape EntityType="microna2018Model.tipousuario" Width="2" PointX="0.75" PointY="20.125" IsExpanded="true" />
         <EntityTypeShape EntityType="microna2018Model.trabajo" Width="2" PointX="5.25" PointY="14.125" IsExpanded="true" />
         <EntityTypeShape EntityType="microna2018Model.trabajo_grupo" Width="2" PointX="7.5" PointY="11" IsExpanded="true" />

@@ -24,9 +24,11 @@ namespace WebApplication4.Models
         }
     
         public int idProyecto { get; set; }
+        [DisplayName("Titulo")]
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string nombre { get; set; }
         public string Financiamiento { get; set; }
-        [DisplayName("Fecha de Inicio")]
+        [DisplayName("Fecha Inicio")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> FechaInicio { get; set; }
         [DisplayName("Fecha Final")]

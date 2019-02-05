@@ -744,6 +744,8 @@ namespace WebApplication4.Models.DataAccess
                 l.Archivo = file.idarchivo;
             }
             l.Nombre = lib.Nombre;
+            l.Editorial = lib.Editorial;
+            l.Pais = lib.Pais;
             l.ISBN = lib.ISBN;
             l.TipoLibro = lib.TipoLibro;
             l.Año = lib.Año;

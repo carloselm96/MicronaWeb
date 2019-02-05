@@ -11,6 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class libro
@@ -23,8 +24,10 @@ namespace WebApplication4.Models
         }
     
         public int idLibro { get; set; }
+        [DisplayName("Titulo")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
+        [DisplayName("Fecha")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }

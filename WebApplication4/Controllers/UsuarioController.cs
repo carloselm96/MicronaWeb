@@ -72,19 +72,27 @@ namespace WebApplication4.Controllers
         
         public ActionResult Edit(int? id, int? response)
         {
-            if (id==null)
+            try
+            {
+                if (id == null)
+                {
+                    return RedirectToAction("Index", "Home", null);
+                }
+                if (validateAccess())
+                {
+                    ViewBag.TipoUsuario = dt.getTiposUsuario();
+                    var usuario = dt.getUsuarioById(id.GetValueOrDefault());
+                    return View(usuario);
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home", null);
+                }
+            }
+            catch(Exception e)
             {
                 return RedirectToAction("Index", "Home", null);
             }
-            if (validateAccess())
-            {
-                var usuario = dt.getUsuarioById(id.GetValueOrDefault());
-                return View(usuario);
-            }
-            else
-            {
-                return RedirectToAction("Index", "Home", null);
-            }            
         }
 
         // POST: Usuario/Edit/5
@@ -108,7 +116,7 @@ namespace WebApplication4.Controllers
                     ViewBag.TipoUsuario = dt.getTiposUsuario();
                     return View(u);
                 }
-                
+                dt.editUsuario(u, id);
                 if (int.Parse(Session["id"].ToString()) == id)
                 {
                     HttpCookie cookie = new HttpCookie("userInfo");
@@ -118,11 +126,11 @@ namespace WebApplication4.Controllers
                     cookie["tipo"] = Session["tipo"].ToString();
                     Response.Cookies.Add(cookie);
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch
             {
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 2 });
             }
         }
 
@@ -144,7 +152,7 @@ namespace WebApplication4.Controllers
                 {
                     return RedirectToAction("Index", new { response = 2 });
                 }
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", new { response = 1 });
             }
             catch
             {
@@ -154,11 +162,11 @@ namespace WebApplication4.Controllers
 
         public bool validateAccess()
         {
-            if (Session["tipo"].ToString() != "2" && Session["tipo"].ToString() != "3")
+            if (Session["tipo"].ToString() == "2" ||  Session["tipo"].ToString() == "3")
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
     }
 }

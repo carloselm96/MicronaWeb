@@ -28,10 +28,11 @@ namespace WebApplication4.Models
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
         public Nullable<int> Volumen { get; set; }
-        [DisplayName("Pagina Inicio")]
+        [DisplayName("Página Inicio")]
         public Nullable<int> PagInicio { get; set; }
-        [DisplayName("Pagina Final")]
+        [DisplayName("Página Final")]
         public Nullable<int> PagFinal { get; set; }
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Revista { get; set; }
         public string ISSN { get; set; }
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
@@ -39,7 +40,7 @@ namespace WebApplication4.Models
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         public Nullable<int> TipoArticulo { get; set; }
-        public Nullable<int> Indice { get; set; }
+        public string Indice { get; set; }
     
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -23,7 +23,7 @@
     <Property Name="Usuario" Type="int" />
     <Property Name="Archivo" Type="int" />
     <Property Name="TipoArticulo" Type="int" />
-    <Property Name="Indice" Type="int" />
+    <Property Name="Indice" Type="varchar" MaxLength="45" />
   </EntityType>
   <EntityType Name="articulo_grupo">
     <Key>
@@ -291,7 +291,9 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_Articulo_Archivo">
-    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1" />
+    <End Role="archivo" Type="Self.archivo" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
     <End Role="articulo" Type="Self.articulo" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="archivo">

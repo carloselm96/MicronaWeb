@@ -11,6 +11,7 @@ namespace WebApplication4.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel;
     using System.ComponentModel.DataAnnotations;
 
     public partial class concentrado
@@ -24,6 +25,7 @@ namespace WebApplication4.Models
     
         public int idConcentrado { get; set; }
         public string Titulo { get; set; }
+        [DisplayName("Fecha")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> TipoConcentrado { get; set; }

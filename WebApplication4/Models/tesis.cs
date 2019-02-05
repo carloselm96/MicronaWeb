@@ -23,6 +23,7 @@ namespace WebApplication4.Models
         }
     
         public int idtesis { get; set; }
+        [DisplayName("Titulo")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string titulo { get; set; }
         public Nullable<int> usuario { get; set; }
@@ -37,10 +38,13 @@ namespace WebApplication4.Models
         public Nullable<int> autor { get; set; }
     
         public virtual archivo archivo1 { get; set; }
+        [DisplayName("Asesor")]
         public virtual usuario usuario1 { get; set; }
+        
         public virtual usuario usuario2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tesis_grupo> tesis_grupo { get; set; }
+        [DisplayName("Autor")]
         public virtual usuario usuario21 { get; set; }
     }
 }

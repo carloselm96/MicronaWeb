@@ -28,7 +28,7 @@ namespace WebApplication4.Controllers
 
         [Authorize]
         [HttpGet]
-        public ActionResult Search(string Nombre, string autor, DateTime? Y1, DateTime? Y2, List<string> grupos)
+        public ActionResult Search(string Nombre, string autor, DateTime? Y1, DateTime? Y2, List<string> grupos, string asesor)
         {
             ViewBag.grupos = db.grupoacademico.ToList();
             ViewBag.autores = db.usuario.Where(x => x.Status.Equals("A")).ToList();            
@@ -63,9 +63,13 @@ namespace WebApplication4.Controllers
                 }
                 tesis = tesis.Where(x => cg.Contains(x)).ToList();
             }
-            if (autor != null)
+            if (!String.IsNullOrEmpty(autor))
             {
-
+                tesis = tesis.Where(x => x.autor == int.Parse(autor)).ToList();
+            }
+            if (!String.IsNullOrEmpty(asesor))
+            {
+                tesis = tesis.Where(x => x.asesor == int.Parse(asesor)).ToList();
             }
             return PartialView("_TesisPartial", tesis);
         }
@@ -95,7 +99,7 @@ namespace WebApplication4.Controllers
         // POST: Tesis/Create
         [HttpPost]
         [Authorize]
-        public ActionResult Create(tesis tesis, HttpPostedFileBase ffile, List<string> GrupoAcademico, List<string> Autores)
+        public ActionResult Create(tesis tesis, HttpPostedFileBase ffile, List<string> GrupoAcademico)
         {
             archivo file = null;
 
@@ -177,9 +181,9 @@ namespace WebApplication4.Controllers
         // POST: Tesis/Edit/5
         [Authorize]
         [HttpPost]
-        public ActionResult Edit(int id, tesis tesis, List<string> GrupoAcademico, HttpPostedFileBase ffile)
+        public ActionResult Edit(int id, tesis tesis, List<string> GrupoAcademico, HttpPostedFileBase ffile, string autor)
         {
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid && (String.IsNullOrEmpty(autor)==false))
             {
                 ViewBag.grupo = db.grupoacademico.ToList();
                 ViewBag.autores = db.usuario.Where(x => x.Status.Equals("A")).ToList();
@@ -194,6 +198,7 @@ namespace WebApplication4.Controllers
                 l.codirector = tesis.codirector;
                 l.director = tesis.director;
                 l.usuario2 = tesis.usuario2;
+                l.autor = int.Parse(autor);
                 l.fecha = tesis.fecha;                                
                 var grupos_eliminar = db.tesis_grupo.Where(x => x.idtesis == id).ToList();
                 if (grupos_eliminar != null)

@@ -23,15 +23,15 @@ namespace WebApplication4.Models
             this.capitulo_usuario = new HashSet<capitulo_usuario>();
         }
     
-        public int idCapituloLibro { get; set; }        
+        public int idCapituloLibro { get; set; }
+        [DisplayName("Titulo")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
-        [DisplayName("Fecha")]       
+        [DisplayName("Fecha")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Año { get; set; }
         public string ISBN { get; set; }
-        public string Participantes { get; set; }        
-        [Required(ErrorMessage = "Este Campo es Necesario")]
+        public string Participantes { get; set; }
         public string Libro { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }

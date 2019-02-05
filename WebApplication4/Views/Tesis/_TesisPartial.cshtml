@@ -12,7 +12,7 @@
                 @Html.DisplayNameFor(model => model.titulo)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.usuario2)
+                @Html.DisplayNameFor(model => model.usuario21)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.fecha)
@@ -30,7 +30,7 @@
                 @Html.DisplayNameFor(model => model.jurado)
             </th>
             <th>Grupo Académico</th>
-            <th>@Html.DisplayNameFor(model => model.usuario1)</th>
+            <th>Creado por</th>
             <th></th>
         </tr>
     </thead>
@@ -54,7 +54,9 @@
                     @Html.DisplayFor(modelItem => item.director)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.asesor)
+                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
+                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Paterno)
+                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Materno)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.codirector)
@@ -68,15 +70,15 @@
                     }
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.usuario1.Nombre)
-                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Paterno)
-                    @Html.DisplayFor(modelItem => item.usuario1.Apellido_Materno)
+                    @Html.DisplayFor(modelItem => item.usuario2.Nombre)
+                    @Html.DisplayFor(modelItem => item.usuario2.Apellido_Paterno)
+                    @Html.DisplayFor(modelItem => item.usuario2.Apellido_Materno)
                 </td>
                 <td>
                     @{
-                        if (item.usuario1.idUsuario == int.Parse(Session["id"].ToString()) || Session["tipo"].ToString().Equals("1") || Session["tipo"].ToString().Equals("3"))
+                        if (item.usuario2.idUsuario == int.Parse(Session["id"].ToString()) || Session["tipo"].ToString().Equals("1") || Session["tipo"].ToString().Equals("3"))
                         {
-                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idtesis }, new { @class = "btn btn-sm btn-warning" })</p>
+                            <p>@Html.ActionLink("Editar", "Edit", new { id = item.idtesis }, new { @class = "btn btn-large btn-warning" })</p>
                             using (Html.BeginForm("Delete", "Tesis", FormMethod.Get, null))
                             {
                                 <input hidden name="id" value="@item.idtesis" />
@@ -95,7 +97,7 @@
                     @Html.DisplayNameFor(model => model.titulo)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.usuario)
+                    @Html.DisplayNameFor(model => model.usuario21)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.fecha)
@@ -114,6 +116,7 @@
                     @Html.DisplayNameFor(model => model.jurado)
                 </th>
                 <th>Grupo Académico</th>
+                <th>Creado por</th>
                 <th></th>
             </tr>
         </tfoot>

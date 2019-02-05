@@ -36,26 +36,26 @@ namespace WebApplication4.Models
         }
     
         public int idUsuario { get; set; }
+        [DisplayName("Nombre")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Solo letras y números")]
         [DisplayName("Usuario")]
-        [Required(ErrorMessage ="Este Campo es Necesario")]
-        [StringLength(20,MinimumLength = 5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
-        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "No se permiten caracteres especiales")]
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Debe de ser de al menos 5 caracteres")]
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Usuario1 { get; set; }
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Debe de ser de al menos 5 caracteres")]
+        [RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Solo letras y números")]
+        [DisplayName("Contraseña")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
-        [StringLength(20,MinimumLength = 5, ErrorMessage = "Este campo tiene que ser al menos de 5 caracteres")]
-        [RegularExpression(@"^[0-9a-zA-Z''-'\s]{1,40}$", ErrorMessage = "No se permiten caracteres especiales")]
         public string Contraseña { get; set; }
-        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Correo { get; set; }
-        [DisplayName("Tipo de Usuario")]
         public Nullable<int> TipoUsuario { get; set; }
         [DisplayName("Apellido Paterno")]
-        [Required(ErrorMessage = "Este Campo es Necesario")]        
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Apellido_Paterno { get; set; }
         [DisplayName("Apellido Materno")]
-        [Required(ErrorMessage = "Este Campo es Necesario")]        
+        [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Apellido_Materno { get; set; }
         public string Status { get; set; }
     

@@ -11,22 +11,22 @@
             @Html.ActionLink("Nuevo Usuario", "Create", null, new { @class = "btn btn-large btn-default" })
         </p>
         @{
-            if (ViewBag.response != null)
+            if (Request.QueryString["response"] != null)
             {
-                switch (ViewBag.response)
+                if (Request.QueryString["response"] == "1")
                 {
-                    case 1:
-                        <div class="alert alert-success">
-                            <strong>Completado!</strong> Se ha realizado correctamente la acción
-                        </div>
-                        break;
-                    case 2:
-                        <div class="alert alert-warning">
-                            <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
-                        </div>
-                        break;
+                    <div class="alert alert-success">
+                        <strong>Completado!</strong> Se ha realizado correctamente la acción
+                    </div>
+                }
+                else
+                {
+                    <div class="alert alert-warning">
+                        <strong>Error</strong> Ha ocurrido un error al tratar de hacer la acción
+                    </div>
                 }
             }
+
         }
         <table class="display table table-responsive table-bordered table-striped table-hover" id="datat">
             <thead>
@@ -47,58 +47,58 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.Apellido_Paterno) @Html.DisplayFor(modelItem => item.Apellido_Materno)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Usuario1)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Correo)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tipousuario1.Nombre)
-                </td>
-                <td>
-                    @{
-                        if (int.Parse(Session["id"].ToString()) == item.idUsuario)
-                        {
-                            <p>@Html.ActionLink("Edit", "Edit", "Perfil", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
-                        }
-                        else
-                        {
-                            if (Session["tipo"].ToString() == "3")
-                            {
-                                <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
-                                using (Html.BeginForm("Delete", "Usuario", FormMethod.Get, null))
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nombre) @Html.DisplayFor(modelItem => item.Apellido_Paterno) @Html.DisplayFor(modelItem => item.Apellido_Materno)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Usuario1)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Correo)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.tipousuario1.Nombre)
+                        </td>
+                        <td>
+                            @{
+                                if (int.Parse(Session["id"].ToString()) == item.idUsuario)
                                 {
-                                    <input hidden name="id" value="@item.idUsuario" />
-                                    <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                    <p>@Html.ActionLink("Edit", "Edit", "Perfil", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
                                 }
-                            }
-                            else
-                            {
-                                if (item.TipoUsuario != 3)
+                                else
                                 {
-                                    <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
-                                    using (Html.BeginForm("Delete", "Usuario", FormMethod.Get, null))
+                                    if (Session["tipo"].ToString() == "3")
                                     {
-                                        <input hidden name="id" value="@item.idUsuario" />
-                                        <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                        <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
+                                        using (Html.BeginForm("Delete", "Usuario", FormMethod.Get, null))
+                                        {
+                                            <input hidden name="id" value="@item.idUsuario" />
+                                            <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                        }
                                     }
+                                    else
+                                    {
+                                        if (item.TipoUsuario != 3)
+                                        {
+                                            <p>@Html.ActionLink("Edit", "Edit", new { id = item.idUsuario }, new { @class = "btn btn-large btn-warning" })</p>
+                                            using (Html.BeginForm("Delete", "Usuario", FormMethod.Get, null))
+                                            {
+                                                <input hidden name="id" value="@item.idUsuario" />
+                                                <p><input type="button" class="btn  btn-large btn-danger swalalert" value="Eliminar" /></p>
+                                            }
+                                        }
+                                    }
+
                                 }
                             }
 
-                        }
-                    }
 
-
-                </td>
-            </tr>
-            }
+                        </td>
+                    </tr>
+                }
             </tbody>
             <tfoot>
                 <tr>

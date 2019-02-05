@@ -106,7 +106,7 @@ namespace WebApplication4.Controllers
             {
                 if (user.Contraseña == u.Password)
                 {                        
-                    FormsAuthentication.SetAuthCookie(user.Usuario1,true);
+                    FormsAuthentication.SetAuthCookie(user.Usuario1,false);
                     
                     Session["username"] = user.Usuario1;
                     Session["id"] = user.idUsuario;

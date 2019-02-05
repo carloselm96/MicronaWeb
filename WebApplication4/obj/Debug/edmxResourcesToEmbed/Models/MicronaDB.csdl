@@ -29,7 +29,7 @@
     <Property Name="Usuario" Type="Int32" />
     <Property Name="Archivo" Type="Int32" />
     <Property Name="TipoArticulo" Type="Int32" />
-    <Property Name="Indice" Type="Int32" />
+    <Property Name="Indice" Type="String" />
     <NavigationProperty Name="archivo1" Relationship="Self.FK_Articulo_Archivo" FromRole="articulo" ToRole="archivo" />
     <NavigationProperty Name="articulo_grupo" Relationship="Self.FK_ARTGRU_ART" FromRole="articulo" ToRole="articulo_grupo" />
     <NavigationProperty Name="tipoarticulo1" Relationship="Self.FK_Articulo_Tipo" FromRole="articulo" ToRole="tipoarticulo" />

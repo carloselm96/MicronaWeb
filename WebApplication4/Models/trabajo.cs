@@ -24,12 +24,12 @@ namespace WebApplication4.Models
         }
     
         public int idTrabajo { get; set; }
+        [DisplayName("Titulo")]
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Nombre { get; set; }
         [DisplayName("Fecha")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Año { get; set; }
-        [DisplayName("Tipo de Trabajo")]       
         public Nullable<int> TipoTrabajo { get; set; }
         public string Autores { get; set; }
         public string Presentacion { get; set; }

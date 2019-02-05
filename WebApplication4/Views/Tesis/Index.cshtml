@@ -3,7 +3,7 @@
 @{
                 /**/
 
-                ViewBag.Title = "Tesis";
+                ViewBag.Title = "Lista de Tesis";
                 Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
@@ -28,17 +28,15 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label>Autores</label>
-                                <select class="form-control select2" name="autor"  style="width:100%">
-                                    <option>Selecciona un valor</option>
+                                <select class="form-control select2" name="autor" style="width:100%">
+                                    <option value="">Selecciona un valor</option>
                                     @foreach (var Usuario in ViewBag.autores)
                                     {
                                         <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
                                     }
                                 </select>
                             </div>
-                        </div>                       
-                    </div>
-                    <div class="row">
+                        </div>
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label class="control-label">Grupo académico</label>
@@ -55,9 +53,23 @@
                                 </select>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label>Asesor</label>
+                                <select class="form-control select2" name="Asesor" style="width:100%">
+                                    <option value="">Selecciona un valor</option>
+                                    @foreach (var Usuario in ViewBag.autores)
+                                    {
+                                        <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
                         <div class="col-md-3">
                             <div class="form-group">
-                                <label>Año:</label>
+                                <label>Fecha:</label>
                                 <div class="input-daterange" id="">
                                     <div class="input-group">
                                         <input type="text" class="form-control pull-right datemask" name="Y1" autocomplete="off">
