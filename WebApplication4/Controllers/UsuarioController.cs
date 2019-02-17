@@ -42,7 +42,7 @@ namespace WebApplication4.Controllers
             {
                 if (validateAccess())
                 {
-                    if (u.TipoUsuario == 3 && Session["tipo"].ToString().Equals("3"))
+                    if (u.TipoUsuario == 3 && Session["tipo"].ToString()!="3")
                     {
                         return RedirectToAction("Index", "Home", null);
                     }                    

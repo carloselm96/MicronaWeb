@@ -1,5 +1,10 @@
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Shared\_LayoutHome.cshtml
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\Index.cshtml
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\_ConcentradoPartial.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\SearchResult.cshtml
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\_SearchResultPartial.cshtml
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\Details.cshtml
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Error\PageNotFound.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Shared\_LayoutAdmin.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\WebApplication4.dll.config
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\WebApplication4.dll
@@ -63,13 +68,8 @@ C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\es\System.
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\es\System.Web.Webpages.Razor.resources.dll
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\es\System.Web.Helpers.resources.dll
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\es\System.Web.Mvc.resources.dll
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Release\WebApplication4.csprojAssemblyReference.cache
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Release\WebApplication4.csproj.CoreCompileInputs.cache
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Release\WebApplication4.csproj.CopyComplete
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Release\WebApplication4.dll
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Release\WebApplication4.pdb
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Release\WebApplication4.csprojAssemblyReference.cache
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\Index.cshtml
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\_ConcentradoPartial.cshtml
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\_SearchResultPartial.cshtml
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\Details.cshtml
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Error\PageNotFound.cshtml

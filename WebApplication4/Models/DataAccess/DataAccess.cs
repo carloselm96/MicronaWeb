@@ -821,9 +821,9 @@ namespace WebApplication4.Models.DataAccess
         {
             if (id==null)
             {
-                return db.usuario.Where(x=>x.Usuario1==username).ToList().Count>0 ? false : true;
+                return db.usuario.Where(x=>x.Usuario1==username && x.Status=="A").ToList().Count>0 ? false : true;
             }
-            return db.usuario.Where(x => (x.Usuario1 == username) && (x.idUsuario != id)).FirstOrDefault()!=null ? false : true;   
+            return db.usuario.Where(x => (x.Usuario1 == username && x.Status == "A") && (x.idUsuario != id)).FirstOrDefault()!=null ? false : true;   
         }
 
         public bool createUsuario(usuario u)

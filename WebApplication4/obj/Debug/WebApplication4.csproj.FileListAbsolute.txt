@@ -67,9 +67,9 @@ C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Debug\WebA
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Shared\_LayoutAdmin.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Shared\_LayoutHome.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\SearchResult.cshtml
-C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Debug\WebApplication4.csprojAssemblyReference.cache
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Error\PageNotFound.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\Index.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\_ConcentradoPartial.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\_SearchResultPartial.cshtml
 C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\bin\Views\Home\Details.cshtml
+C:\Users\DELL\Source\Repos\carloselm96\MicronaWeb\WebApplication4\obj\Debug\WebApplication4.csprojAssemblyReference.cache
