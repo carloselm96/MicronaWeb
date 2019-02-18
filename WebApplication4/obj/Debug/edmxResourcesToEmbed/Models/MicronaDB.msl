@@ -13,6 +13,8 @@
     <EntitySetMapping Name="articulo">
       <EntityTypeMapping TypeName="microna2018Model.articulo">
         <MappingFragment StoreEntitySet="articulo">
+          <ScalarProperty Name="FechaAceptacion" ColumnName="FechaAceptacion" />
+          <ScalarProperty Name="DOI" ColumnName="DOI" />
           <ScalarProperty Name="idArticulo" ColumnName="idArticulo" />
           <ScalarProperty Name="Nombre" ColumnName="Nombre" />
           <ScalarProperty Name="Volumen" ColumnName="Volumen" />
@@ -169,6 +171,7 @@
     <EntitySetMapping Name="proyectos">
       <EntityTypeMapping TypeName="microna2018Model.proyectos">
         <MappingFragment StoreEntitySet="proyectos">
+          <ScalarProperty Name="Monto" ColumnName="Monto" />
           <ScalarProperty Name="idProyecto" ColumnName="idProyecto" />
           <ScalarProperty Name="nombre" ColumnName="nombre" />
           <ScalarProperty Name="Financiamiento" ColumnName="Financiamiento" />

@@ -35,6 +35,8 @@
     <NavigationProperty Name="tipoarticulo1" Relationship="Self.FK_Articulo_Tipo" FromRole="articulo" ToRole="tipoarticulo" />
     <NavigationProperty Name="usuario1" Relationship="Self.FK_Articulo_Usuario" FromRole="articulo" ToRole="usuario" />
     <NavigationProperty Name="articulo_usuario" Relationship="Self.FK_ArtUs_Art" FromRole="articulo" ToRole="articulo_usuario" />
+    <Property Name="DOI" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="FechaAceptacion" Type="DateTime" />
   </EntityType>
   <EntityType Name="articulo_grupo">
     <Key>
@@ -215,6 +217,7 @@
     <NavigationProperty Name="proyecto_grupo" Relationship="Self.FK_Proyecto_Grupo" FromRole="proyectos" ToRole="proyecto_grupo" />
     <NavigationProperty Name="proyecto_usuario" Relationship="Self.FK_ProUs_Proyecto" FromRole="proyectos" ToRole="proyecto_usuario" />
     <NavigationProperty Name="usuario1" Relationship="Self.FK_Proyectos_Usuario" FromRole="proyectos" ToRole="usuario" />
+    <Property Name="Monto" Type="Int32" />
   </EntityType>
   <EntityType Name="tipoarticulo">
     <Key>

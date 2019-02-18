@@ -24,6 +24,8 @@
     <Property Name="Archivo" Type="int" />
     <Property Name="TipoArticulo" Type="int" />
     <Property Name="Indice" Type="varchar" MaxLength="45" />
+    <Property Name="DOI" Type="varchar" MaxLength="45" />
+    <Property Name="FechaAceptacion" Type="datetime" Precision="0" />
   </EntityType>
   <EntityType Name="articulo_grupo">
     <Key>
@@ -41,6 +43,11 @@
     <Property Name="idArticulo" Type="int" />
     <Property Name="idUsuario" Type="int" />
   </EntityType>
+  <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'def.microna2018.articulos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="articulos">
+          <Property Name="Id" Type="int" />
+        </EntityType>-->
   <EntityType Name="capitulo_grupo">
     <Key>
       <PropertyRef Name="idcapitulo_grupo" />
@@ -161,6 +168,7 @@
     <Property Name="Usuario" Type="int" />
     <Property Name="Archivo" Type="int" />
     <Property Name="Clave" Type="varchar" MaxLength="45" />
+    <Property Name="Monto" Type="int" />
   </EntityType>
   <EntityType Name="tesis">
     <Key>

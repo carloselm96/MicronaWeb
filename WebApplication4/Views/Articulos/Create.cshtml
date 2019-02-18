@@ -15,112 +15,127 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", required="true" } })
-                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Tipo de artículo</label>
-                    <div class="col-md-10">
-                        @Html.DropDownListFor(model =>model.TipoArticulo,new SelectList(ViewBag.tipoarticulo, "idTipoArticulo", "Nombre"),new { @class = "form-control", id = "tipoart" })                        
-                        @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">Indice</label>
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Indice, new { htmlAttributes = new { @class = "form-control", required = "true", id = "ind", disabled = "true" } })
-                        @Html.ValidationMessageFor(model => model.Indice, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">Autores</label>
-                    <div class="col-md-10">                        
-                        <select class="form-control select2" name="Autores" multiple style="width:75%">
-                            @foreach (var Usuario in ViewBag.autores)
-                            {
-                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                            }
-                        </select>
-                    </div>
-                </div>    
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Volumen, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Volumen, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Volumen, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Pagina Inicio:</label>
-                    <div class="form-inline col-md-10">                                                   
-                            @Html.EditorFor(model => model.PagInicio, new { htmlAttributes = new { @class = "form-control" } })
-                            @Html.ValidationMessageFor(model => model.PagFinal, "", new { @class = "text-danger" })
-                        </div>
-                </div>                
-                <div class="form-group">
-                    <label class="control-label col-md-2">Pagina Final:</label>
-                    <div class="form-inline col-md-10">                                                
-                        @Html.EditorFor(model => model.PagFinal, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PagFinal, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Revista, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Revista, new { htmlAttributes = new { @class = "form-control", required = "true" } })
-                        @Html.ValidationMessageFor(model => model.Revista, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ISSN, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ISSN, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ISSN, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(model => model.Fecha, new { @class="form-control datemask" })
-
-                        @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="control-label col-md-2">Grupo académico</label>
-                    <div class="col-md-10">
-                        <select class="form-control select2" name="GrupoAcademico" multiple>
-                            @foreach (var Grupo in ViewBag.grupo)
-                            {
-                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
-                            }
-                        </select>                        
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Archivo</label>
-                    <div class="col-md-10">
-                        <input type="file" name="ffile" class="form-control" accept="application/pdf"/>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Create" class="btn btn-default" />
-                    </div>
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Tipo de artículo</label>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.TipoArticulo, new SelectList(ViewBag.tipoarticulo, "idTipoArticulo", "Nombre"), new { @class = "form-control", id = "tipoart" })
+                    @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Indice</label>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Indice, new { htmlAttributes = new { @class = "form-control", required = "true", id = "ind", disabled = "true" } })
+                    @Html.ValidationMessageFor(model => model.Indice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Autores</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="Autores" multiple style="width:75%">
+                        @foreach (var Usuario in ViewBag.autores)
+                        {
+                            <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Volumen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Volumen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Volumen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DOI, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DOI, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DOI, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Pagina Inicio:</label>
+                <div class="form-inline col-md-10">
+                    @Html.EditorFor(model => model.PagInicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PagFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Pagina Final:</label>
+                <div class="form-inline col-md-10">
+                    @Html.EditorFor(model => model.PagFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PagFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Revista, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Revista, new { htmlAttributes = new { @class = "form-control", required = "true" } })
+                    @Html.ValidationMessageFor(model => model.Revista, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ISSN, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ISSN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ISSN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaAceptacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.FechaAceptacion, new { @class = "form-control datemask" })
+
+                    @Html.ValidationMessageFor(model => model.FechaAceptacion, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextBoxFor(model => model.Fecha, new { @class = "form-control datemask" })
+
+                    @Html.ValidationMessageFor(model => model.Fecha, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">Grupo académico</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="GrupoAcademico" multiple>
+                        @foreach (var Grupo in ViewBag.grupo)
+                        {
+                            <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Archivo</label>
+                <div class="col-md-10">
+                    <input type="file" name="ffile" class="form-control" accept="application/pdf" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Create" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
         }
     </div>
     <div class="box-footer">

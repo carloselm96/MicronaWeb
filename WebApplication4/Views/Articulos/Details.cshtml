@@ -21,14 +21,14 @@
             </dt>
 
             <dd>
-                @{ 
-                    foreach(var autor in Model.articulo_usuario)
+                @{
+                    foreach (var autor in Model.articulo_usuario)
                     {
-                    <p>
-                        @autor.usuario.Nombre
-                        @autor.usuario.Apellido_Paterno
-                        @autor.usuario.Apellido_Materno
-                    </p>
+                        <p>
+                            @autor.usuario.Nombre
+                            @autor.usuario.Apellido_Paterno
+                            @autor.usuario.Apellido_Materno
+                        </p>
                     }
                 }
             </dd>
@@ -82,6 +82,21 @@
             </dd>
 
             <dt>
+                @Html.DisplayNameFor(model => model.FechaAceptacion)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.FechaAceptacion)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.DOI)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.DOI)
+            </dd>
+            <dt>
                 Tipo de Artículo
             </dt>
 
@@ -127,7 +142,7 @@
                         @Html.ActionLink("Descargar", "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
                     </dd>
                 }
-            }            
+            }
         </dl>
     </div>
     <div class="box-footer">

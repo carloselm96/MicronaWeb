@@ -297,6 +297,8 @@ namespace WebApplication4.Models.DataAccess
             articulo.PagInicio = a.PagInicio;
             articulo.Revista = a.Revista;
             articulo.Volumen = a.Volumen;
+            articulo.DOI = a.DOI;
+            articulo.FechaAceptacion = a.FechaAceptacion;
             articulo.TipoArticulo = a.TipoArticulo;
             db.articulo_grupo.RemoveRange(db.articulo_grupo.Where(x => x.id_articulo == id));
             db.articulo_usuario.RemoveRange(db.articulo_usuario.Where(x => x.idArticulo == id));

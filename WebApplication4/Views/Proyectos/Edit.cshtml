@@ -25,23 +25,23 @@
             </div>
 
             <div class="form-group">
-                    <label class="control-label col-md-2">Autores</label>
-                    <div class="col-md-10">
-                        <select class="form-control select2" name="Autores" multiple>
-                            @foreach (var Usuario in ViewBag.autores)
+                <label class="control-label col-md-2">Autores</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="Autores" multiple>
+                        @foreach (var Usuario in ViewBag.autores)
+                        {
+                            if (Model.proyecto_usuario.Where(x => x.idusuario == Usuario.idUsuario).FirstOrDefault() != null)
                             {
-                                if (Model.proyecto_usuario.Where(x => x.idusuario == Usuario.idUsuario).FirstOrDefault() != null)
-                                {
-                                    <option selected value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
-                                else
-                                {
-                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
+                                <option selected value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
                             }
-                        </select>
-                    </div>
-                   </div>
+                            else
+                            {
+                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.Financiamiento, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
@@ -49,18 +49,24 @@
                     @Html.ValidationMessageFor(model => model.Financiamiento, "", new { @class = "text-danger" })
                 </div>
             </div>
-
+            <div class="form-group">
+                @Html.LabelFor(model => model.Monto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Monto, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Monto, "", new { @class = "text-danger" })
+                </div>
+            </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">                    
-                        <input type="text" class="form-control pull-right datemask" name="FechaInicio" value="@Html.DisplayFor(Model=>Model.FechaInicio, "{0:dd/MM/yyyy}")Inicio">                    
+                <div class="col-md-10">
+                    <input type="text" class="form-control pull-right datemask" name="FechaInicio" value="@Html.DisplayFor(Model=>Model.FechaInicio, "{0:dd/MM/yyyy}")Inicio">
                 </div>
             </div>
 
             <div class="form-group">
                 @Html.LabelFor(model => model.FechaFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">                    
-                        <input type="text" class="form-control pull-right datemask" name="FechaFinal" value="@Html.DisplayFor(Model=>Model.FechaFinal, "{0:dd/MM/yyyy}")Final">                    
+                <div class="col-md-10">
+                    <input type="text" class="form-control pull-right datemask" name="FechaFinal" value="@Html.DisplayFor(Model=>Model.FechaFinal, "{0:dd/MM/yyyy}")Final">
                 </div>
             </div>
             <div class="form-group">
@@ -68,28 +74,28 @@
                 <div class="col-md-10">
                     <select class="form-control select2" name="GrupoAcademico" multiple>
                         @foreach (var Grupo in ViewBag.grupos)
-                {
-                    if (Model.proyecto_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
-                    {
-                        <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
-            }
-            else
-            {
-                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
-    }
-}
+                        {
+                            if (Model.proyecto_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
+                            {
+                                <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                            }
+                        }
                     </select>
                 </div>
             </div>
             @if (Model.archivo1 != null)
-    {
-        <div class="form-group">
-            <label class="control-label col-md-2">Archivo actual: </label>
-            <div class="col-md-10">
-                @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
-            </div>
-        </div>
-}
+            {
+                <div class="form-group">
+                    <label class="control-label col-md-2">Archivo actual: </label>
+                    <div class="col-md-10">
+                        @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                    </div>
+                </div>
+            }
             <div class="form-group">
                 <label class="control-label col-md-2">Nuevo Archivo</label>
                 <div class="col-md-10">

@@ -242,9 +242,9 @@ namespace WebApplication4.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index", new { response = 1 });
             }
-            catch
-            {
-                return View();
+            catch(Exception e)
+            {                
+                return RedirectToAction("Index", new { response = 2 });
             }
         }
 

@@ -35,13 +35,17 @@ namespace WebApplication4.Models
         [Required(ErrorMessage = "Este Campo es Necesario")]
         public string Revista { get; set; }
         public string ISSN { get; set; }
+        [DisplayName("Fecha de Publicación")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public Nullable<System.DateTime> Fecha { get; set; }
         public Nullable<int> Usuario { get; set; }
         public Nullable<int> Archivo { get; set; }
         public Nullable<int> TipoArticulo { get; set; }
         public string Indice { get; set; }
-    
+        public string DOI { get; set; }
+        [DisplayName("Fecha de Aceptación")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
+        public Nullable<System.DateTime> FechaAceptacion { get; set; }
         public virtual archivo archivo1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<articulo_grupo> articulo_grupo { get; set; }
