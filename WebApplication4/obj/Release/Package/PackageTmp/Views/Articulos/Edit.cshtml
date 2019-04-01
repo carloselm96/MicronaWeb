@@ -16,147 +16,160 @@
         {
             @Html.AntiForgeryToken()
 
-            <div class="form-horizontal">
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.idArticulo)
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.idArticulo)
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.TipoArticulo, "TipoArticulo", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        <select class="form-control" , name="TipoArticulo">
-                            @foreach (var TipoArticulo in ViewBag.tipoarticulo)
-                            {
-                                if (Model.tipoarticulo1.idTipoArticulo == TipoArticulo.idTipoArticulo)
-                                {
-                                    <option value="@TipoArticulo.idTipoArticulo" selected>@TipoArticulo.Nombre</option>
-                                }
-                                else
-                                {
-                                    <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
-                                }
-                            }
-                        </select>
-                        @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Autores</label>
-                    <div class="col-md-10">
-                        <select class="form-control select2" name="Autores" multiple>
-                            @foreach (var Usuario in ViewBag.autores)
-                            {
-                                if (Model.articulo_usuario.Where(x => x.idUsuario == Usuario.idUsuario).FirstOrDefault() != null)
-                                {
-                                    <option selected value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
-                                else
-                                {
-                                    <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                </div>   
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Volumen, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Volumen, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Volumen, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PagInicio, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PagInicio, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PagInicio, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.PagFinal, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.PagFinal, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.PagFinal, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Revista, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Revista, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Revista, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ISSN, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.ISSN, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.ISSN, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">                        
-                            <input type="text" class="form-control pull-right datemask" name="Fecha" value="@Html.DisplayFor(Model=>Model.Fecha, "{0:dd/MM/yyyy}")">                        
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label class="control-label col-md-2">Grupo académico</label>
-                    <div class="col-md-10">
-                        <select class="form-control select2" name="GrupoAcademico" multiple>
-                            @foreach (var Grupo in ViewBag.grupos)
-                            {
-                                if (Model.articulo_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
-                                {
-                                    <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
-                                }
-                                else
-                                {
-                                    <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
-                                }
-                            }
-                        </select>
-                    </div>
-                </div>
-                @{
-                    if (Model.archivo1 != null)
-                    {
-                        <div class="form-group">
-                            <label class="control-label col-md-2">Archivo actual: </label>
-                            <div class="col-md-10">
-                                @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
-                            </div>
-                        </div>                        
-                        }                                        
-                }        
-                <div class="form-group">
-                    <label class="control-label col-md-2">Nuevo Archivo</label>
-                    <div class="col-md-10">
-                        <input type="file" name="ffile" class="form-control" accept="application/pdf" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
-                    </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Nombre, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Nombre, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.TipoArticulo, "TipoArticulo", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <select class="form-control" , name="TipoArticulo">
+                        @foreach (var TipoArticulo in ViewBag.tipoarticulo)
+                        {
+                            if (Model.tipoarticulo1.idTipoArticulo == TipoArticulo.idTipoArticulo)
+                            {
+                                <option value="@TipoArticulo.idTipoArticulo" selected>@TipoArticulo.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@TipoArticulo.idTipoArticulo">@TipoArticulo.Nombre</option>
+                            }
+                        }
+                    </select>
+                    @Html.ValidationMessageFor(model => model.TipoArticulo, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Autores</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="Autores" multiple>
+                        @foreach (var Usuario in ViewBag.autores)
+                        {
+                            if (Model.articulo_usuario.Where(x => x.idUsuario == Usuario.idUsuario).FirstOrDefault() != null)
+                            {
+                                <option selected value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                            else
+                            {
+                                <option value="@Usuario.idUsuario">@Usuario.Nombre @Usuario.Apellido_Paterno @Usuario.Apellido_Materno</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Volumen, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Volumen, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Volumen, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.DOI, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.DOI, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DOI, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.PagInicio, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PagInicio, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PagInicio, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.PagFinal, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.PagFinal, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.PagFinal, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Revista, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Revista, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Revista, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ISSN, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.ISSN, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.ISSN, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Fecha, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control pull-right datemask" name="Fecha" value="@Html.DisplayFor(Model=>Model.Fecha, "{0:dd/MM/yyyy}")">
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FechaAceptacion, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="text" class="form-control pull-right datemask" name="FechaAceptacion" value="@Html.DisplayFor(Model=>Model.FechaAceptacion, "{0:dd/MM/yyyy}")">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label col-md-2">Grupo académico</label>
+                <div class="col-md-10">
+                    <select class="form-control select2" name="GrupoAcademico" multiple>
+                        @foreach (var Grupo in ViewBag.grupos)
+                        {
+                            if (Model.articulo_grupo.Where(x => x.id_grupo == Grupo.idGrupoAcademico).FirstOrDefault() != null)
+                            {
+                                <option value="@Grupo.idGrupoAcademico" selected>@Grupo.Nombre</option>
+                            }
+                            else
+                            {
+                                <option value="@Grupo.idGrupoAcademico">@Grupo.Nombre</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            @{
+                if (Model.archivo1 != null)
+                {
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Archivo actual: </label>
+                        <div class="col-md-10">
+                            @Html.ActionLink(Model.archivo1.Nombre, "Download", new { Url = Model.archivo1.url, name = Model.archivo1.Nombre })
+                        </div>
+                    </div>
+                }
+            }
+            <div class="form-group">
+                <label class="control-label col-md-2">Nuevo Archivo</label>
+                <div class="col-md-10">
+                    <input type="file" name="ffile" class="form-control" accept="application/pdf" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
         }
     </div>
     <div class="box-footer">

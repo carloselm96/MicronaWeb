@@ -199,7 +199,9 @@ namespace WebApplication4.Controllers
                 l.director = tesis.director;
                 l.usuario2 = tesis.usuario2;
                 l.autor = int.Parse(autor);
-                l.fecha = tesis.fecha;                                
+                l.fecha = tesis.fecha;
+                l.Carrera = tesis.Carrera;
+                l.grado_academico = tesis.grado_academico;
                 var grupos_eliminar = db.tesis_grupo.Where(x => x.idtesis == id).ToList();
                 if (grupos_eliminar != null)
                 {
@@ -243,7 +245,7 @@ namespace WebApplication4.Controllers
                 return RedirectToAction("Index", new { response = 1 });
             }
             catch(Exception e)
-            {                
+            {                   
                 return RedirectToAction("Index", new { response = 2 });
             }
         }

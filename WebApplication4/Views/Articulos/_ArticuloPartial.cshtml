@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebApplication4.Models.articulo>
 
 
-<table class="display table table-bordered table-striped table-hover" id="datat">
+<table class="table" style="width:100%" id="datat">
     <thead>
         <tr>
             <th>
@@ -141,6 +141,7 @@
     $(function () {
                  
         $('#datat').DataTable({
+            responsive: true,
             dom: 'Bfrtip',
             buttons: [
                 {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}

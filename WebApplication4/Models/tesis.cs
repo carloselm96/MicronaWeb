@@ -36,7 +36,10 @@ namespace WebApplication4.Models
         public string codirector { get; set; }
         public string jurado { get; set; }
         public Nullable<int> autor { get; set; }
-    
+        [DisplayName("Grado Academico")]
+        public string grado_academico { get; set; }
+        [DisplayName("Carrera")]
+        public string Carrera { get; set; }
         public virtual archivo archivo1 { get; set; }
         [DisplayName("Asesor")]
         public virtual usuario usuario1 { get; set; }

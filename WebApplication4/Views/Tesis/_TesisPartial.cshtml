@@ -5,7 +5,7 @@
     
 }
 
-<table class="display table table-bordered table-striped table-hover" id="datat">
+<table class="table" style="width:100%" id="datat">
     <thead>
         <tr>
             <th>
@@ -29,6 +29,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.jurado)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grado_academico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </th>
             <th>Grupo Académico</th>
             <th>Creado por</th>
             <th></th>
@@ -49,7 +55,7 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.fecha)
-                </td>                
+                </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.director)
                 </td>
@@ -65,7 +71,14 @@
                     @Html.DisplayFor(modelItem => item.jurado)
                 </td>
                 <td>
-                    @foreach(var grupo in item.tesis_grupo){
+                    @Html.DisplayFor(modelItem => item.grado_academico)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Carrera)
+                </td>
+                <td>
+                    @foreach (var grupo in item.tesis_grupo)
+                    {
                         <p>@grupo.grupoacademico.Nombre</p>
                     }
                 </td>
@@ -91,41 +104,48 @@
             </tr>
         }
     </tbody>
-        <tfoot>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.titulo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.usuario21)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.fecha)
-                </th>
+    <tfoot>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.usuario21)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fecha)
+            </th>
 
-                <th>
-                    @Html.DisplayNameFor(model => model.director)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.asesor)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.codirector)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.jurado)
-                </th>
-                <th>Grupo Académico</th>
-                <th>Creado por</th>
-                <th></th>
-            </tr>
-        </tfoot>
+            <th>
+                @Html.DisplayNameFor(model => model.director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.asesor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.codirector)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jurado)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.grado_academico)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Carrera)
+            </th>
+            <th>Grupo Académico</th>
+            <th>Creado por</th>
+            <th></th>
+        </tr>
+    </tfoot>
 </table>
 
 <script>
     $(function () {
 
         $('#datat').DataTable({
+            responsive: true,
             dom: 'Bfrtip',
             buttons: [
                 {extend: 'excel', className: 'btn btn-default' }, { extend: 'pdf', orientation: 'landscape', pageSize: 'LEGAL'}

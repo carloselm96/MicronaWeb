@@ -48,11 +48,6 @@
           <Property Name="idArticulo" Type="int" />
           <Property Name="idUsuario" Type="int" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6013: La tabla o vista 'def.microna2018.articulos' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
-        <EntityType Name="articulos">
-          <Property Name="Id" Type="int" />
-        </EntityType>-->
         <EntityType Name="capitulo_grupo">
           <Key>
             <PropertyRef Name="idcapitulo_grupo" />
@@ -189,6 +184,8 @@ advertencia 6013: La tabla o vista 'def.microna2018.articulos' no tiene definida
           <Property Name="codirector" Type="varchar" MaxLength="45" />
           <Property Name="jurado" Type="mediumtext" />
           <Property Name="autor" Type="int" />
+          <Property Name="grado_academico" Type="varchar" MaxLength="45" />
+          <Property Name="Carrera" Type="varchar" MaxLength="45" />
         </EntityType>
         <EntityType Name="tesis_grupo">
           <Key>
@@ -2081,6 +2078,8 @@ advertencia 6013: La tabla o vista 'def.microna2018.articulos' no tiene definida
           <NavigationProperty Name="tesis_grupo" Relationship="microna2018Model.FK_TesisGrupo_Tesis" FromRole="tesis" ToRole="tesis_grupo" />
           <Property Name="autor" Type="Int32" />
           <NavigationProperty Name="usuario21" Relationship="microna2018Model.FK_TesisAutor" FromRole="tesis" ToRole="usuario" />
+          <Property Name="grado_academico" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="Carrera" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_TesisArchivo">
           <End Type="microna2018Model.archivo" Role="archivo" Multiplicity="0..1">
@@ -2445,6 +2444,8 @@ advertencia 6013: La tabla o vista 'def.microna2018.articulos' no tiene definida
           <EntitySetMapping Name="tesis">
             <EntityTypeMapping TypeName="microna2018Model.tesis">
               <MappingFragment StoreEntitySet="tesis">
+                <ScalarProperty Name="Carrera" ColumnName="Carrera" />
+                <ScalarProperty Name="grado_academico" ColumnName="grado_academico" />
                 <ScalarProperty Name="autor" ColumnName="autor" />
                 <ScalarProperty Name="jurado" ColumnName="jurado" />
                 <ScalarProperty Name="codirector" ColumnName="codirector" />

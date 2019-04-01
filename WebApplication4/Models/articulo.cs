@@ -22,7 +22,7 @@ namespace WebApplication4.Models
             this.articulo_grupo = new HashSet<articulo_grupo>();
             this.articulo_usuario = new HashSet<articulo_usuario>();
         }
-    
+
         public int idArticulo { get; set; }
         [DisplayName("Titulo")]
         [Required(ErrorMessage = "Este Campo es Necesario")]

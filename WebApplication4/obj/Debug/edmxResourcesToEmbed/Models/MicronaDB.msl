@@ -274,6 +274,8 @@
     <EntitySetMapping Name="tesis">
       <EntityTypeMapping TypeName="microna2018Model.tesis">
         <MappingFragment StoreEntitySet="tesis">
+          <ScalarProperty Name="Carrera" ColumnName="Carrera" />
+          <ScalarProperty Name="grado_academico" ColumnName="grado_academico" />
           <ScalarProperty Name="autor" ColumnName="autor" />
           <ScalarProperty Name="jurado" ColumnName="jurado" />
           <ScalarProperty Name="codirector" ColumnName="codirector" />

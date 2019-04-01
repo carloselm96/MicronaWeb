@@ -1024,6 +1024,8 @@
     <NavigationProperty Name="tesis_grupo" Relationship="microna2018Model.FK_TesisGrupo_Tesis" FromRole="tesis" ToRole="tesis_grupo" />
     <Property Name="autor" Type="Int32" />
     <NavigationProperty Name="usuario21" Relationship="microna2018Model.FK_TesisAutor" FromRole="tesis" ToRole="usuario" />
+    <Property Name="grado_academico" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+    <Property Name="Carrera" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_TesisArchivo">
     <End Type="microna2018Model.archivo" Role="archivo" Multiplicity="0..1">
